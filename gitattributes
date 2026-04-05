@@ -1,0 +1,40 @@
+# تطبيع نهايات الأسطر تلقائياً
+* text=auto
+
+# تحديد الملفات الثنائية (صور وفيديوهات)
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.gif binary
+*.mp4 binary
+*.webm binary
+*.pdf binary
+
+# تحديد الملفات النصية
+*.html text diff=html
+*.css text diff=css
+*.js text diff=javascript
+*.md text diff=markdown
+*.json text
+
+# حماية ملفات حقوق الملكية
+LICENSE linguist-language=LICENSE
+LICENSE merge=union
+DISCLAIMER.md merge=union
+
+# إخفاء مجلد الأصول من إحصائيات GitHub
+assets/images/* linguist-vendored
+videos/* linguist-vendored
+
+# تحديد لغة الملفات لتلوين GitHub
+*.html linguist-language=HTML
+*.css linguist-language=CSS
+*.js linguist-language=JavaScript
+*.md linguist-language=Markdown
+
+# نهايات أسطر خاصة لويندوز
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# نهايات أسطر خاصة للينكس/ماك
+*.sh text eol=lf
