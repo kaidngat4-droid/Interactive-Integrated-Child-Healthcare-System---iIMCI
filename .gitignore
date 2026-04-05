@@ -1,0 +1,48 @@
+# ========================
+# ❌ لا تضع ملفات المشروع الأساسية هنا!
+# index.html, login.html, dashboard.html, style.css, script.js
+# ========================
+
+# ✅ ضع هذه فقط:
+# ========================
+
+# ملفات نظام التشغيل
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+
+# ملفات المحرر (إعدادات شخصية)
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# ملفات مؤقتة ونسخ احتياطي
+*.tmp
+*.temp
+*.log
+*.bak
+*.backup
+*.old
+*.cache
+
+# المعلومات الحساسة (مهم جداً!)
+.env
+.env.local
+secrets.json
+config.local.js
+config.local.json
+*.key
+*.pem
+
+# ملفات قاعدة البيانات المحلية
+*.db
+*.sqlite
+*.sqlite3
+data-local/
+backups/
+
+# الاعتماديات (إذا استخدمتها لاحقاً)
+node_modules/
+npm-debug.log
