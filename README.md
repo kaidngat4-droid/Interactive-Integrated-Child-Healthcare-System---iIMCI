@@ -1,3 +1,7 @@
+[![License: Proprietary](https://img.shields.io/badge/License-Proprietary-red.svg)](LICENSE)
+[![Copyright](https://img.shields.io/badge/Copyright-©%202025%20Dr%20Salah%20Al--ahdel-blue.svg)](LICENSE)
+
+> **⚠️ تنبيه مهم:** هذا النظام هو ملكية فكرية محمية. لا يسمح بنسخ أو توزيع أو تعديل الكود دون إذن خطي من المطور.
 # imci-smart-care-system
 # IMCI Smart Care Digital System
 
