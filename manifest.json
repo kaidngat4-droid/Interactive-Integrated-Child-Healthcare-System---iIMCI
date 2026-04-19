@@ -1,22 +1,118 @@
 {
-  "name": "النظام الذكي للرعاية التكاملية",
-  "short_name": "الرعاية الذكية",
-  "description": "نظام رقمي متكامل لإدارة الأصول والخدمات",
+  "name": "نظام الرعاية التكاملية التفاعلي لصحة الطفل - iIMCI",
+  "short_name": "iIMCI",
+  "description": "نظام إلكتروني تفاعلي متخصص في الرعاية التكاملية لصحة الطفل وفق بروتوكولات منظمة الصحة العالمية (IMCI)، يقدم خدمات التشخيص والتصنيف والعلاج والتدريب للكادر الطبي.",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#0d6efd",
+  "theme_color": "#0891b2",
   "orientation": "portrait",
+  "categories": ["medical", "health", "education", "government"],
+  "lang": "ar",
+  "dir": "rtl",
   "icons": [
+    {
+      "src": "assets/icon-72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icon-96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icon-128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icon-144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icon-152.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
     {
       "src": "assets/icon-192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
+      "src": "assets/icon-256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icon-384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
       "src": "assets/icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
-  ]
+  ],
+  "screenshots": [
+    {
+      "src": "assets/screenshot-login.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "شاشة تسجيل الدخول"
+    },
+    {
+      "src": "assets/screenshot-main.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "الواجهة الرئيسية للنظام"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "تسجيل طفل جديد",
+      "short_name": "طفل جديد",
+      "description": "إضافة حالة طفل جديدة للنظام",
+      "url": "./index.html?action=new",
+      "icons": [
+        {
+          "src": "assets/icon-new.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "التقارير الشهرية",
+      "short_name": "التقارير",
+      "description": "عرض التقارير الشهرية للحالات",
+      "url": "./reports.html",
+      "icons": [
+        {
+          "src": "assets/icon-reports.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "تدريب الكادر",
+      "short_name": "التدريب",
+      "description": "الوضع التدريبي التفاعلي",
+      "url": "./training.html",
+      "icons": [
+        {
+          "src": "assets/icon-training.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
 }
