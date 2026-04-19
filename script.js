@@ -75,7 +75,7 @@ function classifyCough() {
         resultBox.style.color = "#7f1d1d";
     }
     else if (respRate >= 50) {
-        resultBox.innerHTML = "🟡 التهاب رئوي – أعطِ أموكسيسيلين فموياً لمدة 5 أيام";
+        resultBox.innerHTML = "🟡 التهاب رئوي – أعطِ أموكسيسيلين وسالبتامول فموياً لمدة 5 أيام";
         resultBox.style.background = "#fde68a";
         resultBox.style.color = "#78350f";
     }
@@ -223,7 +223,7 @@ function classifyEar() {
     if (!resultBox) return;
 
     if (mastoid) {
-        resultBox.innerHTML = "🔴 التهاب خشاء – إحالة فورية + جرعة أولى أموكسيسيلين";
+        resultBox.innerHTML = "🔴 التهاب خشاء – إحالة فورية +محلول السكر٤٠% + جرعة أولى أموكسيسيلين";
         resultBox.style.background = "#fecaca";
         return;
     }
