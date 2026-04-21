@@ -1,3 +1,36 @@
+/******************************************************************
+ *                                                                
+ *   ╔════════════════════════════════════════════════════════╗
+ *   ║                                                        ║
+ *   ║   نظام الرعاية التكاملية التفاعلي لصحة الطفل - iIMCI  ║
+ *   ║                                                        ║
+ *   ║   حقوق النشر © 2025 [اسمك] - جميع الحقوق محفوظة       ║
+ *   ║                                                        ║
+ *   ╚════════════════════════════════════════════════════════╝
+ *                                                                
+ *   الخوارزميات والمنطق البرمجي المستخدم في هذا النظام هي من 
+ *   تأليف وإبداع المطور (D / Salah Al-ahdel)، حيث تم تصميم 
+ *   وتطوير كل من:
+ *                                                                
+ *   1. خوارزميات تصنيف السعال (3 مستويات)
+ *   2. خوارزميات تصنيف الإسهال (3 مستويات)
+ *   3. خوارزميات تصنيف الحمى (5 مستويات)
+ *   4. خوارزميات تصنيف الحصبة والأذن والحلق
+ *   5. خوارزميات حساب Z-Scores ودمجها مع MUAC
+ *   6. خوارزميات الربط بين التصنيفات والإجراءات العلاجية
+ *   7. منطق الإحالات الفورية والتنبيهات
+ *   8. نظام حفظ واسترجاع البيانات (LocalStorage)
+ *   9. واجهات المستخدم وتصميم التفاعل
+ *                                                                
+ *   هذه الخوارزميات تم تطويرها بناءً على فهم المطور لبروتوكولات 
+ *   منظمة الصحة العالمية IMCI، ولكن الطريقة البرمجية والمنطق 
+ *   التطبيقي هي إبداع فكري خاص بالمطور.
+ *                                                                
+ *   ⚠️  يحظر نسخ أو توزيع أو تعديل هذا البرنامج دون ترخيص رسمي
+ *    
+                                                            
+ ******************************************************************/
+
 const STORAGE_KEY = "imci_children";
 
 // حماية الجلسة
@@ -27,8 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
     classifyPlayCommunication();
     
     // تشغيل تصنيف سوء التغذية
-    calculateZScores();
-    classifyMalnutrition();
+    classifyMalnutritionComplete();
     updateActions();
 });
 
@@ -75,7 +107,7 @@ function classifyCough() {
         resultBox.style.color = "#7f1d1d";
     }
     else if (respRate >= 50) {
-        resultBox.innerHTML = "🟡 التهاب رئوي – أعطِ أموكسيسيلين وسالبتامول فموياً لمدة 5 أيام";
+        resultBox.innerHTML = "🟡 التهاب رئوي – أعطِ أموكسيسيلين فموياً لمدة 5 أيام";
         resultBox.style.background = "#fde68a";
         resultBox.style.color = "#78350f";
     }
@@ -169,7 +201,7 @@ function classifyDiarrhea() {
 }
 
 /**********************
- * تصنيف مشكلة الحلق - IMCI (معدل)
+ * تصنيف مشكلة الحلق - IMCI
  **********************/
 function classifyThroat() {
     const soreThroat = document.querySelector('input[name="sore_throat"]:checked')?.value;
@@ -186,26 +218,14 @@ function classifyThroat() {
         return;
     }
 
-    // 🔴 التهاب حلق سبحي (بكتيري)
     if (fever === "yes" && tenderNodes && tonsilExudate) {
-        resultBox.innerHTML = `
-            🔴 <strong>التهاب الحلق السبحي</strong><br>
-            💊 <strong>العلاج:</strong><br>
-            &nbsp;&nbsp;• باراسيتامول (15 مجم/كجم) لتسكين الألم وخفض الحرارة<br>
-            &nbsp;&nbsp;• إما: بنسلين فموي لمدة 10 أيام<br>
-            &nbsp;&nbsp;• أو: جرعة واحدة بنزاثين بنسلين عضل (600,000 - 1,200,000 وحدة حسب الوزن)<br>
-            📌 يفضل إعطاء الجرعة العضلية لضمان الالتزام بالعلاج
-        `;
+        resultBox.innerHTML = "🔴 التهاب الحلق السبحي – أعطِ أموكسيسيلين حسب الوزن لمدة 5 أيام";
         resultBox.style.background = "#fecaca";
-        resultBox.style.color = "#7f1d1d";
-        updateActions();
         return;
     }
 
-    // 🟡 التهاب حلق غير سبحي (فيروسي)
-    resultBox.innerHTML = "🟡 التهاب الحلق غير السبحي – علاج عرضي (باراسيتامول + سوائل دافئة)";
+    resultBox.innerHTML = "🟡 التهاب الحلق غير السبحي – علاج عرضي (مسكنات + سوائل دافئة)";
     resultBox.style.background = "#fde68a";
-    resultBox.style.color = "#78350f";
     updateActions();
 }
 
@@ -223,7 +243,7 @@ function classifyEar() {
     if (!resultBox) return;
 
     if (mastoid) {
-        resultBox.innerHTML = "🔴 التهاب خشاء – إحالة فورية +محلول السكر٤٠% + جرعة أولى أموكسيسيلين";
+        resultBox.innerHTML = "🔴 التهاب خشاء – إحالة فورية + جرعة أولى أموكسيسيلين";
         resultBox.style.background = "#fecaca";
         return;
     }
@@ -436,19 +456,79 @@ function classifyPlayCommunication() {
 }
 
 /************************************
- * ====== تصنيف Z-Scores وعرضها ======
+ * ====== دوال تصنيف MUAC وسوء التغذية وفقر الدم ======
+ * وفق بروتوكولات منظمة الصحة العالمية (WHO)
  ************************************/
-function calculateZScores() {
-    const age = parseFloat(document.querySelector('[name="age"]')?.value) || 0;
-    const weight = parseFloat(document.querySelector('[name="weight"]')?.value) || 0;
-    const height = parseFloat(document.querySelector('[name="height"]')?.value) || 0;
-    const sex = document.querySelector('[name="sex"]:checked')?.value || "male";
+
+/**
+ * دالة حساب وتصنيف MUAC
+ */
+function classifyMUAC(muac) {
+    if (!muac || muac <= 0) {
+        return { 
+            status: "unknown", 
+            text: "⚠️ لم يتم إدخال قيمة MUAC", 
+            color: "#e5e7eb",
+            borderColor: "#94a3b8",
+            action: "يرجى قياس MUAC باستخدام شريط القياس"
+        };
+    }
     
-    if (!age || !weight || !height) return null;
+    let result = {};
     
-    let expectedWeight, expectedHeight, sdWeight, sdHeight;
+    if (muac < 11.5) {
+        result = {
+            status: "SAM",
+            text: "🔴 سوء تغذية حاد شديد (SAM)",
+            color: "#fecaca",
+            borderColor: "#dc2626",
+            action: "🚑 إحالة فورية للمستشفى + بدء تغذية علاجية"
+        };
+    } 
+    else if (muac >= 11.5 && muac < 12.5) {
+        result = {
+            status: "MAM",
+            text: "🟠 سوء تغذية حاد متوسط (MAM)",
+            color: "#fde68a",
+            borderColor: "#d97706",
+            action: "📅 متابعة أسبوعية + دعم غذائي متقدم"
+        };
+    }
+    else if (muac >= 12.5 && muac < 13.5) {
+        result = {
+            status: "at_risk",
+            text: "🟡 خطر معتدل",
+            color: "#fef3c7",
+            borderColor: "#ca8a04",
+            action: "📅 متابعة شهرية + تحسين التنوع الغذائي"
+        };
+    }
+    else {
+        result = {
+            status: "normal",
+            text: "🟢 طبيعي",
+            color: "#bbf7d0",
+            borderColor: "#16a34a",
+            action: "✅ استمرار الرضاعة الطبيعية والأغذية المتوازنة"
+        };
+    }
     
-    if (sex === "male") {
+    result.muac = muac;
+    return result;
+}
+
+/**
+ * دالة حساب Z-Scores
+ */
+function calculateZScores(age, weight, height, sex) {
+    if (!age || age <= 0 || !weight || weight <= 0 || !height || height <= 0) {
+        return { waz: null, haz: null, whz: null };
+    }
+    
+    const isMale = sex === "male";
+    let expectedWeight, expectedHeight;
+    
+    if (isMale) {
         if (age <= 12) {
             expectedWeight = 3.5 + (age * 0.5);
             expectedHeight = 50 + (age * 1.5);
@@ -466,127 +546,225 @@ function calculateZScores() {
         }
     }
     
-    sdWeight = expectedWeight * 0.15;
-    sdHeight = expectedHeight * 0.08;
+    const sdWeight = expectedWeight * 0.15;
+    const sdHeight = expectedHeight * 0.08;
     
     const waz = (weight - expectedWeight) / sdWeight;
     const haz = (height - expectedHeight) / sdHeight;
     
-    const idealWeightForHeight = (height <= 100) ? (height * 0.15) : (15 + ((height - 100) * 0.25));
+    let idealWeightForHeight;
+    if (height <= 65) {
+        idealWeightForHeight = 3.0 + (height - 45) * 0.15;
+    } else if (height <= 100) {
+        idealWeightForHeight = 6.0 + (height - 65) * 0.12;
+    } else {
+        idealWeightForHeight = 10.2 + (height - 100) * 0.1;
+    }
+    if (!isMale) idealWeightForHeight *= 0.98;
+    
     const sdWhz = idealWeightForHeight * 0.12;
     const whz = (weight - idealWeightForHeight) / sdWhz;
     
-    const whzField = document.getElementById("whzOutput");
-    const wazField = document.getElementById("wazOutput");
-    const hazField = document.getElementById("hazOutput");
-    const summaryField = document.getElementById("zscoreSummary");
-    
-    if (whzField) whzField.value = whz.toFixed(2);
-    if (wazField) wazField.value = waz.toFixed(2);
-    if (hazField) hazField.value = haz.toFixed(2);
-    
-    if (summaryField) {
-        let summary = `WHZ: ${whz.toFixed(1)} | WAZ: ${waz.toFixed(1)} | HAZ: ${haz.toFixed(1)}`;
-        if (whz < -3) summary += " ⚠️ هزال شديد";
-        else if (whz < -2) summary += " ⚠️ هزال متوسط";
-        if (haz < -3) summary += " ⚠️ تقزم شديد";
-        else if (haz < -2) summary += " ⚠️ تقزم متوسط";
-        summaryField.value = summary;
-    }
-    
-    return { waz, haz, whz };
+    return {
+        waz: Math.min(Math.max(waz, -5), 5),
+        haz: Math.min(Math.max(haz, -5), 5),
+        whz: Math.min(Math.max(whz, -5), 5)
+    };
 }
 
-/************************************
- * ====== تصنيف سوء التغذية وفقر الدم ======
- ************************************/
-function classifyMalnutrition() {
+/**
+ * دالة الحصول على رسالة Z-Score
+ */
+function getZScoreMessage(zscore, type) {
+    if (zscore === null) return "غير متوفر";
+    
+    const typeNames = {
+        waz: "الوزن",
+        haz: "الطول",
+        whz: "الوزن/الطول"
+    };
+    
+    const name = typeNames[type] || type;
+    
+    if (zscore < -3) return `⚠️ ${name} أقل من الطبيعي بشدة (نقص شديد)`;
+    if (zscore < -2) return `⚠️ ${name} أقل من الطبيعي (نقص متوسط)`;
+    if (zscore > 2) return `📈 ${name} أعلى من الطبيعي (زيادة)`;
+    return `✅ ${name} طبيعي`;
+}
+
+/**
+ * دالة تصنيف فقر الدم
+ */
+function classifyAnemia(pallor, hemoglobin) {
+    if (pallor === "severe" || (hemoglobin > 0 && hemoglobin < 7)) {
+        return {
+            status: "severe",
+            text: "🔴 فقر دم شديد",
+            color: "#fecaca",
+            actions: [
+                "🚑 إحالة عاجلة للمستشفى",
+                "🩸 نقل دم إذا لزم الأمر",
+                "💊 بدء حديد + حمض فوليك فوراً"
+            ]
+        };
+    } 
+    else if (pallor === "mild" || (hemoglobin >= 7 && hemoglobin < 11)) {
+        return {
+            status: "moderate",
+            text: "🟡 فقر دم متوسط/خفيف",
+            color: "#fde68a",
+            actions: [
+                "💊 حديد (3-6 مجم/كجم/يوم) لمدة 3 أشهر",
+                "🥬 أغذية غنية بالحديد",
+                "🍊 فيتامين C مع الحديد",
+                "🪄 مكافحة الديدان المعوية"
+            ]
+        };
+    }
+    
+    return {
+        status: "none",
+        text: "🟢 لا يوجد فقر دم",
+        color: "#bbf7d0",
+        actions: []
+    };
+}
+
+/**
+ * الدالة الرئيسية لتصنيف سوء التغذية وفقر الدم
+ */
+function classifyMalnutritionComplete() {
     const age = parseFloat(document.querySelector('[name="age"]')?.value) || 0;
     const weight = parseFloat(document.querySelector('[name="weight"]')?.value) || 0;
     const height = parseFloat(document.querySelector('[name="height"]')?.value) || 0;
     const muac = parseFloat(document.querySelector('[name="muac"]')?.value) || 0;
+    const sexElement = document.querySelector('[name="sex"]:checked, [name="gender"]');
+    const sex = sexElement?.value === "أنثى" || sexElement?.value === "female" ? "female" : "male";
     const edema = document.querySelector('[name="bilateral_edema"]')?.value || "";
     const severeWasting = document.querySelector('[name="severe_wasting"]')?.value || "";
     const pallor = document.querySelector('[name="pallor_hand"]')?.value || "";
     const hemoglobin = parseFloat(document.querySelector('[name="hemoglobin"]')?.value) || 0;
     
     const resultBox = document.getElementById("nutritionResult");
-    if (!resultBox) return;
+    if (!resultBox) return null;
     
-    let result = "";
-    let color = "#bbf7d0";
-    let actions = [];
+    // تصنيف MUAC
+    const muacResult = classifyMUAC(muac);
     
-    const scores = calculateZScores();
-    const whz = scores?.whz || 0;
-    const waz = scores?.waz || 0;
-    const haz = scores?.haz || 0;
+    // حساب Z-Scores
+    const scores = calculateZScores(age, weight, height, sex);
     
-    // ========== 1. تصنيف سوء التغذية ==========
+    // تصنيف فقر الدم
+    const anemiaResult = classifyAnemia(pallor, hemoglobin);
     
-    if (edema === "yes" || muac < 11.5 || whz < -3 || severeWasting === "yes") {
-        result = "🔴 سوء تغذية حاد شديد (SAM)";
-        color = "#fecaca";
-        actions.push("🚑 إحالة فورية للمستشفى");
-        actions.push("💊 مضاد حيوي وقائي (أموكسيسيلين أو كوتريموكسازول)");
-        actions.push("🍼 بدء تغذية علاجية (F-75 ثم F-100)");
-        actions.push("💉 فيتامين A فوراً حسب العمر");
-    }
-    else if ((muac >= 11.5 && muac < 12.5) || (whz >= -3 && whz < -2)) {
-        result = "🟠 سوء تغذية حاد متوسط (MAM)";
-        color = "#fde68a";
-        actions.push("🍼 دعم غذائي متقدم");
-        actions.push("📅 متابعة أسبوعية لمدة شهر");
-    }
-    else if (haz < -2) {
-        result = "🟡 تقزم (تأخر نمو مزمن)";
-        color = "#fde68a";
-        actions.push("🥗 تحسين التنوع الغذائي");
-        actions.push("🧪 مكملات زنك وفيتامينات");
-    }
-    else if (waz < -2) {
-        result = "🟡 نقص وزن بالنسبة للعمر";
-        color = "#fde68a";
-        actions.push("🍽️ زيادة عدد الوجبات اليومية");
-    }
-    else if (whz >= -2 && whz <= 2 && waz >= -2 && haz >= -2 && age > 0) {
-        result = "🟢 تغذية طبيعية";
-        color = "#bbf7d0";
-        actions.push("✅ استمرار الرضاعة الطبيعية والأغذية المتوازنة");
-    }
+    // التصنيف الشامل
+    let malnutritionStatus = "";
+    let malnutritionColor = muacResult.color;
+    let allActions = [...(muacResult.action ? [muacResult.action] : [])];
     
-    // ========== 2. تصنيف فقر الدم ==========
-    if (pallor === "severe" || (hemoglobin > 0 && hemoglobin < 7)) {
-        result = "🔴 فقر دم شديد";
-        color = "#fecaca";
-        actions.push("🚑 إحالة عاجلة للمستشفى");
-        actions.push("💊 بدء حديد + حمض فوليك");
-    } else if (pallor === "mild" || (hemoglobin >= 7 && hemoglobin < 11)) {
-        result = "🟡 فقر دم متوسط/خفيف";
-        color = "#fde68a";
-        actions.push("💊 حديد لمدة 3 أشهر");
-        actions.push("🥬 أغذية غنية بالحديد");
+    // تحديث حقول Z-Scores في الصفحة
+    const whzField = document.getElementById("whzOutput");
+    const wazField = document.getElementById("wazOutput");
+    const hazField = document.getElementById("hazOutput");
+    if (whzField) whzField.value = scores.whz !== null ? scores.whz.toFixed(2) : "";
+    if (wazField) wazField.value = scores.waz !== null ? scores.waz.toFixed(2) : "";
+    if (hazField) hazField.value = scores.haz !== null ? scores.haz.toFixed(2) : "";
+    
+    // تحليل Z-Scores
+    if (scores.whz !== null) {
+        if (scores.whz < -3) {
+            malnutritionStatus = "🔴 هزال شديد (SAM)";
+            malnutritionColor = "#fecaca";
+            allActions.push("🍼 بدء تغذية علاجية (F-75 ثم F-100)");
+            allActions.push("💊 مضاد حيوي وقائي");
+            allActions.push("💉 فيتامين A فوراً");
+        } 
+        else if (scores.whz < -2) {
+            malnutritionStatus = "🟠 هزال متوسط (MAM)";
+            malnutritionColor = "#fde68a";
+            allActions.push("🍼 دعم غذائي متقدم");
+            allActions.push("📅 متابعة أسبوعية");
+        }
+        else if (scores.haz < -2) {
+            malnutritionStatus = "🟡 تقزم (تأخر نمو مزمن)";
+            malnutritionColor = "#fde68a";
+            allActions.push("🥗 تحسين التنوع الغذائي");
+            allActions.push("🧪 مكملات زنك وفيتامينات");
+        }
+        else if (scores.waz < -2) {
+            malnutritionStatus = "🟡 نقص وزن بالنسبة للعمر";
+            malnutritionColor = "#fde68a";
+            allActions.push("🍽️ زيادة عدد الوجبات اليومية");
+        }
     }
     
-    if (!result) {
-        result = "🟢 الحالة طبيعية";
+    // التحقق من الوذمة
+    if (edema === "yes" || severeWasting === "yes") {
+        malnutritionStatus = "🔴 سوء تغذية حاد شديد مع مضاعفات (SAM)";
+        malnutritionColor = "#fecaca";
+        allActions.push("🚑 إحالة فورية للمستشفى");
+        allActions.push("💉 فيتامين A فوراً");
     }
     
-    if (actions.length > 0) {
-        result += "<hr><strong>📋 الإجراءات المقترحة:</strong><br>• " + actions.join("<br>• ");
+    // بناء النتيجة النهائية
+    let finalResult = "";
+    
+    finalResult += `<div style="margin-bottom: 12px; padding: 10px; background: ${muacResult.color}; border-radius: 8px;">`;
+    finalResult += `<strong>📏 MUAC: ${muac > 0 ? muac.toFixed(1) : "---"} سم</strong><br>`;
+    finalResult += `${muacResult.text}`;
+    finalResult += `</div>`;
+    
+    finalResult += `<div style="margin-bottom: 12px; padding: 10px; background: #f1f5f9; border-radius: 8px;">`;
+    finalResult += `<strong>📊 مؤشرات النمو (Z-Scores):</strong><br>`;
+    finalResult += `• ${getZScoreMessage(scores.waz, "waz")}<br>`;
+    finalResult += `• ${getZScoreMessage(scores.haz, "haz")}<br>`;
+    finalResult += `• ${getZScoreMessage(scores.whz, "whz")}`;
+    finalResult += `</div>`;
+    
+    finalResult += `<div style="margin-bottom: 12px; padding: 10px; background: ${anemiaResult.color}; border-radius: 8px;">`;
+    finalResult += `${anemiaResult.text}`;
+    if (hemoglobin > 0) finalResult += ` (Hb: ${hemoglobin} g/dL)`;
+    finalResult += `</div>`;
+    
+    if (malnutritionStatus) {
+        finalResult += `<div style="margin-bottom: 12px; padding: 10px; background: ${malnutritionColor}; border-radius: 8px; font-weight: bold;">`;
+        finalResult += `${malnutritionStatus}`;
+        finalResult += `</div>`;
     }
     
-    resultBox.innerHTML = result;
-    resultBox.style.background = color;
-    resultBox.style.color = "#1a1a1a";
-    resultBox.style.padding = "10px";
-    resultBox.style.borderRadius = "8px";
+    if (allActions.length > 0 || anemiaResult.actions.length > 0) {
+        finalResult += `<hr><strong>📋 الإجراءات المقترحة:</strong><br><ul style="margin: 10px 0 0 20px;">`;
+        allActions.forEach(action => { finalResult += `<li>${action}</li>`; });
+        anemiaResult.actions.forEach(action => { finalResult += `<li>${action}</li>`; });
+        finalResult += `</ul>`;
+    }
     
-    return { result, actions };
+    // تحديث حقل الإجراءات المتخذة
+    const actionsField = document.querySelector('[name="child_treatment_given"]');
+    if (actionsField) {
+        const allActionsText = [...allActions, ...anemiaResult.actions];
+        if (allActionsText.length > 0) {
+            actionsField.value = allActionsText.join("\n• ");
+        }
+    }
+    
+    resultBox.innerHTML = finalResult;
+    resultBox.style.background = "#ffffff";
+    resultBox.style.padding = "15px";
+    resultBox.style.borderRadius = "12px";
+    resultBox.style.borderRight = `4px solid ${muacResult.borderColor || "#0891b2"}`;
+    
+    // تحديث حقل ملخص Z-Scores
+    const summaryField = document.getElementById("zscoreSummary");
+    if (summaryField && scores.whz !== null) {
+        summaryField.value = `WHZ: ${scores.whz.toFixed(1)} | WAZ: ${scores.waz.toFixed(1)} | HAZ: ${scores.haz.toFixed(1)}`;
+    }
+    
+    return { muac: muacResult, scores: scores, anemia: anemiaResult, malnutrition: malnutritionStatus };
 }
 
 /************************************
- * ====== تحديث الإجراءات المتخذة (معدل) ======
+ * ====== تحديث الإجراءات المتخذة ======
  ************************************/
 function updateActions() {
     const actionsTextarea = document.querySelector('[name="child_treatment_given"]');
@@ -643,10 +821,8 @@ function updateActions() {
         allActions.push("💊 باراسيتامول + سوائل");
     }
     
-    // ✅ العلاج الجديد لالتهاب الحلق السبحي
     if (throatBox && throatBox.innerHTML.includes("التهاب الحلق السبحي")) {
-        allActions.push("💊 باراسيتامول 15 مجم/كجم كل 6 ساعات");
-        allActions.push("💉 بنزاثين بنسلين عضل (جرعة واحدة) أو بنسلين فموي 10 أيام");
+        allActions.push("💊 أموكسيسيلين 5 أيام");
     }
     
     if (earBox && earBox.innerHTML.includes("التهاب أذن حاد")) {
@@ -773,8 +949,7 @@ document.addEventListener("input", function(e) {
     if (["plays_with_child","play_details","communicates","communicates_how"].includes(name)) classifyPlayCommunication();
     
     if (["age","weight","height","muac","hemoglobin","bilateral_edema","severe_wasting","pallor_hand","sex"].includes(name)) {
-        calculateZScores();
-        classifyMalnutrition();
+        classifyMalnutritionComplete();
         updateActions();
     }
 });
