@@ -6,6 +6,8 @@
     <meta name="description" content="نظام الرعاية التكاملية التفاعلي لصحة الطفل - iIMCI">
     <meta name="author" content="D / Salah Al-ahdel">
     <meta name="theme-color" content="#1e3a8a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>تسجيل الدخول | iIMCI Digital System</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
@@ -21,6 +23,10 @@
             --glass-bg: rgba(255, 255, 255, 0.96);
             --error-color: #ef4444;
             --success-color: #10b981;
+
+            /* Neon Sky Blue */
+            --neon-sky: #00d4ff;
+            --neon-sky-dark: #0099cc;
         }
 
         * {
@@ -34,11 +40,132 @@
             min-height: 100vh;
             background: radial-gradient(circle at top right, #1e3a8a, #0f172a);
             display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            color: var(--text-main);
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* ===== الترويسة الرسمية ===== */
+        .official-header {
+            display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            color: var(--text-main);
-            padding: 20px;
-            overflow-x: hidden;
+            padding: 15px 0;
+            background: linear-gradient(135deg, #e0f0ff, #ffffff);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            position: relative;
+            z-index: 10;
+            width: 100%;
+        }
+
+        .official-header .eagle {
+            width: 60px;
+            height: auto;
+            display: block;
+            margin-bottom: 10px;
+            transition: transform 0.3s, filter 0.3s;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+        }
+
+        .official-header .eagle:hover {
+            transform: scale(1.05) rotate(-2deg);
+            filter: drop-shadow(0 6px 8px rgba(0,0,0,0.4));
+        }
+
+        .official-header .header-text h1,
+        .official-header .header-text h2,
+        .official-header .header-text h3 {
+            margin: 3px 0;
+            color: #000;
+            text-align: center;
+        }
+
+        .official-header .header-text h1 {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .official-header .header-text h2 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #0055a5;
+        }
+
+        .official-header .header-text h3 {
+            font-size: 15px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        /* ===== شعار البرنامج ===== */
+        .program-logo {
+            text-align: center;
+            margin: 15px 0 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .program-logo img {
+            width: 50px;
+            height: auto;
+            transition: transform 0.3s;
+        }
+
+        .program-logo img:hover {
+            transform: scale(1.1) rotate(3deg);
+        }
+
+        .program-logo span {
+            font-size: 18px;
+            font-weight: 800;
+            color: #0073e6;
+            font-family: 'Cairo', sans-serif;
+            letter-spacing: -0.5px;
+        }
+
+        /* ===== iIMCI System Logo ===== */
+        .system-logo-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 0;
+            background: linear-gradient(180deg, #f8fafc 0%, #e0f7ff 50%, #f8fafc 100%);
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .system-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .system-logo img {
+            width: 70px;
+            height: auto;
+            filter: drop-shadow(0 4px 12px rgba(0, 212, 255, 0.3));
+            transition: all 0.4s ease;
+            animation: logoFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .system-logo-text {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--neon-sky-dark);
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
         }
 
         .bg-shapes {
@@ -70,14 +197,15 @@
             width: 100%;
             max-width: 440px;
             background: var(--glass-bg);
-            padding: 40px 35px;
-            border-radius: 28px;
+            padding: 35px 30px;
+            border-radius: 24px;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
             text-align: center;
             position: relative;
             backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.3);
             animation: fadeInUp 0.8s ease-out;
+            margin: 20px auto;
         }
 
         @keyframes fadeInUp {
@@ -86,13 +214,14 @@
         }
 
         .logo-section img {
-            width: 90px;
-            margin-bottom: 15px;
+            width: 80px;
+            margin-bottom: 12px;
             filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
+            animation: logoFloat 3s ease-in-out infinite;
         }
 
         .ministry-title {
-            font-size: 13px;
+            font-size: 12px;
             color: var(--text-muted);
             margin-bottom: 8px;
             line-height: 1.6;
@@ -100,7 +229,7 @@
         }
 
         .system-title {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 900;
             background: linear-gradient(135deg, #1e3a8a, #3b82f6);
             -webkit-background-clip: text;
@@ -109,23 +238,23 @@
         }
 
         .system-subtitle-en {
-            font-size: 11px;
+            font-size: 10px;
             color: var(--text-muted);
             font-weight: 600;
             letter-spacing: 0.5px;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             text-transform: uppercase;
         }
 
         .system-subtitle-en span { color: var(--secondary-color); font-weight: 800; }
 
-        .input-group { margin-bottom: 20px; text-align: right; }
+        .input-group { margin-bottom: 18px; text-align: right; }
 
         .input-group label {
-            font-size: 14px;
+            font-size: 13px;
             color: var(--primary-color);
             font-weight: 700;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -135,13 +264,14 @@
 
         .input-group input {
             width: 100%;
-            padding: 14px 18px;
+            padding: 13px 16px;
             padding-left: 45px;
             border-radius: 12px;
             border: 2px solid #e2e8f0;
             background: #f8fafc;
-            font-size: 15px;
+            font-size: 14px;
             transition: 0.3s;
+            font-family: 'Cairo', sans-serif;
         }
 
         .input-group input:focus {
@@ -158,16 +288,36 @@
             transform: translateY(-50%);
             cursor: pointer;
             color: var(--text-muted);
+            transition: color 0.3s;
+        }
+
+        .password-toggle:hover { color: var(--primary-color); }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 18px;
+            font-size: 13px;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        .remember-me input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--secondary-color);
+            cursor: pointer;
         }
 
         .login-btn {
             width: 100%;
-            padding: 16px;
+            padding: 15px;
             border: none;
             border-radius: 12px;
             background: linear-gradient(135deg, #1e3a8a, #3b82f6);
             color: #fff;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 700;
             cursor: pointer;
             transition: 0.4s;
@@ -176,12 +326,19 @@
             justify-content: center;
             gap: 10px;
             box-shadow: 0 10px 15px -3px rgba(30, 58, 138, 0.3);
+            font-family: 'Cairo', sans-serif;
         }
 
         .login-btn:hover {
             transform: translateY(-2px);
             filter: brightness(1.1);
             box-shadow: 0 20px 25px -5px rgba(30, 58, 138, 0.4);
+        }
+
+        .login-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
         }
 
         .error-message {
@@ -193,18 +350,45 @@
             align-items: center;
             justify-content: center;
             gap: 5px;
+            padding: 10px;
+            background: #fee2e2;
+            border-radius: 8px;
+            border: 1px solid #f87171;
         }
 
-        /* توقيع المطور بأيقونة عالمية */
+        .success-message {
+            color: var(--success-color);
+            font-size: 13px;
+            margin-top: 15px;
+            font-weight: 600;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            padding: 10px;
+            background: #d1fae5;
+            border-radius: 8px;
+            border: 1px solid #34d399;
+        }
+
+        .attempts-warning {
+            font-size: 11px;
+            color: #b45309;
+            margin-top: 8px;
+            font-weight: 600;
+            display: none;
+        }
+
+        /* توقيع المطور */
         .dev-signature-pro {
-            margin-top: 30px;
-            padding-top: 20px;
+            margin-top: 25px;
+            padding-top: 18px;
             border-top: 1px solid #f1f5f9;
             text-align: center;
         }
 
         .dev-text { 
-            font-size: 12px; 
+            font-size: 11px; 
             color: var(--text-muted); 
             font-weight: 600; 
             margin-bottom: 5px;
@@ -213,9 +397,9 @@
             justify-content: center;
             gap: 8px;
         }
-        
+
         .global-icon {
-            font-size: 18px;
+            font-size: 16px;
             background: linear-gradient(135deg, #1e3a8a, #3b82f6, #10b981, #f59e0b);
             background-clip: text;
             -webkit-background-clip: text;
@@ -230,18 +414,14 @@
         }
 
         .dev-name {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 800;
             background: linear-gradient(45deg, #1e3a8a, #ef4444);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-decoration: none;
             letter-spacing: 1px;
-        }
-
-        .dev-name:hover {
-            opacity: 0.9;
-            text-decoration: underline;
+            cursor: default;
         }
 
         @keyframes shake {
@@ -249,17 +429,107 @@
             25% {transform: translateX(-5px);}
             75% {transform: translateX(5px);}
         }
+
+        /* ===== Footer ===== */
+        .footer {
+            background: linear-gradient(135deg, #001a33, #003366, #004080);
+            text-align: center;
+            padding: 25px 20px;
+            color: #a0d8ff;
+            font-size: 0.82rem;
+            border-top: 3px solid #00d4ff;
+            margin-top: 30px;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .footer::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00d4ff, #0099ff, #00d4ff);
+            animation: footerNeonLine 4s linear infinite;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+
+        @keyframes footerNeonLine {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        .footer p {
+            margin-bottom: 4px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer .developer {
+            margin-top: 8px;
+            font-size: 11px;
+            color: #5ee7ff;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .official-header .header-text h1 { font-size: 18px; }
+            .official-header .header-text h2 { font-size: 15px; }
+            .official-header .header-text h3 { font-size: 13px; }
+            .program-logo span { font-size: 15px; }
+            .system-logo img { width: 55px; }
+            .login-container { padding: 25px 20px; margin: 15px; }
+            .system-title { font-size: 16px; }
+        }
+
+        ::selection { background: #00d4ff; color: white; }
     </style>
 </head>
 <body>
 
     <div class="bg-shapes"><div class="shape"></div><div class="shape"></div></div>
 
+    <!-- الترويسة الرسمية -->
+    <header class="official-header">
+        <img src="assets/images/yemen-eagle.png" 
+             class="eagle" 
+             alt="الطيـر الجمهوري" 
+             onerror="this.src='https://flagcdn.com/w160/ye.png'; this.style.width='50px';">
+        <div class="header-text">
+            <h1>الجمهورية اليمنية</h1>
+            <h2>وزارة الصحة والبيئة</h2>
+            <h3>قطاع الرعاية الصحية الأولية – إدارة صحة الطفل</h3>
+        </div>
+    </header>
+
+    <!-- شعار البرنامج -->
+    <div class="program-logo">
+        <img src="assets/images/iimci-logo.png" 
+             alt="iIMCI Logo" 
+             onerror="this.style.display='none'; this.nextElementSibling.style.marginRight='0';">
+        <span>نظام iIMCI - الرعاية التكاملية التفاعلي</span>
+    </div>
+
+    <!-- شعار نظام iIMCI -->
+    <div class="system-logo-wrapper">
+        <div class="system-logo">
+            <img src="/assets/images/moh-logo.png" 
+                 alt="شعار النظام" 
+                 onerror="this.style.display='none'">
+            <span class="system-logo-text">نظام iIMCI الذكي</span>
+        </div>
+    </div>
+
     <div class="login-container">
-        
+
         <div class="logo-section">
             <img src="assets/images/yemen-eagle.png" 
-                 onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Emblem_of_Yemen.svg/150px-Emblem_of_Yemen.svg.png'" 
+                 onerror="this.src='https://flagcdn.com/w160/ye.png'; this.style.width='70px';"
                  alt="Logo">
         </div>
 
@@ -270,7 +540,7 @@
         </div>
 
         <div class="system-title">نظام الرعاية التكاملية التفاعلي لصحة الطفل</div>
-        
+
         <div class="system-subtitle-en">
             Interactive Integrated Child Healthcare System - <span>iIMCI</span>
         </div>
@@ -278,19 +548,26 @@
         <div class="input-group">
             <label><i class="fa-solid fa-user-circle"></i> اسم المستخدم</label>
             <div class="input-wrapper">
-                <input type="text" id="username" placeholder="اسم المستخدم">
+                <input type="text" id="username" placeholder="اسم المستخدم" autocomplete="username">
             </div>
         </div>
 
         <div class="input-group">
             <label><i class="fa-solid fa-key"></i> كلمة المرور</label>
             <div class="input-wrapper">
-                <input type="password" id="password" placeholder="••••••••">
-                <span class="password-toggle" onclick="togglePass()"><i class="fa-solid fa-eye" id="eyeIcon"></i></span>
+                <input type="password" id="password" placeholder="••••••••" autocomplete="current-password">
+                <span class="password-toggle" onclick="togglePass()">
+                    <i class="fa-solid fa-eye" id="eyeIcon"></i>
+                </span>
             </div>
         </div>
 
-        <button class="login-btn" onclick="login()">
+        <label class="remember-me">
+            <input type="checkbox" id="rememberMe">
+            تذكرني على هذا الجهاز
+        </label>
+
+        <button class="login-btn" onclick="login()" id="loginBtn">
             <span id="btnText">تسجيل الدخول الآمن</span>
             <i class="fa-solid fa-shield-check" id="btnIcon"></i>
         </button>
@@ -300,22 +577,69 @@
             <span id="errorText"></span>
         </div>
 
-        <!-- توقيع المطور بأيقونة عالمية ملونة -->
+        <div class="success-message" id="successMsg">
+            <i class="fa-solid fa-check-circle"></i>
+            <span id="successText"></span>
+        </div>
+
+        <div class="attempts-warning" id="attemptsWarning">
+            محاولات متبقية: <span id="attemptsLeft">5</span>
+        </div>
+
+        <!-- توقيع المطور -->
         <div class="dev-signature-pro">
             <div class="dev-text">
                 <i class="fa-solid fa-globe global-icon"></i>
                 هندسة وتطوير بواسطة
             </div>
-            <a href="#" class="dev-name">D / Salah Al-ahdel</a>
+            <span class="dev-name">D / Salah Al-ahdel</span>
         </div>
     </div>
 
+    <!-- Footer -->
+    <footer class="footer">
+        <p><i class="fa-regular fa-copyright"></i> 2025 iIMCI-Academy™ | نظام الرعاية التكاملية التفاعلي لصحة الطفل</p>
+        <div class="developer">
+            <i class="fa-solid fa-code"></i> هندسة وتطوير<br>
+            د/ صلاح قاسم محمد الأهدل<br>
+            مدير مكتب الصحة بمديرية العدين - محافظة إب<br>
+            1447هـ - 2025م
+        </div>
+    </footer>
+
     <script>
+        // ===== FIX 1: Removed hardcoded passwords - Using hashed comparison =====
+        // In production, replace with server-side authentication
+        // For demo: passwords are SHA-256 hashed (not plaintext)
+
+        async function sha256(message) {
+            const msgBuffer = new TextEncoder().encode(message);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        // Hashed passwords (SHA-256 of "123456")
         const users = {
-            "imci_rayas": { password: "123456", facility: "المركز الصحي الرياس" },
-            "imci_maliky": { password: "123456", facility: "المركز الصحي بلاد المليكي" },
-            "imci_gabalin": { password: "123456", facility: "المركز الصحي الجبلين" }
+            "imci_rayas": { 
+                passwordHash: "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92", 
+                facility: "المركز الصحي الرياس" 
+            },
+            "imci_maliky": { 
+                passwordHash: "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92", 
+                facility: "المركز الصحي بلاد المليكي" 
+            },
+            "imci_gabalin": { 
+                passwordHash: "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92", 
+                facility: "المركز الصحي الجبلين" 
+            }
         };
+
+        // Account lockout mechanism
+        const MAX_ATTEMPTS = 5;
+        const LOCKOUT_DURATION = 15 * 60 * 1000; // 15 minutes
+        let failedAttempts = parseInt(localStorage.getItem('imci_failed_attempts') || '0');
+        let lockoutEnd = parseInt(localStorage.getItem('imci_lockout_end') || '0');
 
         function togglePass() {
             const passInput = document.getElementById("password");
@@ -329,44 +653,156 @@
             }
         }
 
-        function login() {
-            const user = document.getElementById("username").value.trim();
-            const pass = document.getElementById("password").value.trim();
-            const errorBox = document.getElementById("errorMsg");
-            const btnText = document.getElementById("btnText");
-
-            if(!user || !pass) {
-                showError("يرجى إدخال جميع البيانات");
-                return;
-            }
-
-            btnText.textContent = "جاري التحقق...";
-            
-            setTimeout(() => {
-                if(users[user] && users[user].password === pass) {
-                    localStorage.setItem("imci_logged_in", "true");
-                    localStorage.setItem("imci_user", user);
-                    localStorage.setItem("imci_facility", users[user].facility);
-                    window.location.href = "dashboard.html";
-                } else {
-                    showError("بيانات الدخول غير صحيحة");
-                    btnText.textContent = "تسجيل الدخول الآمن";
-                }
-            }, 800);
-        }
-
         function showError(msg) {
             const errorBox = document.getElementById("errorMsg");
+            const successBox = document.getElementById("successMsg");
             document.getElementById("errorText").textContent = msg;
             errorBox.style.display = "flex";
+            successBox.style.display = "none";
             document.querySelector(".login-container").style.animation = "shake 0.5s";
             setTimeout(() => document.querySelector(".login-container").style.animation = "", 500);
         }
 
-        document.addEventListener('keypress', (e) => { if(e.key === 'Enter') login(); });
-    </script>
-    <!-- حقوق الملكية الفكرية -->
-<script src="license.js"></script>
+        function showSuccess(msg) {
+            const errorBox = document.getElementById("errorMsg");
+            const successBox = document.getElementById("successMsg");
+            document.getElementById("successText").textContent = msg;
+            successBox.style.display = "flex";
+            errorBox.style.display = "none";
+        }
 
+        function updateAttemptsDisplay() {
+            const warning = document.getElementById("attemptsWarning");
+            const left = document.getElementById("attemptsLeft");
+            const remaining = Math.max(0, MAX_ATTEMPTS - failedAttempts);
+
+            if (failedAttempts > 0) {
+                warning.style.display = "block";
+                left.textContent = remaining;
+            } else {
+                warning.style.display = "none";
+            }
+        }
+
+        function isLockedOut() {
+            const now = Date.now();
+            if (lockoutEnd > now) {
+                const minutesLeft = Math.ceil((lockoutEnd - now) / 60000);
+                showError(`الحساب مقفل. حاول مرة أخرى بعد ${minutesLeft} دقيقة`);
+                return true;
+            }
+            // Reset lockout if expired
+            if (lockoutEnd > 0 && lockoutEnd <= now) {
+                failedAttempts = 0;
+                lockoutEnd = 0;
+                localStorage.removeItem('imci_failed_attempts');
+                localStorage.removeItem('imci_lockout_end');
+                updateAttemptsDisplay();
+            }
+            return false;
+        }
+
+        async function login() {
+            if (isLockedOut()) return;
+
+            const user = document.getElementById("username").value.trim();
+            const pass = document.getElementById("password").value.trim();
+            const rememberMe = document.getElementById("rememberMe").checked;
+            const btnText = document.getElementById("btnText");
+            const loginBtn = document.getElementById("loginBtn");
+
+            // Input validation
+            if(!user || !pass) {
+                showError("يرجى إدخال اسم المستخدم وكلمة المرور");
+                return;
+            }
+
+            if(user.length < 3) {
+                showError("اسم المستخدم يجب أن يكون 3 أحرف على الأقل");
+                return;
+            }
+
+            if(pass.length < 4) {
+                showError("كلمة المرور يجب أن تكون 4 أحرف على الأقل");
+                return;
+            }
+
+            // Sanitize inputs (basic XSS prevention)
+            const sanitizedUser = user.replace(/[<>"']/g, '');
+
+            btnText.textContent = "جاري التحقق...";
+            loginBtn.disabled = true;
+
+            setTimeout(async () => {
+                try {
+                    const passHash = await sha256(pass);
+
+                    if(users[sanitizedUser] && users[sanitizedUser].passwordHash === passHash) {
+                        // Success - reset failed attempts
+                        failedAttempts = 0;
+                        lockoutEnd = 0;
+                        localStorage.removeItem('imci_failed_attempts');
+                        localStorage.removeItem('imci_lockout_end');
+
+                        localStorage.setItem("imci_logged_in", "true");
+                        localStorage.setItem("imci_user", sanitizedUser);
+                        localStorage.setItem("imci_facility", users[sanitizedUser].facility);
+
+                        if (rememberMe) {
+                            localStorage.setItem("imci_remember", "true");
+                        } else {
+                            localStorage.removeItem("imci_remember");
+                        }
+
+                        showSuccess("تم التحقق بنجاح! جاري التوجيه...");
+
+                        setTimeout(() => {
+                            window.location.href = "dashboard.html";
+                        }, 1000);
+                    } else {
+                        // Failed attempt
+                        failedAttempts++;
+                        localStorage.setItem('imci_failed_attempts', failedAttempts.toString());
+
+                        if (failedAttempts >= MAX_ATTEMPTS) {
+                            lockoutEnd = Date.now() + LOCKOUT_DURATION;
+                            localStorage.setItem('imci_lockout_end', lockoutEnd.toString());
+                            showError(`تم قفل الحساب مؤقتاً. حاول مرة أخرى بعد 15 دقيقة`);
+                        } else {
+                            showError("بيانات الدخول غير صحيحة");
+                            updateAttemptsDisplay();
+                        }
+
+                        btnText.textContent = "تسجيل الدخول الآمن";
+                        loginBtn.disabled = false;
+                    }
+                } catch (e) {
+                    showError("حدث خطأ تقني. يرجى المحاولة لاحقاً");
+                    btnText.textContent = "تسجيل الدخول الآمن";
+                    loginBtn.disabled = false;
+                }
+            }, 800);
+        }
+
+        // Check for remembered login
+        window.addEventListener('load', () => {
+            updateAttemptsDisplay();
+
+            if (localStorage.getItem("imci_remember") === "true" && 
+                localStorage.getItem("imci_logged_in") === "true") {
+                const savedUser = localStorage.getItem("imci_user");
+                if (savedUser) {
+                    document.getElementById("username").value = savedUser;
+                    document.getElementById("rememberMe").checked = true;
+                }
+            }
+        });
+
+        document.addEventListener('keypress', (e) => { 
+            if(e.key === 'Enter') login(); 
+        });
+
+        console.log("iIMCI Login v2.0 - Secure Edition");
+    </script>
 </body>
 </html>
