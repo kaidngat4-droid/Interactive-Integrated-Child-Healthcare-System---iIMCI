@@ -3,208 +3,1280 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>حركة المخزون الدوائي | IMCI</title>
+<title>حركة المخزون الدوائي | iIMCI</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-<link rel="stylesheet" href="dashboard.css">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-/* جدول المخزون */
-.drug-stock-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    border-radius: 10px;
-    overflow: hidden;
-    background: #fff;
-    box-shadow: 0 6px 12px rgba(0,0,0,0.05);
+/* ===== Root Variables ===== */
+:root {
+    --primary: #1e3a5f;
+    --primary-light: #2c5282;
+    --primary-dark: #0f2942;
+    --secondary: #0d9488;
+    --secondary-light: #14b8a6;
+    --accent: #d97706;
+    --accent-light: #f59e0b;
+
+    --success: #059669;
+    --success-bg: #d1fae5;
+    --success-border: #34d399;
+
+    --danger: #dc2626;
+    --danger-bg: #fee2e2;
+    --danger-border: #f87171;
+
+    --warning: #b45309;
+    --warning-bg: #fef3c7;
+    --warning-border: #fbbf24;
+
+    --info: #0369a1;
+    --info-bg: #e0f2fe;
+    --info-border: #38bdf8;
+
+    --text-primary: #1e293b;
+    --text-secondary: #475569;
+    --text-muted: #64748b;
+    --text-light: #94a3b8;
+
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-hover: #f1f5f9;
+
+    --border-light: #e2e8f0;
+    --border-medium: #cbd5e1;
+
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+    --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Neon Sky Blue Colors */
+    --neon-sky: #00d4ff;
+    --neon-sky-light: #5ee7ff;
+    --neon-sky-dark: #0099cc;
+    --neon-sky-glow: rgba(0, 212, 255, 0.4);
+    --neon-sky-soft: rgba(0, 212, 255, 0.08);
 }
 
-.drug-stock-table th,
-.drug-stock-table td {
-    border: 1px solid #ccc;
-    padding: 10px;
+/* ===== Body و Layout ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    background: var(--bg-main);
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    line-height: 1.7;
+}
+
+/* ===== الترويسة الرسمية ===== */
+.official-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
+    background: linear-gradient(135deg, #e0f0ff, #ffffff);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    position: relative;
+    z-index: 10;
+}
+
+.official-header .eagle {
+    width: 80px;
+    height: auto;
+    display: block;
+    margin-bottom: 15px;
+    transition: transform 0.3s, filter 0.3s;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+}
+
+.official-header .eagle:hover {
+    transform: scale(1.05) rotate(-2deg);
+    filter: drop-shadow(0 6px 8px rgba(0,0,0,0.4));
+}
+
+.official-header .header-text h1,
+.official-header .header-text h2,
+.official-header .header-text h3 {
+    margin: 5px 0;
+    color: #000;
     text-align: center;
 }
 
-.drug-stock-table th {
-    background: #10b981; /* لون العنوان */
-    color: #fff;
+.official-header .header-text h1 {
+    font-size: 28px;
     font-weight: bold;
 }
 
-.drug-stock-table input[type="number"] {
-    width: 70px;
-    padding: 5px;
-    border-radius: 6px;
-    border: 1px solid #10b981;
+.official-header .header-text h2 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #0055a5;
+}
+
+.official-header .header-text h3 {
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+}
+
+/* ===== شعار البرنامج ===== */
+.program-logo {
     text-align: center;
+    margin: 20px 0 30px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.program-logo img {
+    width: 60px;
+    height: auto;
+    transition: transform 0.3s;
+}
+
+.program-logo img:hover {
+    transform: scale(1.1) rotate(3deg);
+}
+
+.program-logo span {
+    font-size: 22px;
+    font-weight: 800;
+    color: #0073e6;
+    font-family: 'Cairo', sans-serif;
+    letter-spacing: -0.5px;
+}
+
+/* ===== iIMCI System Logo ===== */
+.system-logo-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0 5px 0;
+    background: linear-gradient(180deg, #f8fafc 0%, #e0f7ff 50%, #f8fafc 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.system-logo-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+.system-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    z-index: 1;
+}
+
+.system-logo img {
+    width: 90px;
+    height: auto;
+    filter: drop-shadow(0 4px 12px rgba(0, 212, 255, 0.3));
+    transition: all 0.4s ease;
+    animation: logoFloat 3s ease-in-out infinite;
+}
+
+@keyframes logoFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+.system-logo img:hover {
+    transform: scale(1.08);
+    filter: drop-shadow(0 6px 20px rgba(0, 212, 255, 0.5));
+}
+
+.system-logo-text {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--neon-sky-dark);
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+}
+
+/* ===== Navigation Bar ===== */
+.dashboard-nav-wrapper {
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border-light);
+    padding: 12px 0;
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.dashboard-nav {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.nav-link {
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 14px;
+    transition: var(--transition-fast);
+    border: 1px solid transparent;
+}
+
+.nav-link:hover {
+    background: var(--bg-hover);
+    color: var(--primary);
+    border-color: var(--border-light);
+}
+
+.nav-link.active {
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: white;
+    box-shadow: var(--shadow-md);
+}
+
+/* ===== Back Button ===== */
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    color: white;
+    background: linear-gradient(135deg, #ff6b6b, #ee5a5a, #d63031);
+    border: none;
+    box-shadow: 0 4px 15px rgba(214, 48, 49, 0.35), inset 0 1px 0 rgba(255,255,255,0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.back-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+    transition: left 0.5s ease;
+}
+
+.back-btn:hover::before {
+    left: 100%;
+}
+
+.back-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(214, 48, 49, 0.45), inset 0 1px 0 rgba(255,255,255,0.2);
+    background: linear-gradient(135deg, #ff5252, #e53935, #c62828);
+}
+
+.back-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(214, 48, 49, 0.3);
+}
+
+.back-btn i {
+    font-size: 14px;
+    transition: transform 0.3s ease;
+}
+
+.back-btn:hover i {
+    transform: translateX(4px);
+}
+
+/* ===== Main Container ===== */
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 30px 50px;
+    flex: 1;
+}
+
+/* ===== Page Title ===== */
+.page-title {
+    text-align: center;
+    margin: 30px 0 20px 0;
+    padding: 20px;
+    background: linear-gradient(135deg, #0066cc 0%, #0099ff 30%, #00ccff 60%, #00d4ff 100%);
+    border-radius: 16px;
+    color: white;
+    box-shadow: 0 8px 25px rgba(0, 153, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.page-title::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 60%);
+    animation: titlePulse 4s ease-in-out infinite;
+}
+
+@keyframes titlePulse {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+.page-title h2 {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 800;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 0 15px rgba(255,255,255,0.3);
+}
+
+.page-title i {
+    margin-left: 10px;
+    font-size: 1.4rem;
+    position: relative;
+    z-index: 1;
+    animation: iconGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes iconGlow {
+    0% { text-shadow: 0 0 5px rgba(255,255,255,0.3); }
+    100% { text-shadow: 0 0 20px rgba(255,255,255,0.6), 0 0 40px rgba(0, 212, 255, 0.3); }
+}
+
+/* ===== Facility Info Bar ===== */
+.facility-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px;
+    background: linear-gradient(145deg, #ffffff, #f0f9ff);
+    border-radius: 12px;
+    margin-bottom: 25px;
+    border: 1px solid #cce5ff;
+    box-shadow: 0 4px 12px rgba(0, 153, 255, 0.1);
+}
+
+.facility-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    color: #0055aa;
+    font-size: 1.05rem;
+}
+
+.facility-info i {
+    color: #00d4ff;
+    font-size: 1.2rem;
+}
+
+.logout-btn {
+    padding: 8px 20px;
+    border-radius: 8px;
+    border: none;
+    background: linear-gradient(135deg, #ff6b6b, #d63031);
+    color: white;
+    font-weight: 700;
+    font-family: 'Cairo', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(214, 48, 49, 0.3);
+}
+
+.logout-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(214, 48, 49, 0.4);
+}
+
+/* ===== Drug Stock Table ===== */
+.drug-stock-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 20px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    border: 1px solid #cce5ff;
+}
+
+.drug-stock-table thead {
+    background: linear-gradient(135deg, #0066cc 0%, #0099ff 50%, #00d4ff 100%);
+}
+
+.drug-stock-table th {
+    color: #fff;
+    font-weight: 800;
+    padding: 14px 8px;
+    text-align: center;
+    font-size: 0.85rem;
+    border-bottom: 2px solid rgba(255,255,255,0.2);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.drug-stock-table th:first-child {
+    border-radius: 0 16px 0 0;
+}
+
+.drug-stock-table th:last-child {
+    border-radius: 16px 0 0 0;
+}
+
+.drug-stock-table td {
+    padding: 12px 8px;
+    text-align: center;
+    border-bottom: 1px solid #e0f2ff;
+    font-weight: 600;
+    color: var(--text-primary);
+    transition: all 0.2s ease;
+    vertical-align: middle;
+}
+
+.drug-stock-table tbody tr {
+    transition: all 0.3s ease;
+}
+
+.drug-stock-table tbody tr:hover {
+    background: linear-gradient(90deg, #f0f9ff, #e6f7ff);
+    transform: scale(1.005);
+}
+
+.drug-stock-table tbody tr:last-child td:first-child {
+    border-radius: 0 0 16px 0;
+}
+
+.drug-stock-table tbody tr:last-child td:last-child {
+    border-radius: 0 0 0 16px;
+}
+
+/* Inputs */
+.drug-stock-table input[type="number"] {
+    width: 65px;
+    padding: 8px;
+    border-radius: 8px;
+    border: 2px solid #99d6ff;
+    text-align: center;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 700;
+    color: #0055aa;
+    background: #f0f9ff;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.drug-stock-table input[type="number"]:focus {
+    outline: none;
+    border-color: #00d4ff;
+    box-shadow: 0 0 12px rgba(0, 212, 255, 0.3);
+    background: #ffffff;
+}
+
+/* Date Inputs */
+.drug-stock-table input[type="date"] {
+    width: 125px;
+    padding: 6px 4px;
+    border-radius: 8px;
+    border: 2px solid #99d6ff;
+    text-align: center;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 600;
+    color: #0055aa;
+    background: #f0f9ff;
+    transition: all 0.3s ease;
+    font-size: 0.78rem;
+}
+
+.drug-stock-table input[type="date"]:focus {
+    outline: none;
+    border-color: #00d4ff;
+    box-shadow: 0 0 12px rgba(0, 212, 255, 0.3);
+    background: #ffffff;
+}
+
+/* Current Stock Cell */
+.current {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #0066cc;
+    text-shadow: 0 0 5px rgba(0, 102, 204, 0.2);
+}
+
+/* ===== STATUS CELL STYLES - FIXED ===== */
+.status-cell {
+    min-width: 110px;
+    font-size: 0.82rem;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    margin-bottom: 4px;
+}
+
+.status-ok {
+    background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+    color: #059669;
+    border: 1px solid #34d399;
+}
+
+.status-low {
+    background: linear-gradient(135deg, #fef3c7, #fde68a);
+    color: #b45309;
+    border: 1px solid #fbbf24;
+}
+
+.status-out {
+    background: linear-gradient(135deg, #fee2e2, #fecaca);
+    color: #dc2626;
+    border: 1px solid #f87171;
+}
+
+/* Expiry Badge Styles */
+.expiry-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.72rem;
+    margin-top: 4px;
+    animation: expiryPulse 2s ease-in-out infinite;
+}
+
+@keyframes expiryPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.expiry-expired {
+    background: linear-gradient(135deg, #fee2e2, #fecaca);
+    color: #dc2626;
+    border: 1px solid #f87171;
+}
+
+.expiry-warning {
+    background: linear-gradient(135deg, #fef3c7, #fde68a);
+    color: #b45309;
+    border: 1px solid #fbbf24;
+}
+
+.expiry-good {
+    background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+    color: #059669;
+    border: 1px solid #34d399;
 }
 
 /* تلوين الصفوف حسب الرصيد */
-.low-stock { background-color: #fef3c7; }   /* أصفر */
-.out-of-stock { background-color: #fee2e2; } /* أحمر */
-.ok-stock { background-color: #d1fae5; }    /* أخضر */
+.low-stock { 
+    background: linear-gradient(90deg, #fef9c3, #fef3c7) !important; 
+}
+.low-stock .current { color: #b45309; }
+
+.out-of-stock { 
+    background: linear-gradient(90deg, #fee2e2, #fecaca) !important; 
+}
+.out-of-stock .current { color: #dc2626; }
+
+.ok-stock { 
+    background: linear-gradient(90deg, #d1fae5, #a7f3d0) !important; 
+}
+.ok-stock .current { color: #059669; }
+
+/* ===== Total Summary Row ===== */
+.total-row {
+    background: linear-gradient(135deg, #001a33, #003366, #004080) !important;
+    color: white !important;
+    font-weight: 800;
+    font-size: 1.1rem;
+}
+
+.total-row td {
+    color: white !important;
+    border-bottom: none !important;
+    padding: 16px 10px !important;
+}
+
+.total-row .current {
+    color: #5ee7ff !important;
+    font-size: 1.3rem;
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+}
+
+.total-row:hover {
+    background: linear-gradient(135deg, #001a33, #003366, #004080) !important;
+    transform: none !important;
+}
+
+/* ===== Summary Cards ===== */
+.summary-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 18px;
+    margin: 25px 0;
+}
+
+.summary-card {
+    background: linear-gradient(145deg, #ffffff, #f0f9ff);
+    padding: 20px;
+    border-radius: 14px;
+    text-align: center;
+    border: 1px solid #cce5ff;
+    box-shadow: 0 4px 15px rgba(0, 153, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.summary-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 153, 255, 0.2);
+}
+
+.summary-card i {
+    font-size: 2rem;
+    color: #00d4ff;
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+}
+
+.summary-card .number {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #0066cc;
+    display: block;
+}
+
+.summary-card .label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+/* ===== Action Buttons ===== */
+.action-buttons {
+    display: flex;
+    gap: 12px;
+    margin: 25px 0;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.action-btn {
+    padding: 12px 28px;
+    border-radius: 12px;
+    border: none;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #0066cc, #0099ff, #00d4ff);
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 153, 255, 0.35);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 153, 255, 0.45);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #059669, #10b981);
+    color: white;
+    box-shadow: 0 4px 15px rgba(5, 150, 105, 0.35);
+}
+
+.btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(5, 150, 105, 0.45);
+}
+
+.btn-warning {
+    background: linear-gradient(135deg, #d97706, #f59e0b);
+    color: white;
+    box-shadow: 0 4px 15px rgba(217, 119, 6, 0.35);
+}
+
+.btn-warning:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(217, 119, 6, 0.45);
+}
+
+/* ===== Footer ===== */
+.footer {
+    background: linear-gradient(135deg, #001a33, #003366, #004080);
+    text-align: center;
+    padding: 35px 20px;
+    color: #a0d8ff;
+    font-size: 0.88rem;
+    border-top: 3px solid #00d4ff;
+    margin-top: 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.5), transparent);
+    animation: footerLineGlow 3s ease-in-out infinite;
+}
+
+@keyframes footerLineGlow {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+.footer::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #00d4ff, #0099ff, #00d4ff);
+    animation: footerNeonLine 4s linear infinite;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+}
+
+@keyframes footerNeonLine {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+.footer p {
+    margin-bottom: 6px;
+    position: relative;
+    z-index: 1;
+}
+
+.footer .developer {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #5ee7ff;
+    line-height: 1.8;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+}
+
+.footer-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.footer-particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #00d4ff;
+    border-radius: 50%;
+    opacity: 0;
+    animation: particleFloat 6s ease-in-out infinite;
+    box-shadow: 0 0 10px #00d4ff, 0 0 20px #00d4ff;
+}
+
+@keyframes particleFloat {
+    0% { opacity: 0; transform: translateY(100px) scale(0); }
+    20% { opacity: 1; transform: translateY(80px) scale(1); }
+    80% { opacity: 1; transform: translateY(20px) scale(1); }
+    100% { opacity: 0; transform: translateY(0) scale(0); }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .official-header .header-text h1 { font-size: 22px; }
+    .official-header .header-text h2 { font-size: 18px; }
+    .program-logo span { font-size: 16px; }
+    .system-logo img { width: 70px; }
+    .dashboard-nav { padding: 0 16px; }
+    .nav-links { width: 100%; justify-content: center; }
+    .container { padding: 0 16px 35px; }
+    .page-title h2 { font-size: 1.2rem; }
+    .drug-stock-table { font-size: 0.75rem; }
+    .drug-stock-table th, .drug-stock-table td { padding: 8px 3px; }
+    .drug-stock-table input[type="number"] { width: 50px; padding: 5px; font-size: 0.8rem; }
+    .drug-stock-table input[type="date"] { width: 95px; padding: 4px 2px; font-size: 0.68rem; }
+    .facility-bar { flex-direction: column; gap: 10px; text-align: center; }
+    .summary-cards { grid-template-columns: 1fr; }
+    .action-buttons { flex-direction: column; }
+    .action-btn { width: 100%; justify-content: center; }
+    .status-cell { min-width: 90px; }
+    .status-badge { padding: 3px 8px; font-size: 0.72rem; }
+    .expiry-badge { padding: 2px 6px; font-size: 0.65rem; }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-main); }
+::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #00d4ff, #0099ff); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #0099ff, #0066cc); }
+
+::selection { background: #00d4ff; color: white; }
+
+/* Fade In Animation */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.fade-in-up.visible { opacity: 1; transform: translateY(0); }
 </style>
 </head>
 <body>
 
-<header class="topbar">
-    <h2>برنامج iIMCI التفاعلي</h2>
-    <div>
-        <span id="facilityName"></span>
-        <button onclick="logout()">خروج</button>
+<!-- الترويسة الرسمية -->
+<header class="official-header">
+    <img src="assets/images/yemen-eagle.png" class="eagle" alt="الطيـر الجمهوري" onerror="this.style.display='none'">
+    <div class="header-text">
+        <h1>الجمهورية اليمنية</h1>
+        <h2>وزارة الصحة والبيئة</h2>
+        <h3>قطاع الرعاية الصحية الأولية – إدارة صحة الطفل</h3>
     </div>
 </header>
 
-<div class="layout">
-    <aside class="sidebar">
-        <button onclick="goTo('dashboard.html')"><i class="fa-solid fa-house"></i> 🏠 الرئيسية</button>
-    </aside>
+<!-- شعار البرنامج -->
+<div class="program-logo">
+    <img src="assets/images/moh-logo.png" alt="iIMCI Logo" onerror="this.style.display='none'; this.nextElementSibling.style.marginRight='0';">
+    <span>نظام iIMCI - الرعاية التكاملية التفاعلي</span>
+</div>
 
-    <div class="dashboard-container">
-        <h2>حركة المخزون الدوائي</h2>
+<!-- شعار نظام iIMCI -->
+<div class="system-logo-wrapper">
+    <div class="system-logo">
+        <img src="/assets/images/moh-logo.png" alt="شعار النظام" onerror="this.style.display='none'">
+        <span class="system-logo-text">نظام iIMCI الذكي</span>
+    </div>
+</div>
 
-        <table class="drug-stock-table">
+<!-- شريط التنقل -->
+<div class="dashboard-nav-wrapper">
+    <div class="dashboard-nav">
+        <div class="nav-links">
+            <a href="dashboard.html" class="nav-link"><i class="fa-solid fa-house"></i> الرئيسية</a>
+            <a href="drug-stock.html" class="nav-link active"><i class="fa-solid fa-pills"></i> المخزون الدوائي</a>
+        </div>
+        <div style="display:flex; gap:8px;">
+            <a href="dashboard.html" class="back-btn">
+                <i class="fa-solid fa-arrow-right"></i> العودة
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <!-- عنوان الصفحة -->
+    <div class="page-title fade-in-up">
+        <h2><i class="fa-solid fa-pills"></i> حركة المخزون الدوائي</h2>
+    </div>
+
+    <!-- معلومات المركز -->
+    <div class="facility-bar fade-in-up">
+        <div class="facility-info">
+            <i class="fa-solid fa-hospital"></i>
+            <span id="facilityName">جارٍ التحميل...</span>
+        </div>
+        <button class="logout-btn" onclick="logout()">
+            <i class="fa-solid fa-right-from-bracket"></i> خروج
+        </button>
+    </div>
+
+    <!-- بطاقات الإحصائيات -->
+    <div class="summary-cards fade-in-up">
+        <div class="summary-card">
+            <i class="fa-solid fa-boxes-stacked"></i>
+            <span class="number" id="totalDrugs">0</span>
+            <span class="label">إجمالي الأصناف الدوائية</span>
+        </div>
+        <div class="summary-card">
+            <i class="fa-solid fa-check-circle"></i>
+            <span class="number" id="okCount">0</span>
+            <span class="label">رصيد كافٍ</span>
+        </div>
+        <div class="summary-card">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <span class="number" id="lowCount">0</span>
+            <span class="label">رصيد منخفض</span>
+        </div>
+        <div class="summary-card">
+            <i class="fa-solid fa-circle-xmark"></i>
+            <span class="number" id="outCount">0</span>
+            <span class="label">نفذ من المخزون</span>
+        </div>
+    </div>
+
+    <!-- أزرار الإجراءات -->
+    <div class="action-buttons fade-in-up">
+        <button class="action-btn btn-success" onclick="exportToExcel()">
+            <i class="fa-solid fa-file-excel"></i> تصدير Excel
+        </button>
+        <button class="action-btn btn-primary" onclick="printStock()">
+            <i class="fa-solid fa-print"></i> طباعة
+        </button>
+        <button class="action-btn btn-warning" onclick="resetStock()">
+            <i class="fa-solid fa-rotate-right"></i> إعادة تعيين
+        </button>
+    </div>
+
+    <!-- جدول المخزون الدوائي -->
+    <div class="fade-in-up">
+        <table class="drug-stock-table" id="stockTable">
             <thead>
                 <tr>
+                    <th>#</th>
                     <th>اسم الدواء</th>
                     <th>الرصيد السابق</th>
                     <th>الوارد</th>
                     <th>المصروف</th>
                     <th>الرصيد الحالي</th>
+                    <th>تاريخ الإنتاج</th>
+                    <th>تاريخ الانتهاء</th>
+                    <th>الحالة</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr data-drug="أموكسيسيلين">
+                    <td>1</td>
                     <td>أموكسيسيلين</td>
-                    <td><input type="number" class="prev" value="0"></td>
-                    <td><input type="number" class="in" value="0"></td>
-                    <td><input type="number" class="out" value="0"></td>
+                    <td><input type="number" class="prev" value="0" min="0"></td>
+                    <td><input type="number" class="in" value="0" min="0"></td>
+                    <td><input type="number" class="out" value="0" min="0"></td>
                     <td class="current">0</td>
+                    <td><input type="date" class="prod-date"></td>
+                    <td><input type="date" class="exp-date"></td>
+                    <td class="status-cell"><span class="status-badge">-</span></td>
                 </tr>
-                <tr>
+                <tr data-drug="باراسيتامول">
+                    <td>2</td>
                     <td>باراسيتامول</td>
-                    <td><input type="number" class="prev" value="0"></td>
-                    <td><input type="number" class="in" value="0"></td>
-                    <td><input type="number" class="out" value="0"></td>
+                    <td><input type="number" class="prev" value="0" min="0"></td>
+                    <td><input type="number" class="in" value="0" min="0"></td>
+                    <td><input type="number" class="out" value="0" min="0"></td>
                     <td class="current">0</td>
+                    <td><input type="date" class="prod-date"></td>
+                    <td><input type="date" class="exp-date"></td>
+                    <td class="status-cell"><span class="status-badge">-</span></td>
                 </tr>
-                <tr>
+                <tr data-drug="ORS">
+                    <td>3</td>
                     <td>ORS</td>
-                    <td><input type="number" class="prev" value="0"></td>
-                    <td><input type="number" class="in" value="0"></td>
-                    <td><input type="number" class="out" value="0"></td>
+                    <td><input type="number" class="prev" value="0" min="0"></td>
+                    <td><input type="number" class="in" value="0" min="0"></td>
+                    <td><input type="number" class="out" value="0" min="0"></td>
                     <td class="current">0</td>
+                    <td><input type="date" class="prod-date"></td>
+                    <td><input type="date" class="exp-date"></td>
+                    <td class="status-cell"><span class="status-badge">-</span></td>
                 </tr>
-                <tr>
-    <td>Zinc</td>
-    <td><input type="number" class="prev" value="0"></td>
-    <td><input type="number" class="in" value="0"></td>
-    <td><input type="number" class="out" value="0"></td>
-    <td class="current">0</td>
-</tr>
-
-<tr>
-    <td>Mebendazole</td>
-    <td><input type="number" class="prev" value="0"></td>
-    <td><input type="number" class="in" value="0"></td>
-    <td><input type="number" class="out" value="0"></td>
-    <td class="current">0</td>
-</tr>
-
-<tr>
-    <td>Albendazole</td>
-    <td><input type="number" class="prev" value="0"></td>
-    <td><input type="number" class="in" value="0"></td>
-    <td><input type="number" class="out" value="0"></td>
-    <td class="current">0</td>
-</tr>
-
-<tr>
-    <td>Iron</td>
-    <td><input type="number" class="prev" value="0"></td>
-    <td><input type="number" class="in" value="0"></td>
-    <td><input type="number" class="out" value="0"></td>
-    <td class="current">0</td>
-</tr>
-
-<tr>
-    <td>Tetracycline ointment</td>
-    <td><input type="number" class="prev" value="0"></td>
-    <td><input type="number" class="in" value="0"></td>
-    <td><input type="number" class="out" value="0"></td>
-    <td class="current">0</td>
-</tr>
-
-<tr>
-    <td>Gentian Violet</td>
-    <td><input type="number" class="prev" value="0"></td>
-    <td><input type="number" class="in" value="0"></td>
-    <td><input type="number" class="out" value="0"></td>
-    <td class="current">0</td>
-</tr>
-
-<tr>
-    <td>Multivitamins</td>
-    <td><input type="number" class="prev" value="0"></td>
-    <td><input type="number" class="in" value="0"></td>
-    <td><input type="number" class="out" value="0"></td>
-    <td class="current">0</td>
-</tr>
-
-<tr>
-    <td>Ciprofloxacin</td>
-    <td><input type="number" class="prev" value="0"></td>
-    <td><input type="number" class="in" value="0"></td>
-    <td><input type="number" class="out" value="0"></td>
-    <td class="current">0</td>
-</tr>
-
-<tr>
-    <td>Penicillin V</td>
-    <td><input type="number" class="prev" value="0"></td>
-    <td><input type="number" class="in" value="0"></td>
-    <td><input type="number" class="out" value="0"></td>
-    <td class="current">0</td>
-</tr>
+                <tr data-drug="Zinc">
+                    <td>4</td>
+                    <td>Zinc</td>
+                    <td><input type="number" class="prev" value="0" min="0"></td>
+                    <td><input type="number" class="in" value="0" min="0"></td>
+                    <td><input type="number" class="out" value="0" min="0"></td>
+                    <td class="current">0</td>
+                    <td><input type="date" class="prod-date"></td>
+                    <td><input type="date" class="exp-date"></td>
+                    <td class="status-cell"><span class="status-badge">-</span></td>
+                </tr>
+                <tr data-drug="Mebendazole">
+                    <td>5</td>
+                    <td>Mebendazole</td>
+                    <td><input type="number" class="prev" value="0" min="0"></td>
+                    <td><input type="number" class="in" value="0" min="0"></td>
+                    <td><input type="number" class="out" value="0" min="0"></td>
+                    <td class="current">0</td>
+                    <td><input type="date" class="prod-date"></td>
+                    <td><input type="date" class="exp-date"></td>
+                    <td class="status-cell"><span class="status-badge">-</span></td>
+                </tr>
+                <tr data-drug="Albendazole">
+                    <td>6</td>
+                    <td>Albendazole</td>
+                    <td><input type="number" class="prev" value="0" min="0"></td>
+                    <td><input type="number" class="in" value="0" min="0"></td>
+                    <td><input type="number" class="out" value="0" min="0"></td>
+                    <td class="current">0</td>
+                    <td><input type="date" class="prod-date"></td>
+                    <td><input type="date" class="exp-date"></td>
+                    <td class="status-cell"><span class="status-badge">-</span></td>
+                </tr>
+                <tr data-drug="Iron">
+                    <td>7</td>
+                    <td>Iron</td>
+                    <td><input type="number" class="prev" value="0" min="0"></td>
+                    <td><input type="number" class="in" value="0" min="0"></td>
+                    <td><input type="number" class="out" value="0" min="0"></td>
+                    <td class="current">0</td>
+                    <td><input type="date" class="prod-date"></td>
+                    <td><input type="date" class="exp-date"></td>
+                    <td class="status-cell"><span class="status-badge">-</span></td>
+                </tr>
+                <tr data-drug="Tetracycline ointment">
+                    <td>8</td>
+                    <td>Tetracycline ointment</td>
+                    <td><input type="number" class="prev" value="0" min="0"></td>
+                    <td><input type="number" class="in" value="0" min="0"></td>
+                    <td><input type="number" class="out" value="0" min="0"></td>
+                    <td class="current">0</td>
+                    <td><input type="date" class="prod-date"></td>
+                    <td><input type="date" class="exp-date"></td>
+                    <td class="status-cell"><span class="status-badge">-</span></td>
+                </tr>
+                <tr data-drug="Gentian Violet">
+                    <td>9</td>
+                    <td>Gentian Violet</td>
+                    <td><input type="number" class="prev" value="0" min="0"></td>
+                    <td><input type="number" class="in" value="0" min="0"></td>
+                    <td><input type="number" class="out" value="0" min="0"></td>
+                    <td class="current">0</td>
+                    <td><input type="date" class="prod-date"></td>
+                    <td><input type="date" class="exp-date"></td>
+                    <td class="status-cell"><span class="status-badge">-</span></td>
+                </tr>
+                <tr data-drug="Multivitamins">
+                    <td>10</td>
+                    <td>Multivitamins</td>
+                    <td><input type="number" class="prev" value="0" min="0"></td>
+                    <td><input type="number" class="in" value="0" min="0"></td>
+                    <td><input type="number" class="out" value="0" min="0"></td>
+                    <td class="current">0</td>
+                    <td><input type="date" class="prod-date"></td>
+                    <td><input type="date" class="exp-date"></td>
+                    <td class="status-cell"><span class="status-badge">-</span></td>
+                </tr>
+                <tr data-drug="Ciprofloxacin">
+                    <td>11</td>
+                    <td>Ciprofloxacin</td>
+                    <td><input type="number" class="prev" value="0" min="0"></td>
+                    <td><input type="number" class="in" value="0" min="0"></td>
+                    <td><input type="number" class="out" value="0" min="0"></td>
+                    <td class="current">0</td>
+                    <td><input type="date" class="prod-date"></td>
+                    <td><input type="date" class="exp-date"></td>
+                    <td class="status-cell"><span class="status-badge">-</span></td>
+                </tr>
+                <tr data-drug="Penicillin V">
+                    <td>12</td>
+                    <td>Penicillin V</td>
+                    <td><input type="number" class="prev" value="0" min="0"></td>
+                    <td><input type="number" class="in" value="0" min="0"></td>
+                    <td><input type="number" class="out" value="0" min="0"></td>
+                    <td class="current">0</td>
+                    <td><input type="date" class="prod-date"></td>
+                    <td><input type="date" class="exp-date"></td>
+                    <td class="status-cell"><span class="status-badge">-</span></td>
+                </tr>
             </tbody>
+            <tfoot>
+                <tr class="total-row">
+                    <td colspan="2"><i class="fa-solid fa-calculator"></i> الإجمالي الكلي</td>
+                    <td id="totalPrev">0</td>
+                    <td id="totalIn">0</td>
+                    <td id="totalOut">0</td>
+                    <td class="current" id="totalCurrent">0</td>
+                    <td colspan="3">-</td>
+                </tr>
+            </tfoot>
         </table>
     </div>
 </div>
 
+<footer class="footer">
+    <div class="footer-particles">
+        <div class="footer-particle" style="left: 10%; animation-delay: 0s;"></div>
+        <div class="footer-particle" style="left: 20%; animation-delay: 1s;"></div>
+        <div class="footer-particle" style="left: 30%; animation-delay: 2s;"></div>
+        <div class="footer-particle" style="left: 40%; animation-delay: 0.5s;"></div>
+        <div class="footer-particle" style="left: 50%; animation-delay: 1.5s;"></div>
+        <div class="footer-particle" style="left: 60%; animation-delay: 3s;"></div>
+        <div class="footer-particle" style="left: 70%; animation-delay: 2.5s;"></div>
+        <div class="footer-particle" style="left: 80%; animation-delay: 4s;"></div>
+        <div class="footer-particle" style="left: 90%; animation-delay: 1s;"></div>
+    </div>
+    <p><i class="fa-regular fa-copyright"></i> 2025 iIMCI-Academy™ | نظام الرعاية التكاملية التفاعلي لصحة الطفل</p>
+    <div class="developer">
+        <i class="fa-solid fa-code"></i> هندسة وتطوير<br>
+        د/ صلاح قاسم محمد الأهدل<br>
+        مدير مكتب الصحة بمديرية العدين - محافظة إب<br>
+        1447هـ - 2025م
+    </div>
+</footer>
+
 <script>
-// حماية الصفحة
+// ===== حماية الصفحة =====
 if(localStorage.getItem("imci_logged_in") !== "true") {
     window.location.href = "login.html";
 }
 
-// عرض اسم المركز
+// ===== عرض اسم المركز =====
 const facility = localStorage.getItem("imci_facility") || "مركز غير معروف";
 document.getElementById("facilityName").textContent = facility;
 
-// وظيفة الخروج
+// ===== وظيفة الخروج =====
 function logout() {
     localStorage.setItem("imci_logged_in","false");
     window.location.href="login.html";
 }
+
 function goTo(page) { window.location.href = page; }
 
 // ===== حفظ واسترجاع بيانات المخزون لكل مركز صحي =====
 const storageKey = `imci_drug_stock_${facility}`;
 let stockData = JSON.parse(localStorage.getItem(storageKey)) || {};
 
-// تحديث الرصيد الحالي وتلوين الصفوف
+// ===== تحديث الإحصائيات =====
+function updateSummary() {
+    const rows = document.querySelectorAll(".drug-stock-table tbody tr");
+    let okCount = 0, lowCount = 0, outCount = 0;
+    let totalPrev = 0, totalIn = 0, totalOut = 0, totalCurrent = 0;
+
+    rows.forEach((row, index) => {
+        const current = parseInt(row.querySelector(".current").textContent) || 0;
+        const prev = parseInt(row.querySelector(".prev").value) || 0;
+        const incoming = parseInt(row.querySelector(".in").value) || 0;
+        const outgoing = parseInt(row.querySelector(".out").value) || 0;
+
+        totalPrev += prev;
+        totalIn += incoming;
+        totalOut += outgoing;
+        totalCurrent += current;
+
+        if (current <= 0) outCount++;
+        else if (current < 5) lowCount++;
+        else okCount++;
+    });
+
+    document.getElementById("totalDrugs").textContent = rows.length;
+    document.getElementById("okCount").textContent = okCount;
+    document.getElementById("lowCount").textContent = lowCount;
+    document.getElementById("outCount").textContent = outCount;
+
+    document.getElementById("totalPrev").textContent = totalPrev;
+    document.getElementById("totalIn").textContent = totalIn;
+    document.getElementById("totalOut").textContent = totalOut;
+    document.getElementById("totalCurrent").textContent = totalCurrent;
+}
+
+// ===== دالة مساعدة لحساب الأيام المتبقية =====
+function getDaysUntilExpiry(expDateStr) {
+    if (!expDateStr) return null;
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const exp = new Date(expDateStr);
+    exp.setHours(0, 0, 0, 0);
+    const diffTime = exp - today;
+    return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+}
+
+// ===== دالة بناء محتوى خلية الحالة (الإصلاح الرئيسي) =====
+function buildStatusHTML(current, expDateStr) {
+    let html = '';
+
+    // 1. شارة حالة الرصيد
+    if (current <= 0) {
+        html += '<span class="status-badge status-out">نفذ من المخزون</span>';
+    } else if (current < 5) {
+        html += '<span class="status-badge status-low">رصيد منخفض</span>';
+    } else {
+        html += '<span class="status-badge status-ok">رصيد كافٍ</span>';
+    }
+
+    // 2. شارة حالة الصلاحية (الإصلاح الرئيسي - بناء كامل بدون +=)
+    const daysLeft = getDaysUntilExpiry(expDateStr);
+    if (daysLeft !== null) {
+        if (daysLeft < 0) {
+            html += '<br><span class="expiry-badge expiry-expired">⚠️ منتهي الصلاحية</span>';
+        } else if (daysLeft === 0) {
+            html += '<br><span class="expiry-badge expiry-warning">⚠️ ينتهي اليوم!</span>';
+        } else if (daysLeft <= 7) {
+            html += '<br><span class="expiry-badge expiry-warning">⚠️ ينتهي خلال ' + daysLeft + ' أيام</span>';
+        } else if (daysLeft <= 30) {
+            html += '<br><span class="expiry-badge expiry-warning">⚠️ ينتهي خلال ' + daysLeft + ' يوم</span>';
+        } else {
+            html += '<br><span class="expiry-badge expiry-good">✓ صالح (' + daysLeft + ' يوم)</span>';
+        }
+    }
+
+    return html;
+}
+
+// ===== تحديث الرصيد الحالي وتلوين الصفوف =====
 const rows = document.querySelectorAll(".drug-stock-table tbody tr");
 rows.forEach((row, index) => {
     const prevInput = row.querySelector(".prev");
     const inInput = row.querySelector(".in");
     const outInput = row.querySelector(".out");
     const currentCell = row.querySelector(".current");
+    const prodDateInput = row.querySelector(".prod-date");
+    const expDateInput = row.querySelector(".exp-date");
+    const statusCell = row.querySelector(".status-cell");
 
     // استرجاع البيانات السابقة إن وجدت
     if(stockData[index]) {
-        prevInput.value = stockData[index].prev;
-        inInput.value = stockData[index].incoming;
-        outInput.value = stockData[index].outgoing;
+        prevInput.value = stockData[index].prev || 0;
+        inInput.value = stockData[index].incoming || 0;
+        outInput.value = stockData[index].outgoing || 0;
+        if(stockData[index].prodDate) prodDateInput.value = stockData[index].prodDate;
+        if(stockData[index].expDate) expDateInput.value = stockData[index].expDate;
     }
 
     function updateCurrent() {
@@ -222,19 +1294,87 @@ rows.forEach((row, index) => {
         else if (current < 5) row.classList.add("low-stock");
         else row.classList.add("ok-stock");
 
+        // ===== الإصلاح الرئيسي: بناء HTML كامل مرة واحدة =====
+        const expDateValue = expDateInput.value;
+        statusCell.innerHTML = buildStatusHTML(current, expDateValue);
+
         // حفظ البيانات في LocalStorage
-        stockData[index] = { prev, incoming, outgoing };
+        stockData[index] = {
+            prev, incoming, outgoing,
+            prodDate: prodDateInput.value,
+            expDate: expDateValue
+        };
         localStorage.setItem(storageKey, JSON.stringify(stockData));
+
+        // تحديث الإحصائيات
+        updateSummary();
     }
 
+    // استخدام "input" لجميع الحقول للتحديث الفوري
     prevInput.addEventListener("input", updateCurrent);
     inInput.addEventListener("input", updateCurrent);
     outInput.addEventListener("input", updateCurrent);
+    prodDateInput.addEventListener("input", updateCurrent);
+    expDateInput.addEventListener("input", updateCurrent);
 
     // تحديث عند تحميل الصفحة
     updateCurrent();
 });
-</script>
 
+// ===== تصدير إلى Excel =====
+function exportToExcel() {
+    let csv = "\uFEFF"; // BOM for Arabic
+    csv += "#,اسم الدواء,الرصيد السابق,الوارد,المصروف,الرصيد الحالي,تاريخ الإنتاج,تاريخ الانتهاء,الحالة\n";
+
+    rows.forEach((row, index) => {
+        const cells = row.querySelectorAll("td");
+        const prev = cells[2].querySelector("input").value;
+        const incoming = cells[3].querySelector("input").value;
+        const outgoing = cells[4].querySelector("input").value;
+        const current = cells[5].textContent;
+        const prodDate = cells[6].querySelector("input").value;
+        const expDate = cells[7].querySelector("input").value;
+        const statusText = cells[8].textContent.replace(/\n/g, " - ");
+
+        csv += `${index+1},${cells[1].textContent},${prev},${incoming},${outgoing},${current},${prodDate},${expDate},"${statusText}"\n`;
+    });
+
+    // Add totals
+    csv += `,الإجمالي الكلي,${document.getElementById("totalPrev").textContent},${document.getElementById("totalIn").textContent},${document.getElementById("totalOut").textContent},${document.getElementById("totalCurrent").textContent},,,\n`;
+
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = `مخزون_دوائي_${facility}_${new Date().toISOString().split('T')[0]}.csv`;
+    link.click();
+}
+
+// ===== طباعة =====
+function printStock() {
+    window.print();
+}
+
+// ===== إعادة تعيين =====
+function resetStock() {
+    if(confirm("هل أنت متأكد من إعادة تعيين جميع البيانات؟")) {
+        localStorage.removeItem(storageKey);
+        location.reload();
+    }
+}
+
+// ===== Fade In Animation =====
+const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, observerOptions);
+
+document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+
+console.log("iIMCI Drug Stock - حركة المخزون الدوائي v2.1 - Fixed Expiry");
+</script>
 </body>
-</html>
+    </html>
