@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إدارة المستخدمين | IIMCI - نظام الرعاية التكاملية</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+    --primary: #005a8c;
+    --primary-light: #0073b1;
+    --primary-dark: #003d5e;
+    --success: #0d7c3e;
+    --success-light: #e6f7ee;
+    --danger: #c1121f;
+    --danger-light: #fef0f0;
+    --warning: #e67e14;
+    --warning-light: #fff9f0;
+    --info: #1e6f9f;
+    --info-light: #e8f4fd;
+    --bg: #f4f7fb;
+    --card-bg: #ffffff;
+    --text: #1e293b;
+    --text-light: #475569;
+    --border: #e2e8f0;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+    --shadow: 0 4px 16px rgba(0,0,0,0.06);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.1);
+    --radius-sm: 8px;
+    --radius: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+    --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: 'Cairo', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================================
+   الترويسة الرسمية
+   ============================================================ */
+.official-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
+    background: linear-gradient(135deg, #e0f0ff, #ffffff);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    position: relative;
+    overflow: hidden;
+}
+
+.official-header::before {
+    content: '';
+    position: absolute;
+    top: -50%; right: -10%;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(0,90,140,0.04) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.official-header .eagle {
+    width: 80px;
+    height: auto;
+    display: block;
+    margin-bottom: 15px;
+    transition: transform 0.3s, filter 0.3s;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+    position: relative;
+    z-index: 1;
+}
+
+.official-header .eagle:hover {
+    transform: scale(1.05) rotate(-2deg);
+    filter: drop-shadow(0 6px 8px rgba(0,0,0,0.4));
+}
+
+.official-header .header-text {
+    position: relative;
+    z-index: 1;
+}
+
+.official-header .header-text h1,
+.official-header .header-text h2,
+.official-header .header-text h3 {
+    margin: 5px 0;
+    color: #000;
+    text-align: center;
+}
+
+.official-header .header-text h1 {
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--primary-dark);
+}
+
+.official-header .header-text h2 {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.official-header .header-text h3 {
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+}
+
+/* ============================================================
+   شعار البرنامج
+   ============================================================ */
+.program-logo {
+    text-align: center;
+    margin: 0;
+    padding: 16px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(135deg, #f8f5ee 0%, #f0ece2 100%);
+    border-bottom: 2px solid #e2dccd;
+}
+
+.program-logo img {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: #fff;
+    padding: 5px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    object-fit: contain;
+    transition: transform 0.3s;
+}
+
+.program-logo img:hover {
+    transform: scale(1.1) rotate(3deg);
+}
+
+.program-logo span {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--primary);
+    font-family: 'Cairo', sans-serif;
+    letter-spacing: -0.5px;
+}
+
+/* ============================================================
+   شريط المعلومات العلوي
+   ============================================================ */
+header.topbar {
+    background: var(--primary-dark);
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+header.topbar h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+header.topbar h2 i {
+    font-size: 1.1rem;
+}
+
+header.topbar .topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+header.topbar div span {
+    font-weight: 600;
+    font-size: 0.9rem;
+    background: rgba(255,255,255,0.12);
+    padding: 6px 14px;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+header.topbar div span i {
+    font-size: 0.85rem;
+}
+
+header.topbar button {
+    background: #ef4444;
+    border: none;
+    color: #fff;
+    padding: 8px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: 0.3s;
+}
+
+header.topbar button:hover {
+    background: #b91c1c;
+    transform: translateY(-1px);
+}
+
+/* ============================================================
+   التخطيط الرئيسي
+   ============================================================ */
+.layout {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* ============================================================
+   القائمة الجانبية
+   ============================================================ */
+.sidebar {
+    width: 250px;
+    background: linear-gradient(180deg, #0b3b2f 0%, #06261e 100%);
+    display: flex;
+    flex-direction: column;
+    padding: 20px 14px;
+    flex-shrink: 0;
+    overflow-y: auto;
+    gap: 6px;
+}
+
+.sidebar .sidebar-label {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 8px 10px 2px;
+    margin-top: 8px;
+}
+
+.sidebar button.side-btn {
+    background: rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.85);
+    border: 2px solid transparent;
+    padding: 11px 12px;
+    margin-bottom: 4px;
+    border-radius: var(--radius);
+    font-weight: 700;
+    cursor: pointer;
+    text-align: right;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.3s;
+    font-family: 'Cairo', sans-serif;
+    position: relative;
+}
+
+.sidebar button.side-btn:hover {
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+    border-color: rgba(255,255,255,0.2);
+    transform: translateX(-3px);
+}
+
+.sidebar button.side-btn.active {
+    background: rgba(234,179,84,0.2);
+    border-color: #eab354;
+    color: #fff;
+}
+
+.sidebar button.side-btn i {
+    font-size: 1rem;
+    width: 22px;
+    text-align: center;
+    color: #eab354;
+}
+
+.sidebar button.side-btn .badge {
+    background: var(--danger);
+    color: #fff;
+    padding: 2px 10px;
+    border-radius: 16px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    margin-right: auto;
+}
+
+/* ============================================================
+   محتوى الصفحة
+   ============================================================ */
+.dashboard-container {
+    flex: 1;
+    padding: 24px;
+    overflow-y: auto;
+    background: var(--bg);
+}
+
+/* ============================================================
+   بطاقة العنوان
+   ============================================================ */
+.page-header {
+    background: linear-gradient(135deg, #e8f4fd 0%, #ffffff 100%);
+    padding: 22px 26px;
+    border-radius: var(--radius-xl);
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.page-header h2 {
+    font-size: 20px;
+    color: var(--primary-dark);
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.page-header h2 i {
+    color: var(--primary);
+    font-size: 1.3rem;
+}
+
+.page-header .user-info-badge {
+    background: var(--success-light);
+    color: var(--success);
+    padding: 8px 16px;
+    border-radius: var(--radius);
+    font-size: 0.85rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--success);
+}
+
+/* ============================================================
+   نموذج إضافة مستخدم
+   ============================================================ */
+.form-card {
+    background: #fff;
+    padding: 24px;
+    border-radius: var(--radius-lg);
+    margin-bottom: 24px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+}
+
+.form-card h3 {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--primary-dark);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-light);
+}
+
+.form-group input,
+.form-group select {
+    padding: 12px 14px;
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    font-family: 'Cairo', sans-serif;
+    font-size: 14px;
+    transition: 0.2s;
+    background: #fff;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(0,90,140,0.08);
+}
+
+.btn-submit {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: #fff;
+    border: none;
+    padding: 12px 28px;
+    border-radius: var(--radius);
+    font-family: 'Cairo', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,90,140,0.25);
+}
+
+/* ============================================================
+   جدول المستخدمين
+   ============================================================ */
+.table-card {
+    background: #fff;
+    padding: 24px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    overflow-x: auto;
+}
+
+.table-card h3 {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--primary-dark);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+th, td {
+    padding: 14px 12px;
+    text-align: right;
+    border-bottom: 1px solid var(--border);
+}
+
+th {
+    background: #f8fafc;
+    font-weight: 800;
+    color: var(--text-light);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+tr:hover td {
+    background: #f8fafc;
+}
+
+/* ============================================================
+   الشارات والأزرار
+   ============================================================ */
+.badge-role {
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 800;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.badge-admin { background: #fef3c7; color: #92400e; }
+.badge-doctor { background: #dbeafe; color: #1e40af; }
+.badge-nurse { background: #fce7f3; color: #9d174d; }
+.badge-data_entry { background: #e0e7ff; color: #3730a3; }
+.badge-supervisor { background: #d1fae5; color: #065f46; }
+
+.badge-status {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.status-active { background: var(--success-light); color: var(--success); border: 1px solid var(--success); }
+.status-inactive { background: var(--danger-light); color: var(--danger); border: 1px solid var(--danger); }
+
+.btn-toggle {
+    padding: 6px 16px;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.btn-toggle.deactivate {
+    background: var(--danger-light);
+    color: var(--danger);
+    border: 1px solid var(--danger);
+}
+
+.btn-toggle.deactivate:hover {
+    background: var(--danger);
+    color: #fff;
+}
+
+.btn-toggle.activate {
+    background: var(--success-light);
+    color: var(--success);
+    border: 1px solid var(--success);
+}
+
+.btn-toggle.activate:hover {
+    background: var(--success);
+    color: #fff;
+}
+
+/* ============================================================
+   الإشعارات
+   ============================================================ */
+.alert {
+    padding: 14px 18px;
+    border-radius: var(--radius);
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    display: none;
+    align-items: center;
+    gap: 10px;
+    animation: fadeIn 0.3s ease;
+}
+
+.alert-success {
+    background: var(--success-light);
+    color: var(--success);
+    border: 1px solid var(--success);
+    display: flex;
+}
+
+.alert-error {
+    background: var(--danger-light);
+    color: var(--danger);
+    border: 1px solid var(--danger);
+    display: flex;
+}
+
+/* ============================================================
+   الفوتر
+   ============================================================ */
+.footer {
+    background: #1e293b;
+    text-align: center;
+    padding: 20px;
+    color: #94a3b8;
+    font-size: 0.75rem;
+    border-top: 3px solid #eab354;
+    font-weight: 500;
+}
+
+.footer i {
+    margin: 0 4px;
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 10px;
+        gap: 4px;
+        overflow-x: auto;
+    }
+    .sidebar button.side-btn {
+        flex: 1 1 auto;
+        font-size: 0.75rem;
+        padding: 8px 10px;
+    }
+    .sidebar .sidebar-label {
+        display: none;
+    }
+    .layout {
+        flex-direction: column;
+    }
+    .dashboard-container {
+        padding: 16px;
+    }
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    .page-header {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== الترويسة الرسمية ===== -->
+<header class="official-header">
+    <img src="assets/images/yemen-eagle.png" class="eagle" alt="الطير الجمهوري" onerror="this.style.display='none'">
+    <div class="header-text">
+        <h1>الجمهورية اليمنية</h1>
+        <h2>وزارة الصحة والبيئة</h2>
+        <h3>قطاع الرعاية الصحية الأولية – إدارة صحة الطفل</h3>
+    </div>
+</header>
+
+<!-- ===== شعار البرنامج ===== -->
+<div class="program-logo">
+    <img src="assets/images/moh-logo.png" alt="شعار نظام iIMCI" onerror="this.style.display='none'">
+    <span>نظام iIMCI التفاعلي للرعاية التكاملية</span>
+</div>
+
+<!-- ===== Topbar ===== -->
+<header class="topbar">
+    <h2><i class="fas fa-users-cog"></i> إدارة المستخدمين</h2>
+    <div class="topbar-right">
+        <span><i class="fas fa-hospital"></i> <strong id="facilityName">---</strong></span>
+        <span id="currentUserBadge" style="background:rgba(255,255,255,0.12); padding:6px 14px; border-radius:20px; font-weight:600; font-size:0.9rem; display:inline-flex; align-items:center; gap:6px;">
+            <i class="fas fa-user-shield"></i> <span id="currentUserName">---</span>
+        </span>
+        <button onclick="logout()"><i class="fas fa-sign-out-alt"></i> خروج</button>
+    </div>
+</header>
+
+<div class="layout">
+
+    <!-- ===== Sidebar ===== -->
+    <aside class="sidebar">
+        <div class="sidebar-label">📋 استمارات التسجيل</div>
+
+        <button onclick="goTo('child-form.html')" class="side-btn">
+            <i class="fa-solid fa-child"></i> 🧒 تسجيل طفل
+        </button>
+
+        <button onclick="goTo('newborn-form.html')" class="side-btn">
+            <i class="fa-solid fa-baby"></i> 🍼 تسجيل طفل أقل من شهرين
+        </button>
+
+        <div class="sidebar-label">📊 التقارير والمتابعة</div>
+
+        <button onclick="goTo('monthly-report.html')" class="side-btn">
+            <i class="fa-solid fa-chart-column"></i> 📊 التقرير الشهري
+        </button>
+
+        <button onclick="goTo('children-list.html')" class="side-btn">
+            <i class="fa-solid fa-clipboard-list"></i> 📋 سجل الأطفال
+        </button>
+
+        <div class="sidebar-label">⚙️ إدارة النظام</div>
+
+        <button onclick="goTo('users-management.html')" class="side-btn active">
+            <i class="fa-solid fa-users-gear"></i> 👥 إدارة المستخدمين
+        </button>
+
+        <div class="sidebar-label">📚 المراجع</div>
+
+        <button onclick="goTo('guide.html')" class="side-btn">
+            <i class="fa-solid fa-book"></i> 📘 الدليل الإرشادي
+        </button>
+
+        <button onclick="goTo('drug-stock.html')" class="side-btn">
+            <i class="fa-solid fa-pills"></i> 💊 حركة المخزون الدوائي
+        </button>
+    </aside>
+
+    <!-- ===== Content ===== -->
+    <div class="dashboard-container">
+
+        <!-- العنوان -->
+        <div class="page-header">
+            <h2><i class="fas fa-users-cog"></i> إدارة المستخدمين والصلاحيات</h2>
+            <div class="user-info-badge">
+                <i class="fas fa-shield-halved"></i>
+                <span id="roleLabel">---</span>
+            </div>
+        </div>
+
+        <!-- إشعار -->
+        <div id="alertBox" class="alert"></div>
+
+        <!-- نموذج إضافة مستخدم -->
+        <div class="form-card">
+            <h3><i class="fas fa-user-plus"></i> إضافة مستخدم جديد</h3>
+            <form id="addUserForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>الاسم الرباعي</label>
+                        <input type="text" id="fullName" placeholder="مثال: أحمد محمد عبدالله" required>
+                    </div>
+                    <div class="form-group">
+                        <label>اسم المستخدم (بالإنجليزية)</label>
+                        <input type="text" id="username" placeholder="مثال: dr.ahmed" required autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label>كلمة المرور</label>
+                        <input type="password" id="password" placeholder="••••••" required>
+                    </div>
+                    <div class="form-group">
+                        <label>الدور الوظيفي</label>
+                        <select id="role" required>
+                            <option value="">اختر الدور...</option>
+                            <option value="doctor">👨‍⚕️ طبيب</option>
+                            <option value="nurse">👩‍⚕️ ممرض/ة</option>
+                            <option value="data_entry">📝 مُدخل بيانات</option>
+                            <option value="supervisor">📋 مشرف صحي</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>المركز الصحي</label>
+                        <select id="facilitySelect" required>
+                            <option value="">اختر المركز...</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn-submit">
+                    <i class="fas fa-plus"></i> إضافة المستخدم
+                </button>
+            </form>
+        </div>
+
+        <!-- جدول المستخدمين -->
+        <div class="table-card">
+            <h3><i class="fas fa-list"></i> قائمة المستخدمين</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>الاسم</th>
+                        <th>اسم المستخدم</th>
+                        <th>الدور</th>
+                        <th>المركز الصحي</th>
+                        <th>الحالة</th>
+                        <th>تاريخ الإنشاء</th>
+                        <th>الإجراءات</th>
+                    </tr>
+                </thead>
+                <tbody id="usersTable"></tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<!-- ===== الفوتر ===== -->
+<div class="footer">
+    <i class="fa-regular fa-copyright"></i> 2025 iIMCI-Academy™ | 
+    نظام الرعاية التكاملية التفاعلي لصحة الطفل | وزارة الصحة والبيئة - الجمهورية اليمنية
+</div>
+
+<script>
+// ============================================================
+// نظام المصادقة والصلاحيات - RBAC (متوافق مع dashboard.html)
+// ============================================================
+
+const ROLES = {
+    ADMIN: 'admin',
+    DOCTOR: 'doctor',
+    NURSE: 'nurse',
+    DATA_ENTRY: 'data_entry',
+    SUPERVISOR: 'supervisor'
+};
+
+const ROLE_LABELS = {
+    admin: 'مدير النظام',
+    doctor: 'طبيب',
+    nurse: 'ممرض/ة',
+    data_entry: 'مُدخل بيانات',
+    supervisor: 'مشرف صحي'
+};
+
+const ROLE_ICONS = {
+    admin: 'fa-user-shield',
+    doctor: 'fa-user-doctor',
+    nurse: 'fa-user-nurse',
+    data_entry: 'fa-keyboard',
+    supervisor: 'fa-user-tie'
+};
+
+const PERMISSIONS = {
+    REGISTER_CHILD: [ROLES.ADMIN, ROLES.DOCTOR, ROLES.NURSE, ROLES.DATA_ENTRY],
+    REGISTER_NEWBORN: [ROLES.ADMIN, ROLES.DOCTOR, ROLES.NURSE, ROLES.DATA_ENTRY],
+    EDIT_RECORD: [ROLES.ADMIN, ROLES.DOCTOR, ROLES.NURSE],
+    DELETE_RECORD: [ROLES.ADMIN],
+    VIEW_REPORTS: [ROLES.ADMIN, ROLES.DOCTOR, ROLES.NURSE, ROLES.SUPERVISOR],
+    VIEW_CHILDREN_LIST: [ROLES.ADMIN, ROLES.DOCTOR, ROLES.NURSE, ROLES.SUPERVISOR],
+    MANAGE_DRUGS: [ROLES.ADMIN, ROLES.DOCTOR, ROLES.SUPERVISOR],
+    MANAGE_USERS: [ROLES.ADMIN],
+    MANAGE_SETTINGS: [ROLES.ADMIN],
+    EXPORT_DATA: [ROLES.ADMIN, ROLES.SUPERVISOR],
+    VIEW_ALL_FACILITIES: [ROLES.ADMIN, ROLES.SUPERVISOR]
+};
+
+// المستخدمون الافتراضيون
+const DEFAULT_USERS = [
+    {
+        id: "admin_001",
+        username: "admin",
+        password: "admin123",
+        fullName: "مدير النظام",
+        role: "admin",
+        facility: "all",
+        isActive: true,
+        createdAt: "2026-05-15"
+    },
+    {
+        id: "doc_001",
+        username: "dr.salah",
+        password: "doc123",
+        fullName: "د. صلاح الأحصل",
+        role: "doctor",
+        facility: "مركز الصحة الأولية - إب",
+        isActive: true,
+        createdAt: "2026-05-15"
+    },
+    {
+        id: "nurse_001",
+        username: "nurse.fatima",
+        password: "nurse123",
+        fullName: "فاطمة علي - ممرضة",
+        role: "nurse",
+        facility: "مركز الصحة الأولية - إب",
+        isActive: true,
+        createdAt: "2026-05-15"
+    },
+    {
+        id: "entry_001",
+        username: "data.ahmed",
+        password: "entry123",
+        fullName: "أحمد محمد - مُدخل بيانات",
+        role: "data_entry",
+        facility: "مركز الصحة الأولية - إب",
+        isActive: true,
+        createdAt: "2026-05-15"
+    },
+    {
+        id: "super_001",
+        username: "super.khaled",
+        password: "super123",
+        fullName: "خالد سعيد - مشرف صحي",
+        role: "supervisor",
+        facility: "all",
+        isActive: true,
+        createdAt: "2026-05-15"
+    }
+];
+
+// المراكز الصحية الافتراضية
+const DEFAULT_FACILITIES = [
+    "مركز الصحة الأولية - إب",
+    "مركز الصحة الأولية - تعز",
+    "مركز الصحة الأولية - صنعاء",
+    "مركز الصحة الأولية - عدن",
+    "مركز الصحة الأولية - الحديدة",
+    "مركز الصحة الأولية - المكلا",
+    "مركز الصحة الأولية - ذمار",
+    "مركز الصحة الأولية - المحويت"
+];
+
+// تهيئة البيانات
+function initData() {
+    if (!localStorage.getItem('imci_users')) {
+        localStorage.setItem('imci_users', JSON.stringify(DEFAULT_USERS));
+    }
+    if (!localStorage.getItem('imci_facilities')) {
+        localStorage.setItem('imci_facilities', JSON.stringify(DEFAULT_FACILITIES));
+    }
+}
+
+// التحقق من الجلسة (متوافق مع dashboard.html)
+function checkAuth() {
+    const session = JSON.parse(localStorage.getItem('imci_session'));
+    
+    if (!session || localStorage.getItem('imci_logged_in') !== 'true') {
+        window.location.href = 'login.html';
+        return null;
+    }
+    
+    // انتهاء الجلسة بعد 8 ساعات
+    const loginTime = new Date(session.loginTime);
+    const now = new Date();
+    const hoursDiff = (now - loginTime) / (1000 * 60 * 60);
+    
+    if (hoursDiff > 8) {
+        logout();
+        alert('انتهت الجلسة. يرجى تسجيل الدخول مرة أخرى.');
+        return null;
+    }
+    
+    return session;
+}
+
+// تسجيل الخروج (متوافق مع dashboard.html)
+function logout() {
+    localStorage.removeItem('imci_session');
+    localStorage.setItem('imci_logged_in', 'false');
+    localStorage.removeItem('imci_facility');
+    window.location.href = 'login.html';
+}
+
+// الحصول على المستخدم الحالي
+function getCurrentUser() {
+    return JSON.parse(localStorage.getItem('imci_session'));
+}
+
+// التحقق من الصلاحية
+function hasPermission(permissionKey) {
+    const session = JSON.parse(localStorage.getItem('imci_session'));
+    if (!session) return false;
+    const allowedRoles = PERMISSIONS[permissionKey] || [];
+    return allowedRoles.includes(session.role);
+}
+
+// إضافة مستخدم
+function addUser(userData) {
+    const users = JSON.parse(localStorage.getItem('imci_users')) || [];
+    
+    if (users.find(u => u.username === userData.username)) {
+        return { success: false, message: 'اسم المستخدم موجود مسبقاً' };
+    }
+    
+    const newUser = {
+        id: 'usr_' + Date.now(),
+        ...userData,
+        isActive: true,
+        createdAt: new Date().toISOString().split('T')[0]
+    };
+    
+    users.push(newUser);
+    localStorage.setItem('imci_users', JSON.stringify(users));
+    return { success: true, user: newUser };
+}
+
+// تفعيل/تعطيل
+function toggleUserStatus(userId) {
+    const users = JSON.parse(localStorage.getItem('imci_users')) || [];
+    const user = users.find(u => u.id === userId);
+    
+    if (user) {
+        // لا يمكن تعطيل الـ admin الوحيد
+        const activeAdmins = users.filter(u => u.role === 'admin' && u.isActive);
+        if (user.role === 'admin' && user.isActive && activeAdmins.length <= 1) {
+            return { success: false, message: 'لا يمكن تعطيل آخر مدير للنظام' };
+        }
+        
+        user.isActive = !user.isActive;
+        localStorage.setItem('imci_users', JSON.stringify(users));
+        return { success: true, isActive: user.isActive };
+    }
+    return { success: false, message: 'المستخدم غير موجود' };
+}
+
+// ============================================================
+// تطبيق على الصفحة
+// ============================================================
+
+initData();
+
+// حماية الصفحة - Admin فقط
+const currentUser = checkAuth();
+if (!currentUser) {
+    // سيتم إعادة التوجيه بواسطة checkAuth
+} else if (currentUser.role !== 'admin') {
+    alert('⛔ هذه الصفحة مخصصة لمدير النظام فقط');
+    window.location.href = 'dashboard.html';
+}
+
+// عرض اسم المركز
+const facility = localStorage.getItem("imci_facility") || "مركز غير معروف";
+document.getElementById("facilityName").textContent = facility;
+
+// عرض اسم المستخدم الحالي
+if (currentUser) {
+    document.getElementById("currentUserName").textContent = currentUser.fullName;
+    document.getElementById("roleLabel").textContent = ROLE_LABELS[currentUser.role] || currentUser.role;
+}
+
+// تعبئة قائمة المراكز
+function populateFacilities() {
+    const facilities = JSON.parse(localStorage.getItem('imci_facilities')) || DEFAULT_FACILITIES;
+    const select = document.getElementById('facilitySelect');
+    
+    // إبقاء "اختر المركز..."
+    select.innerHTML = '<option value="">اختر المركز...</option>';
+    
+    facilities.forEach(f => {
+        const opt = document.createElement('option');
+        opt.value = f;
+        opt.textContent = '🏥 ' + f;
+        select.appendChild(opt);
+    });
+    
+    // إضافة "كل المراكز" للمشرف
+    const allOpt = document.createElement('option');
+    allOpt.value = 'all';
+    allOpt.textContent = '🌐 كل المراكز (للمدير/المشرف فقط)';
+    select.appendChild(allOpt);
+}
+populateFacilities();
+
+// عرض المستخدمين
+function renderUsers() {
+    const users = JSON.parse(localStorage.getItem('imci_users')) || [];
+    const tbody = document.getElementById('usersTable');
+    
+    tbody.innerHTML = users.map(u => {
+        const roleLabel = ROLE_LABELS[u.role] || u.role;
+        const roleIcon = ROLE_ICONS[u.role] || 'fa-user';
+        const facilityLabel = u.facility === 'all' ? '<span style="color:#eab354;font-weight:700;">🌐 كل المراكز</span>' : u.facility;
+        
+        return `
+            <tr>
+                <td><strong>${u.fullName}</strong></td>
+                <td><code style="background:#f1f5f9;padding:2px 8px;border-radius:4px;font-size:0.85rem;">${u.username}</code></td>
+                <td><span class="badge-role badge-${u.role}"><i class="fas ${roleIcon}"></i> ${roleLabel}</span></td>
+                <td>${facilityLabel}</td>
+                <td><span class="badge-status ${u.isActive ? 'status-active' : 'status-inactive'}">${u.isActive ? '✅ نشط' : '❌ معطل'}</span></td>
+                <td>${u.createdAt}</td>
+                <td>
+                    <button class="btn-toggle ${u.isActive ? 'deactivate' : 'activate'}" onclick="handleToggle('${u.id}')">
+                        <i class="fas ${u.isActive ? 'fa-ban' : 'fa-check'}"></i> ${u.isActive ? 'تعطيل' : 'تفعيل'}
+                    </button>
+                </td>
+            </tr>
+        `;
+    }).join('');
+}
+
+// التعامل مع التفعيل/التعطيل
+function handleToggle(userId) {
+    const result = toggleUserStatus(userId);
+    if (result.success) {
+        showAlert('تم تحديث حالة المستخدم بنجاح', true);
+        renderUsers();
+    } else {
+        showAlert(result.message, false);
+    }
+}
+
+// إضافة مستخدم جديد
+document.getElementById('addUserForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const result = addUser({
+        username: document.getElementById('username').value.trim().toLowerCase(),
+        password: document.getElementById('password').value,
+        fullName: document.getElementById('fullName').value.trim(),
+        role: document.getElementById('role').value,
+        facility: document.getElementById('facilitySelect').value
+    });
+    
+    if (result.success) {
+        showAlert('✅ تم إضافة المستخدم بنجاح: ' + result.user.fullName, true);
+        this.reset();
+        renderUsers();
+    } else {
+        showAlert('❌ ' + result.message, false);
+    }
+});
+
+// إشعارات
+function showAlert(msg, isSuccess) {
+    const box = document.getElementById('alertBox');
+    box.textContent = msg;
+    box.className = 'alert ' + (isSuccess ? 'alert-success' : 'alert-error');
+    box.style.display = 'flex';
+    setTimeout(() => { box.style.display = 'none'; }, 5000);
+}
+
+// الانتقال بين الصفحات
+function goTo(page) { window.location.href = page; }
+
+// التحميل الأولي
+renderUsers();
+</script>
+
+</body>
+</html>
