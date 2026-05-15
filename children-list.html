@@ -2,186 +2,1171 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>سجل الأطفال | iIMCI</title>
-
-    <!-- الخط -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-
-    <!-- ملف التنسيق -->
-    <link rel="stylesheet" href="children-list.css">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>سجل الأطفال | iIMCI - الرعاية التكاملية لصحة الطفل</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Cairo:wght@300;400;500;600;700;800;900&family=Tajawal:wght@200;300;400;500;700;800;900&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <style>
-        /* ===== الترويسة الرسمية ===== */
+        :root {
+            --primary: #005a8c; --primary-light: #0073b1; --primary-dark: #003d5e;
+            --success: #0d7c3e; --success-light: #e6f7ee; --success-bg: #d4edda;
+            --danger: #c1121f; --danger-light: #fef0f0; --danger-bg: #f8d7da;
+            --warning: #e67e14; --warning-light: #fff9f0; --warning-bg: #fff3cd;
+            --info: #1e6f9f; --info-light: #e8f4fd; --info-bg: #d1ecf1;
+            --accent: #eab354; --accent-dark: #d4a041;
+            --bg: #f4f7fb; --card-bg: #ffffff;
+            --text: #1e293b; --text-light: #475569; --text-muted: #718096;
+            --border: #e2e8f0; --border-light: #edf2f7;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+            --shadow: 0 4px 16px rgba(0,0,0,0.06), 0 2px 4px rgba(0,0,0,0.04);
+            --shadow-lg: 0 12px 40px rgba(0,0,0,0.1), 0 4px 12px rgba(0,0,0,0.05);
+            --shadow-xl: 0 20px 60px rgba(0,0,0,0.12);
+            --radius-sm: 8px; --radius: 12px; --radius-lg: 16px; --radius-xl: 20px;
+            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            --font-naskh: 'Noto Naskh Arabic', serif;
+            --font-body: 'Tajawal', 'Cairo', sans-serif;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
-            margin: 0;
-            font-family: "Cairo", sans-serif;
-            background-color: #f5f5f5;
+            background: linear-gradient(160deg, #e8f0f8 0%, #f0f4f8 30%, #f5f7fa 60%, #eef2f6 100%);
+            font-family: var(--font-body);
+            color: var(--text);
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
         }
-
+        
+        /* ═══ HEADER ═══ */
         .official-header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px 0;
-            background: linear-gradient(135deg, #e0f0ff, #ffffff);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-
-        .official-header .eagle {
-            width: 80px;
-            height: auto;
-            margin-bottom: 15px;
-        }
-
-        .official-header .header-text h1,
-        .official-header .header-text h2,
-        .official-header .header-text h3 {
-            margin: 5px 0;
+            background: linear-gradient(160deg, #ffffff 0%, #eaf4fb 40%, #d4e8f7 100%);
+            padding: 24px 20px 18px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 3px solid var(--primary);
         }
-
-        .official-header .header-text h1 {
-            font-size: 26px;
-            font-weight: bold;
+        .official-header::before {
+            content: ''; position: absolute; top: 0; right: 0;
+            width: 280px; height: 280px;
+            background: radial-gradient(circle, rgba(0,90,140,0.04) 0%, transparent 70%);
+            border-radius: 50%; transform: translate(30%, -40%);
         }
-
-        .official-header .header-text h2 {
-            font-size: 20px;
-            color: #0055a5;
+        .header-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+        .header-emblem { width: 75px; height: auto; margin-bottom: 12px; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.1)); }
+        .official-header h1 { font-family: var(--font-naskh); font-size: 1.7rem; font-weight: 700; color: var(--primary-dark); margin: 0 0 4px; }
+        .official-header h2 { font-family: var(--font-naskh); font-size: 1.2rem; font-weight: 700; color: var(--primary); margin: 0 0 2px; }
+        .official-header h3 { font-family: var(--font-body); font-size: 0.9rem; font-weight: 500; color: var(--text-light); }
+        .official-header h4 { font-family: var(--font-naskh); font-size: 0.85rem; font-weight: 600; color: var(--primary-light); margin-top: 4px; }
+        
+        /* ═══ PROGRAM BAR ═══ */
+        .program-bar {
+            display: flex; justify-content: center; align-items: center; gap: 15px;
+            padding: 14px 20px; background: linear-gradient(135deg, #f8f5ee 0%, #f0ece2 100%);
+            border-bottom: 2px solid #e2dccd;
         }
-
-        .official-header .header-text h3 {
-            font-size: 18px;
-            color: #333;
-        }
-
-        /* ===== شعار البرنامج ===== */
-        .program-logo {
-            text-align: center;
-            margin: 15px 0 25px 0;
-        }
-
-        .program-logo img {
-            width: 60px;
-        }
-
-        .program-logo span {
-            display: block;
-            font-size: 20px;
-            font-weight: bold;
-            color: #0073e6;
-            margin-top: 5px;
-        }
-
-        /* شريط أعلى الصفحة */
+        .program-bar img { width: 50px; height: 50px; border-radius: 50%; background: #fff; padding: 5px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); object-fit: contain; }
+        .program-bar .logo-text { font-family: var(--font-naskh); font-weight: 700; font-size: 1.2rem; color: var(--primary); }
+        .program-bar .logo-sub { font-family: var(--font-body); font-weight: 600; font-size: 0.8rem; color: var(--text-light); }
+        
+        /* ═══ TOPBAR ═══ */
         .topbar {
-            background-color: #0f5c3a;
-            color: white;
-            padding: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            color: white; padding: 14px 28px;
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 12px;
         }
-
-        .topbar button {
-            background-color: white;
-            color: #0f5c3a;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: bold;
+        .topbar h2 { font-family: var(--font-naskh); font-size: 1.15rem; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+        .topbar-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+        .btn {
+            border: none; padding: 10px 20px; font-size: 0.85rem; font-weight: 700;
+            border-radius: 50px; display: inline-flex; align-items: center; gap: 8px;
+            cursor: pointer; transition: all 0.25s ease;
+            font-family: var(--font-naskh); box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
-
-        .topbar button:hover {
-            background-color: #e0e0e0;
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.2); }
+        .btn-back { background: white; color: var(--primary); }
+        .btn-report { background: var(--accent); color: var(--primary-dark); }
+        .btn-refresh { background: var(--success); color: white; }
+        .btn-clear { background: var(--danger); color: white; }
+        .btn-add { background: linear-gradient(135deg, var(--success), #1b5e20); color: white; }
+        
+        /* ═══ STATS CARDS ═══ */
+        .stats-section { padding: 20px 28px; }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 14px;
         }
-
-        .container {
+        .stat-card {
+            background: var(--card-bg); border-radius: var(--radius-lg);
+            padding: 18px 14px; text-align: center;
+            box-shadow: var(--shadow); border: 1px solid var(--border-light);
+            transition: all 0.3s ease; position: relative; overflow: hidden;
+        }
+        .stat-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+        .stat-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+        }
+        .stat-card.total::before { background: linear-gradient(90deg, var(--primary), var(--primary-light)); }
+        .stat-card.newborn::before { background: linear-gradient(90deg, var(--info), #42a5f5); }
+        .stat-card.child::before { background: linear-gradient(90deg, var(--success), #66bb6a); }
+        .stat-card.male::before { background: linear-gradient(90deg, #1e88e5, #42a5f5); }
+        .stat-card.female::before { background: linear-gradient(90deg, #e91e63, #f06292); }
+        .stat-card.danger::before { background: linear-gradient(90deg, var(--danger), #ef5350); }
+        .stat-card.followup::before { background: linear-gradient(90deg, var(--warning), #ffa726); }
+        
+        .stat-icon { font-size: 1.6rem; margin-bottom: 8px; }
+        .stat-value { font-size: 1.8rem; font-weight: 800; color: var(--primary-dark); font-family: 'IBM Plex Sans Arabic', sans-serif; }
+        .stat-label { font-size: 0.8rem; color: var(--text-muted); font-weight: 600; margin-top: 4px; }
+        
+        /* ═══ FILTERS ═══ */
+        .filters-section {
+            padding: 0 28px 16px;
+            display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
+        }
+        .filter-group {
+            display: flex; align-items: center; gap: 8px;
+            background: var(--card-bg); padding: 8px 16px;
+            border-radius: 50px; border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+        }
+        .filter-group label { font-size: 0.8rem; font-weight: 700; color: var(--text-light); }
+        .filter-group select, .filter-group input {
+            border: none; background: transparent; font-family: inherit;
+            font-size: 0.85rem; color: var(--text); outline: none;
+            min-width: 120px;
+        }
+        .search-box {
+            flex: 1; min-width: 250px;
+            display: flex; align-items: center; gap: 10px;
+            background: var(--card-bg); padding: 10px 18px;
+            border-radius: 50px; border: 2px solid var(--border);
+            box-shadow: var(--shadow-sm); transition: var(--transition);
+        }
+        .search-box:focus-within { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(0,90,140,0.08); }
+        .search-box i { color: var(--text-muted); }
+        .search-box input {
+            border: none; background: transparent; font-family: inherit;
+            font-size: 0.9rem; color: var(--text); outline: none; width: 100%;
+        }
+        
+        /* ═══ TABLE ═══ */
+        .table-section { padding: 0 28px 28px; }
+        .table-wrapper {
+            background: var(--card-bg); border-radius: var(--radius-xl);
+            box-shadow: var(--shadow); border: 1px solid var(--border-light);
+            overflow: hidden;
+        }
+        .table-header {
+            padding: 16px 20px; background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-bottom: 1px solid var(--border-light);
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 10px;
+        }
+        .table-header h3 { font-family: var(--font-naskh); font-size: 1rem; font-weight: 700; color: var(--primary-dark); display: flex; align-items: center; gap: 8px; }
+        .table-header .badge {
+            background: var(--primary); color: white; padding: 4px 12px;
+            border-radius: 50px; font-size: 0.75rem; font-weight: 700;
+        }
+        
+        .data-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+        .data-table thead th {
+            background: linear-gradient(180deg, var(--primary-dark) 0%, var(--primary) 100%);
+            color: #fff; padding: 14px 12px; font-family: var(--font-naskh);
+            font-weight: 700; text-align: center; font-size: 0.8rem;
+            white-space: nowrap; position: sticky; top: 0; z-index: 10;
+        }
+        .data-table thead th:first-child { border-radius: 0 var(--radius-xl) 0 0; }
+        .data-table thead th:last-child { border-radius: var(--radius-xl) 0 0 0; }
+        .data-table tbody td {
+            padding: 14px 12px; text-align: center;
+            border-bottom: 1px solid var(--border-light);
+            font-weight: 500; transition: background var(--transition);
+        }
+        .data-table tbody tr:hover td { background: #f8fafb; }
+        .data-table tbody tr:last-child td { border-bottom: none; }
+        
+        /* Patient cell */
+        .patient-cell { display: flex; align-items: center; gap: 12px; text-align: right; }
+        .patient-avatar {
+            width: 40px; height: 40px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 1rem; color: white; flex-shrink: 0;
+        }
+        .patient-avatar.male { background: linear-gradient(135deg, #1e88e5, #42a5f5); }
+        .patient-avatar.female { background: linear-gradient(135deg, #e91e63, #f06292); }
+        .patient-info { text-align: right; }
+        .patient-name { font-weight: 700; color: var(--text); font-size: 0.9rem; }
+        .patient-id { font-size: 0.75rem; color: var(--text-muted); }
+        
+        /* Badges */
+        .badge-type {
+            padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 700;
+            display: inline-flex; align-items: center; gap: 6px;
+        }
+        .badge-newborn { background: var(--info-bg); color: var(--info); border: 1px solid #b3d9e8; }
+        .badge-child { background: var(--success-bg); color: var(--success); border: 1px solid #a8d5ba; }
+        .badge-first { background: #e3f2fd; color: #1565c0; border: 1px solid #bbdefb; }
+        .badge-followup { background: var(--warning-bg); color: var(--warning); border: 1px solid #ffe0b2; }
+        
+        /* Severity indicators */
+        .severity { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 50px; font-size: 0.75rem; font-weight: 700; }
+        .severity-severe { background: var(--danger-light); color: var(--danger); border: 1px solid #f5c6cb; }
+        .severity-moderate { background: var(--warning-light); color: var(--warning); border: 1px solid #ffeeba; }
+        .severity-mild { background: var(--success-light); color: var(--success); border: 1px solid #c3e6cb; }
+        .severity-none { background: #f5f5f5; color: #757575; border: 1px solid #e0e0e0; }
+        
+        /* Vitals */
+        .vitals { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+        .vital { display: flex; align-items: center; gap: 4px; font-size: 0.8rem; padding: 3px 8px; border-radius: 6px; background: #f8fafc; }
+        .vital i { font-size: 0.75rem; }
+        .vital.temp { color: #e67e14; }
+        .vital.weight { color: var(--primary); }
+        .vital.height { color: var(--success); }
+        
+        /* Actions */
+        .actions { display: flex; gap: 6px; justify-content: center; }
+        .action-btn {
+            width: 32px; height: 32px; border-radius: 8px;
+            border: none; cursor: pointer; display: flex;
+            align-items: center; justify-content: center;
+            transition: all 0.2s ease; font-size: 0.85rem;
+        }
+        .action-btn:hover { transform: scale(1.1); }
+        .action-view { background: var(--info-light); color: var(--info); }
+        .action-edit { background: #e3f2fd; color: #1565c0; }
+        .action-delete { background: var(--danger-light); color: var(--danger); }
+        .action-print { background: #f3e5f5; color: #7b1fa2; }
+        
+        /* Empty state */
+        .empty-state {
+            padding: 60px 20px; text-align: center;
+        }
+        .empty-state i { font-size: 4rem; color: var(--border); margin-bottom: 16px; }
+        .empty-state h3 { font-family: var(--font-naskh); font-size: 1.2rem; color: var(--text-light); margin-bottom: 8px; }
+        .empty-state p { color: var(--text-muted); font-size: 0.9rem; }
+        
+        /* Pagination */
+        .pagination {
+            padding: 16px 20px; border-top: 1px solid var(--border-light);
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 12px;
+        }
+        .page-info { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
+        .page-buttons { display: flex; gap: 6px; }
+        .page-btn {
+            padding: 8px 14px; border: 1px solid var(--border); background: white;
+            border-radius: var(--radius-sm); cursor: pointer; font-family: inherit;
+            font-weight: 600; font-size: 0.8rem; color: var(--text); transition: var(--transition);
+        }
+        .page-btn:hover { background: var(--primary-light); color: white; border-color: var(--primary-light); }
+        .page-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+        .page-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        
+        /* Notification */
+        @keyframes slideDown { from { transform: translateX(-50%) translateY(-100%); opacity: 0; } to { transform: translateX(-50%) translateY(0); opacity: 1; } }
+        @keyframes slideUp { from { transform: translateX(-50%) translateY(0); opacity: 1; } to { transform: translateX(-50%) translateY(-100%); opacity: 0; } }
+        .notification {
+            position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+            padding: 14px 28px; border-radius: 60px; font-weight: 700;
+            z-index: 10000; box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            animation: slideDown 0.3s ease; font-family: var(--font-body);
+            text-align: center; max-width: 90%;
+        }
+        .notification-success { background: var(--success); color: white; }
+        .notification-error { background: var(--danger); color: white; }
+        .notification-info { background: var(--info); color: white; }
+        
+        /* Modal */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
+            z-index: 9999; display: none; align-items: center; justify-content: center;
             padding: 20px;
         }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: white;
+        .modal-overlay.active { display: flex; }
+        .modal {
+            background: var(--card-bg); border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-xl); max-width: 700px; width: 100%;
+            max-height: 90vh; overflow-y: auto; animation: modalIn 0.3s ease;
         }
-
-        th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: center;
+        @keyframes modalIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .modal-header {
+            padding: 20px 24px; border-bottom: 1px solid var(--border-light);
+            display: flex; justify-content: space-between; align-items: center;
         }
-
-        th {
-            background-color: #0f5c3a;
-            color: white;
+        .modal-header h3 { font-family: var(--font-naskh); font-size: 1.1rem; color: var(--primary-dark); }
+        .modal-close { background: none; border: none; font-size: 1.2rem; color: var(--text-muted); cursor: pointer; }
+        .modal-body { padding: 24px; }
+        .modal-footer {
+            padding: 16px 24px; border-top: 1px solid var(--border-light);
+            display: flex; justify-content: flex-end; gap: 10px;
         }
-
-        .no-data {
-            text-align: center;
-            margin-top: 20px;
-            color: #888;
+        
+        /* Detail grid */
+        .detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+        .detail-item { background: #f8fafc; padding: 12px 16px; border-radius: var(--radius); }
+        .detail-item label { font-size: 0.75rem; color: var(--text-muted); font-weight: 600; display: block; margin-bottom: 4px; }
+        .detail-item value { font-size: 0.9rem; font-weight: 700; color: var(--text); }
+        
+        /* Classification tags */
+        .class-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+        .class-tag {
+            padding: 4px 10px; border-radius: 50px; font-size: 0.75rem; font-weight: 600;
+        }
+        .class-tag.severe { background: var(--danger-light); color: var(--danger); border: 1px solid #f5c6cb; }
+        .class-tag.moderate { background: var(--warning-light); color: var(--warning); border: 1px solid #ffeeba; }
+        .class-tag.mild { background: var(--success-light); color: var(--success); border: 1px solid #c3e6cb; }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .topbar { flex-direction: column; text-align: center; }
+            .filters-section { flex-direction: column; align-items: stretch; }
+            .search-box { min-width: auto; }
+            .data-table { font-size: 0.75rem; }
+            .data-table thead th, .data-table tbody td { padding: 10px 6px; }
+            .patient-avatar { width: 32px; height: 32px; font-size: 0.8rem; }
+            .actions { flex-wrap: wrap; }
+        }
+        
+        @media print {
+            .topbar, .filters-section, .actions, .pagination, .btn { display: none !important; }
+            .table-wrapper { box-shadow: none; border: 1px solid #ddd; }
         }
     </style>
 </head>
-
 <body>
 
-<!-- الترويسة الرسمية -->
+<!-- ═══ OFFICIAL HEADER ═══ -->
 <header class="official-header">
-    <img src="assets/images/yemen-eagle.png" class="eagle" alt="الطير الجمهوري">
-    <div class="header-text">
+    <div class="header-content">
+        <img src="assets/images/yemen-eagle.png" class="header-emblem" alt="الشعار الرسمي" onerror="this.style.display='none'">
         <h1>الجمهورية اليمنية</h1>
         <h2>وزارة الصحة والبيئة</h2>
         <h3>قطاع الرعاية الصحية الأولية – إدارة صحة الطفل</h3>
+        <h4>نظام iIMCI - الرعاية التكاملية التفاعلي</h4>
     </div>
 </header>
 
-<!-- شعار البرنامج -->
-<div class="program-logo">
-    <img src="assets/images/moh-logo.png" alt="شعار برنامج IMCI">
-    <span>برنامج iIMCI التفاعلي</span>
+<!-- ═══ PROGRAM BAR ═══ -->
+<div class="program-bar">
+    <img src="assets/images/moh-logo.png" alt="شعار البرنامج" onerror="this.style.display='none'">
+    <div>
+        <div class="logo-text">نظام IIMCI التفاعلي</div>
+        <div class="logo-sub">الرعاية التكاملية لصحة الطفل</div>
+    </div>
 </div>
 
-<!-- شريط أعلى الصفحة -->
+<!-- ═══ TOPBAR ═══ -->
 <header class="topbar">
-    <h2>📋 سجل الأطفال المسجلين</h2>
-    <button onclick="goBack()">↩️ العودة للوحة التحكم</button>
+    <h2><i class="fas fa-clipboard-list"></i> سجل الأطفال المسجلين</h2>
+    <div class="topbar-actions">
+        <button class="btn btn-add" onclick="openRegistration()">
+            <i class="fas fa-plus"></i> تسجيل جديد
+        </button>
+        <button class="btn btn-report" onclick="goToReport()">
+            <i class="fas fa-chart-bar"></i> التقرير الشهري
+        </button>
+        <button class="btn btn-refresh" onclick="refreshData()">
+            <i class="fas fa-sync-alt"></i> تحديث
+        </button>
+        <button class="btn btn-back" onclick="goBack()">
+            <i class="fas fa-tachometer-alt"></i> لوحة التحكم
+        </button>
+    </div>
 </header>
 
-<main class="container">
+<!-- ═══ STATS CARDS ═══ -->
+<section class="stats-section">
+    <div class="stats-grid">
+        <div class="stat-card total">
+            <div class="stat-icon">👥</div>
+            <div class="stat-value" id="statTotal">0</div>
+            <div class="stat-label">إجمالي الأطفال</div>
+        </div>
+        <div class="stat-card newborn">
+            <div class="stat-icon">👶</div>
+            <div class="stat-value" id="statNewborn">0</div>
+            <div class="stat-label">رضع (&lt; شهرين)</div>
+        </div>
+        <div class="stat-card child">
+            <div class="stat-icon">🧒</div>
+            <div class="stat-value" id="statChild">0</div>
+            <div class="stat-label">أطفال (2م - 5س)</div>
+        </div>
+        <div class="stat-card male">
+            <div class="stat-icon">👦</div>
+            <div class="stat-value" id="statMale">0</div>
+            <div class="stat-label">ذكور</div>
+        </div>
+        <div class="stat-card female">
+            <div class="stat-icon">👧</div>
+            <div class="stat-value" id="statFemale">0</div>
+            <div class="stat-label">إناث</div>
+        </div>
+        <div class="stat-card danger">
+            <div class="stat-icon">🚨</div>
+            <div class="stat-value" id="statDanger">0</div>
+            <div class="stat-label">حالات خطرة</div>
+        </div>
+        <div class="stat-card followup">
+            <div class="stat-icon">🔄</div>
+            <div class="stat-value" id="statFollowup">0</div>
+            <div class="stat-label">متابعات</div>
+        </div>
+    </div>
+</section>
 
-    <table id="childrenTable">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>اسم الطفل</th>
-                <th>العمر (شهر)</th>
-                <th>الجنس</th>
-                <th>الوزن</th>
-                <th>الطول</th>
-                <th>الحرارة</th>
-                <th>تاريخ الزيارة</th>
-                <th>الشكوى</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
+<!-- ═══ FILTERS ═══ -->
+<section class="filters-section">
+    <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" id="searchInput" placeholder="البحث باسم الطفل، رقم السجل، أو الشكوى..." oninput="filterTable()">
+    </div>
+    <div class="filter-group">
+        <label><i class="fas fa-filter"></i></label>
+        <select id="filterType" onchange="filterTable()">
+            <option value="all">الكل</option>
+            <option value="newborn">رضع (&lt; شهرين)</option>
+            <option value="child">أطفال (2م - 5س)</option>
+        </select>
+    </div>
+    <div class="filter-group">
+        <select id="filterVisit" onchange="filterTable()">
+            <option value="all">كل الزيارات</option>
+            <option value="first">زيارة أولى</option>
+            <option value="followup">متابعة</option>
+        </select>
+    </div>
+    <div class="filter-group">
+        <select id="filterSeverity" onchange="filterTable()">
+            <option value="all">كل التصنيفات</option>
+            <option value="severe">حالات خطرة</option>
+            <option value="moderate">حالات متوسطة</option>
+            <option value="mild">حالات خفيفة</option>
+        </select>
+    </div>
+    <div class="filter-group">
+        <select id="filterGender" onchange="filterTable()">
+            <option value="all">الجنس</option>
+            <option value="male">ذكور</option>
+            <option value="female">إناث</option>
+        </select>
+    </div>
+</section>
 
-    <p id="noData" class="no-data">لا توجد بيانات محفوظة</p>
+<!-- ═══ TABLE ═══ -->
+<section class="table-section">
+    <div class="table-wrapper">
+        <div class="table-header">
+            <h3><i class="fas fa-list"></i> قائمة الأطفال المسجلين</h3>
+            <span class="badge" id="recordCount">0 سجل</span>
+        </div>
+        <div style="overflow-x: auto;">
+            <table class="data-table" id="childrenTable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>الطفل</th>
+                        <th>الفئة</th>
+                        <th>العمر</th>
+                        <th>الجنس</th>
+                        <th>العلامات الحيوية</th>
+                        <th>التصنيف الرئيسي</th>
+                        <th>نوع الزيارة</th>
+                        <th>التاريخ</th>
+                        <th>الإجراءات</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                </tbody>
+            </table>
+        </div>
+        <div id="emptyState" class="empty-state" style="display: none;">
+            <i class="fas fa-folder-open"></i>
+            <h3>لا توجد بيانات مسجلة</h3>
+            <p>يمكنك إضافة سجل جديد من صفحة التسجيل</p>
+        </div>
+        <div class="pagination" id="pagination" style="display: none;">
+            <div class="page-info" id="pageInfo">عرض 1-10 من 50</div>
+            <div class="page-buttons" id="pageButtons">
+            </div>
+        </div>
+    </div>
+</section>
 
-</main>
-
-<script src="children-list.js"></script>
+<!-- ═══ MODAL ═══ -->
+<div class="modal-overlay" id="detailModal">
+    <div class="modal">
+        <div class="modal-header">
+            <h3><i class="fas fa-file-medical"></i> تفاصيل السجل</h3>
+            <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body" id="modalBody">
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-back" onclick="closeModal()">إغلاق</button>
+            <button class="btn btn-print" onclick="printRecord()"><i class="fas fa-print"></i> طباعة</button>
+        </div>
+    </div>
+</div>
 
 <script>
+// ═══════════════════════════════════════════════════════════════════════════════
+// iIMCI CHILDREN REGISTRY - PROFESSIONAL DATA RECEIVER
+// Receives data from:
+//   1. Newborn registration page (< 2 months)     → imci_newborn_records_v2
+//   2. Child registration page (2m - <5y)         → imci_children_records_v2
+// ═══════════════════════════════════════════════════════════════════════════════
+
+const STORAGE_KEYS = {
+    CHILDREN: 'imci_children_records_v2',
+    NEWBORN: 'imci_newborn_records_v2',
+};
+
+// ─── Classification display names ───
+const CLASS_NAMES = {
+    // Children
+    'VERY_SEVERE_DISEASE': 'مرض شديد جداً',
+    'SEVERE_PNEUMONIA': 'التهاب رئوي شديد',
+    'PNEUMONIA': 'التهاب رئوي',
+    'NO_PNEUMONIA': 'لا يوجد ذات رئة',
+    'SEVERE_DEHYDRATION': 'جفاف شديد',
+    'SOME_DEHYDRATION': 'بعض الجفاف',
+    'NO_DEHYDRATION': 'لا يوجد جفاف',
+    'DYSENTERY': 'دوسنتاريا',
+    'PERSISTENT_DIARRHOEA': 'إسهال مزمن',
+    'STREPTOCOCCAL': 'التهاب حلق بكتيري',
+    'NON_STREPTOCOCCAL': 'التهاب حلق فيروسي',
+    'ACUTE_EAR_INFECTION': 'التهاب أذن حاد',
+    'CHRONIC_EAR_INFECTION': 'التهاب أذن مزمن',
+    'VERY_SEVERE_FEBRILE_DISEASE': 'مرض حمى شديد جداً',
+    'MALARIA': 'ملاريا',
+    'FEVER_NO_MALARIA': 'حمى بدون مalaria',
+    'SEVERE_MALNUTRITION': 'سوء تغذية شديد',
+    'LOW_WEIGHT': 'وزن منخفض',
+    'SEVERE_ANAEMIA': 'فقر دم شديد',
+    'ANAEMIA': 'فقر دم',
+    // Newborns
+    'POSSIBLE_SERIOUS_BACTERIAL_INFECTION': 'عدوى بكتيرية خطيرة محتملة',
+    'LOCAL_BACTERIAL_INFECTION': 'عدوى بكتيرية موضعية',
+    'JAUNDICE': 'يرقان',
+    'FEEDING_PROBLEM': 'مشكلة تغذية',
+    'UNDERWEIGHT': 'نقص وزن',
+    'LOW_BIRTH_WEIGHT': 'وزن منخفض عند الولادة',
+};
+
+const SEVERITY_ORDER = {
+    'VERY_SEVERE_DISEASE': 1, 'SEVERE_PNEUMONIA': 1, 'SEVERE_DEHYDRATION': 1,
+    'VERY_SEVERE_FEBRILE_DISEASE': 1, 'SEVERE_MALNUTRITION': 1, 'SEVERE_ANAEMIA': 1,
+    'POSSIBLE_SERIOUS_BACTERIAL_INFECTION': 1,
+    'PNEUMONIA': 2, 'SOME_DEHYDRATION': 2, 'DYSENTERY': 2, 'PERSISTENT_DIARRHOEA': 2,
+    'STREPTOCOCCAL': 2, 'ACUTE_EAR_INFECTION': 2, 'MALARIA': 2, 'LOW_WEIGHT': 2,
+    'ANAEMIA': 2, 'LOCAL_BACTERIAL_INFECTION': 2, 'JAUNDICE': 2, 'FEEDING_PROBLEM': 2,
+    'NO_PNEUMONIA': 3, 'NO_DEHYDRATION': 3, 'NON_STREPTOCOCCAL': 3,
+    'CHRONIC_EAR_INFECTION': 3, 'FEVER_NO_MALARIA': 3,
+};
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// DATA MANAGER
+// ═══════════════════════════════════════════════════════════════════════════════
+
+class RegistryManager {
+    constructor() {
+        this.allRecords = [];
+        this.filteredRecords = [];
+        this.currentPage = 1;
+        this.pageSize = 10;
+    }
+    
+    loadAllRecords() {
+        const children = this.getStorage(STORAGE_KEYS.CHILDREN);
+        const newborns = this.getStorage(STORAGE_KEYS.NEWBORN);
+        
+        console.log(`📊 Registry: ${children.length} children + ${newborns.length} newborns`);
+        
+        const processedChildren = children.map((r, i) => this.processRecord(r, 'child', i));
+        const processedNewborns = newborns.map((r, i) => this.processRecord(r, 'newborn', i));
+        
+        // Sort by date descending (newest first)
+        this.allRecords = [...processedChildren, ...processedNewborns].sort((a, b) => {
+            return new Date(b.visitDate) - new Date(a.visitDate);
+        });
+        
+        this.filteredRecords = [...this.allRecords];
+        this.updateStats();
+        this.renderTable();
+        
+        return this.allRecords;
+    }
+    
+    getStorage(key) {
+        try {
+            const data = localStorage.getItem(key);
+            if (!data) return [];
+            const parsed = JSON.parse(data);
+            return Array.isArray(parsed) ? parsed : (parsed ? [parsed] : []);
+        } catch (e) {
+            console.warn(`Failed to load ${key}:`, e);
+            return [];
+        }
+    }
+    
+    processRecord(rec, type, index) {
+        if (!rec || typeof rec !== 'object') return null;
+        
+        const age = this.extractAge(rec);
+        const cls = this.extractClassifications(rec);
+        const mainClass = this.getMainClassification(cls, type);
+        
+        return {
+            id: rec.id || rec.recordId || `${type}_${index}`,
+            type: type,
+            name: rec.childName || rec.name || rec.patientName || rec.newbornName || 'غير مسجل',
+            ageMonths: age,
+            ageDisplay: this.formatAge(age),
+            gender: this.extractGender(rec),
+            weight: rec.weight || rec.currentWeight || '--',
+            height: rec.height || rec.currentHeight || '--',
+            temperature: rec.temperature || rec.fever || '--',
+            visitDate: rec.visitDate || rec.date || rec.createdAt || new Date().toISOString(),
+            visitType: this.extractVisitType(rec),
+            complaint: rec.mainComplaint || rec.complaint || rec.symptoms || '--',
+            classifications: cls,
+            mainClassification: mainClass,
+            severity: this.getSeverity(mainClass.code),
+            muac: rec.muac || rec.MUAC || '--',
+            referral: rec.referral || rec.referred || false,
+            medications: this.extractMedications(rec),
+            raw: rec // Keep raw for detail view
+        };
+    }
+    
+    extractAge(rec) {
+        if (rec.ageInMonths !== undefined) return parseFloat(rec.ageInMonths) || 0;
+        if (rec.ageMonths !== undefined) return parseFloat(rec.ageMonths) || 0;
+        if (rec.ageInDays !== undefined) return (parseFloat(rec.ageInDays) || 0) / 30;
+        if (rec.ageDays !== undefined) return (parseFloat(rec.ageDays) || 0) / 30;
+        return 0;
+    }
+    
+    formatAge(months) {
+        const m = parseFloat(months) || 0;
+        if (m < 1) {
+            const days = Math.round(m * 30);
+            return `${days} يوم`;
+        }
+        if (m < 12) {
+            return `${Math.floor(m)} شهر`;
+        }
+        const years = Math.floor(m / 12);
+        const remMonths = Math.floor(m % 12);
+        if (remMonths === 0) return `${years} سنة`;
+        return `${years} سنة ${remMonths} شهر`;
+    }
+    
+    extractGender(rec) {
+        const g = String(rec.gender || rec.sex || '').toLowerCase();
+        if (g.includes('ذكر') || g.includes('boy') || g.includes('male')) return 'male';
+        if (g.includes('أنثى') || g.includes('girl') || g.includes('female')) return 'female';
+        return 'unknown';
+    }
+    
+    extractVisitType(rec) {
+        const v = String(rec.visitType || rec.visit || '').toLowerCase();
+        if (v.includes('متابعة') || v.includes('follow') || v.includes('مراجعة')) return 'followup';
+        return 'first';
+    }
+    
+    extractClassifications(rec) {
+        const cls = rec.classifications || rec.classification || {};
+        const results = [];
+        
+        const addCls = (val) => {
+            if (!val) return;
+            const code = String(val).toUpperCase().trim();
+            const name = CLASS_NAMES[code] || code;
+            results.push({ code, name });
+        };
+        
+        if (typeof cls === 'object') {
+            addCls(cls.cough || cls.dangerSigns);
+            addCls(cls.diarrhea || cls.diarrhoea);
+            addCls(cls.throat);
+            addCls(cls.ear);
+            addCls(cls.fever);
+            addCls(cls.nutrition);
+            addCls(cls.anemia);
+            addCls(cls.newborn || cls.newbornClass);
+        }
+        
+        // Also check flat properties
+        addCls(rec.coughClassification || rec.coughClass);
+        addCls(rec.diarrheaClassification || rec.diarrheaClass);
+        addCls(rec.classification);
+        
+        return results.filter(c => c.code);
+    }
+    
+    getMainClassification(classifications, type) {
+        if (!classifications || classifications.length === 0) {
+            return { code: 'NONE', name: 'لا يوجد تصنيف' };
+        }
+        
+        // Sort by severity (most severe first)
+        const sorted = [...classifications].sort((a, b) => {
+            const sevA = SEVERITY_ORDER[a.code] || 4;
+            const sevB = SEVERITY_ORDER[b.code] || 4;
+            return sevA - sevB;
+        });
+        
+        return sorted[0];
+    }
+    
+    getSeverity(code) {
+        const sev = SEVERITY_ORDER[code];
+        if (sev === 1) return 'severe';
+        if (sev === 2) return 'moderate';
+        if (sev === 3) return 'mild';
+        return 'none';
+    }
+    
+    extractMedications(rec) {
+        const meds = [];
+        if (Array.isArray(rec.medications)) meds.push(...rec.medications);
+        if (Array.isArray(rec.drugs)) meds.push(...rec.drugs);
+        if (rec.treatmentSummary?.medications) meds.push(...rec.treatmentSummary.medications);
+        return meds.map(m => String(m)).filter(m => m);
+    }
+    
+    // ═══════════════════════════════════════════════════════════════════
+    // STATS
+    // ═══════════════════════════════════════════════════════════════════
+    
+    updateStats() {
+        const total = this.allRecords.length;
+        const newborns = this.allRecords.filter(r => r.type === 'newborn').length;
+        const children = this.allRecords.filter(r => r.type === 'child').length;
+        const males = this.allRecords.filter(r => r.gender === 'male').length;
+        const females = this.allRecords.filter(r => r.gender === 'female').length;
+        const danger = this.allRecords.filter(r => r.severity === 'severe').length;
+        const followups = this.allRecords.filter(r => r.visitType === 'followup').length;
+        
+        this.animateNumber('statTotal', total);
+        this.animateNumber('statNewborn', newborns);
+        this.animateNumber('statChild', children);
+        this.animateNumber('statMale', males);
+        this.animateNumber('statFemale', females);
+        this.animateNumber('statDanger', danger);
+        this.animateNumber('statFollowup', followups);
+    }
+    
+    animateNumber(id, target) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        const start = parseInt(el.textContent) || 0;
+        const duration = 600;
+        const startTime = performance.now();
+        
+        const animate = (currentTime) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const easeOut = 1 - Math.pow(1 - progress, 3);
+            const current = Math.round(start + (target - start) * easeOut);
+            el.textContent = current;
+            if (progress < 1) requestAnimationFrame(animate);
+        };
+        requestAnimationFrame(animate);
+    }
+    
+    // ═══════════════════════════════════════════════════════════════════
+    // TABLE RENDERING
+    // ═══════════════════════════════════════════════════════════════════
+    
+    renderTable() {
+        const tbody = document.getElementById('tableBody');
+        const emptyState = document.getElementById('emptyState');
+        const pagination = document.getElementById('pagination');
+        const recordCount = document.getElementById('recordCount');
+        
+        if (this.filteredRecords.length === 0) {
+            tbody.innerHTML = '';
+            emptyState.style.display = 'block';
+            pagination.style.display = 'none';
+            recordCount.textContent = '0 سجل';
+            return;
+        }
+        
+        emptyState.style.display = 'none';
+        recordCount.textContent = `${this.filteredRecords.length} سجل`;
+        
+        // Pagination
+        const totalPages = Math.ceil(this.filteredRecords.length / this.pageSize);
+        const start = (this.currentPage - 1) * this.pageSize;
+        const end = start + this.pageSize;
+        const pageRecords = this.filteredRecords.slice(start, end);
+        
+        tbody.innerHTML = pageRecords.map((rec, idx) => this.renderRow(rec, start + idx + 1)).join('');
+        
+        if (totalPages > 1) {
+            pagination.style.display = 'flex';
+            this.renderPagination(totalPages);
+        } else {
+            pagination.style.display = 'none';
+        }
+        
+        document.getElementById('pageInfo').textContent = 
+            `عرض ${start + 1}-${Math.min(end, this.filteredRecords.length)} من ${this.filteredRecords.length}`;
+    }
+    
+    renderRow(rec, number) {
+        const genderIcon = rec.gender === 'male' ? 'fa-mars' : rec.gender === 'female' ? 'fa-venus' : 'fa-genderless';
+        const genderClass = rec.gender === 'male' ? 'male' : rec.gender === 'female' ? 'female' : '';
+        const typeBadge = rec.type === 'newborn' 
+            ? '<span class="badge-type badge-newborn"><i class="fas fa-baby"></i> رضيع</span>'
+            : '<span class="badge-type badge-child"><i class="fas fa-child"></i> طفل</span>';
+        const visitBadge = rec.visitType === 'first'
+            ? '<span class="badge-type badge-first">زيارة أولى</span>'
+            : '<span class="badge-type badge-followup">متابعة</span>';
+        const severityClass = `severity-${rec.severity}`;
+        const severityText = rec.severity === 'severe' ? 'خطير' : rec.severity === 'moderate' ? 'متوسط' : rec.severity === 'mild' ? 'خفيف' : 'عادي';
+        const dateStr = new Date(rec.visitDate).toLocaleDateString('ar-EG');
+        
+        return `
+            <tr>
+                <td><strong>${number}</strong></td>
+                <td>
+                    <div class="patient-cell">
+                        <div class="patient-avatar ${genderClass}">
+                            <i class="fas ${genderIcon}"></i>
+                        </div>
+                        <div class="patient-info">
+                            <div class="patient-name">${rec.name}</div>
+                            <div class="patient-id">#${rec.id}</div>
+                        </div>
+                    </div>
+                </td>
+                <td>${typeBadge}</td>
+                <td><strong>${rec.ageDisplay}</strong></td>
+                <td>${rec.gender === 'male' ? 'ذكر' : rec.gender === 'female' ? 'أنثى' : 'غير محدد'}</td>
+                <td>
+                    <div class="vitals">
+                        <span class="vital temp"><i class="fas fa-thermometer-half"></i> ${rec.temperature}</span>
+                        <span class="vital weight"><i class="fas fa-weight"></i> ${rec.weight}</span>
+                        <span class="vital height"><i class="fas fa-ruler-vertical"></i> ${rec.height}</span>
+                    </div>
+                </td>
+                <td><span class="severity ${severityClass}">${rec.mainClassification.name}</span></td>
+                <td>${visitBadge}</td>
+                <td>${dateStr}</td>
+                <td>
+                    <div class="actions">
+                        <button class="action-btn action-view" onclick="viewDetail('${rec.id}')" title="عرض التفاصيل">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <button class="action-btn action-edit" onclick="editRecord('${rec.id}')" title="تعديل">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="action-btn action-delete" onclick="deleteRecord('${rec.id}')" title="حذف">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        `;
+    }
+    
+    renderPagination(totalPages) {
+        const container = document.getElementById('pageButtons');
+        let html = '';
+        
+        html += `<button class="page-btn" onclick="changePage(${this.currentPage - 1})" ${this.currentPage === 1 ? 'disabled' : ''}>السابق</button>`;
+        
+        for (let i = 1; i <= totalPages; i++) {
+            if (i === 1 || i === totalPages || (i >= this.currentPage - 1 && i <= this.currentPage + 1)) {
+                html += `<button class="page-btn ${i === this.currentPage ? 'active' : ''}" onclick="changePage(${i})">${i}</button>`;
+            } else if (i === this.currentPage - 2 || i === this.currentPage + 2) {
+                html += `<span style="padding: 8px;">...</span>`;
+            }
+        }
+        
+        html += `<button class="page-btn" onclick="changePage(${this.currentPage + 1})" ${this.currentPage === totalPages ? 'disabled' : ''}>التالي</button>`;
+        container.innerHTML = html;
+    }
+    
+    // ═══════════════════════════════════════════════════════════════════
+    // FILTERING
+    // ═══════════════════════════════════════════════════════════════════
+    
+    filterRecords() {
+        const search = document.getElementById('searchInput').value.toLowerCase();
+        const typeFilter = document.getElementById('filterType').value;
+        const visitFilter = document.getElementById('filterVisit').value;
+        const severityFilter = document.getElementById('filterSeverity').value;
+        const genderFilter = document.getElementById('filterGender').value;
+        
+        this.filteredRecords = this.allRecords.filter(rec => {
+            // Search
+            if (search) {
+                const searchable = `${rec.name} ${rec.id} ${rec.complaint} ${rec.mainClassification.name}`.toLowerCase();
+                if (!searchable.includes(search)) return false;
+            }
+            
+            // Type filter
+            if (typeFilter !== 'all' && rec.type !== typeFilter) return false;
+            
+            // Visit filter
+            if (visitFilter !== 'all' && rec.visitType !== visitFilter) return false;
+            
+            // Severity filter
+            if (severityFilter !== 'all' && rec.severity !== severityFilter) return false;
+            
+            // Gender filter
+            if (genderFilter !== 'all' && rec.gender !== genderFilter) return false;
+            
+            return true;
+        });
+        
+        this.currentPage = 1;
+        this.renderTable();
+    }
+    
+    // ═══════════════════════════════════════════════════════════════════
+    // DETAIL VIEW
+    // ═══════════════════════════════════════════════════════════════════
+    
+    showDetail(recordId) {
+        const rec = this.allRecords.find(r => r.id === recordId);
+        if (!rec) return;
+        
+        const modalBody = document.getElementById('modalBody');
+        const dateStr = new Date(rec.visitDate).toLocaleDateString('ar-EG');
+        const timeStr = new Date(rec.visitDate).toLocaleTimeString('ar-EG');
+        
+        const classTags = rec.classifications.map(c => {
+            const sev = this.getSeverity(c.code);
+            return `<span class="class-tag ${sev}">${c.name}</span>`;
+        }).join('');
+        
+        const medsList = rec.medications.length > 0 
+            ? rec.medications.map(m => `<span class="class-tag mild">💊 ${m}</span>`).join('')
+            : '<span style="color: var(--text-muted);">لا توجد أدوية مسجلة</span>';
+        
+        modalBody.innerHTML = `
+            <div class="detail-grid">
+                <div class="detail-item">
+                    <label>اسم الطفل</label>
+                    <value>${rec.name}</value>
+                </div>
+                <div class="detail-item">
+                    <label>رقم السجل</label>
+                    <value>#${rec.id}</value>
+                </div>
+                <div class="detail-item">
+                    <label>الفئة العمرية</label>
+                    <value>${rec.type === 'newborn' ? 'رضيع (< شهرين)' : 'طفل (2م - 5س)'}</value>
+                </div>
+                <div class="detail-item">
+                    <label>العمر</label>
+                    <value>${rec.ageDisplay}</value>
+                </div>
+                <div class="detail-item">
+                    <label>الجنس</label>
+                    <value>${rec.gender === 'male' ? '👦 ذكر' : rec.gender === 'female' ? '👧 أنثى' : 'غير محدد'}</value>
+                </div>
+                <div class="detail-item">
+                    <label>نوع الزيارة</label>
+                    <value>${rec.visitType === 'first' ? '🩺 زيارة أولى' : '🔄 متابعة'}</value>
+                </div>
+                <div class="detail-item">
+                    <label>الوزن</label>
+                    <value>${rec.weight} كجم</value>
+                </div>
+                <div class="detail-item">
+                    <label>الطول</label>
+                    <value>${rec.height} سم</value>
+                </div>
+                <div class="detail-item">
+                    <label>درجة الحرارة</label>
+                    <value>${rec.temperature} °C</value>
+                </div>
+                <div class="detail-item">
+                    <label>MUAC</label>
+                    <value>${rec.muac} سم</value>
+                </div>
+                <div class="detail-item">
+                    <label>التاريخ</label>
+                    <value>${dateStr} - ${timeStr}</value>
+                </div>
+                <div class="detail-item">
+                    <label>الإحالة</label>
+                    <value>${rec.referral ? '🚑 تم الإحالة' : '✅ لا يوجد'}</value>
+                </div>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <label style="font-size: 0.8rem; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 8px;">التصنيفات الطبية:</label>
+                <div class="class-tags">${classTags || '<span style="color: var(--text-muted);">لا توجد تصنيفات</span>'}</div>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <label style="font-size: 0.8rem; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 8px;">الأدوية الموصوفة:</label>
+                <div class="class-tags">${medsList}</div>
+            </div>
+            
+            ${rec.complaint !== '--' ? `
+            <div style="margin-top: 20px;">
+                <label style="font-size: 0.8rem; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 8px;">الشكوى الرئيسية:</label>
+                <div style="background: #f8fafc; padding: 12px 16px; border-radius: var(--radius); font-size: 0.9rem;">${rec.complaint}</div>
+            </div>
+            ` : ''}
+        `;
+        
+        document.getElementById('detailModal').classList.add('active');
+    }
+    
+    deleteRecord(recordId) {
+        if (!confirm('⚠️ هل أنت متأكد من حذف هذا السجل؟')) return;
+        
+        // Try to delete from both stores
+        let deleted = false;
+        
+        ['CHILDREN', 'NEWBORN'].forEach(key => {
+            const storeKey = STORAGE_KEYS[key];
+            const records = this.getStorage(storeKey);
+            const filtered = records.filter(r => (r.id || r.recordId) !== recordId);
+            if (filtered.length < records.length) {
+                localStorage.setItem(storeKey, JSON.stringify(filtered));
+                deleted = true;
+            }
+        });
+        
+        if (deleted) {
+            this.showNotification('✅ تم حذف السجل بنجاح', 'success');
+            this.loadAllRecords();
+        }
+    }
+    
+    showNotification(msg, type = 'info') {
+        const existing = document.querySelector('.notification');
+        if (existing) existing.remove();
+        const div = document.createElement('div');
+        div.className = `notification notification-${type}`;
+        div.textContent = msg;
+        document.body.appendChild(div);
+        setTimeout(() => {
+            div.style.animation = 'slideUp 0.3s ease forwards';
+            setTimeout(() => div.remove(), 300);
+        }, 3000);
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// GLOBAL FUNCTIONS
+// ═══════════════════════════════════════════════════════════════════════════════
+
+const manager = new RegistryManager();
+
+function refreshData() {
+    manager.loadAllRecords();
+    manager.showNotification('✅ تم تحديث البيانات', 'success');
+}
+
+function filterTable() {
+    manager.filterRecords();
+}
+
+function changePage(page) {
+    manager.currentPage = page;
+    manager.renderTable();
+}
+
+function viewDetail(id) {
+    manager.showDetail(id);
+}
+
+function editRecord(id) {
+    const rec = manager.allRecords.find(r => r.id === id);
+    if (!rec) return;
+    
+    // Navigate to appropriate edit page based on type
+    if (rec.type === 'newborn') {
+        window.location.href = `newborn-registration.html?edit=${id}`;
+    } else {
+        window.location.href = `child-registration.html?edit=${id}`;
+    }
+}
+
+function deleteRecord(id) {
+    manager.deleteRecord(id);
+}
+
+function closeModal() {
+    document.getElementById('detailModal').classList.remove('active');
+}
+
+function printRecord() {
+    window.print();
+}
+
 function goBack() {
-    window.location.href = "dashboard.html";
+    window.location.href = 'dashboard.html';
+}
+
+function goToReport() {
+    window.location.href = 'monthly-report.html';
+}
+
+function openRegistration() {
+    // Show options for which registration page
+    const choice = confirm('اضغط "موافق" لتسجيل رضيع (< شهرين)\\nاضغط "إلغاء" لتسجيل طفل (2م - 5س)');
+    if (choice) {
+        window.location.href = 'newborn-registration.html';
+    } else {
+        window.location.href = 'child-registration.html';
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// INITIALIZATION
+// ═══════════════════════════════════════════════════════════════════════════════
+
+function init() {
+    console.log('🚀 iIMCI Children Registry initializing...');
+    manager.loadAllRecords();
+    
+    // Auto-refresh every 10 seconds
+    setInterval(() => {
+        manager.loadAllRecords();
+    }, 10000);
+    
+    // Refresh on storage changes
+    window.addEventListener('storage', (e) => {
+        if (Object.values(STORAGE_KEYS).includes(e.key)) {
+            console.log(`🔄 Storage updated: ${e.key}`);
+            manager.loadAllRecords();
+        }
+    });
+    
+    // Close modal on overlay click
+    document.getElementById('detailModal').addEventListener('click', (e) => {
+        if (e.target.id === 'detailModal') closeModal();
+    });
+    
+    console.log('✅ Registry ready');
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+} else {
+    init();
 }
 </script>
 
 </body>
-</html>
+    </html>
