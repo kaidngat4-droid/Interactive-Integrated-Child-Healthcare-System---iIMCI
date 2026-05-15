@@ -1,1001 +1,2428 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <title>استمارة تسجيل الطفل | iIMCI</title>
-    <link rel="stylesheet" href="child-form.css">
-    <style>
-        /* ===== الترويسة الرسمية ===== */
-        body {
-            margin: 0;
-            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f5f5f5;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>استمارة تسجيل طفل | IMCI - الأطفال من شهرين لأقل من 5 سنوات</title>
 
-        .official-header {
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* توسيط كل شيء */
-            justify-content: center;
-            padding: 20px 0;
-            background: linear-gradient(135deg, #e0f0ff, #ffffff); /* تأثير بصري لطيف */
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
+<!-- خطوط عالمية احترافية -->
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=DM+Sans:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Tajawal:wght@300;400;500;700;800;900&family=Noto+Kufi+Arabic:wght@400;500;600;700;800;900&family=Almarai:wght@300;400;700;800&display=swap" rel="stylesheet">
 
-        .official-header .eagle {
-            width: 80px; /* نفس حجم الصورة القديم */
-            height: auto;
-            display: block;
-            margin-bottom: 15px;
-            transition: transform 0.3s, filter 0.3s;
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
-        }
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-        /* تأثير عند المرور على الصورة */
-        .official-header .eagle:hover {
-            transform: scale(1.05) rotate(-2deg);
-            filter: drop-shadow(0 6px 8px rgba(0,0,0,0.4));
-        }
+<style>
+:root {
+    --primary: #005a8c;
+    --primary-light: #0073b1;
+    --primary-dark: #003d5e;
+    --success: #0d7c3e;
+    --success-light: #e6f7ee;
+    --danger: #c1121f;
+    --danger-light: #fef0f0;
+    --warning: #e67e14;
+    --warning-light: #fff9f0;
+    --info: #1e6f9f;
+    --info-light: #e8f4fd;
+    --purple: #7c3aed;
+    --purple-light: #ede9fe;
+    --bg: #f4f7fb;
+    --card-bg: #ffffff;
+    --text: #1e293b;
+    --text-light: #475569;
+    --border: #e2e8f0;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow: 0 4px 16px rgba(0,0,0,0.06), 0 2px 4px rgba(0,0,0,0.04);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.1), 0 4px 12px rgba(0,0,0,0.05);
+    --radius-sm: 8px;
+    --radius: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+    --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-        .official-header .header-text h1,
-        .official-header .header-text h2,
-        .official-header .header-text h3 {
-            margin: 5px 0;
-            color: #000;
-            text-align: center;
-        }
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-        .official-header .header-text h1 {
-            font-size: 28px;
-            font-weight: bold;
-        }
+body {
+    font-family: 'Tajawal', 'Cairo', 'Noto Kufi Arabic', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
 
-        .official-header .header-text h2 {
-            font-size: 22px;
-            font-weight: 600;
-            color: #0055a5;
-        }
+/* ============================================================
+   الترويسة الرسمية
+   ============================================================ */
+.official-header {
+    background: linear-gradient(160deg, #ffffff 0%, #eaf4fb 40%, #d4e8f7 100%);
+    padding: 28px 20px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 3px solid var(--primary);
+}
+.official-header::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, rgba(0,90,140,0.04) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(30%, -40%);
+}
+.official-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(0,90,140,0.03) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(-30%, 30%);
+}
+.official-header-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.header-emblem {
+    width: 85px;
+    height: auto;
+    margin-bottom: 14px;
+    filter: drop-shadow(0 3px 6px rgba(0,0,0,0.1));
+    transition: transform var(--transition);
+}
+.header-emblem:hover { transform: scale(1.05); }
+.official-header h1 {
+    font-family: 'Cairo', sans-serif;
+    font-size: 1.85rem;
+    font-weight: 900;
+    color: var(--primary-dark);
+    margin: 0 0 4px;
+    letter-spacing: -0.3px;
+}
+.official-header h2 {
+    font-family: 'Cairo', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 0 0 2px;
+}
+.official-header h3 {
+    font-family: 'Tajawal', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-light);
+}
 
-        .official-header .header-text h3 {
-            font-size: 20px;
-            font-weight: 500;
-            color: #333;
-        }
+/* ============================================================
+   شعار البرنامج
+   ============================================================ */
+.program-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 18px 20px;
+    background: linear-gradient(135deg, #f8f5ee 0%, #f0ece2 100%);
+    border-bottom: 2px solid #e2dccd;
+}
+.program-logo img {
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: #fff;
+    padding: 6px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    object-fit: contain;
+    transition: var(--transition);
+}
+.program-logo img:hover { transform: scale(1.1); }
+.program-logo .logo-content { text-align: right; }
+.program-logo .logo-text {
+    font-weight: 800;
+    font-size: 1.3rem;
+    color: var(--primary);
+}
+.program-logo .logo-subtext {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-light);
+    display: block;
+    margin-top: 2px;
+}
 
-        /* ===== شعار البرنامج ===== */
-        .program-logo {
-            text-align: center;
-            margin: 15px 0 30px 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-        }
+/* ============================================================
+   شعار النظام
+   ============================================================ */
+.system-logo-bar {
+    background: linear-gradient(135deg, #eef3f0 0%, #e4ebe7 100%);
+    padding: 10px 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    border-bottom: 2px solid #d5ddd8;
+}
+.system-logo-bar img { height: 40px; width: auto; object-fit: contain; }
+.system-logo-bar .system-logo-text { font-size: 1.1rem; font-weight: 700; color: var(--primary-light); }
 
-        .program-logo img {
-            width: 60px;
-            height: auto;
-            transition: transform 0.3s;
-        }
+/* ============================================================
+   بيانات المرفق
+   ============================================================ */
+.facility-info-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px 24px;
+    padding: 18px 20px;
+    font-size: 0.88rem;
+    background: #fafbfc;
+    border-bottom: 1px solid var(--border);
+}
+.facility-info-grid span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--card-bg);
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+}
+.facility-info-grid span:focus-within {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(0,90,140,0.08);
+}
+.facility-info-grid i { color: var(--primary); font-size: 0.95rem; }
+.facility-info-grid input,
+.facility-info-grid select {
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text);
+    padding: 2px 6px;
+    max-width: 130px;
+    outline: none;
+    border-bottom: 1px dashed var(--border);
+    transition: var(--transition);
+}
+.facility-info-grid input:focus,
+.facility-info-grid select:focus { border-bottom-color: var(--primary); }
+.facility-info-grid .facility-label { font-weight: 700; color: var(--primary-dark); }
 
-        .program-logo img:hover {
-            transform: scale(1.1) rotate(3deg);
-        }
+/* ============================================================
+   الحاوية الرئيسية
+   ============================================================ */
+.main-container { max-width: 950px; margin: 0 auto; padding: 20px 16px 40px; }
 
-        .program-logo span {
-            font-size: 20px;
-            font-weight: bold;
-            color: #0073e6;
-            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        }
+/* ============================================================
+   خطوات التقدم
+   ============================================================ */
+.progress-container {
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    padding: 18px 14px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.progress-steps { display: flex; gap: 4px; min-width: max-content; justify-content: space-between; }
+.step {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 14px; border-radius: var(--radius);
+    cursor: pointer; font-weight: 600; font-size: 0.82rem;
+    color: var(--text-light); background: #f8fafc;
+    transition: var(--transition); white-space: nowrap;
+    border: 2px solid transparent; position: relative; user-select: none;
+}
+.step:hover { background: #eef5fb; color: var(--primary); }
+.step i { font-size: 1rem; width: 20px; text-align: center; }
+.step.active {
+    background: var(--primary); color: #fff;
+    border-color: var(--primary); font-weight: 800;
+    box-shadow: 0 4px 12px rgba(0,90,140,0.35); transform: translateY(-2px);
+}
+.step.completed { background: #e6f7ee; color: var(--success); border-color: var(--success); font-weight: 700; }
+.step.completed i { color: var(--success); }
+.step.completed::after {
+    content: '\2713'; position: absolute; top: -6px; right: -6px;
+    background: var(--success); color: #fff;
+    width: 20px; height: 20px; border-radius: 50%;
+    font-size: 0.65rem; display: flex; align-items: center; justify-content: center; font-weight: 900;
+}
 
-        /* بداية الصفحة */
-        main.form-wrapper {
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-    </style>
+/* ============================================================
+   البطاقات
+   ============================================================ */
+.card {
+    background: var(--card-bg); border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg); margin-bottom: 24px;
+    overflow: hidden; border: 1px solid var(--border); transition: var(--transition);
+}
+.card:hover { box-shadow: 0 16px 48px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04); }
+.card-header {
+    padding: 18px 22px; font-weight: 800; font-size: 1.15rem;
+    display: flex; align-items: center; gap: 10px;
+    border-bottom: 1px solid var(--border); letter-spacing: -0.2px;
+}
+.card-header i {
+    font-size: 1.3rem; width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center; border-radius: var(--radius-sm);
+}
+.card-header.primary { background: linear-gradient(135deg,#e8f1fa,#dce8f5); color: var(--primary); }
+.card-header.primary i { background: #c5d9ed; color: var(--primary); }
+.card-header.danger { background: var(--danger-light); color: var(--danger); }
+.card-header.danger i { background: #fce4e4; color: var(--danger); }
+.card-header.warning { background: var(--warning-light); color: #c2670a; }
+.card-header.warning i { background: #fde8d0; color: var(--warning); }
+.card-header.info { background: var(--info-light); color: var(--info); }
+.card-header.info i { background: #d4eaf7; color: var(--info); }
+.card-header.success { background: var(--success-light); color: var(--success); }
+.card-header.success i { background: #d0f0df; color: var(--success); }
+.card-header.purple { background: linear-gradient(135deg, var(--purple-light), #ddd6fe); color: var(--purple); }
+.card-header.purple i { background: #c4b5fd; color: var(--purple); }
+.card-body { padding: 22px; }
+
+/* ============================================================
+   حقول ونماذج
+   ============================================================ */
+.form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+.form-grid.small-gap { gap: 12px; }
+.form-group { margin-bottom: 4px; }
+.form-group.full-width { grid-column: 1 / -1; }
+.form-group label { display: block; font-weight: 700; font-size: 0.9rem; color: var(--text); margin-bottom: 6px; }
+.form-group label .required { color: var(--danger); font-weight: 900; margin-right: 3px; }
+.input-wrapper { position: relative; }
+.input-wrapper input, .input-wrapper select, .input-wrapper textarea {
+    width: 100%; padding: 11px 14px 11px 38px;
+    border: 2px solid var(--border); border-radius: var(--radius);
+    font-family: 'Tajawal','Cairo',sans-serif; font-size: 0.92rem;
+    color: var(--text); background: #fafbfc; transition: var(--transition); outline: none;
+}
+.input-wrapper textarea { padding: 11px 14px; resize: vertical; min-height: 70px; }
+.input-wrapper input:focus, .input-wrapper select:focus, .input-wrapper textarea:focus {
+    border-color: var(--primary); background: #fff; box-shadow: 0 0 0 4px rgba(0,90,140,0.08);
+}
+.input-wrapper .input-icon { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: var(--primary-light); font-size: 1rem; pointer-events: none; }
+.input-hint { font-size: 0.78rem; color: var(--text-light); margin-top: 5px; }
+
+.assessment-section { margin-bottom: 18px; }
+.section-title { font-weight: 800; font-size: 1rem; color: var(--primary); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; padding-bottom: 6px; border-bottom: 2px dashed var(--border); }
+.checkbox-group { display: flex; flex-direction: column; gap: 8px; }
+.checkbox-item, .radio-item {
+    display: flex; align-items: center; gap: 10px; padding: 11px 14px;
+    border: 2px solid var(--border); border-radius: var(--radius);
+    cursor: pointer; transition: var(--transition); background: #fafbfc;
+    font-weight: 500; font-size: 0.9rem; user-select: none;
+}
+.checkbox-item:hover, .radio-item:hover { background: #f0f5fb; border-color: #c5d5e8; }
+.checkbox-item.checked, .radio-item.checked { background: #e8f4fd; border-color: var(--primary); font-weight: 700; color: var(--primary); }
+.checkbox-item.danger-item.checked { background: var(--danger-light); border-color: var(--danger); color: var(--danger); }
+.checkbox-item input, .radio-item input { width: 18px; height: 18px; accent-color: var(--primary); cursor: pointer; }
+.radio-group { display: flex; gap: 10px; flex-wrap: wrap; }
+.radio-group .radio-item { flex: 1; min-width: 100px; justify-content: center; text-align: center; }
+
+/* ============================================================
+   نتائج التصنيف
+   ============================================================ */
+.classification-result {
+    margin-top: 14px; padding: 16px 18px; border-radius: var(--radius);
+    display: none; border-right: 5px solid transparent; animation: fadeSlideIn 0.4s ease forwards;
+}
+.classification-result.show { display: block; }
+.classification-result.severe { background: var(--danger-light); border-right-color: var(--danger); }
+.classification-result.moderate { background: var(--warning-light); border-right-color: var(--warning); }
+.classification-result.mild { background: var(--success-light); border-right-color: var(--success); }
+.classification-result.purple { background: var(--purple-light); border-right-color: var(--purple); }
+.classification-title { font-weight: 800; font-size: 1.05rem; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.referral-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--danger); color: #fff; padding: 6px 14px; border-radius: 50px; font-weight: 700; font-size: 0.85rem; margin-bottom: 10px; animation: pulse 2s infinite; }
+.treatment-plan { margin-top: 10px; }
+.treatment-list { list-style: none; padding: 0; }
+.treatment-list li { padding: 7px 0; display: flex; align-items: flex-start; gap: 8px; font-size: 0.88rem; color: var(--text-light); }
+.treatment-list li i { color: var(--success); margin-top: 3px; flex-shrink: 0; }
+
+.section-divider { font-weight: 800; font-size: 1rem; color: var(--primary); margin: 18px 0 12px; padding-bottom: 8px; border-bottom: 2px solid var(--border); display: flex; align-items: center; gap: 8px; }
+.vitals-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin-top: 14px; }
+.vital-box { padding: 14px; border-radius: var(--radius); text-align: center; border: 2px solid var(--border); background: #fafbfc; transition: var(--transition); }
+.vital-box.active { border-color: var(--success); background: var(--success-light); }
+.vital-box.warning { border-color: var(--warning); background: var(--warning-light); }
+.vital-box.danger { border-color: var(--danger); background: var(--danger-light); animation: blinkWarning 1s infinite; }
+.vital-label { font-weight: 600; font-size: 0.78rem; color: var(--text-light); }
+.vital-value { font-weight: 900; font-size: 1.4rem; color: var(--text); }
+.vital-status { font-size: 0.75rem; font-weight: 600; margin-top: 3px; display: inline-block; padding: 3px 10px; border-radius: 50px; }
+
+.alert { padding: 14px 18px; border-radius: var(--radius); margin-bottom: 16px; display: flex; align-items: flex-start; gap: 10px; font-weight: 500; font-size: 0.9rem; }
+.alert-danger { background: var(--danger-light); color: var(--danger); border-right: 4px solid var(--danger); }
+.alert-info { background: var(--info-light); color: var(--info); border-right: 4px solid var(--info); }
+.alert-success { background: var(--success-light); color: var(--success); border-right: 4px solid var(--success); }
+.growth-indicator { padding: 10px 14px; border-radius: var(--radius); margin-top: 6px; display: flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 600; }
+.growth-indicator.zscore-normal { background: var(--success-light); color: var(--success); }
+.growth-indicator.zscore-moderate { background: var(--warning-light); color: #c2670a; }
+.growth-indicator.zscore-severe { background: var(--danger-light); color: var(--danger); }
+
+/* ============================================================
+   أزرار
+   ============================================================ */
+.actions-bar { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; padding: 20px 0; position: sticky; bottom: 0; background: linear-gradient(to top, var(--bg) 60%, transparent); z-index: 10; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border: none; border-radius: 50px; font-family: 'Tajawal','Cairo',sans-serif; font-weight: 700; font-size: 0.9rem; cursor: pointer; transition: var(--transition); color: #fff; box-shadow: var(--shadow-sm); white-space: nowrap; text-decoration: none; }
+.btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+.btn-primary { background: var(--primary); } .btn-primary:hover { background: var(--primary-light); }
+.btn-secondary { background: #64748b; } .btn-success { background: var(--success); }
+.btn-warning { background: var(--warning); } .btn-info { background: #5b8cb8; }
+.btn-danger { background: var(--danger); }
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+}
+.btn-outline:hover { background: var(--primary); color: #fff; }
+
+.dashboard-btn { position: fixed; bottom: 24px; right: 24px; background: var(--primary); color: #fff; width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; box-shadow: 0 8px 28px rgba(0,90,140,0.35); transition: var(--transition); z-index: 100; cursor: pointer; border: none; }
+.dashboard-btn:hover { transform: scale(1.1); background: var(--primary-light); }
+
+/* ============================================================
+   تأثيرات حركية
+   ============================================================ */
+@keyframes fadeSlideIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.75;} }
+@keyframes blinkWarning { 0%,100%{border-color:var(--danger);} 50%{border-color:#ff6b6b;} }
+@keyframes slideDown { from{opacity:0;transform:translateY(-30px);} to{opacity:1;transform:translateY(0);} }
+@keyframes scaleIn { from{opacity:0;transform:scale(0.95);} to{opacity:1;transform:scale(1);} }
+
+.tab-content { display: none; animation: fadeSlideIn 0.35s ease forwards; }
+.tab-content.active { display: block; }
+
+/* ============================================================
+   ملخص النتائج
+   ============================================================ */
+.summary-box {
+    background: linear-gradient(135deg, #fafbfc, #f1f5f9);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    margin-bottom: 16px;
+}
+.summary-box h4 {
+    color: var(--primary);
+    font-weight: 800;
+    margin-bottom: 12px;
+    font-size: 1rem;
+}
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+}
+.summary-item {
+    background: #fff;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    font-size: 0.85rem;
+}
+.summary-item .label { font-weight: 700; color: var(--text-light); display: block; margin-bottom: 2px; }
+.summary-item .value { font-weight: 600; color: var(--text); }
+
+/* ============================================================
+   استجابة الشاشات الصغيرة
+   ============================================================ */
+@media (max-width: 768px) {
+    .step { font-size: 0.7rem; padding: 8px 10px; }
+    .official-header h1 { font-size: 1.4rem; }
+    .official-header h2 { font-size: 1rem; }
+    .facility-info-grid { gap: 8px; }
+    .facility-info-grid span { padding: 6px 12px; font-size: 0.8rem; }
+    .actions-bar { gap: 6px; }
+    .btn { padding: 10px 16px; font-size: 0.8rem; }
+}
+@media (max-width: 600px) {
+    .form-grid { grid-template-columns: 1fr; }
+    .vitals-grid { grid-template-columns: repeat(2, 1fr); }
+    .progress-steps { gap: 2px; }
+    .step { padding: 6px 8px; gap: 4px; }
+    .step span { display: none; }
+    .step i { width: auto; font-size: 1.1rem; }
+    .dashboard-btn { width: 44px; height: 44px; font-size: 1.1rem; bottom: 16px; right: 16px; }
+}
+
+/* ============================================================
+   الطباعة
+   ============================================================ */
+@media print {
+    body { background: #fff; font-size: 11px; }
+    .progress-container, .actions-bar, .dashboard-btn, .btn { display: none !important; }
+    .tab-content { display: block !important; page-break-inside: avoid; animation: none; }
+    .card { box-shadow: none; border: 1px solid #ddd; margin-bottom: 16px; break-inside: avoid; }
+    .official-header { background: #fff; border-bottom: 2px solid #000; }
+    .program-logo, .system-logo-bar { background: #fff; border-bottom: 1px solid #ddd; }
+    .facility-info-grid { background: #fff; }
+}
+</style>
 </head>
 <body>
 
+<!-- ============================================================ -->
 <!-- الترويسة الرسمية -->
+<!-- ============================================================ -->
 <header class="official-header">
-    <img src="assets/images/yemen-eagle.png" class="eagle" alt="الطير الجمهوري">
-    <div class="header-text">
+    <div class="official-header-content">
+        <img src="assets/images/yemen-eagle.png" alt="الشعار الرسمي" class="header-emblem" onerror="this.style.display='none'">
         <h1>الجمهورية اليمنية</h1>
         <h2>وزارة الصحة والبيئة</h2>
         <h3>قطاع الرعاية الصحية الأولية – إدارة صحة الطفل</h3>
     </div>
 </header>
 
+<!-- ============================================================ -->
 <!-- شعار البرنامج -->
+<!-- ============================================================ -->
 <div class="program-logo">
-    <img src="assets/images/moh-logo.png" alt="شعار برنامج iIMCI">
-    <span>نظام iIMCI التفاعلي</span>
-</div>
-<section class="card">
-    <div class="card-title">🏥 بيانات المرفق</div>
-
-    <div class="grid">
-
-        <!-- المحافظة - إدخال يدوي -->
-        <div class="field small">
-            <label>المحافظة</label>
-            <input type="text" name="governorate" placeholder="أدخل المحافظة" required>
-        </div>
-
-        <!-- المديرية - إدخال يدوي -->
-        <div class="field small">
-            <label>المديرية</label>
-            <input type="text" name="district" placeholder="أدخل المديرية" required>
-        </div>
-
-        <!-- اسم المرفق الصحي - إدخال يدوي -->
-        <div class="field small">
-            <label>اسم المرفق الصحي</label>
-            <input type="text" name="facility_name" placeholder="أدخل اسم المرفق الصحي">
-        </div>
-
-        <!-- العامل الصحي -->
-        <div class="field small">
-            <label>العامل الصحي</label>
-            <input type="text" name="health_worker">
-        </div>
-
-        <!-- السنة -->
-        <div class="field small">
-            <label>السنة</label>
-            <input type="number" name="report_year">
-        </div>
-
-        <!-- الشهر -->
-        <div class="field small">
-            <label>الشهر</label>
-            <select name="report_month">
-                <option value="">اختر الشهر</option>
-                <option value="1">يناير</option>
-                <option value="2">فبراير</option>
-                <option value="3">مارس</option>
-                <option value="4">أبريل</option>
-                <option value="5">مايو</option>
-                <option value="6">يونيو</option>
-                <option value="7">يوليو</option>
-                <option value="8">أغسطس</option>
-                <option value="9">سبتمبر</option>
-                <option value="10">أكتوبر</option>
-                <option value="11">نوفمبر</option>
-                <option value="12">ديسمبر</option>
-            </select>
-        </div>
-
+    <img src="assets/images/moh-logo.png" alt="شعار وزارة الصحة" onerror="this.style.display='none'">
+    <div class="logo-content">
+        <span class="logo-text">نظام IMCI التفاعلي</span>
+        <span class="logo-subtext">الرعاية التكاملية لصحة الطفل - iIMCI</span>
     </div>
-</section>    
-
-
-<main class="form-wrapper">
-    <!-- بطاقة البيانات الأساسية -->
- <section class="card">
-    <div class="card-title">👶 بيانات الطفل الأساسية</div>
-
-    <div class="grid">
-
-     <div class="field wide">
-    <label>الاسم الرباعي</label>
-    <input type="text" name="child_name" placeholder="اسم الطفل كاملاً">
 </div>
 
-<div class="field small">
-    <label>الجنس</label>
-    <select name="gender">
-        <option value="">اختر</option>
-        <option value="ذكر">ذكر</option>
-        <option value="أنثى">أنثى</option>
-    </select>
+<!-- ============================================================ -->
+<!-- شعار النظام -->
+<!-- ============================================================ -->
+<div class="system-logo-bar">
+    <img src="assets/images/imci-logo.png" alt="شعار نظام IMCI" onerror="this.style.display='none'">
+    <span class="system-logo-text"> استمارة تسجيل الطفل من شهرين إلى أقل من 5 سنوات</span>
 </div>
 
-        <div class="field small">
-            <label>العمر (شهر)</label>
-            <input type="number" name="age">
-        </div>
-
-        <div class="field small">
-            <label>الوزن (كجم)</label>
-            <input type="number" name="weight" step="0.1">
-        </div>
-
-        <div class="field small">
-            <label>الطول (سم)</label>
-            <input type="number" name="height">
-        </div>
-
-        <div class="field small">
-            <label>درجة الحرارة °C</label>
-            <input type="number" name="temperature" step="0.1">
-        </div>
-<div class="field">
-    <label>🩺 نوع الزيارة</label>
-    <select name="visit_type" required>
-        <option value="">اختر نوع الزيارة</option>
-        <option value="أولية">أولية</option>
-        <option value="متابعة">متابعة</option>
-    </select>
+<!-- ============================================================ -->
+<!-- بيانات المرفق -->
+<!-- ============================================================ -->
+<div class="facility-info-grid">
+    <span><i class="fas fa-map-marker-alt"></i> <span class="facility-label">المحافظة:</span> <input type="text" id="governorate" placeholder="أدخل المحافظة"></span>
+    <span><i class="fas fa-city"></i> <span class="facility-label">المديرية:</span> <input type="text" id="district" placeholder="أدخل المديرية"></span>
+    <span><i class="fas fa-hospital"></i> <span class="facility-label">المرفق:</span> <input type="text" id="facility_name" placeholder="اسم المرفق الصحي"></span>
+    <span><i class="fas fa-user-md"></i> <span class="facility-label">العامل الصحي:</span> <input type="text" id="health_worker" placeholder="اسم العامل"></span>
+    <span><i class="fas fa-calendar-alt"></i> <span class="facility-label">السنة:</span> <input type="number" id="report_year" placeholder="2026" style="max-width:80px;"></span>
+    <span><i class="fas fa-calendar"></i> <span class="facility-label">الشهر:</span>
+        <select id="report_month">
+            <option value="">اختر</option>
+            <option value="1">يناير</option><option value="2">فبراير</option><option value="3">مارس</option>
+            <option value="4">أبريل</option><option value="5">مايو</option><option value="6">يونيو</option>
+            <option value="7">يوليو</option><option value="8">أغسطس</option><option value="9">سبتمبر</option>
+            <option value="10">أكتوبر</option><option value="11">نوفمبر</option><option value="12">ديسمبر</option>
+        </select>
+    </span>
 </div>
 
-        <div class="field small">
-            <label>تاريخ الزيارة</label>
-            <input type="date" name="visit_date">
+<!-- ============================================================ -->
+<!-- الحاوية الرئيسية -->
+<!-- ============================================================ -->
+<div class="main-container">
+
+    <!-- خطوات التقدم -->
+    <div class="progress-container">
+        <div class="progress-steps">
+            <div class="step active" data-step="1"><i class="fas fa-id-card"></i><span>بيانات الطفل</span></div>
+            <div class="step" data-step="2"><i class="fas fa-exclamation-triangle"></i><span>العلامات الخطرة</span></div>
+            <div class="step" data-step="3"><i class="fas fa-lungs"></i><span>السعال</span></div>
+            <div class="step" data-step="4"><i class="fas fa-toilet"></i><span>الإسهال</span></div>
+            <div class="step" data-step="5"><i class="fas fa-thermometer-half"></i><span>الحمى</span></div>
+            <div class="step" data-step="6"><i class="fas fa-ear-listen"></i><span>الأذن والحلق</span></div>
+            <div class="step" data-step="7"><i class="fas fa-weight-scale"></i><span>التغذية</span></div>
+            <div class="step" data-step="8"><i class="fas fa-clipboard-check"></i><span>النتائج</span></div>
         </div>
-
-    </div>
-</section>
-
-<!-- بطاقة الشكوى -->
-<section class="card">
-    <div class="card-title">🩺 الشكوى الرئيسية</div>
-
-    <div class="field wide">
-        <label>ما هي مشاكل الطفل؟</label>
-        <textarea name="problem" rows="3"></textarea>
-    </div>
-</section>
-
-    <!-- بطاقة العلامات الخطرة -->
-   <section class="card danger">
-    <div class="card-title">⚠️ علامات الخطورة العامة</div>
-
-    <div class="check-grid">
-        <label><input type="checkbox" name="danger1"> لا يستطيع الشرب أو الرضاعة</label>
-        <label><input type="checkbox" name="danger2"> فاقد الوعي</label>
-        <label><input type="checkbox" name="danger3"> يتقيأ كل شيء</label>
-        <label><input type="checkbox" name="danger4"> تشنجات حالية أو سابقة</label>
     </div>
 
-    <div class="classification-box" id="dangerResult">
-        لم يتم التصنيف بعد
-    </div>
-</section>
-<!-- ========================= -->
-<!-- تصنيف السعال أو صعوبة التنفس -->
-<!-- ========================= -->
-<section class="card">
-    <div class="card-title">🫁 تصنيف السعال أو صعوبة التنفس</div>
+    <form id="childForm" onsubmit="event.preventDefault();">
+        <!-- ============================================================ -->
+        <!-- الخطوة 1: بيانات الطفل -->
+        <!-- ============================================================ -->
+        <div class="tab-content active" id="step1Content">
+            <div class="card">
+                <div class="card-header primary"><i class="fas fa-id-card"></i> البيانات الأساسية للطفل</div>
+                <div class="card-body">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>رقم الملف <span class="required">*</span></label>
+                            <div class="input-wrapper">
+                                <input type="text" id="fileNumber" placeholder="CH-2026-001">
+                                <i class="fas fa-file-medical input-icon"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>تاريخ الزيارة <span class="required">*</span></label>
+                            <div class="input-wrapper">
+                                <input type="date" id="visitDate">
+                                <i class="fas fa-calendar-alt input-icon"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>اسم الطفل الرباعي <span class="required">*</span></label>
+                            <div class="input-wrapper">
+                                <input type="text" id="childName" placeholder="الاسم الرباعي">
+                                <i class="fas fa-child input-icon"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>تاريخ الميلاد <span class="required">*</span></label>
+                            <div class="input-wrapper">
+                                <input type="date" id="birthDate" onchange="calculateAge()">
+                                <i class="fas fa-birthday-cake input-icon"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>العمر المحسوب</label>
+                            <div class="input-wrapper">
+                                <input type="text" id="ageDisplay" readonly placeholder="سيحسب تلقائياً">
+                                <i class="fas fa-hourglass-half input-icon"></i>
+                            </div>
+                            <input type="hidden" id="ageMonths">
+                        </div>
+                        <div class="form-group">
+                            <label>الجنس <span class="required">*</span></label>
+                            <div class="input-wrapper">
+                                <select id="gender" onchange="assessGrowth()">
+                                    <option value="">اختر</option>
+                                    <option value="boys">ذكر</option>
+                                    <option value="girls">أنثى</option>
+                                </select>
+                                <i class="fas fa-venus-mars input-icon"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>الوزن (كجم) <span class="required">*</span></label>
+                            <div class="input-wrapper">
+                                <input type="number" id="weight" step="0.1" min="2" max="30" onchange="assessGrowth()">
+                                <i class="fas fa-weight-scale input-icon"></i>
+                            </div>
+                            <div id="weightZScore"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>الطول/القامة (سم)</label>
+                            <div class="input-wrapper">
+                                <input type="number" id="height" step="0.1" min="45" max="130" onchange="assessGrowth()">
+                                <i class="fas fa-ruler-vertical input-icon"></i>
+                            </div>
+                            <div id="heightZScore"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>محيط منتصف الذراع MUAC (سم)</label>
+                            <div class="input-wrapper">
+                                <input type="number" id="muac" step="0.1" min="9" max="20" placeholder="مثال: 13.5">
+                                <i class="fas fa-ruler-combined input-icon"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>درجة الحرارة (°C) <span class="required">*</span></label>
+                            <div class="input-wrapper">
+                                <input type="number" id="temperature" step="0.1" min="35" max="42" onchange="updateVitals()">
+                                <i class="fas fa-thermometer-half input-icon"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>اسم الأم <span class="required">*</span></label>
+                            <div class="input-wrapper">
+                                <input type="text" id="motherName" placeholder="اسم الأم">
+                                <i class="fas fa-female input-icon"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>رقم الهاتف</label>
+                            <div class="input-wrapper">
+                                <input type="tel" id="phone" placeholder="777123456">
+                                <i class="fas fa-phone input-icon"></i>
+                            </div>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>الشكوى الرئيسية</label>
+                            <div class="input-wrapper">
+                                <textarea id="chiefComplaint" rows="2" placeholder="اذكر الشكوى الرئيسية للطفل..."></textarea>
+                            </div>
+                        </div>
+                    </div>
 
-    <div class="grid">
-
-        <!-- وجود سعال -->
-        <div class="field wide">
-            <label>هل يعاني الطفل من سعال أو صعوبة في التنفس؟</label>
-            <div class="radio-row">
-                <label><input type="radio" name="cough" value="yes"> نعم</label>
-                <label><input type="radio" name="cough" value="no"> لا</label>
+                    <div class="section-divider"><i class="fas fa-heart-pulse"></i> العلامات الحيوية</div>
+                    <div class="form-grid small-gap">
+                        <div class="form-group">
+                            <label>معدل النبض (نبضة/د)</label>
+                            <div class="input-wrapper">
+                                <input type="number" id="heartRate" min="60" max="200" onchange="updateVitals()">
+                                <i class="fas fa-heart-pulse input-icon"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>نسبة الأكسجين SpO₂%</label>
+                            <div class="input-wrapper">
+                                <input type="number" id="spo2" min="70" max="100" onchange="updateVitals()">
+                                <i class="fas fa-lungs input-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vitals-grid">
+                        <div class="vital-box" id="tempBox">
+                            <div class="vital-label">الحرارة</div>
+                            <div class="vital-value" id="tempValue">--</div>
+                        </div>
+                        <div class="vital-box" id="hrBox">
+                            <div class="vital-label">النبض</div>
+                            <div class="vital-value" id="hrValue">--</div>
+                        </div>
+                        <div class="vital-box" id="spo2Box">
+                            <div class="vital-label">SpO₂</div>
+                            <div class="vital-value" id="spo2Value">--</div>
+                        </div>
+                        <div class="vital-box" id="rrBox">
+                            <div class="vital-label">التنفس</div>
+                            <div class="vital-value" id="rrValue">--</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="field small">
-            <label>منذ متى؟ (أيام)</label>
-            <input type="number" name="cough_days" min="0">
-        </div>
-
-        <!-- عدّ التنفس -->
-        <div class="field small">
-            <label>عدد الأنفاس / دقيقة</label>
-            <input type="number" name="resp_rate">
-        </div>
-
-        <div class="field small">
-            <label>تنفس سريع</label>
-            <select name="fast_breathing">
-                <option value="">اختر</option>
-                <option value="yes">نعم</option>
-                <option value="no">لا</option>
-            </select>
-        </div>
-
-        <!-- علامات الصدر -->
-        <div class="field wide">
-            <label>علامات الفحص</label>
-            <div class="check-grid">
-                <label><input type="checkbox" name="chest_indrawing"> انسحاب أسفل الصدر للداخل</label>
-                <label><input type="checkbox" name="wheeze"> أزيز</label>
-                <label><input type="checkbox" name="stridor"> صرير</label>
+        <!-- ============================================================ -->
+        <!-- الخطوة 2: العلامات الخطرة العامة -->
+        <!-- ============================================================ -->
+        <div class="tab-content" id="step2Content">
+            <div class="card">
+                <div class="card-header danger"><i class="fas fa-exclamation-triangle"></i> العلامات الخطرة العامة</div>
+                <div class="card-body">
+                    <div class="alert alert-danger">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <div>وجود أي علامة خطرة = إحالة عاجلة للمستشفى فوراً!</div>
+                    </div>
+                    <div class="assessment-section">
+                        <div class="section-title"><i class="fas fa-question-circle"></i> اسأل الأم</div>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item danger-item" onclick="toggleCheckbox(this,'unableDrink')">
+                                <input type="checkbox" id="unableDrink">
+                                <span>غير قادر على الشرب أو يرفض الرضاعة؟</span>
+                            </div>
+                            <div class="checkbox-item danger-item" onclick="toggleCheckbox(this,'vomitsAll')">
+                                <input type="checkbox" id="vomitsAll">
+                                <span>يتقيأ كل شيء (كل ما يأكل أو يشرب)؟</span>
+                            </div>
+                            <div class="checkbox-item danger-item" onclick="toggleCheckbox(this,'convulsions')">
+                                <input type="checkbox" id="convulsions">
+                                <span>تشنجات في الـ 24 ساعة الماضية؟</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="assessment-section">
+                        <div class="section-title"><i class="fas fa-hand-holding-medical"></i> انظر وتحسس</div>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item danger-item" onclick="toggleCheckbox(this,'lethargic')">
+                                <input type="checkbox" id="lethargic">
+                                <span>خامل/فاقد للوعي أو لا يستجيب للمحفزات؟</span>
+                            </div>
+                            <div class="checkbox-item danger-item" onclick="toggleCheckbox(this,'convulsingNow')">
+                                <input type="checkbox" id="convulsingNow">
+                                <span>يتشنج الآن أمامك؟</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="dangerSignsResult" class="classification-result severe">
+                        <div class="classification-title"><i class="fas fa-ambulance"></i> مرض شديد جداً (Very Severe Disease)</div>
+                        <div class="referral-badge"><i class="fas fa-hospital"></i> إحالة عاجلة فورية</div>
+                        <ul class="treatment-list">
+                            <li><i class="fas fa-syringe"></i> Ampicillin 50mg/kg IM + Gentamicin 7.5mg/kg IM</li>
+                            <li><i class="fas fa-pills"></i> Diazepam 0.5mg/kg PR للتشنجات</li>
+                            <li><i class="fas fa-tint"></i> Glucose 10% 5ml/kg PO</li>
+                            <li><i class="fas fa-ambulance"></i> إحالة فورية للمستشفى</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- الأكسجين -->
-        <div class="field small">
-            <label>تشبع الأكسجين SpO₂ (%)</label>
-            <input type="number" name="spo2" min="0" max="100">
-        </div>
+<!-- ============================================================ -->
+<!-- الخطوة 3: السعال والتنفس -->
+<!-- ============================================================ -->
+<div class="tab-content" id="step3Content">
+    <div class="card">
+        <div class="card-header info"><i class="fas fa-lungs"></i> تقييم السعال أو صعوبة التنفس</div>
+        <div class="card-body">
+            <div class="form-group" style="margin-bottom: 16px;">
+                <label>هل يعاني الطفل من سعال أو صعوبة في التنفس؟</label>
+                <div class="radio-group">
+                    <div class="radio-item" onclick="toggleRadio(this,'hasCough','yes')">
+                        <input type="radio" name="hasCough" value="yes" id="coughYes">
+                        <span>نعم</span>
+                    </div>
+                    <div class="radio-item checked" onclick="toggleRadio(this,'hasCough','no')">
+                        <input type="radio" name="hasCough" value="no" id="coughNo" checked>
+                        <span>لا</span>
+                    </div>
+                </div>
+            </div>
 
-        <div class="field small">
-            <label>أقل من 90%</label>
-            <select name="spo2_low">
-                <option value="">اختر</option>
-                <option value="yes">نعم</option>
-                <option value="no">لا</option>
-            </select>
-        </div>
+            <div id="coughAssessment" style="display:none">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>معدل التنفس (نفس/دقيقة)</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="respRate" min="20" max="100" onchange="updateVitals(); assessCough();">
+                            <i class="fas fa-stopwatch input-icon"></i>
+                        </div>
+                        <div class="input-hint">
+                            ⚠️ شهرين - 12 شهر: ≥50 = تنفس سريع | 12 شهر - 5 سنوات: ≥40 = تنفس سريع
+                        </div>
+                    </div>
+                </div>
 
-    </div>
+                <!-- ✅ علامات التقييم مع التصنيفات -->
+                <div class="assessment-section">
+                    <div class="section-title"><i class="fas fa-stethoscope"></i> علامات التقييم - تصنيف الحالة</div>
+                    
+                    <!-- 🚨 علامات التهاب رئوي شديد -->
+                    <div style="background: var(--danger-light); padding: 12px 16px; border-radius: var(--radius); margin-bottom: 12px; border-right: 4px solid var(--danger);">
+                        <strong style="color: var(--danger);">🚨 علامات التهاب رئوي شديد (Severe Pneumonia):</strong>
+                        <div class="checkbox-group" style="margin-top: 8px;">
+                            <div class="checkbox-item danger-item" onclick="toggleCheckbox(this,'chestIndrawing')">
+                                <input type="checkbox" id="chestIndrawing">
+                                <span>انخفاض جدار الصدر (Chest Indrawing)</span>
+                            </div>
+                            <div class="checkbox-item danger-item" onclick="toggleCheckbox(this,'stridor')">
+                                <input type="checkbox" id="stridor">
+                                <span>صرير/سترايدور عند الهدوء (Stridor when calm)</span>
+                            </div>
+                        </div>
+                        <div style="margin-top: 8px; font-size: 0.8rem; color: var(--danger);">
+                            ⚠️ أي علامة من أعلاه مع وجود علامات الخطر العامة = <strong>التهاب رئوي شديد (Severe Pneumonia)</strong>
+                        </div>
+                    </div>
 
-    <!-- نتيجة التصنيف -->
-    <div class="classification-box" id="coughResult">
-        لم يتم التصنيف بعد
-    </div>
-</section>
-<!-- ========================= -->
-<!-- تصنيف الإسهال -->
-<!-- ========================= -->
-<section class="card">
-    <div class="card-title">💩 تصنيف الإسهال</div>
+                    <!-- 🟠 علامات التهاب رئوي -->
+                    <div style="background: var(--warning-light); padding: 12px 16px; border-radius: var(--radius); margin-bottom: 12px; border-right: 4px solid var(--warning);">
+                        <strong style="color: var(--warning);">🟠 علامات التهاب رئوي (Pneumonia):</strong>
+                        <div style="margin-top: 8px; font-size: 0.85rem; color: var(--text-light);">
+                            <strong>تنفس سريع فقط</strong> (بدون انخفاض جدار الصدر أو صرير)
+                            <br>• شهرين - 12 شهر: ≥50 نفس/دقيقة
+                            <br>• 12 شهر - 5 سنوات: ≥40 نفس/دقيقة
+                        </div>
+                        <div style="margin-top: 8px; font-size: 0.8rem; color: var(--warning);">
+                            ⚠️ تنفس سريع بدون علامات خطرة = <strong>التهاب رئوي (Pneumonia)</strong>
+                        </div>
+                    </div>
 
-    <div class="grid">
+                    <!-- ✅ لا يوجد التهاب رئوي -->
+                    <div style="background: var(--success-light); padding: 12px 16px; border-radius: var(--radius); margin-bottom: 12px; border-right: 4px solid var(--success);">
+                        <strong style="color: var(--success);">✅ لا يوجد التهاب رئوي - سعال أو نزلة برد:</strong>
+                        <div style="margin-top: 8px; font-size: 0.85rem; color: var(--text-light);">
+                            لا يوجد تنفس سريع، ولا انخفاض جدار الصدر، ولا صرير = <strong>لا يوجد ذات رئة (No Pneumonia)</strong>
+                        </div>
+                    </div>
 
-        <!-- وجود الإسهال -->
-        <div class="field wide">
-            <label>هل يعاني الطفل من إسهال؟</label>
-            <div class="radio-row">
-                <label><input type="radio" name="diarrhea" value="yes"> نعم</label>
-                <label><input type="radio" name="diarrhea" value="no"> لا</label>
+                    <!-- علامات إضافية -->
+                    <div class="section-title" style="margin-top: 16px;"><i class="fas fa-list-check"></i> علامات إضافية للتقييم</div>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item" onclick="toggleCheckbox(this,'wheeze')">
+                            <input type="checkbox" id="wheeze">
+                            <span>أزيز (Wheeze) - يعالج بـ سالبوتامول (Salbutamol)</span>
+                        </div>
+                        <div class="checkbox-item" onclick="toggleCheckbox(this,'cough30days')">
+                            <input type="checkbox" id="cough30days">
+                            <span>سعال مستمر لأكثر من 30 يوم - يحتاج تقييم إضافي</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ✅ نتيجة التصنيف تظهر هنا -->
+                <div id="coughResult"></div>
             </div>
         </div>
-
-        <div class="field small">
-            <label>منذ متى؟ (أيام)</label>
-            <input type="number" name="diarrhea_days" min="0">
-        </div>
-
-        <div class="field small">
-            <label>هل يوجد دم في البراز؟</label>
-            <select name="blood_stool">
-                <option value="">اختر</option>
-                <option value="yes">نعم</option>
-                <option value="no">لا</option>
-            </select>
-        </div>
-
-        <!-- الحالة العامة -->
-        <div class="field wide">
-            <label>الحالة العامة للطفل</label>
-            <select name="general_state">
-                <option value="">اختر</option>
-                <option value="lethargic">خامل أو فاقد الوعي</option>
-                <option value="restless">قلق أو متوتر</option>
-                <option value="normal">طبيعي</option>
-            </select>
-        </div>
-
-        <!-- العلامات السريرية -->
-        <div class="field wide">
-            <label>علامات الجفاف</label>
-            <div class="check-grid">
-                <label><input type="checkbox" name="sunken_eyes"> العينان غائرتان</label>
-                <label><input type="checkbox" name="not_drinking"> غير قادر على الشرب / يشرب بضعف</label>
-                <label><input type="checkbox" name="drinks_eagerly"> يشرب بلهفة / عطشان</label>
-            </div>
-        </div>
-
-        <!-- شد الجلد -->
-        <div class="field wide">
-            <label>اختبار شد جلد البطن</label>
-            <select name="skin_pinch">
-                <option value="">اختر</option>
-                <option value="very_slow">يعود ببطء شديد (أكثر من ثانيتين)</option>
-                <option value="slow">يعود ببطء</option>
-                <option value="normal">يعود فورًا</option>
-            </select>
-        </div>
-
     </div>
-
-    <!-- نتيجة التصنيف -->
-    <div class="classification-box" id="diarrheaResult">
-        لم يتم التصنيف بعد
-    </div>
-</section>
-<!-- ========================= -->
-<!-- تصنيف مشكلة في الحلق -->
-<!-- ========================= -->
-<section class="card">
-    <div class="card-title">👄 تصنيف مشكلة في الحلق</div>
-
-    <div class="grid">
-
-        <div class="field wide">
-            <label>هل يعاني الطفل من ألم في الحلق؟</label>
-            <div class="radio-row">
-                <label><input type="radio" name="sore_throat" value="yes"> نعم</label>
-                <label><input type="radio" name="sore_throat" value="no"> لا</label>
-            </div>
-        </div>
-
-        <div class="field small">
-            <label>هل توجد حمى؟</label>
-            <select name="throat_fever">
-                <option value="">اختر</option>
-                <option value="yes">نعم</option>
-                <option value="no">لا</option>
-            </select>
-        </div>
-
-        <div class="field wide">
-            <label>علامات الفحص السريري للحلق</label>
-            <div class="check-grid">
-                <label><input type="checkbox" name="tender_nodes"> غدد لمفاوية متضخمة ومؤلمة أمام الرقبة</label>
-                <label><input type="checkbox" name="red_throat"> الحلق محمر / محتقن</label>
-                <label><input type="checkbox" name="tonsil_exudate"> بقع صفراء أو بيضاء على اللوز/الحلق</label>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- نتيجة التصنيف -->
-    <div class="classification-box" id="throatResult">
-        لم يتم التصنيف بعد
-    </div>
-</section>
-<!-- ========================= -->
-<!-- تصنيف مشكلة في الأذن -->
-<!-- ========================= -->
-<section class="card">
-    <div class="card-title">👂 تصنيف مشكلة في الأذن</div>
-
-    <div class="grid">
-
-        <div class="field wide">
-            <label>هل يعاني الطفل من ألم في الأذن؟</label>
-            <div class="radio-row">
-                <label><input type="radio" name="ear_pain" value="yes"> نعم</label>
-                <label><input type="radio" name="ear_pain" value="no"> لا</label>
-            </div>
-        </div>
-
-        <div class="field small">
-            <label>منذ متى الألم؟ (أيام)</label>
-            <input type="number" name="ear_pain_days" min="0">
-        </div>
-
-        <div class="field wide">
-            <label>هل يوجد إفراز من الأذن؟</label>
-            <div class="radio-row">
-                <label><input type="radio" name="ear_discharge" value="yes"> نعم</label>
-                <label><input type="radio" name="ear_discharge" value="no"> لا</label>
-            </div>
-        </div>
-
-        <div class="field small">
-            <label>منذ متى الإفراز؟ (أيام)</label>
-            <input type="number" name="ear_discharge_days" min="0">
-        </div>
-
-        <div class="field wide">
-            <label>علامات الفحص</label>
-            <div class="check-grid">
-                <label><input type="checkbox" name="ear_pus"> صديد خارج من الأذن</label>
-                <label><input type="checkbox" name="mastoid_swelling"> تورم مؤلم خلف الأذن</label>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- نتيجة التصنيف -->
-    <div class="classification-box" id="earResult">
-        لم يتم التصنيف بعد
-    </div>
-</section>
-<!-- ========================= -->
-<!-- تصنيف الحمى -->
-<!-- ========================= -->
-<section class="card">
-    <div class="card-title">🌡️ تصنيف الحمى</div>
-
-    <div class="grid">
-
-        <!-- هل يعاني الطفل من الحمى -->
-        <div class="field wide">
-            <label>هل يعاني الطفل من الحمى؟ (بالشكوى أو اللمس أو درجة حرارة ≥ 37.5°م)</label>
-            <div class="radio-row">
-                <label><input type="radio" name="fever" value="yes"> نعم</label>
-                <label><input type="radio" name="fever" value="no"> لا</label>
-            </div>
-        </div>
-
-        <!-- مدة الحمى -->
-        <div class="field small">
-            <label>هل كانت الحمى موجودة لأكثر من 7 أيام؟</label>
-            <select name="fever_7days">
-                <option value="">اختر</option>
-                <option value="yes">نعم</option>
-                <option value="no">لا</option>
-            </select>
-        </div>
-
-        <div class="field small">
-            <label>هل كانت الحمى موجودة يوميًا؟</label>
-            <select name="fever_daily">
-                <option value="">اختر</option>
-                <option value="yes">نعم</option>
-                <option value="no">لا</option>
-            </select>
-        </div>
-
-        <!-- الحصبة -->
-        <div class="field wide">
-            <label>هل كان الطفل مصابًا بالحصبة خلال الثلاثة الأشهر الأخيرة؟</label>
-            <select name="measles_recent">
-                <option value="">اختر</option>
-                <option value="yes">نعم</option>
-                <option value="no">لا</option>
-            </select>
-        </div>
-
-        <!-- تصلب الرقبة -->
-        <div class="field wide">
-            <label>انظر وتحسس لتصلب العنق</label>
-            <select name="neck_stiffness">
-                <option value="">اختر</option>
-                <option value="yes">نعم</option>
-                <option value="no">لا</option>
-            </select>
-        </div>
-
-        <!-- سيلان الأنف -->
-        <div class="field wide">
-            <label>انظر لوجود سيلان من الأنف</label>
-            <select name="runny_nose">
-                <option value="">اختر</option>
-                <option value="yes">نعم</option>
-                <option value="no">لا</option>
-            </select>
-        </div>
-
-        <!-- سبب بكتيري -->
-        <div class="field wide">
-            <label>انظر لوجود سبب بكتيري للحمى</label>
-            <select name="bacterial_signs">
-                <option value="">اختر</option>
-                <option value="yes">نعم</option>
-                <option value="no">لا</option>
-            </select>
-        </div>
-
-        <!-- علامات الحصبة -->
-        <div class="field wide">
-            <label>انظر علامات الحصبة: طفح عام</label>
-            <select name="measles_rash">
-                <option value="">اختر</option>
-                <option value="yes">نعم</option>
-                <option value="no">لا</option>
-            </select>
-        </div>
-
-        <!-- فحص الملاريا -->
-        <div class="field wide">
-            <label>فحص الملاريا</label>
-            <select name="malaria_test">
-                <option value="">اختر</option>
-                <option value="positive">إيجابي</option>
-                <option value="negative">سلبي</option>
-            </select>
-        </div>
-
-    </div>
-
-    <!-- نتيجة التصنيف والعلاج -->
-    <div class="classification-box" id="feverResult">
-        لم يتم التصنيف بعد
-    </div>
-</section>
-<!-- ========================= -->
-<!-- تصنيف الحصبة -->
-<!-- ========================= -->
-<section class="card">
-    <div class="card-title">🩺 تصنيف الحصبة</div>
-
-    <div class="grid">
-
-        <div class="field wide">
-            <label>هل كان الطفل يعاني من الحصبة الآن أو خلال الثلاثة الأشهر الأخيرة؟</label>
-            <div class="radio-row">
-                <label><input type="radio" name="measles_now" value="yes"> نعم</label>
-                <label><input type="radio" name="measles_now" value="no"> لا</label>
-            </div>
-        </div>
-
-        <div class="field wide">
-            <label>انظر: هل توجد تفرحات في الفم؟ وهل هي عميقة ومنتشرة؟</label>
-            <select name="mouth_ulcers">
-                <option value="">اختر</option>
-                <option value="yes">نعم</option>
-                <option value="no">لا</option>
-            </select>
-        </div>
-
-        <div class="field wide">
-            <label>انظر: هل يوجد إفراز صديدي من العيون؟</label>
-            <select name="eye_discharge">
-                <option value="">اختر</option>
-                <option value="yes">نعم</option>
-                <option value="no">لا</option>
-            </select>
-        </div>
-
-        <div class="field wide">
-            <label>انظر: هل يوجد تعتيم في القرنية؟</label>
-            <select name="cornea_clouding">
-                <option value="">اختر</option>
-                <option value="yes">نعم</option>
-                <option value="no">لا</option>
-            </select>
-        </div>
-
-    </div>
-
-    <!-- نتيجة التصنيف والعلاج -->
-    <div class="classification-box" id="measlesResult">
-        لم يتم التصنيف بعد
-    </div>
-</section>
-
-<!-- ================================= -->
-<!--  تصنيف سوء التغذية وفقر الدم     -->
-<!-- ================================= -->
-<section class="card">
-    <div class="card-title">🍎 تصنيف سوء التغذية وفقر الدم (IMCI)</div>
-
-    <div class="grid">
-
-        <!-- MUAC -->
-        <div class="field small">
-            <label>محيط منتصف الذراع (MUAC cm)</label>
-            <input type="number" step="0.1" name="muac">
-        </div>
-
-        <!-- وذمة -->
-        <div class="field small">
-            <label>وذمة في القدمين</label>
-            <select name="bilateral_edema">
-                <option value="">اختر</option>
-                <option value="yes">نعم</option>
-                <option value="no">لا</option>
-            </select>
-        </div>
-
-<!-- ================================ -->
-<!-- نتائج حساب Z-Score التلقائي -->
-<!-- ================================ -->
-
-<div class="field small">
-    <label>WHZ (الوزن بالنسبة للطول)</label>
-    <input type="text" id="whzOutput" readonly>
 </div>
 
-<div class="field small">
-    <label>WAZ (الوزن بالنسبة للعمر)</label>
-    <input type="text" id="wazOutput" readonly>
+<!-- ============================================================ -->
+<!-- الخطوة 4: الإسهال - تم تعديل التصنيفات -->
+<!-- ============================================================ -->
+<div class="tab-content" id="step4Content">
+    <div class="card">
+        <div class="card-header warning"><i class="fas fa-toilet"></i> تقييم الإسهال</div>
+        <div class="card-body">
+            <div class="form-group" style="margin-bottom: 16px;">
+                <label>هل يعاني الطفل من إسهال؟</label>
+                <div class="radio-group">
+                    <div class="radio-item" onclick="toggleRadio(this,'hasDiarrhoea','yes')">
+                        <input type="radio" name="hasDiarrhoea" value="yes" id="diarrhoeaYes">
+                        <span>نعم</span>
+                    </div>
+                    <div class="radio-item checked" onclick="toggleRadio(this,'hasDiarrhoea','no')">
+                        <input type="radio" name="hasDiarrhoea" value="no" id="diarrhoeaNo" checked>
+                        <span>لا</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="diarrhoeaAssessment" style="display:none">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>مدة الإسهال (أيام)</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="diarrhoeaDuration" min="1" max="60" onchange="assessDiarrhoea()">
+                            <i class="fas fa-calendar-day input-icon"></i>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>هل يوجد دم في البراز؟</label>
+                        <div class="radio-group">
+                            <div class="radio-item" onclick="toggleRadio(this,'bloodStool','yes')">
+                                <input type="radio" name="bloodStool" value="yes" id="bloodYes">
+                                <span>نعم</span>
+                            </div>
+                            <div class="radio-item checked" onclick="toggleRadio(this,'bloodStool','no')">
+                                <input type="radio" name="bloodStool" value="no" id="bloodNo" checked>
+                                <span>لا</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ✅ تم تعديل علامات الجفاف مع التصنيف الصحيح -->
+                <div class="assessment-section">
+                    <div class="section-title"><i class="fas fa-eye"></i> علامات الجفاف - تقييم الحالة</div>
+                    
+                    <!-- علامات الجفاف الشديد -->
+                    <div style="background: var(--danger-light); padding: 12px 16px; border-radius: var(--radius); margin-bottom: 12px; border-right: 4px solid var(--danger);">
+                        <strong style="color: var(--danger);">🚨 علامات الجفاف الشديد:</strong>
+                        <div class="checkbox-group" style="margin-top: 8px;">
+                            <div class="checkbox-item danger-item" onclick="toggleCheckbox(this,'lethargicDehydration')">
+                                <input type="checkbox" id="lethargicDehydration">
+                                <span>خامل أو فاقد للوعي (Lethargic/Unconscious)</span>
+                            </div>
+                            <div class="checkbox-item danger-item" onclick="toggleCheckbox(this,'sunkenEyes')">
+                                <input type="checkbox" id="sunkenEyes">
+                                <span>عيون غائرة (Sunken Eyes)</span>
+                            </div>
+                            <div class="checkbox-item danger-item" onclick="toggleCheckbox(this,'notDrinking')">
+                                <input type="checkbox" id="notDrinking">
+                                <span>غير قادر على الشرب أو يشرب بصعوبة (Not able to drink/Drinks poorly)</span>
+                            </div>
+                            <div class="checkbox-item danger-item" onclick="toggleCheckbox(this,'skinPinchVerySlow')">
+                                <input type="checkbox" id="skinPinchVerySlow">
+                                <span>قرصة الجلد تعود ببطء شديد (>2 ثانية)</span>
+                            </div>
+                        </div>
+                        <div style="margin-top: 8px; font-size: 0.8rem; color: var(--danger);">
+                            ⚠️ وجود علامتين أو أكثر = <strong>جفاف شديد (Severe Dehydration)</strong>
+                        </div>
+                    </div>
+
+                    <!-- علامات بعض الجفاف -->
+                    <div style="background: var(--warning-light); padding: 12px 16px; border-radius: var(--radius); margin-bottom: 12px; border-right: 4px solid var(--warning);">
+                        <strong style="color: var(--warning);">⚠️ علامات بعض الجفاف:</strong>
+                        <div class="checkbox-group" style="margin-top: 8px;">
+                            <div class="checkbox-item" onclick="toggleCheckbox(this,'restless')">
+                                <input type="checkbox" id="restless">
+                                <span>قلق/مضطرب/سريع الانفعال (Restless/Irritable)</span>
+                            </div>
+                            <div class="checkbox-item" onclick="toggleCheckbox(this,'drinksEagerly')">
+                                <input type="checkbox" id="drinksEagerly">
+                                <span>يشرب بشراهة/عطشان (Drinks Eagerly/Thirsty)</span>
+                            </div>
+                            <div class="checkbox-item" onclick="toggleCheckbox(this,'skinPinchSlow')">
+                                <input type="checkbox" id="skinPinchSlow">
+                                <span>قرصة الجلد تعود ببطء (≤2 ثانية)</span>
+                            </div>
+                        </div>
+                        <div style="margin-top: 8px; font-size: 0.8rem; color: var(--warning);">
+                            ⚠️ وجود علامتين أو أكثر = <strong>بعض الجفاف (Some Dehydration)</strong>
+                        </div>
+                    </div>
+
+                    <!-- لا يوجد جفاف -->
+                    <div style="background: var(--success-light); padding: 12px 16px; border-radius: var(--radius); border-right: 4px solid var(--success);">
+                        <strong style="color: var(--success);">✅ لا يوجد جفاف:</strong>
+                        <div style="margin-top: 8px; font-size: 0.85rem; color: var(--text-light);">
+                            عدم وجود علامات كافية للجفاف الشديد أو بعض الجفاف = <strong>لا يوجد جفاف (No Dehydration)</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ✅ نتيجة التصنيف تظهر هنا -->
+                <div id="diarrhoeaResult"></div>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div class="field small">
-    <label>HAZ (الطول بالنسبة للعمر)</label>
-    <input type="text" id="hazOutput" readonly>
+        <!-- ============================================================ -->
+        <!-- الخطوة 5: الحمى -->
+        <!-- ============================================================ -->
+        <div class="tab-content" id="step5Content">
+            <div class="card">
+                <div class="card-header danger"><i class="fas fa-thermometer-half"></i> تقييم الحمى</div>
+                <div class="card-body">
+                    <div class="form-group" style="margin-bottom: 16px;">
+                        <label>هل يعاني الطفل من حمى (الأم تشعر بالطفل حار أو ≥37.5°C)؟</label>
+                        <div class="radio-group">
+                            <div class="radio-item" onclick="toggleRadio(this,'hasFever','yes')">
+                                <input type="radio" name="hasFever" value="yes" id="feverYes">
+                                <span>نعم</span>
+                            </div>
+                            <div class="radio-item checked" onclick="toggleRadio(this,'hasFever','no')">
+                                <input type="radio" name="hasFever" value="no" id="feverNo" checked>
+                                <span>لا</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="feverAssessment" style="display:none">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>مدة الحمى (أيام)</label>
+                                <div class="input-wrapper">
+                                    <input type="number" id="feverDuration" min="1" max="30" onchange="assessFever()">
+                                    <i class="fas fa-calendar-day input-icon"></i>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>هل الحمى كل يوم؟</label>
+                                <div class="radio-group">
+                                    <div class="radio-item" onclick="toggleRadio(this,'feverEveryDay','yes')">
+                                        <input type="radio" name="feverEveryDay" value="yes" id="feverDailyYes">
+                                        <span>نعم</span>
+                                    </div>
+                                    <div class="radio-item checked" onclick="toggleRadio(this,'feverEveryDay','no')">
+                                        <input type="radio" name="feverEveryDay" value="no" id="feverDailyNo" checked>
+                                        <span>لا</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>خطر الملاريا في المنطقة</label>
+                                <div class="input-wrapper">
+                                    <select id="malariaRisk" onchange="assessFever()">
+                                        <option value="high">عالٍ (High)</option>
+                                        <option value="low">منخفض (Low)</option>
+                                        <option value="none">لا يوجد</option>
+                                    </select>
+                                    <i class="fas fa-mosquito input-icon"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="assessment-section">
+                            <div class="section-title"><i class="fas fa-notes-medical"></i> علامات الحمى</div>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item" onclick="toggleCheckbox(this,'stiffNeck')">
+                                    <input type="checkbox" id="stiffNeck">
+                                    <span>تصلب في الرقبة (Stiff Neck)</span>
+                                </div>
+                                <div class="checkbox-item" onclick="toggleCheckbox(this,'runnyNose')">
+                                    <input type="checkbox" id="runnyNose">
+                                    <span>سيلان أنف (Runny Nose) - يستبعد الملاريا</span>
+                                </div>
+                                <div class="checkbox-item" onclick="toggleCheckbox(this,'measlesRash')">
+                                    <input type="checkbox" id="measlesRash">
+                                    <span>طفح جلدي مميز للحصبة</span>
+                                </div>
+                                <div class="checkbox-item" onclick="toggleCheckbox(this,'measlesNow')">
+                                    <input type="checkbox" id="measlesNow">
+                                    <span>حصبة الآن (Measles now)</span>
+                                </div>
+                                <div class="checkbox-item" onclick="toggleCheckbox(this,'cloudingCornea')">
+                                    <input type="checkbox" id="cloudingCornea">
+                                    <span>عتمة في القرنية (Clouding Cornea)</span>
+                                </div>
+                                <div class="checkbox-item" onclick="toggleCheckbox(this,'mouthUlcers')">
+                                    <input type="checkbox" id="mouthUlcers">
+                                    <span>تقرحات فموية عميقة (Deep Mouth Ulcers)</span>
+                                </div>
+                                <div class="checkbox-item" onclick="toggleCheckbox(this,'pusEye')">
+                                    <input type="checkbox" id="pusEye">
+                                    <span>قيح في العين (Pus Draining from Eye)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="feverResult"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- الخطوة 6: الأذن والحلق -->
+        <!-- ============================================================ -->
+        <div class="tab-content" id="step6Content">
+            <div class="card">
+                <div class="card-header info"><i class="fas fa-ear-listen"></i> تقييم الأذن والحلق</div>
+                <div class="card-body">
+                    <!-- قسم الأذن -->
+                    <div class="form-group" style="margin-bottom: 16px;">
+                        <label>هل يشكو الطفل من ألم أذن أو إفرازات؟</label>
+                        <div class="radio-group">
+                            <div class="radio-item" onclick="toggleRadio(this,'hasEar','yes')">
+                                <input type="radio" name="hasEar" value="yes" id="earYes">
+                                <span>نعم</span>
+                            </div>
+                            <div class="radio-item checked" onclick="toggleRadio(this,'hasEar','no')">
+                                <input type="radio" name="hasEar" value="no" id="earNo" checked>
+                                <span>لا</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="earAssessment" style="display:none">
+                        <div class="assessment-section">
+                            <div class="section-title"><i class="fas fa-ear-deaf"></i> علامات الأذن</div>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item" onclick="toggleCheckbox(this,'tenderSwelling')">
+                                    <input type="checkbox" id="tenderSwelling">
+                                    <span>تورم مؤلم خلف الأذن (Mastoiditis)</span>
+                                </div>
+                                <div class="checkbox-item" onclick="toggleCheckbox(this,'earPain')">
+                                    <input type="checkbox" id="earPain">
+                                    <span>ألم في الأذن</span>
+                                </div>
+                                <div class="checkbox-item" onclick="toggleCheckbox(this,'earDischarge')">
+                                    <input type="checkbox" id="earDischarge">
+                                    <span>إفرازات (صديد) من الأذن</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top: 12px;">
+                            <label>مدة الإفرازات (أيام) - إذا وجدت</label>
+                            <div class="input-wrapper">
+                                <input type="number" id="dischargeDuration" min="1" max="365" onchange="assessEar()">
+                                <i class="fas fa-clock input-icon"></i>
+                            </div>
+                        </div>
+                        <div id="earResult"></div>
+                    </div>
+
+                    <hr style="margin: 24px 0; border: none; border-top: 1px dashed var(--border);">
+
+            <!-- قسم الحلق -->
+            <div class="form-group" style="margin-bottom: 16px;">
+                <label>هل يعاني الطفل من التهاب حلق أو صعوبة بلع؟</label>
+                <div class="radio-group">
+                    <div class="radio-item" onclick="toggleRadio(this,'hasThroat','yes')">
+                        <input type="radio" name="hasThroat" value="yes" id="throatYes">
+                        <span>نعم</span>
+                    </div>
+                    <div class="radio-item checked" onclick="toggleRadio(this,'hasThroat','no')">
+                        <input type="radio" name="hasThroat" value="no" id="throatNo" checked>
+                        <span>لا</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="throatAssessment" style="display:none">
+                <div class="assessment-section">
+                    <div class="section-title"><i class="fas fa-head-side-cough"></i> علامات الحلق - تقييم الحالة</div>
+                    
+                    <!-- ✅ علامات التهاب الحلق البكتيري (السبحي) -->
+                    <div style="background: var(--warning-light); padding: 12px 16px; border-radius: var(--radius); margin-bottom: 12px; border-right: 4px solid var(--warning);">
+                        <strong style="color: var(--warning);">⚠️ علامات التهاب الحلق البكتيري (السبحي):</strong>
+                        <div class="checkbox-group" style="margin-top: 8px;">
+                            <div class="checkbox-item" onclick="toggleCheckbox(this,'redThroat')">
+                                <input type="checkbox" id="redThroat">
+                                <span>حلق أحمر (Red Throat)</span>
+                            </div>
+                            <div class="checkbox-item" onclick="toggleCheckbox(this,'whiteExudate')">
+                                <input type="checkbox" id="whiteExudate">
+                                <span>إفرازات بيضاء/صفراء على اللوزتين (White/Yellow Exudate)</span>
+                            </div>
+                            <div class="checkbox-item" onclick="toggleCheckbox(this,'enlargedNodes')">
+                                <input type="checkbox" id="enlargedNodes">
+                                <span>غدد ليمفاوية متضخمة ومؤلمة في الرقبة (Enlarged Tender Lymph Nodes)</span>
+                            </div>
+                        </div>
+                        <div style="margin-top: 8px; font-size: 0.8rem; color: var(--warning);">
+                            ⚠️ وجود علامتين أو أكثر = <strong>التهاب حلق بكتيري (سبحي) - Streptococcal Pharyngitis</strong>
+                        </div>
+                    </div>
+
+                    <!-- ✅ علامات التهاب الحلق غير السبحي (فيروسي) -->
+                    <div style="background: var(--info-light); padding: 12px 16px; border-radius: var(--radius); margin-bottom: 12px; border-right: 4px solid var(--info);">
+                        <strong style="color: var(--info);">🔵 علامات التهاب الحلق غير السبحي (فيروسي):</strong>
+                        <div style="margin-top: 8px; font-size: 0.85rem; color: var(--text-light);">
+                            وجود علامة واحدة فقط من أعلاه (حلق أحمر فقط، أو إفرازات فقط، أو غدد فقط) = <strong>التهاب حلق غير سبحي (فيروسي) - Non-Streptococcal Pharyngitis</strong>
+                        </div>
+                    </div>
+
+                    <!-- ✅ لا توجد مشكلة في الحلق -->
+                    <div style="background: var(--success-light); padding: 12px 16px; border-radius: var(--radius); border-right: 4px solid var(--success);">
+                        <strong style="color: var(--success);">✅ لا توجد مشكلة في الحلق:</strong>
+                        <div style="margin-top: 8px; font-size: 0.85rem; color: var(--text-light);">
+                            عدم وجود أي علامة من علامات التهاب الحلق = <strong>لا توجد مشكلة في الحلق (No Throat Problem)</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ✅ نتيجة التصنيف تظهر هنا -->
+                <div id="throatResult"></div>
+            </div>
+        </div>
+    </div>
+</div>
+        <!-- ============================================================ -->
+        <!-- الخطوة 7: التغذية والأنيميا والمتابعة -->
+        <!-- ============================================================ -->
+        <div class="tab-content" id="step7Content">
+            <div class="card">
+                <div class="card-header success"><i class="fas fa-weight-scale"></i> التغذية والأنيميا والمتابعة</div>
+                <div class="card-body">
+                    <div class="assessment-section">
+                        <div class="section-title"><i class="fas fa-utensils"></i> تقييم التغذية</div>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item" onclick="toggleCheckbox(this,'visibleWasting')">
+                                <input type="checkbox" id="visibleWasting">
+                                <span>هزال شديد واضح (Visible Severe Wasting)</span>
+                            </div>
+                            <div class="checkbox-item" onclick="toggleCheckbox(this,'oedema')">
+                                <input type="checkbox" id="oedema">
+                                <span>وذمة في كلا القدمين (Bilateral Pitting Oedema)</span>
+                            </div>
+                            <div class="checkbox-item" onclick="toggleCheckbox(this,'lowWeight')">
+                                <input type="checkbox" id="lowWeight">
+                                <span>وزن منخفض جداً للعمر (Very Low Weight for Age)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="nutritionResult"></div>
+
+                    <div class="assessment-section" style="margin-top: 20px;">
+                        <div class="section-title"><i class="fas fa-droplet"></i> تقييم الأنيميا (الفقر الدموي)</div>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item" onclick="toggleCheckbox(this,'severePallor')">
+                                <input type="checkbox" id="severePallor">
+                                <span>شحوب شديد في كف اليد/الجفن أو الشفاه (Severe Pallor)</span>
+                            </div>
+                            <div class="checkbox-item" onclick="toggleCheckbox(this,'somePallor')">
+                                <input type="checkbox" id="somePallor">
+                                <span>شحوب بسيط (Some Pallor)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="anemiaResult"></div>
+
+                    <div class="form-group" style="margin-top: 24px;">
+                        <label><i class="fas fa-notes-medical"></i> نتيجة المتابعة (إذا كان زيارة متابعة)</label>
+                        <div class="input-wrapper">
+                            <select id="followupResult">
+                                <option value="">اختر نتيجة المتابعة</option>
+                                <option value="improved">✅ تحسنت الحالة</option>
+                                <option value="not_improved">⚠️ لم تتحسن</option>
+                                <option value="worsened">🔴 ساءت الحالة</option>
+                                <option value="deceased">⚫ توفى</option>
+                            </select>
+                            <i class="fas fa-clipboard-check input-icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- الخطوة 8: ملخص التصنيف والعلاج -->
+        <!-- ============================================================ -->
+        <div class="tab-content" id="step8Content">
+            <div class="card">
+                <div class="card-header purple"><i class="fas fa-clipboard-check"></i> ملخص التصنيف والعلاج النهائي</div>
+                <div class="card-body">
+                    <div id="finalSummary">
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle"></i>
+                            أكمل جميع الخطوات السابقة لإظهار التصنيف النهائي والعلاج الموصى به.
+                        </div>
+                    </div>
+                    <div id="treatmentSummary" style="display:none">
+                        <div class="section-divider"><i class="fas fa-pills"></i> خطة العلاج الموصى بها</div>
+                        <div id="treatmentDetails"></div>
+                    </div>
+                    <div id="followUpSummary" style="display:none">
+                        <div class="section-divider"><i class="fas fa-calendar-check"></i> خطة المتابعة</div>
+                        <div id="followUpDetails"></div>
+                    </div>
+
+                    <!-- ✅ حقل عالج الطفل - قابل لكتابة الأدوية المصروفة فعلا من قبل الطبيب -->
+                    <div class="form-group full-width" style="margin-top: 24px;">
+                        <label><i class="fas fa-user-md"></i> عالج الطفل</label>
+                        <div class="input-wrapper">
+                            <textarea id="treatmentGiven" rows="4" placeholder="أدخل الأدوية المصروفة فعلاً من قبل الطبيب..."></textarea>
+                            <i class="fas fa-prescription input-icon"></i>
+                        </div>
+                    </div>
+
+                    <!-- ملخص البيانات -->
+                    <div id="recordSummary" style="display:none; margin-top: 24px;">
+                        <div class="section-divider"><i class="fas fa-database"></i> ملخص بيانات التسجيل</div>
+                        <div class="summary-box">
+                            <div id="summaryGrid" class="summary-grid"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- شريط الأزرار -->
+        <!-- ============================================================ -->
+        <div class="actions-bar">
+            <button type="button" class="btn btn-secondary" id="prevBtn" onclick="prevStep()" style="display:none">
+                <i class="fas fa-arrow-right"></i> السابق
+            </button>
+            <button type="button" class="btn btn-primary" id="nextBtn" onclick="nextStep()">
+                التالي <i class="fas fa-arrow-left"></i>
+            </button>
+            <button type="button" class="btn btn-success" id="saveBtn" onclick="saveToLocalStorage()" style="display:none">
+                <i class="fas fa-save"></i> حفظ في الذاكرة
+            </button>
+            <button type="button" class="btn btn-warning" id="transferBtn" onclick="transferToReport()" style="display:none">
+                <i class="fas fa-file-export"></i> ترحيل للتقرير الشهري
+            </button>
+            <button type="button" class="btn btn-outline" id="printBtn" onclick="window.print()">
+                <i class="fas fa-print"></i> طباعة
+            </button>
+            <button type="button" class="btn btn-danger" id="resetBtn" onclick="resetForm()">
+                <i class="fas fa-redo"></i> إعادة تعيين
+            </button>
+        </div>
+    </form>
 </div>
 
-<div class="field wide">
-    <label>نتيجة تقييم Z-Score</label>
-    <input type="text" id="zscoreSummary" readonly>
-</div>
+<!-- زر لوحة التحكم العائم -->
+<button class="dashboard-btn" onclick="goToDashboard()" title="العودة للوحة التحكم">
+    <i class="fas fa-home"></i>
+</button>
 
-        <!-- شحوب -->
-        <div class="field small">
-            <label>شحوب الكف</label>
-            <select name="pallor_hand">
-                <option value="">اختر</option>
-                <option value="none">لا يوجد</option>
-                <option value="mild">خفيف</option>
-                <option value="severe">شديد</option>
-            </select>
+<!-- ============================================================ -->
+<!-- JavaScript -->
+<!-- ============================================================ -->
+<script>
+// ============================================================
+// الثوابت والإعدادات العامة
+// ============================================================
+const CHILDREN_KEY = 'imci_children_records_v2';
+const SETTINGS_KEY = 'imci_settings_v2';
+const LOGIN_KEY = 'imci_login_data';
+const DASHBOARD = 'dashboard.html';
+const REPORT = 'monthly-report.html';
+
+// بيانات WHO لمعايير النمو (الوزن للعمر)
+const WHO = {
+    weightForAge: {
+        boys: {"2":{"median":5.1,"sd":0.58},"3":{"median":6.0,"sd":0.64},"4":{"median":6.7,"sd":0.7},"5":{"median":7.3,"sd":0.75},"6":{"median":7.9,"sd":0.79},"7":{"median":8.4,"sd":0.83},"8":{"median":8.9,"sd":0.87},"9":{"median":9.3,"sd":0.9},"10":{"median":9.7,"sd":0.93},"11":{"median":10.0,"sd":0.96},"12":{"median":10.3,"sd":0.99},"15":{"median":11.1,"sd":1.07},"18":{"median":11.8,"sd":1.14},"21":{"median":12.4,"sd":1.21},"24":{"median":12.9,"sd":1.27},"27":{"median":13.4,"sd":1.33},"30":{"median":13.9,"sd":1.39},"33":{"median":14.3,"sd":1.45},"36":{"median":14.6,"sd":1.5},"39":{"median":15.0,"sd":1.56},"42":{"median":15.3,"sd":1.61},"45":{"median":15.7,"sd":1.66},"48":{"median":16.0,"sd":1.71},"51":{"median":16.3,"sd":1.76},"54":{"median":16.6,"sd":1.81},"57":{"median":16.9,"sd":1.86},"60":{"median":17.2,"sd":1.91}},
+        girls: {"2":{"median":4.8,"sd":0.56},"3":{"median":5.4,"sd":0.62},"4":{"median":6.0,"sd":0.67},"5":{"median":6.6,"sd":0.72},"6":{"median":7.1,"sd":0.76},"7":{"median":7.6,"sd":0.8},"8":{"median":8.0,"sd":0.84},"9":{"median":8.4,"sd":0.87},"10":{"median":8.7,"sd":0.9},"11":{"median":9.0,"sd":0.93},"12":{"median":9.3,"sd":0.96},"15":{"median":10.0,"sd":1.03},"18":{"median":10.6,"sd":1.1},"21":{"median":11.2,"sd":1.16},"24":{"median":11.7,"sd":1.22},"27":{"median":12.1,"sd":1.28},"30":{"median":12.5,"sd":1.33},"33":{"median":12.9,"sd":1.38},"36":{"median":13.2,"sd":1.43},"39":{"median":13.6,"sd":1.48},"42":{"median":13.9,"sd":1.53},"45":{"median":14.2,"sd":1.58},"48":{"median":14.5,"sd":1.63},"51":{"median":14.8,"sd":1.68},"54":{"median":15.1,"sd":1.73},"57":{"median":15.4,"sd":1.78},"60":{"median":15.7,"sd":1.83}}
+    }
+};
+
+let step = 1;
+const total = 8;
+let assess = { dangerSigns: null, cough: null, diarrhoea: null, fever: null, ear: null, throat: null, nutrition: null, anemia: null };
+
+// أسماء التصنيفات
+const CLASSIFICATION_NAMES = {
+    'SEVERE_PNEUMONIA': 'التهاب رئة شديد',
+    'PNEUMONIA': 'التهاب رئة',
+    'NO_PNEUMONIA': 'لا يوجد ذات رئة',
+    'SEVERE_DEHYDRATION': 'جفاف شديد',
+    'SOME_DEHYDRATION': 'جفاف بسيط',
+    'NO_DEHYDRATION': 'لا يوجد جفاف',
+    'DYSENTERY': 'دوسنتاريا (إسهال دموي)',
+    'SEVERE_PERSISTENT_DIARRHOEA': 'إسهال مزمن شديد',
+    'PERSISTENT_DIARRHOEA': 'إسهال مزمن',
+    'VERY_SEVERE_FEBRILE_DISEASE': 'حمى شديدة جداً',
+    'SEVERE_COMPLICATED_MEASLES': 'حصبة شديدة مع مضاعفات',
+    'MEASLES_WITH_COMPLICATIONS': 'حصبة مع مضاعفات',
+    'MEASLES': 'حصبة',
+    'MALARIA': 'ملاريا',
+    'FEVER_NO_BACTERIAL': 'حمى بسيطة (غير بكتيرية)',
+    'MASTOIDITIS': 'التهاب خشاء (Mastoiditis)',
+    'ACUTE_EAR_INFECTION': 'التهاب أذن حاد',
+    'CHRONIC_EAR_INFECTION': 'التهاب أذن مزمن',
+    'NO_EAR_INFECTION': 'لا يوجد التهاب أذن',
+    'STREPTOCOCCAL': 'التهاب حلق بكتيري (Streptococcal)',
+    'NON_STREPTOCOCCAL': 'التهاب حلق غير سبحي',
+    'NO_THROAT_PROBLEM': 'لا يوجد مشكلة في الحلق',
+    'SEVERE_MALNUTRITION': 'سوء تغذية شديد',
+    'LOW_WEIGHT': 'وزن منخفض للعمر',
+    'NOT_LOW_WEIGHT': 'الوزن طبيعي',
+    'SEVERE_ANAEMIA': 'أنيميا (فقر دم) شديد',
+    'ANAEMIA': 'أنيميا (فقر دم)',
+    'NO_ANAEMIA': 'لا يوجد أنيميا',
+    'VERY_SEVERE_DISEASE': 'مرض شديد جداً',
+};
+const SEVERITY_MAP = {
+    'severe': 'شديد',
+    'moderate': 'متوسط',
+    'mild': 'بسيط',
+    'danger': 'خطر',
+    'warning': 'تحذير',
+    'success': 'طبيعي',
+    'info': 'معلومات'
+};
+
+// ============================================================
+// التهيئة الأولية
+// ============================================================
+document.addEventListener('DOMContentLoaded', () => {
+    // تعيين التواريخ الافتراضية
+    const visitDateEl = document.getElementById('visitDate');
+    if (visitDateEl) visitDateEl.valueAsDate = new Date();
+    
+    const reportYearEl = document.getElementById('report_year');
+    const reportMonthEl = document.getElementById('report_month');
+    if (reportYearEl) reportYearEl.value = new Date().getFullYear();
+    if (reportMonthEl) reportMonthEl.value = new Date().getMonth() + 1;
+
+    // تحميل بيانات المرفق من التسجيل
+    loadFacility();
+
+    // ربط أحداث خطوات التقدم
+    document.querySelectorAll('.step').forEach(el => {
+        el.addEventListener('click', function() {
+            goStep(parseInt(this.dataset.step));
+        });
+    });
+
+    // ربط مستمعي تغيير العلامات الخطرة
+    ['unableDrink','vomitsAll','convulsions','lethargic','convulsingNow'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('change', assessDanger);
+    });
+
+    // ربط مستمعات إضافية للقيم المتغيرة
+    const respRateEl = document.getElementById('respRate');
+    if (respRateEl) respRateEl.addEventListener('change', assessCough);
+    
+    const diarrhoeaDurationEl = document.getElementById('diarrhoeaDuration');
+    if (diarrhoeaDurationEl) diarrhoeaDurationEl.addEventListener('change', assessDiarrhoea);
+    
+    const dischargeDurationEl = document.getElementById('dischargeDuration');
+    if (dischargeDurationEl) dischargeDurationEl.addEventListener('change', assessEar);
+    
+    const malariaRiskEl = document.getElementById('malariaRisk');
+    if (malariaRiskEl) malariaRiskEl.addEventListener('change', assessFever);
+
+    // البدء من الخطوة 1
+    goStep(1);
+});
+
+// ============================================================
+// تحميل بيانات المرفق من localStorage
+// ============================================================
+function loadFacility() {
+    const login = JSON.parse(localStorage.getItem(LOGIN_KEY) || '{}');
+    const settings = JSON.parse(localStorage.getItem(SETTINGS_KEY) || '{}');
+
+    const mapping = {
+        'facility_name': login.facilityName || settings.facilityName || '',
+        'health_worker': login.workerName || login.username || settings.healthWorker || '',
+        'governorate': login.governorate || settings.governorate || '',
+        'district': login.district || settings.district || ''
+    };
+
+    Object.entries(mapping).forEach(([id, value]) => {
+        const el = document.getElementById(id);
+        if (el && !el.value && value) el.value = value;
+    });
+}
+
+// ============================================================
+// حساب العمر
+// ============================================================
+function calculateAge() {
+    const birthDateEl = document.getElementById('birthDate');
+    if (!birthDateEl || !birthDateEl.value) return;
+    
+    const birthDate = new Date(birthDateEl.value);
+    if (!birthDate.getTime()) return;
+
+    const now = new Date();
+    let months = (now.getFullYear() - birthDate.getFullYear()) * 12 + now.getMonth() - birthDate.getMonth();
+    if (now.getDate() < birthDate.getDate()) months--;
+
+    const ageMonthsEl = document.getElementById('ageMonths');
+    if (ageMonthsEl) ageMonthsEl.value = (months >= 2 && months < 60) ? months : 0;
+
+    let ageText = '';
+    if (months < 2) {
+        ageText = `${months} شهر (أقل من شهرين - خارج نطاق IMCI)`;
+    } else if (months >= 60) {
+        ageText = `${Math.floor(months/12)} سنة (${months} شهر) - أكبر من 5 سنوات`;
+    } else {
+        const years = Math.floor(months / 12);
+        const remMonths = months % 12;
+        ageText = `${years > 0 ? years + ' سنة ' : ''}${remMonths > 0 ? 'و ' + remMonths + ' شهر' : ''}`;
+    }
+
+    const ageDisplayEl = document.getElementById('ageDisplay');
+    if (ageDisplayEl) ageDisplayEl.value = ageText.trim();
+
+    if (months >= 2 && months < 60) {
+        assessGrowth();
+    }
+}
+
+// ============================================================
+// تقييم النمو (WHO Z-Score)
+// ============================================================
+function assessGrowth() {
+    const ageMonthsEl = document.getElementById('ageMonths');
+    const genderEl = document.getElementById('gender');
+    const weightEl = document.getElementById('weight');
+    const heightEl = document.getElementById('height');
+    
+    const months = parseInt(ageMonthsEl?.value) || 0;
+    const gender = genderEl?.value || '';
+    const weight = parseFloat(weightEl?.value) || 0;
+    const height = parseFloat(heightEl?.value) || 0;
+
+    if (!months || !gender || months < 2 || months >= 60) return;
+
+    // أقرب عمر مرجعي من WHO
+    const referenceAges = [2,3,4,5,6,7,8,9,10,11,12,15,18,21,24,27,30,33,36,39,42,45,48,51,54,57,60];
+    const closestAge = referenceAges.reduce((prev, curr) =>
+        Math.abs(curr - months) < Math.abs(prev - months) ? curr : prev
+    );
+
+    // تقييم الوزن
+    if (weight && WHO.weightForAge[gender]?.[closestAge]) {
+        const ref = WHO.weightForAge[gender][closestAge];
+        const z = ((weight - ref.median) / ref.sd).toFixed(2);
+        showZScore('weightZScore', z, 'الوزن للعمر');
+
+        if (z < -2) {
+            const lowWeightEl = document.getElementById('lowWeight');
+            if (lowWeightEl) {
+                lowWeightEl.checked = true;
+                lowWeightEl.closest('.checkbox-item')?.classList.add('checked');
+            }
+            assessNutrition();
+        }
+    }
+
+    // تقييم الطول (مؤقت)
+    if (height) {
+        const div = document.getElementById('heightZScore');
+        if (div) div.innerHTML = '';
+    }
+}
+
+function showZScore(id, z, type) {
+    const div = document.getElementById(id);
+    if (!div) return;
+
+    let cls = 'zscore-normal';
+    let txt = 'طبيعي';
+    let icon = 'fa-check-circle';
+
+    if (z < -3) {
+        cls = 'zscore-severe';
+        txt = 'شديد (Z < -3) - يتطلب إحالة';
+        icon = 'fa-exclamation-triangle';
+    } else if (z < -2) {
+        cls = 'zscore-moderate';
+        txt = 'منخفض (Z < -2) - يتطلب متابعة';
+        icon = 'fa-exclamation-circle';
+    }
+
+    div.innerHTML = `<div class="growth-indicator ${cls}"><i class="fas ${icon}"></i><div><strong>${type}:</strong> Z-Score = ${z} | ${txt}</div></div>`;
+}
+
+// ============================================================
+// تحديث العلامات الحيوية
+// ============================================================
+function updateVitals() {
+    const temp = parseFloat(document.getElementById('temperature')?.value) || 0;
+    const hr = parseInt(document.getElementById('heartRate')?.value) || 0;
+    const spo2 = parseInt(document.getElementById('spo2')?.value) || 0;
+    const rr = parseInt(document.getElementById('respRate')?.value) || 0;
+
+    // الحرارة
+    const tempValueEl = document.getElementById('tempValue');
+    const tempBoxEl = document.getElementById('tempBox');
+    if (tempValueEl) tempValueEl.textContent = temp ? temp.toFixed(1) + '°C' : '--';
+    if (tempBoxEl) {
+        tempBoxEl.className = 'vital-box';
+        if (temp >= 39) tempBoxEl.classList.add('danger');
+        else if (temp >= 37.5) tempBoxEl.classList.add('warning');
+        else if (temp > 0) tempBoxEl.classList.add('active');
+    }
+
+    // النبض
+    const hrValueEl = document.getElementById('hrValue');
+    const hrBoxEl = document.getElementById('hrBox');
+    if (hrValueEl) hrValueEl.textContent = hr || '--';
+    if (hrBoxEl) {
+        hrBoxEl.className = 'vital-box';
+        if (hr > 160) hrBoxEl.classList.add('danger');
+        else if (hr > 0) hrBoxEl.classList.add('active');
+    }
+
+    // SpO2
+    const spo2ValueEl = document.getElementById('spo2Value');
+    const spo2BoxEl = document.getElementById('spo2Box');
+    if (spo2ValueEl) spo2ValueEl.textContent = spo2 ? spo2 + '%' : '--';
+    if (spo2BoxEl) {
+        spo2BoxEl.className = 'vital-box';
+        if (spo2 < 90) spo2BoxEl.classList.add('danger');
+        else if (spo2 < 95) spo2BoxEl.classList.add('warning');
+        else if (spo2 > 0) spo2BoxEl.classList.add('active');
+    }
+
+    // التنفس
+    const months = parseInt(document.getElementById('ageMonths')?.value) || 0;
+    const threshold = months < 12 ? 50 : 40;
+    const rrValueEl = document.getElementById('rrValue');
+    const rrBoxEl = document.getElementById('rrBox');
+    if (rrValueEl && rrBoxEl) {
+        if (rr > 0) {
+            rrValueEl.textContent = rr;
+            rrBoxEl.className = 'vital-box';
+            if (rr >= threshold) rrBoxEl.classList.add('warning');
+            else rrBoxEl.classList.add('active');
+        }
+    }
+}
+
+// ============================================================
+// المساعدات العامة
+// ============================================================
+function showAlert(msg, type = 'info') {
+    const colors = {
+        success: { c: '#059669', bg: '#ecfdf5' },
+        danger: { c: '#dc2626', bg: '#fef2f2' },
+        warning: { c: '#ea580c', bg: '#fff7ed' },
+        info: { c: '#0369a1', bg: '#f0f9ff' }
+    };
+    const style = colors[type] || colors.info;
+    const iconMap = { success: 'check-circle', danger: 'exclamation-circle', warning: 'exclamation-triangle', info: 'info-circle' };
+
+    const div = document.createElement('div');
+    div.style.cssText = `position:fixed;top:20px;right:20px;z-index:9999;padding:1rem 1.5rem;border-radius:12px;background:${style.bg};color:${style.c};border-right:4px solid ${style.c};font-weight:700;box-shadow:0 10px 40px rgba(0,0,0,0.15);animation:slideDown 0.4s ease;font-family:'Tajawal','Cairo',sans-serif;max-width:450px;direction:rtl;`;
+    div.innerHTML = `<i class="fas fa-${iconMap[type]}"></i> ${msg}`;
+    document.body.appendChild(div);
+
+    setTimeout(() => {
+        div.style.opacity = '0';
+        div.style.transform = 'translateY(-20px)';
+        div.style.transition = '0.3s';
+        setTimeout(() => div.remove(), 300);
+    }, 4000);
+}
+
+function toggleCheckbox(el, id) {
+    const cb = document.getElementById(id);
+    if (!cb) return;
+
+    cb.checked = !cb.checked;
+    el.classList.toggle('checked', cb.checked);
+
+    // تحديد القسم وتشغيل التقييم المناسب
+    const dangerIds = ['unableDrink','vomitsAll','convulsions','lethargic','convulsingNow'];
+    const coughIds = ['chestIndrawing','stridor','wheeze','cough30days'];
+    const diarrhoeaIds = ['lethargicDehydration','sunkenEyes','notDrinking','drinksEagerly','skinPinchSlow','skinPinchVerySlow','restless'];
+    const feverIds = ['stiffNeck','runnyNose','measlesRash','measlesNow','cloudingCornea','mouthUlcers','pusEye'];
+    const earIds = ['tenderSwelling','earPain','earDischarge'];
+    const throatIds = ['redThroat','whiteExudate','enlargedNodes'];
+    const nutritionIds = ['visibleWasting','oedema','lowWeight'];
+    const anemiaIds = ['severePallor','somePallor'];
+
+    if (dangerIds.includes(id)) assessDanger();
+    if (coughIds.includes(id)) assessCough();
+    if (diarrhoeaIds.includes(id)) assessDiarrhoea();
+    if (feverIds.includes(id)) assessFever();
+    if (earIds.includes(id)) assessEar();
+    if (throatIds.includes(id)) assessThroat();
+    if (nutritionIds.includes(id)) assessNutrition();
+    if (anemiaIds.includes(id)) assessAnemia();
+}
+
+function toggleRadio(el, name, value) {
+    document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
+        r.checked = false;
+        r.closest('.radio-item')?.classList.remove('checked');
+    });
+
+    const radio = el.querySelector('input');
+    if (radio) {
+        radio.checked = true;
+        el.classList.add('checked');
+    }
+
+    // إظهار/إخفاء أقسام التقييم
+    const displayMap = {
+        hasCough: 'coughAssessment',
+        hasDiarrhoea: 'diarrhoeaAssessment',
+        hasFever: 'feverAssessment',
+        hasEar: 'earAssessment',
+        hasThroat: 'throatAssessment'
+    };
+
+    if (displayMap[name]) {
+        const assessmentEl = document.getElementById(displayMap[name]);
+        if (assessmentEl) {
+            assessmentEl.style.display = value === 'yes' ? 'block' : 'none';
+        }
+        
+        if (value === 'no') {
+            const assessKey = name === 'hasCough' ? 'cough' :
+                            name === 'hasDiarrhoea' ? 'diarrhoea' :
+                            name === 'hasFever' ? 'fever' :
+                            name === 'hasEar' ? 'ear' : 'throat';
+            assess[assessKey] = null;
+
+            // مسح النتيجة
+            const resultId = name === 'hasCough' ? 'coughResult' :
+                           name === 'hasDiarrhoea' ? 'diarrhoeaResult' :
+                           name === 'hasFever' ? 'feverResult' :
+                           name === 'hasEar' ? 'earResult' : 'throatResult';
+            const resultDiv = document.getElementById(resultId);
+            if (resultDiv) resultDiv.innerHTML = '';
+        }
+    }
+}
+
+function renderResult(id, classification, severity, treatments, followUp) {
+    const div = document.getElementById(id);
+    if (!div) return;
+
+    const iconMap = { severe: 'ambulance', moderate: 'exclamation-circle', mild: 'check-circle', purple: 'notes-medical' };
+    const classMap = { severe: 'severe', moderate: 'moderate', mild: 'mild', purple: 'purple' };
+
+    div.innerHTML = `
+        <div class="classification-result ${classMap[severity] || 'info'} show">
+            <div class="classification-title">
+                <i class="fas fa-${iconMap[severity] || 'info-circle'}"></i>
+                ${CLASSIFICATION_NAMES[classification] || classification}
+            </div>
+            ${severity === 'severe' ? '<div class="referral-badge"><i class="fas fa-hospital"></i> إحالة عاجلة فورية</div>' : ''}
+            <ul class="treatment-list">
+                ${treatments.map(t => `<li><i class="fas fa-check"></i> ${t}</li>`).join('')}
+            </ul>
+            ${followUp ? `<div style="margin-top:1rem"><strong><i class="fas fa-calendar-alt"></i> المتابعة:</strong> ${followUp}</div>` : ''}
         </div>
+    `;
+}
 
-        <!-- Hb -->
-        <div class="field small">
-            <label>الهيموغلوبين Hb</label>
-            <input type="number" step="0.1" name="hemoglobin">
-        </div>
+// ============================================================
+// التقييمات الطبية (IMCI Algorithms)
+// ============================================================
+function assessDanger() {
+    const hasDanger = ['unableDrink','vomitsAll','convulsions','lethargic','convulsingNow']
+        .some(id => document.getElementById(id)?.checked);
 
-        <!-- النتائج التلقائية -->
-        <div class="field wide">
-            <div id="autoZScores" class="result-box"></div>
-        </div>
+    const dangerResultEl = document.getElementById('dangerSignsResult');
+    if (dangerResultEl) dangerResultEl.classList.toggle('show', hasDanger);
 
-        <div class="field wide">
-            <div id="nutritionResult" class="result-box"></div>
-        </div>
+    assess.dangerSigns = hasDanger ? {
+        classification: 'VERY_SEVERE_DISEASE',
+        severity: 'severe',
+        referral: true,
+        treatments: [
+            'Ampicillin 50mg/kg IM + Gentamicin 7.5mg/kg IM',
+            'Diazepam 0.5mg/kg PR للتشنجات',
+            'Glucose 10% 5ml/kg PO',
+            'إحالة فورية للمستشفى'
+        ],
+        followUp: 'إحالة فورية'
+    } : null;
+}
 
-    </div>
-</section>
+function assessCough() {
+    if (!document.getElementById('coughYes')?.checked) {
+        const resultDiv = document.getElementById('coughResult');
+        if (resultDiv) resultDiv.innerHTML = '';
+        assess.cough = null;
+        return;
+    }
 
-        <!-- 9. مهارات تطور الطفل -->
-        <div class="field wide">
-            <label>هل الطفل يحقق جميع علامات مراحل تطور النمو؟</label>
-            <select name="developmental_milestones">
-                <option value="">اختر</option>
-                <option value="all">نعم، جميع المعالم</option>
-                <option value="partial">نعم جزئيًا</option>
-                <option value="none">لا</option>
-            </select>
-        </div>
+    const months = parseInt(document.getElementById('ageMonths')?.value) || 0;
+    const rr = parseInt(document.getElementById('respRate')?.value) || 0;
+    const chestIndrawing = document.getElementById('chestIndrawing')?.checked;
+    const stridor = document.getElementById('stridor')?.checked;
+    const wheeze = document.getElementById('wheeze')?.checked;
+    const cough30days = document.getElementById('cough30days')?.checked;
 
-        <!-- 10. التغذية (رضاعة أو أطعمة أخرى) -->
-        <div class="field wide">
-            <label>هل يتلقى الطفل تغذية مناسبة (رضاعة/أطعمة مكملة)؟</label>
-            <select name="nutrition_status">
-                <option value="">اختر</option>
-                <option value="adequate">نعم</option>
-                <option value="inadequate">لا</option>
-            </select>
-        </div>
+    const threshold = months < 12 ? 50 : 40;
+    let classification, severity, treatments, followUp, referral = false;
 
-        <!-- 11. ملاحظات أخرى / مشاكل إضافية -->
-        <div class="field wide">
-            <label>مشاكل أو ملاحظات أخرى (إن وجدت)</label>
-            <textarea name="other_notes" placeholder="أدخل أي ملاحظات هنا"></textarea>
-        </div>
+    if (chestIndrawing || stridor || assess.dangerSigns) {
+        classification = 'SEVERE_PNEUMONIA';
+        severity = 'severe';
+        referral = true;
+        treatments = ['Ampicillin 50mg/kg IM + Gentamicin 7.5mg/kg IM', 'Oxygen', 'إحالة فورية'];
+        followUp = 'إحالة فورية';
+    } else if (rr >= threshold) {
+        classification = 'PNEUMONIA';
+        severity = 'moderate';
+        treatments = ['Amoxicillin 40mg/kg PO مرتين يومياً × 5 أيام', 'Paracetamol للحمى'];
+        followUp = 'متابعة خلال يومين';
+    } else {
+        classification = 'NO_PNEUMONIA';
+        severity = 'mild';
+        treatments = cough30days ? ['تقييم إضافي للسعال المزمن', 'فحص السل (TB)'] : ['لا يوجد علاج بالمضادات الحيوية', 'تخفيف الأعراض'];
+        followUp = 'متابعة خلال 5 أيام';
+    }
 
-    </div>
+    if (wheeze && !treatments.some(t => t.includes('Salbutamol') || t.includes('bronchodilator'))) {
+        treatments.unshift('Salbutamol (Ventolin) بخاخ 2.5mg كل 20 دقيقة (3 جرعات)');
+    }
 
-    <!-- نتيجة التصنيف والعلاج -->
-    <div class="classification-box" id="nutritionResult">
-        لم يتم التصنيف بعد
-    </div>
-</section>
-<!-- ========================= -->
-<!-- التطعيمات وفيتامين أ -->
-<!-- ========================= -->
-<section class="card">
-    <div class="card-title">💉 التطعيمات وفيتامين A التكميلي</div>
+    assess.cough = { classification, severity, treatments, followUp, referral };
+    renderResult('coughResult', classification, severity, treatments, followUp);
+}
 
-    <div class="grid">
+function assessDiarrhoea() {
+    if (!document.getElementById('diarrhoeaYes')?.checked) {
+        const resultDiv = document.getElementById('diarrhoeaResult');
+        if (resultDiv) resultDiv.innerHTML = '';
+        assess.diarrhoea = null;
+        return;
+    }
 
-        <!-- الولادة -->
-        <div class="field wide">
-            <label>🍼 عند الولادة</label>
-            <div class="checkbox-row">
-                <label><input type="checkbox" name="bcg" value="yes"> BCG (السل)</label>
-                <label><input type="checkbox" name="vitA_birth" value="yes"> فيتامين A</label>
+    const duration = parseInt(document.getElementById('diarrhoeaDuration')?.value) || 0;
+    const blood = document.getElementById('bloodYes')?.checked;
+    const lethargic = document.getElementById('lethargicDehydration')?.checked;
+    const sunkenEyes = document.getElementById('sunkenEyes')?.checked;
+    const notDrinking = document.getElementById('notDrinking')?.checked;
+    const drinksEagerly = document.getElementById('drinksEagerly')?.checked;
+    const skinPinchSlow = document.getElementById('skinPinchSlow')?.checked;
+    const skinPinchVerySlow = document.getElementById('skinPinchVerySlow')?.checked;
+    const restless = document.getElementById('restless')?.checked;
+
+    // تصنيف الجفاف حسب IMCI
+    const severeDehydrationSigns = [lethargic, sunkenEyes, notDrinking, skinPinchVerySlow].filter(Boolean).length;
+    const someDehydrationSigns = [restless, sunkenEyes, drinksEagerly, skinPinchSlow].filter(Boolean).length;
+    
+    const severeDehydration = severeDehydrationSigns >= 2;
+    const someDehydration = !severeDehydration && someDehydrationSigns >= 2;
+
+    let classification, severity, treatments, followUp, referral = false;
+
+    if (blood) {
+        classification = 'DYSENTERY';
+        severity = 'moderate';
+        treatments = ['Ciprofloxacin 15mg/kg PO مرتين يومياً × 3 أيام', 'ORS حسب خطة العلاج'];
+        followUp = 'متابعة خلال يومين';
+    } else if (duration >= 14) {
+        if (severeDehydration) {
+            classification = 'SEVERE_PERSISTENT_DIARRHOEA';
+            severity = 'severe';
+            referral = true;
+            treatments = ["IV Ringer's Lactate", 'إحالة للمستشفى فوراً'];
+            followUp = 'إحالة فورية';
+        } else {
+            classification = 'PERSISTENT_DIARRHOEA';
+            severity = 'moderate';
+            treatments = ['Zinc Sulfate 20mg يومياً × 14 يوم', 'Vitamin A 200,000 IU', 'تقييم التغذية'];
+            followUp = 'متابعة خلال 5 أيام';
+        }
+    } else {
+        if (severeDehydration) {
+            classification = 'SEVERE_DEHYDRATION';
+            severity = 'severe';
+            referral = true;
+            treatments = ["خطة C: IV Ringer's Lactate 100ml/kg خلال 6 ساعات (أقل من سنة) أو 3 ساعات (أكبر)", 'إحالة فورية'];
+            followUp = 'إحالة فورية';
+        } else if (someDehydration) {
+            classification = 'SOME_DEHYDRATION';
+            severity = 'moderate';
+            treatments = ['خطة B: ORS 75ml/kg خلال 4 ساعات', 'Zinc Sulfate 20mg يومياً × 14 يوم'];
+            followUp = 'متابعة خلال 5 أيام';
+        } else {
+            classification = 'NO_DEHYDRATION';
+            severity = 'mild';
+            treatments = ['خطة A: ORS بعد كل إسهال', 'Zinc Sulfate 20mg يومياً × 14 يوم', 'استمرار الرضاعة'];
+            followUp = 'متابعة خلال 5 أيام إذا لم يتحسن';
+        }
+    }
+
+    assess.diarrhoea = { classification, severity, treatments, followUp, referral };
+    renderResult('diarrhoeaResult', classification, severity, treatments, followUp);
+}
+
+function assessFever() {
+    if (!document.getElementById('feverYes')?.checked) {
+        const resultDiv = document.getElementById('feverResult');
+        if (resultDiv) resultDiv.innerHTML = '';
+        assess.fever = null;
+        return;
+    }
+
+    const malariaRisk = document.getElementById('malariaRisk')?.value || 'high';
+    const stiffNeck = document.getElementById('stiffNeck')?.checked;
+    const measlesNow = document.getElementById('measlesNow')?.checked;
+    const cloudingCornea = document.getElementById('cloudingCornea')?.checked;
+    const mouthUlcers = document.getElementById('mouthUlcers')?.checked;
+    const pusEye = document.getElementById('pusEye')?.checked;
+    const measlesRash = document.getElementById('measlesRash')?.checked;
+
+    let classification, severity, treatments, followUp, referral = false;
+
+    if (stiffNeck || assess.dangerSigns) {
+        classification = 'VERY_SEVERE_FEBRILE_DISEASE';
+        severity = 'severe';
+        referral = true;
+        treatments = ['Ampicillin 50mg/kg IM + Gentamicin 7.5mg/kg IM', 'Paracetamol 15mg/kg', 'إحالة فورية'];
+        followUp = 'إحالة فورية';
+    } else if (measlesNow && (cloudingCornea || mouthUlcers)) {
+        classification = 'SEVERE_COMPLICATED_MEASLES';
+        severity = 'severe';
+        referral = true;
+        treatments = ['Vitamin A 200,000 IU فوراً', 'Ampicillin + Gentamicin IM', 'إحالة فورية'];
+        followUp = 'إحالة فورية';
+    } else if (measlesNow && (pusEye || mouthUlcers)) {
+        classification = 'MEASLES_WITH_COMPLICATIONS';
+        severity = 'moderate';
+        treatments = ['Vitamin A 200,000 IU', 'Tetracycline 1% مرهم للعين', 'Paracetamol'];
+        followUp = 'متابعة خلال يومين';
+    } else if (measlesRash || measlesNow) {
+        classification = 'MEASLES';
+        severity = 'mild';
+        treatments = ['Vitamin A 200,000 IU', 'Paracetamol 15mg/kg للحمى'];
+        followUp = 'متابعة خلال يومين';
+    } else if (malariaRisk === 'high') {
+        classification = 'MALARIA';
+        severity = 'moderate';
+        treatments = ['Artemether-Lumefantrine (ACT) حسب الوزن', 'Paracetamol 15mg/kg للحمى'];
+        followUp = 'متابعة خلال يومين';
+    } else {
+        classification = 'FEVER_NO_BACTERIAL';
+        severity = 'mild';
+        treatments = ['Paracetamol 15mg/kg كل 6 ساعات للحمى', 'تشجيع السوائل'];
+        followUp = 'متابعة خلال يومين';
+    }
+
+    assess.fever = { classification, severity, treatments, followUp, referral };
+    renderResult('feverResult', classification, severity, treatments, followUp);
+}
+
+function assessEar() {
+    if (!document.getElementById('earYes')?.checked) {
+        const resultDiv = document.getElementById('earResult');
+        if (resultDiv) resultDiv.innerHTML = '';
+        assess.ear = null;
+        return;
+    }
+
+    const tenderSwelling = document.getElementById('tenderSwelling')?.checked;
+    const earPain = document.getElementById('earPain')?.checked;
+    const earDischarge = document.getElementById('earDischarge')?.checked;
+    const dischargeDuration = parseInt(document.getElementById('dischargeDuration')?.value) || 0;
+
+    let classification, severity, treatments, followUp, referral = false;
+
+    if (tenderSwelling) {
+        classification = 'MASTOIDITIS';
+        severity = 'severe';
+        referral = true;
+        treatments = ['Chloramphenicol 25mg/kg IM', 'إحالة فورية للجراحة'];
+        followUp = 'إحالة فورية';
+    } else if (earPain || (earDischarge && dischargeDuration < 14)) {
+        classification = 'ACUTE_EAR_INFECTION';
+        severity = 'moderate';
+        treatments = ['Amoxicillin 40mg/kg PO مرتين يومياً × 5 أيام', 'Paracetamol للألم', 'تنظيف الأذن برفق'];
+        followUp = 'متابعة خلال 5 أيام';
+    } else if (earDischarge && dischargeDuration >= 14) {
+        classification = 'CHRONIC_EAR_INFECTION';
+        severity = 'moderate';
+        treatments = ['تنظيف الأذن برفق يومياً', 'أقراص خاصة إن وجدت', 'لا مضادات حيوية فموية'];
+        followUp = 'متابعة خلال 5 أيام';
+    } else {
+        classification = 'NO_EAR_INFECTION';
+        severity = 'mild';
+        treatments = ['لا يوجد علاج مطلوب', 'إرشاد الأم'];
+        followUp = '-';
+    }
+
+    assess.ear = { classification, severity, treatments, followUp, referral };
+    renderResult('earResult', classification, severity, treatments, followUp);
+}
+
+function assessThroat() {
+    if (!document.getElementById('throatYes')?.checked) {
+        const resultDiv = document.getElementById('throatResult');
+        if (resultDiv) resultDiv.innerHTML = '';
+        assess.throat = null;
+        return;
+    }
+
+    const redThroat = document.getElementById('redThroat')?.checked;
+    const whiteExudate = document.getElementById('whiteExudate')?.checked;
+    const enlargedNodes = document.getElementById('enlargedNodes')?.checked;
+
+    const signs = [redThroat, whiteExudate, enlargedNodes].filter(Boolean).length;
+
+    let classification, severity, treatments, followUp;
+
+    if (signs >= 2) {
+        classification = 'STREPTOCOCCAL';
+        severity = 'moderate';
+        treatments = ['Benzathine Penicillin 50,000 IU/kg IM جرعة واحدة', 'Paracetamol 15mg/kg للألم'];
+        followUp = 'متابعة خلال 5 أيام';
+    } else if (signs >= 1) {
+        classification = 'NON_STREPTOCOCCAL';
+        severity = 'mild';
+        treatments = ['Paracetamol 15mg/kg للألم والحمى', 'تخفيف الأعراض', 'لا مضادات حيوية'];
+        followUp = 'متابعة خلال 5 أيام';
+    } else {
+        classification = 'NO_THROAT_PROBLEM';
+        severity = 'mild';
+        treatments = ['لا يوجد علاج مطلوب'];
+        followUp = '-';
+    }
+
+    assess.throat = { classification, severity, treatments, followUp, referral: false };
+    renderResult('throatResult', classification, severity, treatments, followUp);
+}
+
+function assessNutrition() {
+    const visibleWasting = document.getElementById('visibleWasting')?.checked;
+    const oedema = document.getElementById('oedema')?.checked;
+    const lowWeight = document.getElementById('lowWeight')?.checked;
+
+    let classification, severity, treatments, followUp, referral = false;
+
+    if (visibleWasting || oedema) {
+        classification = 'SEVERE_MALNUTRITION';
+        severity = 'severe';
+        referral = true;
+        treatments = ['Vitamin A 200,000 IU فوراً', 'إحالة لبرنامج التغذية العلاجية (OTP/SC)'];
+        followUp = 'إحالة فورية';
+    } else if (lowWeight) {
+        classification = 'LOW_WEIGHT';
+        severity = 'moderate';
+        treatments = ['مكملات غذائية (RUTF/مكملات)', 'متابعة الوزن شهرياً', 'تقييم الإطعام'];
+        followUp = 'متابعة خلال 30 يوم';
+    } else {
+        classification = 'NOT_LOW_WEIGHT';
+        severity = 'mild';
+        treatments = ['تقييم الإطعام وإرشاد الأم', 'فيتامين أ وقائي'];
+        followUp = '-';
+    }
+
+    assess.nutrition = { classification, severity, treatments, followUp, referral };
+    renderResult('nutritionResult', classification, severity, treatments, followUp);
+}
+
+function assessAnemia() {
+    const severePallor = document.getElementById('severePallor')?.checked;
+    const somePallor = document.getElementById('somePallor')?.checked;
+
+    let classification, severity, treatments, followUp, referral = false;
+
+    if (severePallor) {
+        classification = 'SEVERE_ANAEMIA';
+        severity = 'severe';
+        referral = true;
+        treatments = ['إحالة لنقل دم أو علاج في المستشفى', 'Ferrous Sulfate 3mg/kg يومياً'];
+        followUp = 'إحالة فورية';
+    } else if (somePallor) {
+        classification = 'ANAEMIA';
+        severity = 'moderate';
+        treatments = ['Ferrous Sulfate 3mg/kg يومياً × 3 أشهر', 'Albendazole كل 6 أشهر', 'تغذية غنية بالحديد'];
+        followUp = 'متابعة خلال 14 يوم';
+    } else {
+        classification = 'NO_ANAEMIA';
+        severity = 'mild';
+        treatments = ['حديد وقائي: Ferrous Sulfate 3mg/kg يومياً × 3 أشهر سنوياً', 'Albendazole مضاد ديدان'];
+        followUp = '-';
+    }
+
+    assess.anemia = { classification, severity, treatments, followUp, referral };
+    renderResult('anemiaResult', classification, severity, treatments, followUp);
+}
+
+// ============================================================
+// التقرير النهائي
+// ============================================================
+function generateFinal() {
+    const finalSummary = document.getElementById('finalSummary');
+    const treatmentDetails = document.getElementById('treatmentDetails');
+    const followUpDetails = document.getElementById('followUpDetails');
+
+    if (!finalSummary || !treatmentDetails || !followUpDetails) return;
+
+    const sectionNames = {
+        dangerSigns: 'العلامات الخطرة',
+        cough: 'السعال/التنفس',
+        diarrhoea: 'الإسهال',
+        fever: 'الحمى',
+        ear: 'الأذن',
+        throat: 'الحلق',
+        nutrition: 'التغذية',
+        anemia: 'الأنيميا'
+    };
+
+    const classifications = [];
+    const allTreatments = [];
+    const allFollowUps = [];
+
+    Object.entries(assess).forEach(([key, result]) => {
+        if (result) {
+            classifications.push({
+                section: sectionNames[key] || key,
+                name: CLASSIFICATION_NAMES[result.classification] || result.classification,
+                severity: result.severity,
+                referral: result.referral
+            });
+            if (result.treatments) allTreatments.push(...result.treatments);
+            if (result.followUp) allFollowUps.push({ section: sectionNames[key] || key, followUp: result.followUp });
+        }
+    });
+
+    const hasSevere = classifications.some(c => c.severity === 'severe');
+    const hasModerate = classifications.some(c => c.severity === 'moderate');
+    const overallSeverity = hasSevere ? 'severe' : hasModerate ? 'moderate' : 'mild';
+
+    // ملخص التصنيف النهائي
+    finalSummary.innerHTML = `
+        <div class="classification-result ${overallSeverity} show">
+            <div class="classification-title">
+                <i class="fas fa-${hasSevere ? 'ambulance' : hasModerate ? 'exclamation-circle' : 'check-circle'}"></i>
+                ${hasSevere ? 'حالة شديدة - يتطلب إحالة عاجلة' : hasModerate ? 'حالة متوسطة - يتطلب علاج ومراقبة' : 'حالة مستقرة نسبياً'}
+            </div>
+            ${hasSevere ? '<div class="referral-badge"><i class="fas fa-ambulance"></i> إحالة عاجلة مطلوبة</div>' : ''}
+            <div style="margin-top: 12px;">
+                <strong>التصنيفات المكتشفة:</strong>
+                <ul class="treatment-list" style="margin-top: 8px;">
+                    ${classifications.map(c => `
+                        <li>
+                            <i class="fas fa-${c.severity === 'severe' ? 'ambulance' : c.severity === 'moderate' ? 'exclamation-circle' : 'check-circle'}"></i>
+                            <strong>${c.section}:</strong> ${c.name}
+                            ${c.referral ? ' <span style="color:var(--danger);font-weight:700">[إحالة]</span>' : ''}
+                        </li>
+                    `).join('')}
+                </ul>
             </div>
         </div>
+    `;
 
-        <!-- الأسبوع السادس -->
-        <div class="field wide">
-            <label>📅 الأسبوع السادس</label>
-            <div class="checkbox-row">
-                <label><input type="checkbox" name="pent1" value="yes"> الخماسي (1)</label>
-                <label><input type="checkbox" name="opv1" value="yes"> الشلل الفموي (1)</label>
-                <label><input type="checkbox" name="pcv1" value="yes"> المكورات الرئوية (1)</label>
-            </div>
-        </div>
+    // خطة العلاج
+    const uniqueTreatments = [...new Set(allTreatments)];
+    treatmentDetails.innerHTML = `
+        <ul class="treatment-list">
+            ${uniqueTreatments.map(t => `<li><i class="fas fa-capsules"></i> ${t}</li>`).join('')}
+        </ul>
+    `;
+    const treatmentSummaryEl = document.getElementById('treatmentSummary');
+    if (treatmentSummaryEl) treatmentSummaryEl.style.display = uniqueTreatments.length ? 'block' : 'none';
 
-        <!-- الأسبوع العاشر -->
-        <div class="field wide">
-            <label>📅 الأسبوع العاشر</label>
-            <div class="checkbox-row">
-                <label><input type="checkbox" name="pent2" value="yes"> الخماسي (2)</label>
-                <label><input type="checkbox" name="opv2" value="yes"> الشلل الفموي (2)</label>
-                <label><input type="checkbox" name="pcv2" value="yes"> المكورات الرئوية (2)</label>
-            </div>
-        </div>
+    // خطة المتابعة
+    followUpDetails.innerHTML = `
+        <ul class="treatment-list">
+            ${allFollowUps.map(f => `<li><i class="fas fa-calendar-alt"></i> <strong>${f.section}:</strong> ${f.followUp}</li>`).join('')}
+        </ul>
+    `;
+    const followUpSummaryEl = document.getElementById('followUpSummary');
+    if (followUpSummaryEl) followUpSummaryEl.style.display = allFollowUps.length ? 'block' : 'none';
 
-        <!-- الأسبوع الرابع عشر -->
-        <div class="field wide">
-            <label>📅 الأسبوع الرابع عشر</label>
-            <div class="checkbox-row">
-                <label><input type="checkbox" name="pent3" value="yes"> الخماسي (3)</label>
-                <label><input type="checkbox" name="opv3" value="yes"> الشلل الفموي (3)</label>
-                <label><input type="checkbox" name="pcv3" value="yes"> المكورات الرئوية (3)</label>
-            </div>
-        </div>
+    // ملخص بيانات التسجيل
+    generateRecordSummary(classifications);
+}
 
-        <!-- الشهر التاسع -->
-        <div class="field wide">
-            <label>📅 الشهر التاسع</label>
-            <div class="checkbox-row">
-                <label><input type="checkbox" name="measles1" value="yes"> الحصبة / الحصبة الألمانية (1)</label>
-                <label><input type="checkbox" name="vitA_9m" value="yes"> فيتامين A (100000 وحدة دولية)</label>
-            </div>
-        </div>
+function generateRecordSummary(classifications) {
+    const recordSummary = document.getElementById('recordSummary');
+    const summaryGrid = document.getElementById('summaryGrid');
+    if (!recordSummary || !summaryGrid) return;
 
-        <!-- الشهر الثامن عشر -->
-        <div class="field wide">
-            <label>📅 الشهر الثامن عشر</label>
-            <div class="checkbox-row">
-                <label><input type="checkbox" name="measles2" value="yes"> الحصبة / الحصبة الألمانية (2)</label>
-                <label><input type="checkbox" name="vitA_18m" value="yes"> فيتامين A (200000 وحدة دولية)</label>
-            </div>
-        </div>
+    const childName = document.getElementById('childName')?.value || '';
+    const age = document.getElementById('ageDisplay')?.value || '';
+    const gender = document.getElementById('gender')?.value === 'boys' ? 'ذكر' : 'أنثى';
+    const weight = document.getElementById('weight')?.value || '';
+    const facility = document.getElementById('facility_name')?.value || '';
+    const worker = document.getElementById('health_worker')?.value || '';
 
-    </div>
+    const severityCount = { severe: 0, moderate: 0, mild: 0 };
+    classifications.forEach(c => { if (severityCount[c.severity] !== undefined) severityCount[c.severity]++; });
 
-    <!-- نتيجة التطعيمات اليوم -->
-    <div class="classification-box" id="vaccinationResult">
-        لم يتم تحديد التطعيمات المطلوبة اليوم
-    </div>
-</section>
-<!-- ========================= -->
-<!-- تقييم تغذية الطفل -->
-<!-- ========================= -->
-<section class="card">
-    <div class="card-title">🍽️ تقييم تغذية الطفل (< 2 سنوات)</div>
+    summaryGrid.innerHTML = `
+        <div class="summary-item"><span class="label">اسم الطفل</span><span class="value">${childName || '-'}</span></div>
+        <div class="summary-item"><span class="label">العمر</span><span class="value">${age || '-'}</span></div>
+        <div class="summary-item"><span class="label">الجنس</span><span class="value">${gender || '-'}</span></div>
+        <div class="summary-item"><span class="label">الوزن</span><span class="value">${weight ? weight + ' كجم' : '-'}</span></div>
+        <div class="summary-item"><span class="label">المرفق</span><span class="value">${facility || '-'}</span></div>
+        <div class="summary-item"><span class="label">العامل الصحي</span><span class="value">${worker || '-'}</span></div>
+        <div class="summary-item"><span class="label">حالات شديدة</span><span class="value" style="color:var(--danger)">${severityCount.severe}</span></div>
+        <div class="summary-item"><span class="label">حالات متوسطة</span><span class="value" style="color:var(--warning)">${severityCount.moderate}</span></div>
+        <div class="summary-item"><span class="label">حالات بسيطة</span><span class="value" style="color:var(--success)">${severityCount.mild}</span></div>
+        <div class="summary-item"><span class="label">التاريخ</span><span class="value">${new Date().toLocaleDateString('ar-YE')}</span></div>
+    `;
+    recordSummary.style.display = 'block';
+}
 
-    <div class="grid">
+// ============================================================
+// التنقل بين الخطوات
+// ============================================================
+function goStep(s) {
+    if (s < 1 || s > total) return;
 
-        <!-- 1. الرضاعة الطبيعية -->
-        <div class="field wide">
-            <label>هل ترضع الأم الطفل؟</label>
-            <div class="radio-row">
-                <label><input type="radio" name="breastfeeding" value="yes"> نعم</label>
-                <label><input type="radio" name="breastfeeding" value="no"> لا</label>
-            </div>
-        </div>
+    step = s;
 
-        <!-- 2. عدد الرضعات خلال 24 ساعة -->
-        <div class="field small">
-            <label>كم مرة ترضع الطفل خلال 24 ساعة؟</label>
-            <input type="number" name="breastfeed_count" min="0">
-        </div>
+    // تحديث المحتويات
+    document.querySelectorAll('.tab-content').forEach((tab, index) => {
+        tab.classList.toggle('active', index + 1 === s);
+    });
 
-        <!-- 3. الرضاعة الليلية -->
-        <div class="field small">
-            <label>هل ترضع خلال الليل؟</label>
-            <select name="breastfeed_night">
-                <option value="">اختر</option>
-                <option value="yes">نعم</option>
-                <option value="no">لا</option>
-            </select>
-        </div>
+    // تحديث خطوات التقدم
+    document.querySelectorAll('.step').forEach((st, index) => {
+        st.classList.remove('active', 'completed');
+        if (index + 1 < s) st.classList.add('completed');
+        else if (index + 1 === s) st.classList.add('active');
+    });
 
-        <!-- 4. استهلاك السوائل أو الأغذية الأخرى -->
-        <div class="field wide">
-            <label>هل يتناول الطفل أي طعام أو سوائل أخرى؟</label>
-            <select name="other_foods">
-                <option value="">اختر</option>
-                <option value="yes">نعم</option>
-                <option value="no">لا</option>
-            </select>
-        </div>
+    // إظهار/إخفاء الأزرار
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const saveBtn = document.getElementById('saveBtn');
+    const transferBtn = document.getElementById('transferBtn');
+    
+    if (prevBtn) prevBtn.style.display = s === 1 ? 'none' : 'inline-flex';
+    if (nextBtn) nextBtn.style.display = s === total ? 'none' : 'inline-flex';
+    if (saveBtn) saveBtn.style.display = s === total ? 'inline-flex' : 'none';
+    if (transferBtn) transferBtn.style.display = s === total ? 'inline-flex' : 'none';
 
-        <!-- 5. نوع الطعام أو السوائل الأخرى -->
-        <div class="field wide">
-            <label>إذا نعم، ما هي هذه الأطعمة أو السوائل؟</label>
-            <input type="text" name="other_foods_list" placeholder="أدخل الأطعمة أو السوائل">
-        </div>
+    // إنشاء التقرير النهائي عند الوصول للخطوة الأخيرة
+    if (s === total) {
+        generateFinal();
+    }
 
-        <!-- 6. من الذي يطعمه وكيف؟ -->
-        <div class="field wide">
-            <label>من يطعمه الطفل وكيف؟</label>
-            <input type="text" name="feeding_method" placeholder="مثلاً: الأم بالفم / ملعقة">
-        </div>
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
-        <!-- 7. تغير التغذية أثناء المرض -->
-        <div class="field wide">
-            <label>هل تغيرت تغذية الطفل أثناء المرض؟</label>
-            <select name="nutrition_during_illness">
-                <option value="">اختر</option>
-                <option value="yes">نعم</option>
-                <option value="no">لا</option>
-            </select>
-        </div>
+function nextStep() {
+    if (step < total) {
+        // التحقق من البيانات الأساسية في الخطوة 1
+        if (step === 1) {
+            const required = ['fileNumber', 'visitDate', 'childName', 'birthDate', 'gender', 'weight', 'temperature', 'motherName'];
+            const missing = required.filter(id => {
+                const el = document.getElementById(id);
+                return !el || !el.value;
+            });
+            if (missing.length > 0) {
+                showAlert('⚠️ يرجى ملء جميع الحقول المطلوبة (بعلامة *) قبل المتابعة', 'warning');
+                return;
+            }
+        }
+        step++;
+        goStep(step);
+    }
+}
 
-        <!-- 8. حجم الطعام -->
-        <div class="field small">
-            <label>حجم الطعام المقدم للطفل</label>
-            <input type="text" name="food_amount" placeholder="مثلاً: صغير / متوسط / كبير">
-        </div>
+function prevStep() {
+    if (step > 1) {
+        step--;
+        goStep(step);
+    }
+}
 
-        <!-- 9. عدد مرات تناول الطعام يومياً -->
-        <div class="field small">
-            <label>عدد مرات تناول الطعام في اليوم</label>
-            <input type="number" name="food_times" min="0">
-        </div>
+// ============================================================
+// الحفظ والترحيل
+// ============================================================
+function saveToLocalStorage() {
+    const login = JSON.parse(localStorage.getItem(LOGIN_KEY) || '{}');
+    const settings = JSON.parse(localStorage.getItem(SETTINGS_KEY) || '{}');
+    const allMeds = [...new Set(Object.values(assess).flatMap(r => r?.treatments || []))];
 
-        <!-- 10. تغير التغذية خلال المرض -->
-        <div class="field wide">
-            <label>هل تغيرت كمية أو نوعية التغذية أثناء المرض؟</label>
-            <select name="nutrition_change">
-                <option value="">اختر</option>
-                <option value="yes">نعم</option>
-                <option value="no">لا</option>
-            </select>
-        </div>
+    const data = {
+        id: Date.now(),
+        fileNumber: document.getElementById('fileNumber')?.value || '',
+        name: document.getElementById('childName')?.value || '',
+        gender: document.getElementById('gender')?.value === 'boys' ? 'ذكر' : 'أنثى',
+        ageInMonths: parseInt(document.getElementById('ageMonths')?.value) || 0,
+        ageDisplay: document.getElementById('ageDisplay')?.value || '',
+        weight: parseFloat(document.getElementById('weight')?.value) || null,
+        height: parseFloat(document.getElementById('height')?.value) || null,
+        muac: parseFloat(document.getElementById('muac')?.value) || null,
+        temperature: parseFloat(document.getElementById('temperature')?.value) || null,
+        heartRate: parseInt(document.getElementById('heartRate')?.value) || null,
+        spo2: parseInt(document.getElementById('spo2')?.value) || null,
+        visitType: 'first',
+        registrationDate: new Date().toISOString(),
+        visitDate: document.getElementById('visitDate')?.value || '',
 
-        <!-- 11. أي مشاكل تغذوية أخرى -->
-        <div class="field wide">
-            <label>مشاكل تغذوية أخرى إن وجدت</label>
-            <textarea name="other_nutrition_issues" placeholder="أدخل أي ملاحظات"></textarea>
-        </div>
+        // بيانات المرفق
+        facilityId: login.facilityId || settings.facilityId || '',
+        facilityName: login.facilityName || settings.facilityName || document.getElementById('facility_name')?.value || '',
+        workerName: login.workerName || login.username || settings.healthWorker || document.getElementById('health_worker')?.value || '',
+        governorate: login.governorate || settings.governorate || document.getElementById('governorate')?.value || '',
+        district: login.district || settings.district || document.getElementById('district')?.value || '',
 
-    </div>
+        // حقل عالج الطفل (الأدوية المصروفة فعلاً)
+        treatmentGiven: document.getElementById('treatmentGiven')?.value || '',
 
-    <!-- نتيجة تقييم التغذية -->
-    <div class="classification-box" id="nutritionStatusResult">
-        لم يتم تقييم التغذية بعد
-    </div>
-</section>
-<!-- ========================= -->
-<!-- تقييم اللعب والتواصل التفصيلي -->
-<!-- ========================= -->
-<section class="card">
-    <div class="card-title">🧸 قيم اللعب والتواصل لدى الطفل</div>
+        // التصنيفات
+        classifications: {
+            dangerSigns: assess.dangerSigns?.classification || null,
+            cough: assess.cough?.classification || null,
+            diarrhea: assess.diarrhoea?.classification || null,
+            fever: assess.fever?.classification || null,
+            ear: assess.ear?.classification || null,
+            throat: assess.throat?.classification || null,
+            nutrition: assess.nutrition?.classification || null,
+            anemia: assess.anemia?.classification || null,
+        },
 
-    <div class="grid">
+        // تفاصيل التصنيف
+        classificationDetails: {
+            dangerSigns: assess.dangerSigns,
+            cough: assess.cough,
+            diarrhea: assess.diarrhoea,
+            fever: assess.fever,
+            ear: assess.ear,
+            throat: assess.throat,
+            nutrition: assess.nutrition,
+            anemia: assess.anemia
+        },
 
-        <!-- 1. هل يلعب مع الطفل -->
-        <div class="field wide">
-            <label>🎲 هل تلاعبين طفلك؟</label>
-            <div class="radio-row">
-                <label><input type="radio" name="plays_with_child" value="yes"> نعم</label>
-                <label><input type="radio" name="plays_with_child" value="no"> لا</label>
-            </div>
-        </div>
+        treatmentSummary: { medications: allMeds },
+        medications: allMeds,
+        referral: Object.values(assess).some(r => r?.referral),
+        followupResult: document.getElementById('followupResult')?.value || '',
+        followUp: { result: document.getElementById('followupResult')?.value || '' },
 
-        <!-- إذا نعم، كيف وما هي الألعاب -->
-        <div class="field wide">
-            <label>🧩 إذا نعم، كيف وما هي الألعاب أو الأشياء التي تلعب بها مع الطفل؟</label>
-            <input type="text" name="play_details" placeholder="مثلاً: مكعبات، دمى، الغناء، القراءة">
-        </div>
+        // العلامات الحيوية
+        vitals: {
+            temperature: parseFloat(document.getElementById('temperature')?.value) || null,
+            heartRate: parseInt(document.getElementById('heartRate')?.value) || null,
+            spo2: parseInt(document.getElementById('spo2')?.value) || null,
+            respRate: parseInt(document.getElementById('respRate')?.value) || null
+        },
 
-        <!-- إذا لا، لماذا -->
-        <div class="field wide">
-            <label>❌ إذا كانت الإجابة لا، لماذا؟</label>
-            <input type="text" name="play_no_reason" placeholder="أدخل السبب">
-        </div>
+        // بيانات إضافية
+        feedingProblem: document.getElementById('visibleWasting')?.checked || document.getElementById('oedema')?.checked || document.getElementById('lowWeight')?.checked || false,
+        muacValue: document.getElementById('muac')?.value || null,
+        chiefComplaint: document.getElementById('chiefComplaint')?.value || '',
+        motherName: document.getElementById('motherName')?.value || '',
+        phone: document.getElementById('phone')?.value || '',
 
-        <!-- 2. التواصل مع الطفل -->
-        <div class="field wide">
-            <label>💬 هل تتواصلين مع طفلك؟</label>
-            <div class="radio-row">
-                <label><input type="radio" name="communicates" value="yes"> نعم</label>
-                <label><input type="radio" name="communicates" value="no"> لا</label>
-            </div>
-        </div>
+        // بيانات التقرير الشهري
+        reportYear: parseInt(document.getElementById('report_year')?.value) || new Date().getFullYear(),
+        reportMonth: parseInt(document.getElementById('report_month')?.value) || (new Date().getMonth() + 1),
+    };
 
-        <!-- إذا نعم، كيف -->
-        <div class="field wide">
-            <label>🗣️ إذا نعم، كيف يتم التواصل؟</label>
-            <input type="text" name="communicates_how" placeholder="مثلاً: كلام، إشارات، غناء، تقليد">
-        </div>
+    // حفظ السجل
+    let records = JSON.parse(localStorage.getItem(CHILDREN_KEY) || '[]');
+    records.push(data);
+    localStorage.setItem(CHILDREN_KEY, JSON.stringify(records));
 
-        <!-- إذا لا، لماذا -->
-        <div class="field wide">
-            <label>❌ إذا لا، لماذا؟</label>
-            <input type="text" name="communicates_no_reason" placeholder="أدخل السبب">
-        </div>
+    // تحديث الإعدادات
+    localStorage.setItem(SETTINGS_KEY, JSON.stringify({
+        facilityId: data.facilityId,
+        facilityName: data.facilityName,
+        governorate: data.governorate,
+        district: data.district,
+        healthWorker: data.workerName,
+        year: data.reportYear
+    }));
 
-    </div>
+    showAlert('✅ تم حفظ بيانات الطفل بنجاح في الذاكرة المحلية!', 'success');
+    return true;
+}
 
-    <!-- نتيجة تقييم اللعب -->
-    <div class="classification-box" id="playCommunicationResult">
-        لم يتم تقييم اللعب والتواصل بعد
-    </div>
-</section>
+function transferToReport() {
+    if (!saveToLocalStorage()) return;
 
-<!-- ========================= -->
-<!-- علاج الطفل - تسجيل الأدوية المصروفة -->
-<!-- ========================= -->
-<section class="card">
-    <h2>💊 عالج الطفل</h2>
-    <p>سجل الأدوية والإجراءات التي تم صرفها من قبل العامل الصحي:</p>
-    <textarea name="child_treatment_given" rows="6" placeholder="مثال: أموكسيسيلين 250mg مرتين يوميًا لمدة 5 أيام، محلول ORS، زنك 20mg"></textarea>
-</section>
+    setTimeout(() => {
+        if (confirm('تم الحفظ بنجاح!\n\nهل تريد الانتقال إلى التقرير الشهري الآن؟')) {
+            window.location.href = REPORT;
+        }
+    }, 300);
+}
 
-    <!-- أزرار -->
-   <div class="actions">
-    <button class="save" type="button">💾 حفظ البيانات</button>
-    <button class="back" type="button" onclick="goTo('dashboard.html')">↩️ عودة</button>
-</div>
+function goToDashboard() {
+    if (confirm('هل تريد العودة للوحة التحكم؟\n(سيتم حفظ البيانات تلقائياً قبل الخروج)')) {
+        try {
+            saveToLocalStorage();
+        } catch (e) {
+            console.warn('Auto-save before dashboard failed:', e);
+        }
+        window.location.href = DASHBOARD;
+    }
+}
 
-</main>
+function resetForm() {
+    if (confirm('⚠️ هل أنت متأكد من إعادة تعيين النموذج؟\nسيتم مسح جميع البيانات المدخلة.')) {
+        // مسح النموذج
+        const form = document.getElementById('childForm');
+        if (form) form.reset();
 
-<script src="script.js"></script>
+        // إعادة تعيين التقييمات
+        assess = { dangerSigns: null, cough: null, diarrhoea: null, fever: null, ear: null, throat: null, nutrition: null, anemia: null };
+
+        // إعادة تعيين العرض
+        document.querySelectorAll('.checkbox-item').forEach(el => el.classList.remove('checked'));
+        document.querySelectorAll('.radio-item').forEach(el => el.classList.remove('checked'));
+        
+        // إعادة تعيين أزرار الراديو الافتراضية
+        const defaultRadios = {
+            'coughNo': 'hasCough',
+            'diarrhoeaNo': 'hasDiarrhoea',
+            'feverNo': 'hasFever',
+            'earNo': 'hasEar',
+            'throatNo': 'hasThroat',
+            'bloodNo': 'bloodStool',
+            'feverDailyNo': 'feverEveryDay'
+        };
+        
+        Object.entries(defaultRadios).forEach(([id, name]) => {
+            const el = document.getElementById(id);
+            if (el) {
+                el.checked = true;
+                el.closest('.radio-item')?.classList.add('checked');
+            }
+        });
+
+        // إخفاء أقسام التقييم
+        ['coughAssessment','diarrhoeaAssessment','feverAssessment','earAssessment','throatAssessment'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.style.display = 'none';
+        });
+
+        // مسح النتائج
+        ['dangerSignsResult','coughResult','diarrhoeaResult','feverResult','earResult','throatResult','nutritionResult','anemiaResult'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) {
+                el.innerHTML = '';
+                if (id === 'dangerSignsResult') el.classList.remove('show');
+            }
+        });
+
+        // إعادة تعيين العلامات الحيوية
+        const vitalValues = {
+            'tempValue': '--',
+            'hrValue': '--',
+            'spo2Value': '--',
+            'rrValue': '--'
+        };
+        Object.entries(vitalValues).forEach(([id, val]) => {
+            const el = document.getElementById(id);
+            if (el) el.textContent = val;
+        });
+        
+        ['weightZScore', 'heightZScore'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.innerHTML = '';
+        });
+
+        // إعادة التواريخ
+        const visitDateEl = document.getElementById('visitDate');
+        const reportYearEl = document.getElementById('report_year');
+        const reportMonthEl = document.getElementById('report_month');
+        
+        if (visitDateEl) visitDateEl.valueAsDate = new Date();
+        if (reportYearEl) reportYearEl.value = new Date().getFullYear();
+        if (reportMonthEl) reportMonthEl.value = new Date().getMonth() + 1;
+
+        // إعادة تحميل بيانات المرفق
+        loadFacility();
+
+        // العودة للخطوة 1
+        goStep(1);
+
+        showAlert('🔄 تم إعادة تعيين النموذج بنجاح', 'info');
+    }
+}
+</script>
+
 </body>
     </html>
