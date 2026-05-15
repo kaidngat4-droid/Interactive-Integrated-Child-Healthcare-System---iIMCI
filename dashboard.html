@@ -2,22 +2,54 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>لوحة التحكم | IIMCI</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لوحة التحكم | IIMCI - نظام الرعاية التكاملية</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-/* ===== Body و Layout ===== */
+:root {
+    --primary: #005a8c;
+    --primary-light: #0073b1;
+    --primary-dark: #003d5e;
+    --success: #0d7c3e;
+    --success-light: #e6f7ee;
+    --danger: #c1121f;
+    --danger-light: #fef0f0;
+    --warning: #e67e14;
+    --warning-light: #fff9f0;
+    --info: #1e6f9f;
+    --info-light: #e8f4fd;
+    --bg: #f4f7fb;
+    --card-bg: #ffffff;
+    --text: #1e293b;
+    --text-light: #475569;
+    --border: #e2e8f0;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+    --shadow: 0 4px 16px rgba(0,0,0,0.06);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.1);
+    --radius-sm: 8px;
+    --radius: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+    --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
 body {
     margin: 0;
     font-family: 'Cairo', sans-serif;
-    background: #f3f4f6;
-    color: #111;
+    background: var(--bg);
+    color: var(--text);
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
 }
 
-/* ===== الترويسة الرسمية (من صفحة الدليل الإرشادي) ===== */
+/* ============================================================
+   الترويسة الرسمية
+   ============================================================ */
 .official-header {
     display: flex;
     flex-direction: column;
@@ -26,6 +58,17 @@ body {
     padding: 20px 0;
     background: linear-gradient(135deg, #e0f0ff, #ffffff);
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    position: relative;
+    overflow: hidden;
+}
+
+.official-header::before {
+    content: '';
+    position: absolute;
+    top: -50%; right: -10%;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(0,90,140,0.04) 0%, transparent 70%);
+    border-radius: 50%;
 }
 
 .official-header .eagle {
@@ -35,11 +78,18 @@ body {
     margin-bottom: 15px;
     transition: transform 0.3s, filter 0.3s;
     filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+    position: relative;
+    z-index: 1;
 }
 
 .official-header .eagle:hover {
     transform: scale(1.05) rotate(-2deg);
     filter: drop-shadow(0 6px 8px rgba(0,0,0,0.4));
+}
+
+.official-header .header-text {
+    position: relative;
+    z-index: 1;
 }
 
 .official-header .header-text h1,
@@ -52,13 +102,14 @@ body {
 
 .official-header .header-text h1 {
     font-size: 28px;
-    font-weight: bold;
+    font-weight: 900;
+    color: var(--primary-dark);
 }
 
 .official-header .header-text h2 {
     font-size: 22px;
     font-weight: 600;
-    color: #0055a5;
+    color: var(--primary);
 }
 
 .official-header .header-text h3 {
@@ -67,19 +118,29 @@ body {
     color: #333;
 }
 
-/* ===== شعار البرنامج (من صفحة الدليل الإرشادي) ===== */
+/* ============================================================
+   شعار البرنامج
+   ============================================================ */
 .program-logo {
     text-align: center;
-    margin: 20px 0 30px 0;
+    margin: 0;
+    padding: 16px 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 12px;
+    background: linear-gradient(135deg, #f8f5ee 0%, #f0ece2 100%);
+    border-bottom: 2px solid #e2dccd;
 }
 
 .program-logo img {
-    width: 60px;
-    height: auto;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: #fff;
+    padding: 5px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    object-fit: contain;
     transition: transform 0.3s;
 }
 
@@ -88,126 +149,450 @@ body {
 }
 
 .program-logo span {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 800;
-    color: #0073e6;
+    color: var(--primary);
     font-family: 'Cairo', sans-serif;
     letter-spacing: -0.5px;
 }
 
-/* ===== Topbar ===== */
+/* ============================================================
+   شريط المعلومات العلوي
+   ============================================================ */
 header.topbar {
-    background: #065f46;
+    background: var(--primary-dark);
     color: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 30px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 12px 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     flex-shrink: 0;
+    flex-wrap: wrap;
+    gap: 10px;
 }
-header.topbar h2 { margin:0; font-size:20px; }
-header.topbar div span { font-weight:bold; margin-right:15px; }
+
+header.topbar h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+header.topbar h2 i {
+    font-size: 1.1rem;
+}
+
+header.topbar .topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+header.topbar div span {
+    font-weight: 600;
+    font-size: 0.9rem;
+    background: rgba(255,255,255,0.12);
+    padding: 6px 14px;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+header.topbar div span i {
+    font-size: 0.85rem;
+}
+
 header.topbar button {
-    background: #ef4444; border:none; color:#fff;
-    padding:8px 16px; border-radius:6px; cursor:pointer; font-weight:bold;
+    background: #ef4444;
+    border: none;
+    color: #fff;
+    padding: 8px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: 0.3s;
 }
-header.topbar button:hover { background: #b91c1c; }
 
-/* ===== Layout ===== */
-.layout { display:flex; flex:1; overflow:hidden; }
+header.topbar button:hover {
+    background: #b91c1c;
+    transform: translateY(-1px);
+}
 
-/* ===== Sidebar ===== */
+/* ============================================================
+   التخطيط الرئيسي
+   ============================================================ */
+.layout {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* ============================================================
+   القائمة الجانبية
+   ============================================================ */
 .sidebar {
     width: 250px;
-    background: #047857;
-    display:flex;
+    background: linear-gradient(180deg, #0b3b2f 0%, #06261e 100%);
+    display: flex;
     flex-direction: column;
-    padding:20px;
+    padding: 20px 14px;
     flex-shrink: 0;
     overflow-y: auto;
+    gap: 6px;
 }
+
+.sidebar .sidebar-label {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 8px 10px 2px;
+    margin-top: 8px;
+}
+
 .sidebar button.side-btn {
-    background: #065f46;
-    color:#fff;
-    border:none;
-    padding:12px;
-    margin-bottom:10px;
-    border-radius:8px;
-    font-weight:bold;
-    cursor:pointer;
-    text-align:right;
-    font-size:14px;
+    background: rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.85);
+    border: 2px solid transparent;
+    padding: 11px 12px;
+    margin-bottom: 4px;
+    border-radius: var(--radius);
+    font-weight: 700;
+    cursor: pointer;
+    text-align: right;
+    font-size: 14px;
     display: flex;
     align-items: center;
-    gap:8px;
-    transition:0.3s;
+    gap: 8px;
+    transition: 0.3s;
+    font-family: 'Cairo', sans-serif;
+    position: relative;
 }
-.sidebar button.side-btn:hover { background: #10b981; }
-.sidebar button.side-btn.active { background:#ff9900; }
 
-/* ===== Dashboard Content ===== */
+.sidebar button.side-btn:hover {
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+    border-color: rgba(255,255,255,0.2);
+    transform: translateX(-3px);
+}
+
+.sidebar button.side-btn.active {
+    background: rgba(234,179,84,0.2);
+    border-color: #eab354;
+    color: #fff;
+}
+
+.sidebar button.side-btn i {
+    font-size: 1rem;
+    width: 22px;
+    text-align: center;
+    color: #eab354;
+}
+
+.sidebar button.side-btn .badge {
+    background: var(--danger);
+    color: #fff;
+    padding: 2px 10px;
+    border-radius: 16px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    margin-right: auto;
+}
+
+/* ============================================================
+   محتوى لوحة التحكم
+   ============================================================ */
 .dashboard-container {
-    flex:1;
-    padding:30px;
-    overflow-y:auto;
+    flex: 1;
+    padding: 24px;
+    overflow-y: auto;
+    background: var(--bg);
 }
 
-/* ===== صندوق الترحيب ===== */
+/* ============================================================
+   بطاقة الترحيب
+   ============================================================ */
 .welcome-box {
-    background: #ecfdf5;
-    padding:25px;
-    border-radius:14px;
-    margin-bottom:25px;
-    box-shadow:0 4px 12px rgba(0,0,0,0.05);
+    background: linear-gradient(135deg, #e8f4fd 0%, #ffffff 100%);
+    padding: 25px 28px;
+    border-radius: var(--radius-xl);
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border);
 }
-.welcome-box h2 { font-size:22px; color:#065f46; font-weight:bold; margin-bottom:10px; }
-.welcome-box p strong { font-weight:bold; color:#065f46; }
 
-/* ===== الإحصائيات داخل الترحيب ===== */
-.stats-inline {
+.welcome-box h2 {
+    font-size: 22px;
+    color: var(--primary-dark);
+    font-weight: 800;
+    margin-bottom: 10px;
     display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
-    flex-wrap: wrap;
-    gap: 15px;
+    align-items: center;
+    gap: 8px;
 }
+
+.welcome-box .facility-highlight {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: var(--radius);
+    margin: 12px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.welcome-box .facility-highlight i {
+    font-size: 1.2rem;
+}
+
+.welcome-box p strong {
+    font-weight: 700;
+    color: var(--primary);
+}
+
+/* ============================================================
+   إشعار العزل
+   ============================================================ */
+.isolation-notice {
+    background: var(--success-light);
+    border: 1px solid var(--success);
+    color: var(--success);
+    padding: 10px 16px;
+    border-radius: var(--radius);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.isolation-notice i {
+    font-size: 1.1rem;
+}
+
+.isolation-notice .facility-name-inline {
+    font-weight: 800;
+    color: var(--primary-dark);
+    margin: 0 3px;
+}
+
+/* ============================================================
+   بطاقات الإحصائيات
+   ============================================================ */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin-bottom: 24px;
+}
+
 .stat-card {
     background: #fff;
-    padding: 15px 10px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    flex: 1 1 120px;
+    padding: 20px 16px;
+    border-radius: var(--radius-lg);
+    text-align: center;
+    border: 1px solid var(--border);
+    transition: 0.3s;
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.stat-card i {
+    font-size: 2rem;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.stat-card h3 {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--primary-dark);
+    margin: 5px 0;
+}
+
+.stat-card p {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+.stat-card::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 6px; height: 100%;
+}
+
+.stat-card.diarrhea i { color: var(--warning); }
+.stat-card.diarrhea::after { background: var(--warning); }
+.stat-card.pneumonia i { color: var(--danger); }
+.stat-card.pneumonia::after { background: var(--danger); }
+.stat-card.referral i { color: #7c3aed; }
+.stat-card.referral::after { background: #7c3aed; }
+.stat-card.total i { color: var(--primary); }
+.stat-card.total::after { background: var(--primary); }
+.stat-card.newborn i { color: #eab354; }
+.stat-card.newborn::after { background: #eab354; }
+
+/* ============================================================
+   أزرار سريعة
+   ============================================================ */
+.quick-actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.quick-action-card {
+    background: #fff;
+    padding: 18px 20px;
+    border-radius: var(--radius-lg);
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+}
+
+.quick-action-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
+.quick-action-card .qa-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius);
+    display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 120px;
-    max-width: 150px;
-    transition: transform 0.2s;
+    font-size: 1.3rem;
+    flex-shrink: 0;
 }
-.stat-card:hover { transform: translateY(-4px); }
-.stat-card h3 { font-size: 24px; font-weight: 700; color: #047857; margin: 5px 0; }
-.stat-card p { font-size: 12px; font-weight: bold; color: #374151; text-align: center; }
-.stat-card i { font-size: 28px; color: #10b981; margin-bottom: 8px; }
 
-/* ===== الفوتر ===== */
+.quick-action-card .qa-icon.child {
+    background: var(--info-light);
+    color: var(--info);
+}
+
+.quick-action-card .qa-icon.newborn {
+    background: var(--warning-light);
+    color: var(--warning);
+}
+
+.quick-action-card .qa-icon.report {
+    background: var(--success-light);
+    color: var(--success);
+}
+
+.quick-action-card .qa-icon.guide {
+    background: #f3e8ff;
+    color: #6d28d9;
+}
+
+.quick-action-card .qa-text h4 {
+    font-weight: 800;
+    font-size: 0.95rem;
+    color: var(--text);
+    margin: 0;
+}
+
+.quick-action-card .qa-text p {
+    font-size: 0.78rem;
+    color: var(--text-light);
+    margin: 2px 0 0;
+}
+
+/* ============================================================
+   الفوتر
+   ============================================================ */
 .footer {
     background: #1e293b;
     text-align: center;
-    padding: 28px 20px;
+    padding: 20px;
     color: #94a3b8;
     font-size: 0.75rem;
-    border-top: 1px solid #334155;
+    border-top: 3px solid #eab354;
+    font-weight: 500;
+}
+
+.footer i {
+    margin: 0 4px;
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 10px;
+        gap: 4px;
+        overflow-x: auto;
+    }
+    .sidebar button.side-btn {
+        flex: 1 1 auto;
+        font-size: 0.75rem;
+        padding: 8px 10px;
+    }
+    .sidebar .sidebar-label {
+        display: none;
+    }
+    .layout {
+        flex-direction: column;
+    }
+    .dashboard-container {
+        padding: 16px;
+    }
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .quick-actions {
+        grid-template-columns: 1fr;
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.stat-card, .quick-action-card, .welcome-box {
+    animation: fadeIn 0.4s ease forwards;
 }
 </style>
 </head>
 
 <body>
 
-<!-- ===== الترويسة الرسمية (من صفحة الدليل الإرشادي) ===== -->
+<!-- ===== الترويسة الرسمية ===== -->
 <header class="official-header">
-    <img src="assets/images/yemen-eagle.png" class="eagle" alt="الطير الجمهوري" onerror="this.src='https://placehold.co/80x80?text=🦅'">
+    <img src="assets/images/yemen-eagle.png" class="eagle" alt="الطير الجمهوري" onerror="this.style.display='none'">
     <div class="header-text">
         <h1>الجمهورية اليمنية</h1>
         <h2>وزارة الصحة والبيئة</h2>
@@ -215,89 +600,150 @@ header.topbar button:hover { background: #b91c1c; }
     </div>
 </header>
 
-<!-- ===== شعار البرنامج (من صفحة الدليل الإرشادي) ===== -->
+<!-- ===== شعار البرنامج ===== -->
 <div class="program-logo">
-    <img src="assets/images/moh-logo.png" alt="شعار برنامج iIMCI" onerror="this.src='https://placehold.co/60x60?text=🏥'">
+    <img src="assets/images/moh-logo.png" alt="شعار نظام iIMCI" onerror="this.style.display='none'">
     <span>نظام iIMCI التفاعلي للرعاية التكاملية</span>
 </div>
 
-<!-- Topbar -->
+<!-- ===== Topbar ===== -->
 <header class="topbar">
-    <h2>نظام IIMCI التفاعلي</h2>
-    <div>
-        <span id="facilityName"></span>
-        <button onclick="logout()">خروج</button>
+    <h2><i class="fas fa-tachometer-alt"></i> نظام IIMCI التفاعلي</h2>
+    <div class="topbar-right">
+        <span id="userBadge" style="background:rgba(234,179,84,0.2); color:#eab354; border:1px solid #eab354;">
+            <i class="fas fa-user-circle"></i> <span id="currentUserName">---</span>
+        </span>
+        <span><i class="fas fa-hospital"></i> <strong id="facilityName">---</strong></span>
+        <button onclick="logout()"><i class="fas fa-sign-out-alt"></i> خروج</button>
     </div>
 </header>
 
 <div class="layout">
 
-    <!-- Sidebar -->
+    <!-- ===== Sidebar ===== -->
     <aside class="sidebar">
+        <div class="sidebar-label">📋 استمارات التسجيل</div>
 
-        <button onclick="goTo('child-form.html')" class="side-btn">
+        <button onclick="goTo('child-form.html')" class="side-btn" id="btn-child-form">
             <i class="fa-solid fa-child"></i> 🧒 تسجيل طفل
         </button>
 
-        <button onclick="goTo('newborn-form.html')" class="side-btn">
+        <button onclick="goTo('newborn-form.html')" class="side-btn" id="btn-newborn-form">
             <i class="fa-solid fa-baby"></i> 🍼 تسجيل طفل أقل من شهرين
         </button>
 
-        <button onclick="goTo('monthly-report.html')" class="side-btn">
+        <div class="sidebar-label">📊 التقارير والمتابعة</div>
+
+        <button onclick="goTo('monthly-report.html')" class="side-btn" id="btn-monthly-report">
             <i class="fa-solid fa-chart-column"></i> 📊 التقرير الشهري
+            <span class="badge" id="totalBadge">0</span>
         </button>
 
-       <button onclick="openGuide()" class="side-btn">
-    <i class="fa-solid fa-book"></i> 📘 الدليل الإرشادي
-</button>
-
-<script>
-function openGuide() {
-    window.location.href = "guide.html";
-}
-</script>
-
-        <button onclick="goTo('drug-stock.html')" class="side-btn">
-            <i class="fa-solid fa-pills"></i> 💊 حركة المخزون الدوائي
-        </button>
-
-        <button onclick="goTo('children-list.html')" class="side-btn">
+        <button onclick="goTo('children-list.html')" class="side-btn" id="btn-children-list">
             <i class="fa-solid fa-clipboard-list"></i> 📋 سجل الأطفال
         </button>
 
+        <div class="sidebar-label">⚙️ إدارة النظام</div>
+
+        <button onclick="goTo('users-management.html')" class="side-btn" id="btn-users-management">
+            <i class="fa-solid fa-users-gear"></i> 👥 إدارة المستخدمين
+        </button>
+
+        <div class="sidebar-label">📚 المراجع</div>
+
+        <button onclick="openGuide()" class="side-btn" id="btn-guide">
+            <i class="fa-solid fa-book"></i> 📘 الدليل الإرشادي
+        </button>
+
+        <button onclick="goTo('drug-stock.html')" class="side-btn" id="btn-drug-stock">
+            <i class="fa-solid fa-pills"></i> 💊 حركة المخزون الدوائي
+        </button>
     </aside>
 
-    <!-- Dashboard Content -->
+    <!-- ===== Dashboard Content ===== -->
     <div class="dashboard-container">
 
+        <!-- بطاقة الترحيب -->
         <div class="welcome-box">
-            <h2>مرحباً بكم في لوحة التحكم لنظام IMCI التفاعلي</h2>
-            <p>
-                مركز: <strong id="facilityNameDisplay"></strong><br>
-                السنة: <strong id="currentYear"></strong>
+            <h2><i class="fas fa-hand-sparkles"></i> مرحباً بكم في لوحة التحكم لنظام IIMCI الذكي</h2>
+            
+            <div class="facility-highlight">
+                <i class="fas fa-hospital"></i>
+                <span>المركز الصحي: <strong id="facilityNameDisplay">---</strong></span>
+            </div>
+            
+            <p>📅 السنة: <strong id="currentYear">---</strong></p>
+            <p id="roleDisplay" style="margin-top:6px; color:var(--text-light); font-size:0.9rem;">
+                🔑 الدور: <strong id="currentRoleLabel" style="color:var(--primary);">---</strong>
             </p>
+        </div>
 
-            <!-- الإحصائيات داخل الترحيب -->
-            <div class="stats-inline">
-                <div class="stat-card">
-                    <i class="fa-solid fa-droplet"></i>
-                    <h3 id="diarrheaCases">0</h3>
-                    <p>حالات الإسهال</p>
-                </div>
-                <div class="stat-card">
-                    <i class="fa-solid fa-lungs"></i>
-                    <h3 id="pneumoniaCases">0</h3>
-                    <p>حالات الالتهاب الرئوي</p>
-                </div>
-                <div class="stat-card">
-                    <i class="fa-solid fa-ambulance"></i>
-                    <h3 id="referralCases">0</h3>
-                    <p>عدد الإحالات</p>
-                </div>
+        <!-- إشعار العزل -->
+        <div class="isolation-notice">
+            <i class="fas fa-shield-alt"></i>
+            <span>بيانات <span class="facility-name-inline" id="isolationFacilityName">هذا المركز</span> معزولة تماماً. لا يمكن لأي مركز آخر الاطلاع على هذه البيانات.</span>
+        </div>
+
+        <!-- بطاقات الإحصائيات -->
+        <div class="stats-grid">
+            <div class="stat-card total">
+                <i class="fa-solid fa-child"></i>
+                <h3 id="totalChildren">0</h3>
+                <p>إجمالي الأطفال (شهرين - 5 سنوات)</p>
+            </div>
+            <div class="stat-card newborn">
+                <i class="fa-solid fa-baby"></i>
+                <h3 id="totalNewborns">0</h3>
+                <p>إجمالي الرضع (أقل من شهرين)</p>
+            </div>
+            <div class="stat-card diarrhea">
+                <i class="fa-solid fa-droplet"></i>
+                <h3 id="diarrheaCases">0</h3>
+                <p>حالات الإسهال والجفاف</p>
+            </div>
+            <div class="stat-card pneumonia">
+                <i class="fa-solid fa-lungs"></i>
+                <h3 id="pneumoniaCases">0</h3>
+                <p>حالات الالتهاب الرئوي</p>
+            </div>
+            <div class="stat-card referral">
+                <i class="fa-solid fa-ambulance"></i>
+                <h3 id="referralCases">0</h3>
+                <p>عدد الإحالات</p>
             </div>
         </div>
 
-        <!-- هنا يمكن إضافة محتوى Dashboard إضافي -->
+        <!-- أزرار سريعة -->
+        <div class="quick-actions">
+            <div class="quick-action-card" onclick="goTo('child-form.html')" id="quick-child">
+                <div class="qa-icon child"><i class="fa-solid fa-child"></i></div>
+                <div class="qa-text">
+                    <h4>تسجيل طفل جديد</h4>
+                    <p>من شهرين إلى أقل من 5 سنوات</p>
+                </div>
+            </div>
+            <div class="quick-action-card" onclick="goTo('newborn-form.html')" id="quick-newborn">
+                <div class="qa-icon newborn"><i class="fa-solid fa-baby"></i></div>
+                <div class="qa-text">
+                    <h4>تسجيل رضيع جديد</h4>
+                    <p>أقل من شهرين</p>
+                </div>
+            </div>
+            <div class="quick-action-card" onclick="goTo('monthly-report.html')" id="quick-report">
+                <div class="qa-icon report"><i class="fa-solid fa-chart-pie"></i></div>
+                <div class="qa-text">
+                    <h4>التقرير الشهري</h4>
+                    <p>عرض إحصائيات المركز فقط</p>
+                </div>
+            </div>
+            <div class="quick-action-card" onclick="openGuide()" id="quick-guide">
+                <div class="qa-icon guide"><i class="fa-solid fa-book-open"></i></div>
+                <div class="qa-text">
+                    <h4>الدليل الإرشادي</h4>
+                    <p>بروتوكولات IMCI الكاملة</p>
+                </div>
+            </div>
+        </div>
 
     </div>
 </div>
@@ -309,31 +755,216 @@ function openGuide() {
 </div>
 
 <script>
-// حماية الصفحة
-if (localStorage.getItem("imci_logged_in") !== "true") {
-    window.location.href = "login.html";
+// ============================================================
+// نظام المصادقة والصلاحيات - RBAC
+// يدعم المستخدمين القدامى (imci_rayas, imci_maliky, imci_gabalin)
+// والمستخدمين الجدد (admin, dr.salah, nurse.fatima, data.ahmed, super.khaled)
+// ============================================================
+
+const ROLES = {
+    ADMIN: 'admin',
+    DOCTOR: 'doctor',
+    NURSE: 'nurse',
+    DATA_ENTRY: 'data_entry',
+    SUPERVISOR: 'supervisor'
+};
+
+const ROLE_LABELS = {
+    admin: 'مدير النظام',
+    doctor: 'طبيب',
+    nurse: 'ممرض/ة',
+    data_entry: 'مُدخل بيانات',
+    supervisor: 'مشرف صحي'
+};
+
+const PERMISSIONS = {
+    REGISTER_CHILD: [ROLES.ADMIN, ROLES.DOCTOR, ROLES.NURSE, ROLES.DATA_ENTRY],
+    REGISTER_NEWBORN: [ROLES.ADMIN, ROLES.DOCTOR, ROLES.NURSE, ROLES.DATA_ENTRY],
+    EDIT_RECORD: [ROLES.ADMIN, ROLES.DOCTOR, ROLES.NURSE],
+    DELETE_RECORD: [ROLES.ADMIN],
+    VIEW_REPORTS: [ROLES.ADMIN, ROLES.DOCTOR, ROLES.NURSE, ROLES.SUPERVISOR],
+    VIEW_CHILDREN_LIST: [ROLES.ADMIN, ROLES.DOCTOR, ROLES.NURSE, ROLES.SUPERVISOR],
+    MANAGE_DRUGS: [ROLES.ADMIN, ROLES.DOCTOR, ROLES.SUPERVISOR],
+    MANAGE_USERS: [ROLES.ADMIN],
+    MANAGE_SETTINGS: [ROLES.ADMIN],
+    EXPORT_DATA: [ROLES.ADMIN, ROLES.SUPERVISOR],
+    VIEW_ALL_FACILITIES: [ROLES.ADMIN, ROLES.SUPERVISOR]
+};
+
+// تهيئة البيانات
+function initData() {
+    if (!localStorage.getItem('imci_users')) {
+        const defaultUsers = [
+            { id: "admin_001", username: "admin", password: "admin123", fullName: "مدير النظام", role: "admin", facility: "all", isActive: true, createdAt: "2026-05-15" },
+            { id: "doc_001", username: "dr.salah", password: "doc123", fullName: "د. صلاح الأحصل", role: "doctor", facility: "المركز الصحي الرياس", isActive: true, createdAt: "2026-05-15" },
+            { id: "nurse_001", username: "nurse.fatima", password: "nurse123", fullName: "فاطمة علي - ممرضة", role: "nurse", facility: "المركز الصحي بلاد المليكي", isActive: true, createdAt: "2026-05-15" },
+            { id: "entry_001", username: "data.ahmed", password: "entry123", fullName: "أحمد محمد - مُدخل بيانات", role: "data_entry", facility: "المركز الصحي الجبلين", isActive: true, createdAt: "2026-05-15" },
+            { id: "super_001", username: "super.khaled", password: "super123", fullName: "خالد سعيد - مشرف صحي", role: "supervisor", facility: "all", isActive: true, createdAt: "2026-05-15" }
+        ];
+        localStorage.setItem('imci_users', JSON.stringify(defaultUsers));
+    }
+    if (!localStorage.getItem('imci_facilities')) {
+        localStorage.setItem('imci_facilities', JSON.stringify([
+            "المركز الصحي الرياس",
+            "المركز الصحي بلاد المليكي",
+            "المركز الصحي الجبلين",
+            "مركز الصحة الأولية - إب",
+            "مركز الصحة الأولية - تعز",
+            "مركز الصحة الأولية - صنعاء",
+            "مركز الصحة الأولية - عدن"
+        ]));
+    }
+}
+
+initData();
+
+// التحقق من الجلسة
+function checkAuth() {
+    const session = JSON.parse(localStorage.getItem('imci_session'));
+    
+    if (!session || localStorage.getItem('imci_logged_in') !== 'true') {
+        window.location.href = 'login.html';
+        return null;
+    }
+    
+    // انتهاء الجلسة بعد 8 ساعات
+    const loginTime = new Date(session.loginTime);
+    const now = new Date();
+    const hoursDiff = (now - loginTime) / (1000 * 60 * 60);
+    
+    if (hoursDiff > 8) {
+        logout();
+        alert('انتهت الجلسة. يرجى تسجيل الدخول مرة أخرى.');
+        return null;
+    }
+    
+    return session;
+}
+
+// تسجيل الخروج
+function logout() {
+    localStorage.removeItem('imci_session');
+    localStorage.setItem('imci_logged_in', 'false');
+    localStorage.removeItem('imci_facility');
+    localStorage.removeItem('imci_user');
+    window.location.href = 'login.html';
+}
+
+// التحقق من الصلاحية
+function hasPermission(permissionKey) {
+    const session = JSON.parse(localStorage.getItem('imci_session'));
+    if (!session) return false;
+    const allowedRoles = PERMISSIONS[permissionKey] || [];
+    return allowedRoles.includes(session.role);
+}
+
+// التحقق من صلاحية الوصول للمركز
+function canAccessFacility(facilityName) {
+    const session = JSON.parse(localStorage.getItem('imci_session'));
+    if (!session) return false;
+    if (session.facility === 'all') return true;
+    return session.facility === facilityName;
+}
+
+// تطبيق الصلاحيات على الواجهة
+function applyPermissions() {
+    const session = JSON.parse(localStorage.getItem('imci_session'));
+    if (!session) return;
+    
+    // 1. إخفاء "إدارة المستخدمين" إذا لم يكن Admin
+    if (!hasPermission('MANAGE_USERS')) {
+        hideElement('btn-users-management');
+    }
+    
+    // 2. إخفاء "حركة المخزون" إذا لم يكن Doctor/Admin/Supervisor
+    if (!hasPermission('MANAGE_DRUGS')) {
+        hideElement('btn-drug-stock');
+    }
+    
+    // 3. إخفاء "التقرير الشهري" عن Data Entry
+    if (!hasPermission('VIEW_REPORTS')) {
+        hideElement('btn-monthly-report');
+        hideElement('quick-report');
+    }
+    
+    // 4. إخفاء "سجل الأطفال" عن Data Entry
+    if (!hasPermission('VIEW_CHILDREN_LIST')) {
+        hideElement('btn-children-list');
+    }
+    
+    // 5. إخفاء أزرار التسجيل عن Supervisor (المشرف يرى فقط)
+    if (session.role === ROLES.SUPERVISOR) {
+        hideElement('btn-child-form');
+        hideElement('btn-newborn-form');
+        hideElement('quick-child');
+        hideElement('quick-newborn');
+    }
+}
+
+function hideElement(id) {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+}
+
+// ============================================================
+// المحتوى الأصلي - الإحصائيات والبيانات
+// ============================================================
+
+const user = checkAuth();
+if (!user) {
+    // سيتم إعادة التوجيه
+} else {
+    // عرض معلومات المستخدم
+    document.getElementById('currentUserName').textContent = user.fullName || user.username;
+    document.getElementById('currentRoleLabel').textContent = ROLE_LABELS[user.role] || user.role;
 }
 
 // بيانات المركز والسنة
 const facility = localStorage.getItem("imci_facility") || "مركز غير معروف";
 document.getElementById("facilityName").textContent = facility;
 document.getElementById("facilityNameDisplay").textContent = facility;
+document.getElementById("isolationFacilityName").textContent = facility;
 document.getElementById("currentYear").textContent = new Date().getFullYear();
 
-// دوال الانتقال والخروج
+// دوال الانتقال
 function goTo(page) { window.location.href = page; }
-function logout() {
-    localStorage.setItem("imci_logged_in","false");
-    window.location.href="login.html";
+function openGuide() { window.location.href = "guide.html"; }
+
+// تحميل الإحصائيات
+function loadStats() {
+    const children = JSON.parse(localStorage.getItem("imci_children")) || [];
+    const newborns = JSON.parse(localStorage.getItem("imci_newborn")) || [];
+    const filteredChildren = children.filter(c => c.facility === facility);
+    const filteredNewborns = newborns.filter(c => c.facility === facility);
+    
+    document.getElementById("totalChildren").textContent = filteredChildren.length;
+    document.getElementById("totalNewborns").textContent = filteredNewborns.length;
+    document.getElementById("totalBadge").textContent = filteredChildren.length + filteredNewborns.length;
+    
+    const pneumoniaCount = filteredChildren.filter(c => 
+        c.classifications?.cough?.includes("التهاب رئوي") || 
+        c.classifications?.cough?.includes("PNEUMONIA")
+    ).length;
+    document.getElementById("pneumoniaCases").textContent = pneumoniaCount;
+    
+    const diarrheaCount = filteredChildren.filter(c => 
+        c.classifications?.diarrhea?.includes("إسهال") || 
+        c.classifications?.diarrhea?.includes("DEHYDRATION")
+    ).length;
+    document.getElementById("diarrheaCases").textContent = diarrheaCount;
+    
+    const referralCount = filteredChildren.filter(c => 
+        c.treatment?.referral || c.referral === true
+    ).length;
+    document.getElementById("referralCases").textContent = referralCount;
 }
 
 // تحميل الإحصائيات
-const children = JSON.parse(localStorage.getItem("imci_children")) || [];
-const filteredChildren = children.filter(c => c.facility === facility);
+loadStats();
+setInterval(loadStats, 15000);
 
-document.getElementById("pneumoniaCases").textContent = filteredChildren.filter(c => c.classifications?.cough?.includes("التهاب رئوي")).length;
-document.getElementById("diarrheaCases").textContent = filteredChildren.filter(c => c.classifications?.diarrhea?.includes("إسهال")).length;
-document.getElementById("referralCases").textContent = filteredChildren.filter(c => c.treatment?.referral).length;
+// تطبيق الصلاحيات
+applyPermissions();
 
 // تمييز الزر النشط
 const sideButtons = document.querySelectorAll('.side-btn');
