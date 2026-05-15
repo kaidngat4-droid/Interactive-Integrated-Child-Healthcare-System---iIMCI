@@ -2,488 +2,1177 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>التقرير الشهري | iIMCI</title>
-    <link rel="stylesheet" href="monthly-report.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>التقرير الشهري | iIMCI - الرعاية التكاملية لصحة الطفل</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=DM+Sans:wght@400;500;700&family=Syne:wght@400;500;600;700;800&family=Cairo:wght@300;400;500;600;700;800;900&family=Tajawal:wght@200;300;400;500;700;800;900&family=Changa:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Almarai:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #005a8c; --primary-light: #0073b1; --primary-dark: #003d5e;
+            --success: #0d7c3e; --success-light: #e6f7ee;
+            --danger: #c1121f; --danger-light: #fef0f0;
+            --warning: #e67e14; --warning-light: #fff9f0;
+            --info: #1e6f9f; --info-light: #e8f4fd;
+            --accent: #eab354; --accent-dark: #d4a041;
+            --bg: #f4f7fb; --card-bg: #ffffff;
+            --text: #1e293b; --text-light: #475569; --text-muted: #718096;
+            --border: #e2e8f0; --border-light: #edf2f7;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+            --shadow: 0 4px 16px rgba(0,0,0,0.06), 0 2px 4px rgba(0,0,0,0.04);
+            --shadow-lg: 0 12px 40px rgba(0,0,0,0.1), 0 4px 12px rgba(0,0,0,0.05);
+            --shadow-xl: 0 20px 60px rgba(0,0,0,0.12);
+            --radius-sm: 8px; --radius: 12px; --radius-lg: 16px; --radius-xl: 20px; --radius-2xl: 24px;
+            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            --font-naskh: 'Noto Naskh Arabic', 'Scheherazade New', 'Amiri', serif;
+            --font-heading: 'Noto Naskh Arabic', 'Scheherazade New', 'Amiri', serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: linear-gradient(160deg, #e8f0f8 0%, #f0f4f8 30%, #f5f7fa 60%, #eef2f6 100%);
+            font-family: 'Tajawal', 'Cairo', sans-serif;
+            padding: 20px; color: var(--text); min-height: 100vh;
+            -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+        }
+        .report-container {
+            max-width: 1500px; margin: 0 auto; background: var(--card-bg);
+            border-radius: 40px; box-shadow: var(--shadow-xl); overflow: hidden;
+            border: 1px solid var(--border-light); transition: all 0.3s ease;
+        }
+        .official-header {
+            background: linear-gradient(160deg, #ffffff 0%, #eaf4fb 40%, #d4e8f7 100%);
+            padding: 28px 20px 20px; text-align: center; position: relative; overflow: hidden;
+            border-bottom: 3px solid var(--primary);
+        }
+        .official-header::before { content: ''; position: absolute; top: 0; right: 0; width: 280px; height: 280px; background: radial-gradient(circle, rgba(0,90,140,0.04) 0%, transparent 70%); border-radius: 50%; transform: translate(30%, -40%); }
+        .official-header::after { content: ''; position: absolute; bottom: -40%; left: -10%; width: 250px; height: 250px; background: radial-gradient(circle, rgba(234,179,84,0.04) 0%, transparent 70%); border-radius: 50%; }
+        .official-header-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+        .header-emblem { width: 85px; height: auto; margin-bottom: 14px; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.1)); transition: transform var(--transition); }
+        .header-emblem:hover { transform: scale(1.05); }
+        .official-header h1 { font-family: var(--font-naskh); font-size: 1.85rem; font-weight: 700; color: var(--primary-dark); margin: 0 0 4px; letter-spacing: -0.3px; }
+        .official-header h2 { font-family: var(--font-naskh); font-size: 1.25rem; font-weight: 700; color: var(--primary); margin: 0 0 2px; }
+        .official-header h3 { font-family: 'Tajawal', sans-serif; font-size: 0.95rem; font-weight: 500; color: var(--text-light); }
+        .official-header h4 { font-family: var(--font-naskh); font-size: 0.88rem; font-weight: 600; color: var(--primary-light); margin-top: 4px; }
+        
+        .program-logo-bar { display: flex; justify-content: center; align-items: center; gap: 15px; padding: 18px 20px; background: linear-gradient(135deg, #f8f5ee 0%, #f0ece2 100%); border-bottom: 2px solid #e2dccd; }
+        .program-logo-bar img { width: 60px; height: 60px; border-radius: 50%; background: #fff; padding: 6px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); object-fit: contain; transition: var(--transition); }
+        .program-logo-bar img:hover { transform: scale(1.1); }
+        .program-logo-bar .logo-content { text-align: right; }
+        .program-logo-bar .logo-text { font-family: var(--font-naskh); font-weight: 700; font-size: 1.3rem; color: var(--primary); letter-spacing: -0.3px; }
+        .program-logo-bar .logo-subtext { font-family: 'Tajawal', sans-serif; font-weight: 600; font-size: 0.9rem; color: var(--text-light); display: block; margin-top: 2px; }
+        
+        .system-logo-bar { background: linear-gradient(135deg, #eef3f0 0%, #e4ebe7 100%); padding: 10px 35px; display: flex; align-items: center; justify-content: center; gap: 12px; border-bottom: 2px solid #d5ddd8; }
+        .system-logo-bar img { height: 40px; width: auto; object-fit: contain; }
+        .system-logo-bar .system-logo-text { font-family: var(--font-naskh); font-size: 1.1rem; font-weight: 700; color: var(--primary-light); }
+        
+        .facility-info-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 24px; padding: 18px 20px; font-size: 0.88rem; background: #fafbfc; border-bottom: 1px solid var(--border); }
+        .facility-info-grid span { display: inline-flex; align-items: center; gap: 6px; background: var(--card-bg); padding: 8px 16px; border-radius: 20px; border: 1px solid var(--border); box-shadow: var(--shadow-sm); }
+        .facility-info-grid i { color: var(--primary); font-size: 0.95rem; }
+        .facility-info-grid input, .facility-info-grid select { border: none; background: transparent; font-family: inherit; font-size: 0.85rem; font-weight: 500; color: var(--text); padding: 2px 6px; max-width: 130px; outline: none; border-bottom: 1px dashed var(--border); transition: var(--transition); }
+        .facility-info-grid input:focus, .facility-info-grid select:focus { border-bottom-color: var(--primary); background: rgba(255,255,255,0.9); }
+        .facility-info-grid .facility-label { font-family: var(--font-naskh); font-weight: 700; color: var(--primary-dark); }
+        
+        .report-title-section { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); color: #fff; padding: 18px 28px; text-align: center; border-bottom: 4px solid var(--accent); position: relative; overflow: hidden; }
+        .report-title-section::before { content: ''; position: absolute; top: -50%; right: -10%; width: 250px; height: 250px; background: rgba(255,255,255,0.03); border-radius: 50%; }
+        .report-title-section h2 { font-family: var(--font-naskh); font-size: 1.45rem; font-weight: 700; margin: 0; position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; gap: 12px; }
+        .report-title-section .subtitle { font-family: 'Tajawal', sans-serif; font-size: 0.88rem; font-weight: 400; margin-top: 6px; opacity: 0.9; position: relative; z-index: 1; }
+        
+        .info-note { background: linear-gradient(135deg, var(--info-light) 0%, #f0f7ff 100%); padding: 12px 24px; margin: 20px 30px; border-radius: 60px; text-align: center; color: var(--info); font-size: 0.9rem; font-weight: 600; border-right: 4px solid var(--info); display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
+        .info-note i { font-size: 1.1rem; }
+        .live-indicator { display: inline-flex; align-items: center; gap: 6px; background: rgba(46,125,50,0.15); padding: 4px 12px; border-radius: 50px; color: var(--success); font-size: 0.8rem; }
+        .live-indicator::before { content: ''; width: 8px; height: 8px; background: var(--success); border-radius: 50%; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.2); } }
+        
+        .main-content { padding: 24px; background: linear-gradient(180deg, #fafcfd 0%, #ffffff 100%); }
+        
+        .card { background: var(--card-bg); margin: 20px 0; border-radius: var(--radius-xl); box-shadow: var(--shadow); border: 1px solid var(--border); transition: all 0.3s ease; animation: fadeIn 0.5s ease forwards; }
+        .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .card-title { font-family: var(--font-naskh); font-weight: 700; font-size: 1.1rem; background: linear-gradient(135deg, #e8f0ed 0%, #dce8e4 100%); padding: 14px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; color: var(--primary-dark); border-right: 5px solid var(--accent); }
+        .card-title i { color: var(--accent-dark); font-size: 1.1rem; width: 28px; text-align: center; }
+        .card-body { padding: 20px; }
+        .card h2 { font-family: var(--font-naskh); font-size: 1.15rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; border-right: 4px solid var(--accent); padding-right: 14px; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+        .field { margin-bottom: 6px; }
+        .field label { display: block; font-weight: 600; font-size: 0.85rem; color: var(--text); margin-bottom: 5px; }
+        .field input, .field select, .field textarea { width: 100%; padding: 10px 14px; border: 2px solid var(--border); border-radius: var(--radius); font-family: 'Tajawal', 'Cairo', sans-serif; font-size: 0.9rem; color: var(--text); background: #fafbfc; transition: var(--transition); outline: none; }
+        .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--primary); background: #fff; box-shadow: 0 0 0 4px rgba(0,90,140,0.08); }
+        .field input[type="number"] { text-align: center; font-weight: 700; font-family: 'IBM Plex Sans Arabic', 'Cairo', sans-serif; }
+        .field input[readonly] { background: #f0f4f8; cursor: default; font-weight: 600; }
+        
+        .table-wrapper { overflow-x: auto; border-radius: var(--radius-lg); border: 1px solid var(--border); box-shadow: var(--shadow-sm); }
+        table { width: 100%; border-collapse: collapse; min-width: 700px; font-size: 0.82rem; }
+        thead th { background: linear-gradient(180deg, var(--primary-dark) 0%, var(--primary) 100%); color: #fff; padding: 14px 10px; font-family: var(--font-naskh); font-weight: 700; text-align: center; font-size: 0.82rem; letter-spacing: -0.2px; border-bottom: 3px solid var(--accent); white-space: nowrap; }
+        thead th:first-child { border-radius: 0 var(--radius-lg) 0 0; min-width: 200px; }
+        thead th:last-child { border-radius: var(--radius-lg) 0 0 0; background: linear-gradient(180deg, var(--accent-dark) 0%, var(--accent) 100%); color: var(--primary-dark); }
+        tbody td { padding: 12px 10px; text-align: center; border-bottom: 1px solid var(--border-light); font-weight: 500; font-size: 0.84rem; transition: background var(--transition); }
+        tbody tr:hover td { background: #f8fafb; }
+        tbody tr:last-child td { border-bottom: none; }
+        tbody td:first-child { text-align: right; font-weight: 600; color: var(--text); padding-right: 16px; }
+        .num { font-weight: 800; color: var(--primary-dark); font-family: 'IBM Plex Sans Arabic', 'Cairo', sans-serif; font-size: 0.9rem !important; }
+        .highlight-row td { background: #fffde7 !important; }
+        .highlight-row td:last-child { background: #fff9c4 !important; font-weight: 800; }
+        
+        .class-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; }
+        .class-item { padding: 12px 14px; border-radius: var(--radius-lg); font-weight: 600; display: flex; justify-content: space-between; align-items: center; border-right: 4px solid; transition: var(--transition); font-size: 0.84rem; cursor: default; font-family: var(--font-naskh); }
+        .class-item:hover { transform: scale(1.02); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .class-item span { background: white; padding: 4px 12px; border-radius: 20px; font-weight: 800; font-size: 0.88rem; min-width: 36px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        
+        .red { border-right-color: var(--danger); background: var(--danger-light); color: var(--danger); }
+        .orange { border-right-color: var(--warning); background: var(--warning-light); color: var(--warning); }
+        .green { border-right-color: var(--success); background: var(--success-light); color: var(--success); }
+        .yellow { border-right-color: #f9a825; background: #fff8e1; color: #f57f17; }
+        .blue-dark { border-right-color: var(--info); background: var(--info-light); color: var(--info); }
+        .blue-light { border-right-color: #42a5f5; background: #e1f5fe; color: #0277bd; }
+        .green-light { border-right-color: #66bb6a; background: #e8f5e9; color: #2e7d32; }
+        .purple-dark { border-right-color: #6a1b9a; background: #f3e5f5; color: #6a1b9a; }
+        .purple-light { border-right-color: #ab47bc; background: #fce4ec; color: #ad1457; }
+        .teal { border-right-color: #00897b; background: #e0f2f1; color: #00695c; }
+        .orange-dark { border-right-color: #e65100; background: #fff3e0; color: #e65100; }
+        .gray { border-right-color: #757575; background: #f5f5f5; color: #424242; }
+        .dark-red { border-right-color: #b71c1c; background: #ffebee; color: #b71c1c; }
+        
+        .visit-types { display: flex; gap: 40px; background: linear-gradient(135deg, #eef3f0 0%, #e8f0ec 100%); padding: 18px 30px; border-radius: 60px; font-size: 1.15rem; font-weight: 700; justify-content: center; flex-wrap: wrap; }
+        .visit-types span { display: inline-flex; align-items: center; gap: 10px; }
+        .visit-types span strong { color: var(--primary-light); font-size: 1.5rem; margin-right: 6px; background: white; padding: 2px 14px; border-radius: 50px; }
+        
+        .report-meta { background: linear-gradient(135deg, #e8f0ed 0%, #ddece6 100%); padding: 20px 24px; border-radius: var(--radius-lg); }
+        .report-meta h3 { color: var(--primary-light); margin-bottom: 14px; font-size: 1.15rem; display: flex; align-items: center; gap: 10px; font-family: var(--font-naskh); }
+        .report-meta p { font-size: 0.95rem; margin: 8px 0; color: var(--text); }
+        .report-meta p strong { color: var(--primary); }
+        
+        .actions-bar { background: linear-gradient(135deg, #f4f2ec 0%, #ede9e0 100%); padding: 22px 30px; display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; border-top: 2px solid #dfd6c2; }
+        .btn { border: none; padding: 13px 28px; font-size: 0.95rem; font-weight: 700; border-radius: 60px; display: inline-flex; align-items: center; gap: 10px; cursor: pointer; transition: all 0.25s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.1); font-family: var(--font-naskh); position: relative; overflow: hidden; }
+        .btn::after { content: ''; position: absolute; top: 50%; left: 50%; width: 0; height: 0; background: rgba(255,255,255,0.2); border-radius: 50%; transform: translate(-50%, -50%); transition: width 0.6s, height 0.6s; }
+        .btn:hover::after { width: 300px; height: 300px; }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+        .btn-print { background: linear-gradient(135deg, #2c3e50, #1e2f3e); color: white; }
+        .btn-back { background: linear-gradient(135deg, var(--primary-light), var(--primary)); color: white; }
+        .btn-export { background: linear-gradient(135deg, var(--info), #1565c0); color: white; }
+        .btn-refresh { background: linear-gradient(135deg, var(--success), #1b5e20); color: white; }
+        .btn-clear { background: linear-gradient(135deg, var(--danger), #b71c1c); color: white; }
+        .btn i { font-size: 1rem; position: relative; z-index: 1; }
+        .btn span { position: relative; z-index: 1; }
+        
+        .debug-panel { background: #1e293b; color: #e2e8f0; padding: 16px 20px; border-radius: var(--radius-lg); margin: 20px 30px; font-family: 'IBM Plex Sans Arabic', monospace; font-size: 0.78rem; direction: ltr; text-align: left; max-height: 300px; overflow-y: auto; }
+        .debug-panel h4 { color: #eab354; margin-bottom: 8px; font-family: var(--font-naskh); direction: rtl; text-align: right; }
+        .debug-panel pre { white-space: pre-wrap; word-break: break-word; margin: 0; }
+        .debug-toggle { background: var(--primary); color: white; border: none; padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; cursor: pointer; margin: 0 30px 10px; font-family: var(--font-naskh); }
+        
+        footer { font-size: 0.82rem; text-align: center; padding: 20px 24px; color: var(--text-muted); border-top: 1px solid var(--border); background: #faf9f7; font-weight: 500; }
+        footer i { color: var(--accent-dark); margin: 0 4px; }
+        
+        @keyframes slideDown { from { transform: translateX(-50%) translateY(-100%); opacity: 0; } to { transform: translateX(-50%) translateY(0); opacity: 1; } }
+        @keyframes slideUp { from { transform: translateX(-50%) translateY(0); opacity: 1; } to { transform: translateX(-50%) translateY(-100%); opacity: 0; } }
+        .notification { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); padding: 14px 28px; border-radius: 60px; font-weight: 700; z-index: 10000; box-shadow: 0 8px 25px rgba(0,0,0,0.2); animation: slideDown 0.3s ease; font-family: 'Cairo', sans-serif; text-align: center; max-width: 90%; }
+        .notification-success { background: var(--success); color: white; }
+        .notification-error { background: var(--danger); color: white; }
+        .notification-info { background: var(--info); color: white; }
+        
+        @media print {
+            body { background: white; padding: 0; margin: 0; font-size: 12pt; }
+            .actions-bar, .btn, .info-note, .debug-panel, .debug-toggle { display: none !important; }
+            .card { break-inside: avoid; margin: 10px 0; box-shadow: none; border: 1px solid #ddd; }
+            .report-container { box-shadow: none; border-radius: 0; }
+            .official-header { padding: 15px; }
+            .header-emblem { width: 60px; }
+            .official-header h1 { font-size: 1.4rem; }
+            thead th { background: #333 !important; color: #fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        }
+        @media (max-width: 768px) {
+            body { padding: 8px; }
+            .official-header { padding: 15px; }
+            .header-emblem { width: 55px; }
+            .official-header h1 { font-size: 1.3rem; }
+            .facility-info-grid { gap: 8px 12px; padding: 12px 10px; }
+            .info-note { margin: 15px; padding: 10px 15px; font-size: 0.78rem; }
+            .main-content { padding: 12px; }
+            .card { margin: 12px 0; }
+            .class-grid { grid-template-columns: 1fr; }
+            .actions-bar { flex-direction: column; padding: 15px; }
+            .btn { width: 100%; justify-content: center; font-size: 0.85rem; padding: 11px 20px; }
+            th, td { padding: 8px 6px; font-size: 0.78rem; }
+            .debug-panel { margin: 10px 15px; }
+        }
+    </style>
 </head>
 <body>
 
-<!-- الترويسة الرسمية -->
-<header class="official-header">
-    <img src="assets/images/yemen-eagle.png" class="eagle">
-
-    <div class="header-text">
-        <h1>الجمهورية اليمنية</h1>
-        <h2>وزارة الصحة والبيئة</h2>
-        <h3>قطاع الرعاية الصحية الأولية</h3>
-        <h4>إدارة صحة الطفل</h4>
-    </div>
-</header>
-
-<section class="card">
-    <div class="card-title">🏥 بيانات المرفق</div>
-
-    <div class="grid">
-
-        <!-- المحافظة - إدخال يدوي -->
-        <div class="field small">
-            <label>المحافظة</label>
-            <input type="text" name="governorate" placeholder="أدخل المحافظة" required>
+<div class="report-container" id="reportContainer">
+    
+    <header class="official-header">
+        <div class="official-header-content">
+            <img src="assets/images/yemen-eagle.png" class="header-emblem" alt="الشعار الرسمي" onerror="this.style.display='none'">
+            <h1>الجمهورية اليمنية</h1>
+            <h2>وزارة الصحة والبيئة</h2>
+            <h3>قطاع الرعاية الصحية الأولية – إدارة صحة الطفل</h3>
+            <h4>نظام iIMCI - الرعاية التكاملية التفاعلي</h4>
         </div>
+    </header>
 
-        <!-- المديرية - إدخال يدوي -->
-        <div class="field small">
-            <label>المديرية</label>
-            <input type="text" name="district" placeholder="أدخل المديرية" required>
-        </div>
-
-        <!-- اسم المرفق الصحي - إدخال يدوي -->
-        <div class="field small">
-            <label>اسم المرفق الصحي</label>
-            <input type="text" name="facility_name" placeholder="أدخل اسم المرفق الصحي">
-        </div>
-
-        <!-- العامل الصحي -->
-        <div class="field small">
-            <label>العامل الصحي</label>
-            <input type="text" name="health_worker">
-        </div>
-
-        <!-- السنة -->
-        <div class="field small">
-            <label>السنة</label>
-            <input type="number" name="report_year">
-        </div>
-
-        <!-- الشهر -->
-        <div class="field small">
-            <label>الشهر</label>
-            <select name="report_month">
-                <option value="">اختر الشهر</option>
-                <option value="1">يناير</option>
-                <option value="2">فبراير</option>
-                <option value="3">مارس</option>
-                <option value="4">أبريل</option>
-                <option value="5">مايو</option>
-                <option value="6">يونيو</option>
-                <option value="7">يوليو</option>
-                <option value="8">أغسطس</option>
-                <option value="9">سبتمبر</option>
-                <option value="10">أكتوبر</option>
-                <option value="11">نوفمبر</option>
-                <option value="12">ديسمبر</option>
-            </select>
-        </div>
-
-    </div>
-</section>
-<!-- عدد الحالات -->
-<section class="card">
-    <h2>عدد الحالات حسب النوع</h2>
-
-    <table>
-        <tr>
-            <th>ذكر</th>
-            <th>أنثى</th>
-        </tr>
-        <tr>
-            <td id="maleCount">0</td>
-            <td id="femaleCount">0</td>
-        </tr>
-    </table>
-</section>
-
-<!-- العمر -->
-<section class="card">
-    <h2>عدد الحالات حسب العمر</h2>
-
-    <table>
-        <tr>
-            <th>أقل من شهرين</th>
-            <th>من شهرين إلى أقل من سنة</th>
-            <th>من سنة إلى أقل من سنتين</th>
-            <th>من سنتين إلى أقل من خمس سنوات</th>
-        </tr>
-        <tr>
-            <td id="age1">0</td>
-            <td id="age2">0</td>
-            <td id="age3">0</td>
-            <td id="age4">0</td>
-        </tr>
-    </table>
-</section>
-
-<!-- نوع الزيارة -->
-<section class="card">
-    <h2>نوع الزيارة</h2>
-
-    <div class="visit-types">
-        <span>أولية: <strong id="firstVisit">0</strong></span>
-        <span>متابعة: <strong id="followVisit">0</strong></span>
-    </div>
-</section>
-<section class="card">
-    <h2>🧒 تصنيف الأطفال (من شهرين إلى أقل من خمس سنوات)</h2>
-
-    <div class="classification-grid">
-
-        <!-- سعال / تنفس -->
-        <div class="class-box red">🚨 مرض شديد جدًا <span>0</span></div>
-        <div class="class-box red">🫁 التهاب رئوي شديد <span>0</span></div>
-        <div class="class-box orange">🫁 التهاب رئوي <span>0</span></div>
-        <div class="class-box green">✅ لا يوجد سعال <span>0</span></div>
-
-        <!-- إسهال -->
-        <div class="class-box red">💧 إسهال مع جفاف شديد <span>0</span></div>
-        <div class="class-box orange">💧 إسهال مع جفاف <span>0</span></div>
-        <div class="class-box green">💧 لا يوجد جفاف <span>0</span></div>
-
-        <!-- الحلق -->
-        <div class="class-box orange">🗣️ التهاب الحلق السبحي <span>0</span></div>
-        <div class="class-box green">🗣️ التهاب الحلق غير السبحي <span>0</span></div>
-        <div class="class-box green">🗣️ لا يوجد مشكلة بالحلق <span>0</span></div>
-
-        <!-- الأذن -->
-        <div class="class-box orange">👂 التهاب حاد بالأذن <span>0</span></div>
-        <div class="class-box yellow">👂 التهاب مزمن بالأذن <span>0</span></div>
-        <div class="class-box green">👂 لا توجد مشكلة بالأذن <span>0</span></div>
-
-        <!-- الحمى -->
-        <div class="class-box red">🔥 مرض حمى شديد جدًا <span>0</span></div>
-        <div class="class-box red">🦟 ملاريا <span>0</span></div>
-        <div class="class-box orange">🔥 حمى بدون سبب واضح <span>0</span></div>
-
-        <!-- التغذية -->
-        <div class="class-box red">🥗 سوء تغذية شديد <span>0</span></div>
-        <div class="class-box orange">⚖️ نقص الوزن <span>0</span></div>
-        <div class="class-box yellow">🩸 فقر الدم <span>0</span></div>
-
-    </div>
-</section>
-<section class="card">
-    <h2>📏 محيط منتصف الذراع (MUAC)</h2>
-
-    <div class="muac-grid">
-
-        <div class="muac-box red">
-            🚨 أقل من 11.5 سم
-            <span>0</span>
-        </div>
-
-        <div class="muac-box orange">
-            ⚠️ من 11.5 إلى 12.5 سم
-            <span>0</span>
-        </div>
-
-        <div class="muac-box green">
-            ✅ أكبر من 12.5 سم
-            <span>0</span>
-        </div>
-
-    </div>
-</section>
-<section class="card">
-    <h2>⚖️ تقييم نقص الوزن وفقر الدم ومشاكل التغذية</h2>
-
-    <div class="nutrition-grid">
-
-        <div class="nutrition-box red">
-            🚨 نقص في الوزن شديد
-            <span>0</span>
-        </div>
-
-        <div class="nutrition-box dark-red">
-            🩸 فقر دم شديد (Hb < 7 g/dl)
-            <span>0</span>
-        </div>
-
-        <div class="nutrition-box orange">
-            🩸 فقر دم
-            <span>0</span>
-        </div>
-
-        <div class="nutrition-box yellow">
-            ⚠️ مشاكل التغذية
-            <span>0</span>
-        </div>
-
-    </div>
-</section>
-<section class="card">
-    <h2>🍼 تصنيف الأطفال من أقل من شهرين</h2>
-
-    <div class="infant-grid">
-
-        <div class="infant-box red">
-            🚨 احتمال الإصابة بالتهاب بكتيري خطير
-            <span>0</span>
-        </div>
-
-        <div class="infant-box orange">
-            🩺 التهاب بكتيري موضعي
-            <span>0</span>
-        </div>
-
-        <div class="infant-box yellow">
-            🌕 صفار واضح (يرقان)
-            <span>0</span>
-        </div>
-
-        <div class="infant-box blue-dark">
-            💧 جفاف شديد
-            <span>0</span>
-        </div>
-
-        <div class="infant-box blue-light">
-            💦 بعض الجفاف
-            <span>0</span>
-        </div>
-
-        <div class="infant-box green-light">
-            ✅ لا يوجد جفاف
-            <span>0</span>
-        </div>
-
-        <div class="infant-box purple-dark">
-            🤢 إسهال مستمر شديد
-            <span>0</span>
-        </div>
-
-        <div class="infant-box purple-light">
-            🩸 دم في البراز
-            <span>0</span>
-        </div>
-
-        <div class="infant-box teal">
-            🍎 مشكلة في التغذية
-            <span>0</span>
-        </div>
-
-        <div class="infant-box orange-dark">
-            ⚖️ نقص وزن
-            <span>0</span>
-        </div>
-
-        <div class="infant-box gray">
-            ✔️ لا توجد مشكلة في التغذية
-            <span>0</span>
-        </div>
-
-    </div>
-</section>
-<!-- ========================= -->
-<!-- مشاكل أخرى -->
-<!-- ========================= -->
-<section class="card">
-    <h2>📝 مشاكل أخرى</h2>
-
-    <div class="other-issues">
-        <label for="otherIssuesCount">عدد الحالات:</label>
-        <input type="number" id="otherIssuesCount" min="0" placeholder="0">
-    </div>
-</section>
-
-<!-- ========================= -->
-<!-- إحالة فورية -->
-<!-- ========================= -->
-<section class="card">
-    <h2>🚑 إحالة فورية</h2>
-
-    <div class="urgent-referral">
-        <label for="referralWithMed">مع جرعة علاج:</label>
-        <input type="number" id="referralWithMed" min="0" placeholder="0">
-
-        <label for="referralWithoutMed">بدون جرعة علاج:</label>
-        <input type="number" id="referralWithoutMed" min="0" placeholder="0">
-    </div>
-</section>
-<!-- ========================= -->
-<!-- قسم المضادات الحيوية -->
-<!-- ========================= -->
-<section class="card">
-    <div class="card-title">💊 المضادات الحيوية</div>
-
-    <div class="grid">
-        <div class="field small">
-            <label>أموكسيسيلين</label>
-            <input type="number" name="amoxicillin" placeholder="عدد الحالات">
-        </div>
-
-        <div class="field small">
-            <label>كوتريموكسازول</label>
-            <input type="number" name="cotrimoxazole" placeholder="عدد الحالات">
-        </div>
-
-        <div class="field small">
-            <label>بنسلين V</label>
-            <input type="number" name="penicillin_v" placeholder="عدد الحالات">
-        </div>
-
-        <div class="field small">
-            <label>مضاد حيوي آخر</label>
-            <input type="number" name="other_antibiotic" placeholder="عدد الحالات">
+    <div class="program-logo-bar">
+        <img src="assets/images/moh-logo.png" alt="شعار وزارة الصحة" onerror="this.style.display='none'">
+        <div class="logo-content">
+            <span class="logo-text">نظام IMCI التفاعلي</span>
+            <span class="logo-subtext">الرعاية التكاملية لصحة الطفل - iIMCI</span>
         </div>
     </div>
-</section>
-<!-- ========================= -->
-<!-- قسم علاج الملاريا -->
-<!-- ========================= -->
-<section class="card">
-    <div class="card-title">🦟 علاج الملاريا</div>
 
-    <div class="grid">
-        <div class="field small">
-            <label>أرتسونات – سلفادوكسين / بريميثامين</label>
-            <input type="number" name="artesunate_sulfadoxine" placeholder="عدد الحالات">
-        </div>
-
-        <div class="field small">
-            <label>أرتيمثر + لوميفانترین</label>
-            <input type="number" name="artemether_lumefantrine" placeholder="عدد الحالات">
-        </div>
+    <div class="system-logo-bar">
+        <img src="assets/images/imci-logo.png" alt="شعار نظام IMCI" onerror="this.style.display='none'">
+        <span class="system-logo-text">📊 التقرير الشهري - الإدارة المتكاملة لصحة الطفل</span>
     </div>
-</section>
-<!-- ========================= -->
-<!-- قسم خطة الأرواء -->
-<!-- ========================= -->
-<section class="card">
-    <div class="card-title">📋 خطة الأرواء</div>
 
-    <div class="grid">
-        <div class="field small">
-            <label>أ</label>
-            <input type="number" name="plan_a" placeholder="عدد الحالات">
-        </div>
-
-        <div class="field small">
-            <label>ب</label>
-            <input type="number" name="plan_b" placeholder="عدد الحالات">
-        </div>
-
-        <div class="field small">
-            <label>ج</label>
-            <input type="number" name="plan_c" placeholder="عدد الحالات">
-        </div>
+    <div class="report-title-section">
+        <h2><i class="fas fa-file-medical-alt"></i> تقرير الرعاية التكاملية لصحة الطفل</h2>
+        <div class="subtitle">IMCI Monthly Report - حسب بروتوكولات منظمة الصحة العالمية (WHO)</div>
     </div>
-</section>
-<!-- ========================= -->
-<!-- قسم متابعة الحالات -->
-<!-- ========================= -->
-<section class="card">
-    <div class="card-title">🔄 متابعة الحالات</div>
 
-    <div class="grid">
+    <div class="facility-info-grid">
+        <span><i class="fas fa-map-marker-alt"></i> <span class="facility-label">المحافظة:</span> <input type="text" id="gov" placeholder="يتم التحميل..." readonly></span>
+        <span><i class="fas fa-city"></i> <span class="facility-label">المديرية:</span> <input type="text" id="district" placeholder="يتم التحميل..." readonly></span>
+        <span><i class="fas fa-hospital"></i> <span class="facility-label">المرفق:</span> <input type="text" id="facility" placeholder="يتم التحميل..." readonly></span>
+        <span><i class="fas fa-user-md"></i> <span class="facility-label">العامل الصحي:</span> <input type="text" id="worker" placeholder="يتم التحميل..." readonly></span>
+        <span><i class="fas fa-calendar-alt"></i> <span class="facility-label">السنة:</span> <input type="text" id="year" placeholder="----" readonly style="max-width:80px;"></span>
+        <span><i class="fas fa-calendar"></i> <span class="facility-label">الشهر:</span> <input type="text" id="month" placeholder="--" readonly style="max-width:60px;"></span>
+    </div>
 
-        <!-- عدد حالات تحسنت -->
-        <div class="field small">
-            <label>✅ تحسنت</label>
-            <input type="number" name="followup_improved" min="0" placeholder="عدد الحالات">
-        </div>
+    <div class="info-note">
+        <i class="fas fa-sync-alt fa-fw"></i>
+        <span>يتم تحديثه تلقائياً كل 5 ثوانٍ من بيانات استمارات تسجيل الأطفال</span>
+        <span class="live-indicator">مباشر</span>
+    </div>
 
-        <!-- عدد حالات لم تتحسن -->
-        <div class="field small">
-            <label>❌ لم تتحسن</label>
-            <input type="number" name="followup_not_improved" min="0" placeholder="عدد الحالات">
-        </div>
+    <div class="main-content">
 
-        <!-- عدد حالات ساءت -->
-        <div class="field small">
-            <label>⚠️ ساءت</label>
-            <input type="number" name="followup_worse" min="0" placeholder="عدد الحالات">
-        </div>
+        <section class="card">
+            <div class="card-title"><i class="fas fa-chart-bar"></i> إحصائيات أساسية</div>
+            <div class="card-body">
+                <div class="table-wrapper">
+                    <table>
+                        <thead><tr><th>البيان</th><th>أقل من شهرين</th><th>شهرين - أقل من سنة</th><th>سنة - أقل من سنتين</th><th>سنتين - أقل من 5 سنوات</th><th>الإجمالي</th></tr></thead>
+                        <tbody>
+                            <tr><td>👥 إجمالي الأطفال المترددين</td><td class="num" id="t1">0</td><td class="num" id="t2">0</td><td class="num" id="t3">0</td><td class="num" id="t4">0</td><td class="num" id="tAll">0</td></tr>
+                            <tr><td>👦 ذكور</td><td class="num" id="m1">0</td><td class="num" id="m2">0</td><td class="num" id="m3">0</td><td class="num" id="m4">0</td><td class="num" id="mAll">0</td></tr>
+                            <tr><td>👧 إناث</td><td class="num" id="f1">0</td><td class="num" id="f2">0</td><td class="num" id="f3">0</td><td class="num" id="f4">0</td><td class="num" id="fAll">0</td></tr>
+                            <tr class="highlight-row"><td>🩺 زيارة أولى</td><td class="num" id="v11">0</td><td class="num" id="v12">0</td><td class="num" id="v13">0</td><td class="num" id="v14">0</td><td class="num" id="v1All">0</td></tr>
+                            <tr class="highlight-row"><td>🔄 زيارة متابعة</td><td class="num" id="v21">0</td><td class="num" id="v22">0</td><td class="num" id="v23">0</td><td class="num" id="v24">0</td><td class="num" id="v2All">0</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
 
-        <!-- عدد حالات توفيت -->
-        <div class="field small">
-            <label>🕯️ توفيت</label>
-            <input type="number" name="followup_deceased" min="0" placeholder="عدد الحالات">
-        </div>
+        <section class="card">
+            <div class="card-title"><i class="fas fa-child"></i> تصنيف الأطفال (من شهرين إلى أقل من 5 سنوات)</div>
+            <div class="card-body">
+                <div class="class-grid">
+                    <div class="class-item red">🚨 مرض شديد جداً<span id="c1">0</span></div>
+                    <div class="class-item red">🫁 التهاب رئوي شديد<span id="c2">0</span></div>
+                    <div class="class-item orange">🫁 التهاب رئوي<span id="c3">0</span></div>
+                    <div class="class-item green">✅ لا يوجد ذات رئة/سعال<span id="c4">0</span></div>
+                    <div class="class-item red">💧 جفاف شديد<span id="c5">0</span></div>
+                    <div class="class-item orange">💧 بعض الجفاف<span id="c6">0</span></div>
+                    <div class="class-item green">💧 لا يوجد جفاف<span id="c7">0</span></div>
+                    <div class="class-item orange">🩸 دوسنتاريا (إسهال دموي)<span id="c8">0</span></div>
+                    <div class="class-item yellow">🔄 إسهال مزمن (≥14 يوم)<span id="c9">0</span></div>
+                    <div class="class-item orange">🗣️ التهاب حلق بكتيري (سبحي)<span id="c10">0</span></div>
+                    <div class="class-item green">🗣️ التهاب حلق فيروسي<span id="c11">0</span></div>
+                    <div class="class-item orange">👂 التهاب أذن حاد<span id="c12">0</span></div>
+                    <div class="class-item yellow">👂 التهاب أذن مزمن<span id="c13">0</span></div>
+                    <div class="class-item red">🔥 مرض حمى شديد جداً<span id="c14">0</span></div>
+                    <div class="class-item red">🦟 ملاريا<span id="c15">0</span></div>
+                    <div class="class-item orange">🔥 حمى غير محددة السبب<span id="c16">0</span></div>
+                    <div class="class-item red">🥗 سوء تغذية شديد<span id="c17">0</span></div>
+                    <div class="class-item orange">⚖️ وزن منخفض للعمر<span id="c18">0</span></div>
+                    <div class="class-item yellow">🩸 أنيميا (فقر دم)<span id="c19">0</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-title"><i class="fas fa-clipboard-list"></i> ملخص التصنيفات</div>
+            <div class="card-body" id="summaryContainer">
+                <p style="text-align:center;color:var(--text-muted);">يتم تحميل الملخص من بيانات الأطفال المسجلين...</p>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-title"><i class="fas fa-baby"></i> تصنيف الرضع (أقل من شهرين)</div>
+            <div class="card-body">
+                <div class="class-grid">
+                    <div class="class-item red">🚨 عدوى بكتيرية خطيرة محتملة<span id="n1">0</span></div>
+                    <div class="class-item orange">🩺 عدوى بكتيرية موضعية<span id="n2">0</span></div>
+                    <div class="class-item yellow">🌕 يرقان (صفار)<span id="n3">0</span></div>
+                    <div class="class-item blue-dark">💧 جفاف شديد<span id="n4">0</span></div>
+                    <div class="class-item blue-light">💦 بعض الجفاف<span id="n5">0</span></div>
+                    <div class="class-item green-light">✅ لا يوجد جفاف<span id="n6">0</span></div>
+                    <div class="class-item purple-dark">🤢 إسهال مستمر شديد<span id="n7">0</span></div>
+                    <div class="class-item purple-light">🩸 دم في البراز<span id="n8">0</span></div>
+                    <div class="class-item teal">🍎 مشكلة في التغذية<span id="n9">0</span></div>
+                    <div class="class-item orange-dark">⚖️ نقص وزن<span id="n10">0</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-title"><i class="fas fa-weight-scale"></i> التغذية والأنيميا وMUAC</div>
+            <div class="card-body">
+                <div class="class-grid">
+                    <div class="class-item red">🔴 MUAC أقل من 11.5 سم<span id="mu1">0</span></div>
+                    <div class="class-item orange">🟠 MUAC بين 11.5 - 12.5 سم<span id="mu2">0</span></div>
+                    <div class="class-item green">🟢 MUAC أكبر من 12.5 سم<span id="mu3">0</span></div>
+                    <div class="class-item dark-red">🩸 فقر دم شديد<span id="sa1">0</span></div>
+                    <div class="class-item orange">🩸 فقر دم (أنيميا)<span id="ma1">0</span></div>
+                    <div class="class-item yellow">⚠️ مشاكل تغذية<span id="fp1">0</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-title"><i class="fas fa-pills"></i> الأدوية والمضادات الحيوية</div>
+            <div class="card-body">
+                <div class="grid">
+                    <div class="field"><label>💊 أموكسيسيلين</label><input type="number" id="d1" value="0" readonly></div>
+                    <div class="field"><label>💊 كوتريموكسازول</label><input type="number" id="d2" value="0" readonly></div>
+                    <div class="field"><label>💊 سيبروفلوكساسين</label><input type="number" id="d3" value="0" readonly></div>
+                    <div class="field"><label>💊 بنزاثين بنيسيلين</label><input type="number" id="d4" value="0" readonly></div>
+                    <div class="field"><label>💊 كلورامفينيكول</label><input type="number" id="d5" value="0" readonly></div>
+                    <div class="field"><label>💊 أمبيسيلين+جنتاميسين</label><input type="number" id="d6" value="0" readonly></div>
+                    <div class="field"><label>🦟 أرتيمثر+لوميفانترين</label><input type="number" id="d7" value="0" readonly></div>
+                    <div class="field"><label>🔹 زنك</label><input type="number" id="d8" value="0" readonly></div>
+                    <div class="field"><label>💧 محلول إرواء ORS</label><input type="number" id="d9" value="0" readonly></div>
+                    <div class="field"><label>🔸 فيتامين أ</label><input type="number" id="d10" value="0" readonly></div>
+                    <div class="field"><label>🔹 باراسيتامول</label><input type="number" id="d11" value="0" readonly></div>
+                    <div class="field"><label>💨 سالبوتامول</label><input type="number" id="d12" value="0" readonly></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-title"><i class="fas fa-tint"></i> خطة الإرواء والإحالة</div>
+            <div class="card-body">
+                <div class="grid-3">
+                    <div class="field"><label>✅ خطة أ (منزلي)</label><input type="number" id="planA" value="0" readonly></div>
+                    <div class="field"><label>⚠️ خطة ب (ORS عيادة)</label><input type="number" id="planB" value="0" readonly></div>
+                    <div class="field"><label>🚨 خطة ج (وريدي)</label><input type="number" id="planC" value="0" readonly></div>
+                    <div class="field"><label>🚑 إحالة مع علاج</label><input type="number" id="refWith" value="0" readonly></div>
+                    <div class="field"><label>🚑 إحالة بدون علاج</label><input type="number" id="refWithout" value="0" readonly></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-title"><i class="fas fa-calendar-check"></i> نتائج المتابعة</div>
+            <div class="card-body">
+                <div class="grid-3">
+                    <div class="field"><label>✅ تحسنت</label><input type="number" id="fu1" value="0" readonly></div>
+                    <div class="field"><label>⚠️ لم تتحسن</label><input type="number" id="fu2" value="0" readonly></div>
+                    <div class="field"><label>🔴 ساءت</label><input type="number" id="fu3" value="0" readonly></div>
+                    <div class="field"><label>⚫ توفيت</label><input type="number" id="fu4" value="0" readonly></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-title"><i class="fas fa-chart-simple"></i> مؤشرات الأداء</div>
+            <div class="card-body">
+                <div class="class-grid">
+                    <div class="class-item red">🫁 التهاب رئوي + مضاد حيوي<span id="kpi1">0</span></div>
+                    <div class="class-item orange">💧 إسهال + زنك + ORS<span id="kpi2">0</span></div>
+                    <div class="class-item yellow">🦟 ملاريا + ACT<span id="kpi3">0</span></div>
+                    <div class="class-item red">🚑 إجمالي الإحالات<span id="kpi4">0</span></div>
+                    <div class="class-item orange">⚠️ إجمالي الحالات الخطرة<span id="kpi5">0</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-title"><i class="fas fa-info-circle"></i> معلومات التقرير</div>
+            <div class="card-body">
+                <div class="report-meta">
+                    <p><strong><i class="fas fa-calendar-day"></i> تاريخ التقرير:</strong> <span id="reportDate">-</span></p>
+                    <p><strong><i class="fas fa-user-md"></i> تم الإنشاء بواسطة:</strong> <span id="reportCreator">--</span></p>
+                    <p><strong><i class="fas fa-database"></i> مصدر البيانات:</strong> <span id="dataSource">--</span></p>
+                    <p><strong><i class="fas fa-clock"></i> آخر تحديث:</strong> <span id="lastUpdate">-</span></p>
+                    <p><strong><i class="fas fa-chart-line"></i> إجمالي السجلات:</strong> <span id="totalRecords">0</span> طفل</p>
+                </div>
+            </div>
+        </section>
 
     </div>
-</section>
-<!-- ========================= -->
-<!-- قسم عدد الحالات التي تلقت العلاج -->
-<!-- ========================= -->
-<section class="card">
-    <div class="card-title">💊 عدد الحالات التي تلقت العلاج</div>
 
-    <div class="grid">
-
-        <!-- عدد حالات الالتهاب الرئوي التي أعطيت مضاد حيوي -->
-        <div class="field small">
-            <label>🫁 حالات الالتهاب الرئوي + مضاد حيوي</label>
-            <input type="number" name="pneumonia_antibiotic" min="0" placeholder="عدد الحالات">
-        </div>
-
-        <!-- عدد حالات الإسهالات التي أخذت محلول الأرواء والزنك -->
-        <div class="field small">
-            <label>💩 حالات الإسهال + محلول الأرواء والزنك</label>
-            <input type="number" name="diarrhea_ors_zinc" min="0" placeholder="عدد الحالات">
-        </div>
-
+    <div class="actions-bar">
+        <button class="btn btn-refresh" onclick="refreshAll()"><i class="fas fa-sync-alt"></i> <span>تحديث</span></button>
+        <button class="btn btn-export" onclick="exportReport()"><i class="fas fa-file-export"></i> <span>تصدير</span></button>
+        <button class="btn btn-print" onclick="window.print()"><i class="fas fa-print"></i> <span>طباعة</span></button>
+        <button class="btn btn-back" onclick="window.location.href='dashboard.html'"><i class="fas fa-tachometer-alt"></i> <span>لوحة التحكم</span></button>
+        <button class="btn btn-clear" onclick="clearAllData()"><i class="fas fa-trash-alt"></i> <span>مسح</span></button>
     </div>
-</section>
-<section class="card">
-    <h2>📊 مؤشرات الحالات الهامة</h2>
+    
+    <footer>
+        <i class="fas fa-chart-line"></i> تقرير iIMCI الشهري | قطاع الرعاية الصحية الأولية | وزارة الصحة والبيئة | الجمهورية اليمنية
+    </footer>
+</div>
+<script>
+// ═══════════════════════════════════════════════════════════════════════════════
+// iIMCI MONTHLY REPORT - COMPREHENSIVE DATA ENGINE v2.0
+// Fixed: Data reception from both newborn (<2m) and child (2m-5y) registration pages
+// ═══════════════════════════════════════════════════════════════════════════════
 
-    <div class="classification-grid">
+const STORAGE_KEYS = {
+    CHILDREN: 'imci_children_records_v2',
+    NEWBORN: 'imci_newborn_records_v2',
+    SETTINGS: 'imci_settings_v2',
+    LOGIN: 'imci_login_data',
+};
+const SEVERITY_MAP = {
+    'severe': 'شديد',
+    'moderate': 'متوسط',
+    'mild': 'بسيط'
+};
+// ─── WHO IMCI Classification Mapping ───
+const CLASSIFICATION_MAP = {
+    // Children (2m - 5y) - Cough/Pneumonia
+    'VERY_SEVERE_DISEASE': 'c1', 'SEVERE_PNEUMONIA': 'c2', 'PNEUMONIA': 'c3',
+    'NO_PNEUMONIA': 'c4', 'NO_COUGH': 'c4', 'COUGH_OR_COLD': 'c4',
+    // Diarrhea
+    'SEVERE_DEHYDRATION': 'c5', 'SOME_DEHYDRATION': 'c6', 'NO_DEHYDRATION': 'c7',
+    'DYSENTERY': 'c8', 'PERSISTENT_DIARRHOEA': 'c9', 'SEVERE_PERSISTENT_DIARRHOEA': 'c5',
+    // Throat
+    'STREPTOCOCCAL': 'c10', 'NON_STREPTOCOCCAL': 'c11', 'VIRAL_THROAT': 'c11', 'NO_THROAT_PROBLEM': 'c11',
+    // Ear
+    'ACUTE_EAR_INFECTION': 'c12', 'MASTOIDITIS': 'c12', 'CHRONIC_EAR_INFECTION': 'c13', 'NO_EAR_INFECTION': null,
+    // Fever
+    'VERY_SEVERE_FEBRILE_DISEASE': 'c14', 'SEVERE_COMPLICATED_FEVER': 'c14', 'MALARIA': 'c15',
+    'FEVER_NO_MALARIA': 'c16', 'FEVER_NO_BACTERIAL': 'c16', 'MEASLES': 'c16', 'NO_FEVER': null,
+    // Nutrition
+    'SEVERE_MALNUTRITION': 'c17', 'SEVERE_ACUTE_MALNUTRITION': 'c17', 'LOW_WEIGHT': 'c18',
+    'VERY_LOW_WEIGHT': 'c18', 'MODERATE_MALNUTRITION': 'c18', 'NO_MALNUTRITION': null,
+    // Anemia
+    'SEVERE_ANAEMIA': 'c19', 'ANAEMIA': 'c19', 'NO_ANAEMIA': null,
+    
+    // Newborns (< 2m)
+    'POSSIBLE_SERIOUS_BACTERIAL_INFECTION': 'n1', 'SERIOUS_BACTERIAL_INFECTION': 'n1',
+    'VERY_SEVERE': 'n1', 'LOCAL_BACTERIAL_INFECTION': 'n2',
+    'JAUNDICE': 'n3', 'SEVERE_JAUNDICE': 'n3', 'MILD_JAUNDICE': 'n3',
+    'NO_BACTERIAL_INFECTION': null, 'FEEDING_PROBLEM': 'n9',
+    'FEEDING_PROBLEM_OR_LOW_WEIGHT': 'n9', 'UNDERWEIGHT': 'n10',
+    'LOW_BIRTH_WEIGHT': 'n10', 'VERY_LOW_BIRTH_WEIGHT': 'n10',
+    'NORMAL_BIRTH_WEIGHT': null, 'FAST_BREATHING': 'n1', 'NORMAL_BREATHING': null,
+};
 
-        <div class="class-box red">
-            🫁 عدد حالات الالتهاب الرئوي
-            <span id="pneumoniaCount">0</span>
-        </div>
+// ─── Medication Keywords ───
+const MEDICATION_MAP = {
+    'd1': ['amoxicillin','أموكسيسيلين','amoxycillin','amoxil'],
+    'd2': ['cotrimoxazole','كوتريموكسازول','co-trimoxazole','bactrim','septra','sulfamethoxazole'],
+    'd3': ['ciprofloxacin','سيبروفلوكساسين','cipro'],
+    'd4': ['benzathine','benzyl','penicillin','بنزاثين','بنيسيلين','penicilline'],
+    'd5': ['chloramphenicol','كلورامفينيكول','chloromycetin'],
+    'd6': ['ampicillin','gentamicin','أمبيسيلين','جنتاميسين','ampiciline'],
+    'd7': ['artemether','lumefantrine','artemisin','coartem','act','artemether-lumefantrine','أرتيمثر','لوميفانترين'],
+    'd8': ['zinc','زنك','zinc sulfate','zinc sulphate'],
+    'd9': ['ors','أملاح','oral rehydration','rehydration salts','محلول إرواء'],
+    'd10': ['vitamin a','فيتامين أ','vitamin-a','retinol'],
+    'd11': ['paracetamol','باراسيتامول','acetaminophen','panadol','tylenol'],
+    'd12': ['salbutamol','سالبوتامول','albuterol','ventolin','salbutamole'],
+};
 
-        <div class="class-box orange">
-            💧 عدد حالات الجفاف الشديد
-            <span id="severeDehydrationCount">0</span>
-        </div>
+// ─── Arabic Names for Summary ───
+const ARABIC_NAMES = {
+    'c1': 'مرض شديد جداً', 'c2': 'التهاب رئوي شديد', 'c3': 'التهاب رئوي',
+    'c4': 'لا يوجد ذات رئة/سعال', 'c5': 'جفاف شديد', 'c6': 'بعض الجفاف',
+    'c7': 'لا يوجد جفاف', 'c8': 'دوسنتاريا', 'c9': 'إسهال مزمن',
+    'c10': 'التهاب حلق بكتيري', 'c11': 'التهاب حلق فيروسي',
+    'c12': 'التهاب أذن حاد', 'c13': 'التهاب أذن مزمن',
+    'c14': 'مرض حمى شديد جداً', 'c15': 'ملاريا', 'c16': 'حمى غير محددة السبب',
+    'c17': 'سوء تغذية شديد', 'c18': 'وزن منخفض للعمر', 'c19': 'أنيميا (فقر دم)',
+    'n1': 'عدوى بكتيرية خطيرة محتملة', 'n2': 'عدوى بكتيرية موضعية',
+    'n3': 'يرقان (صفار)', 'n4': 'جفاف شديد (رضيع)', 'n5': 'بعض الجفاف (رضيع)',
+    'n6': 'لا يوجد جفاف (رضيع)', 'n7': 'إسهال مستمر شديد', 'n8': 'دم في البراز',
+    'n9': 'مشكلة في التغذية', 'n10': 'نقص وزن',
+    'mu1': 'MUAC أقل من 11.5 سم', 'mu2': 'MUAC بين 11.5-12.5 سم', 'mu3': 'MUAC أكبر من 12.5 سم',
+    'sa1': 'فقر دم شديد', 'ma1': 'فقر دم', 'fp1': 'مشاكل تغذية',
+};
 
-        <div class="class-box yellow">
-            🚑 عدد الإحالات
-            <span id="referralCount">0</span>
-        </div>
+// ═══════════════════════════════════════════════════════════════════════════════
+// UTILITY FUNCTIONS
+// ═══════════════════════════════════════════════════════════════════════════════
 
-        <div class="class-box red">
-            ⚠️ عدد الحالات الخطرة
-            <span id="severeCasesCount">0</span>
-        </div>
+const Utils = {
+    $(id) { return document.getElementById(id); },
+    setText(id, val) { const el = this.$(id); if (el) el.textContent = (val !== undefined && val !== null) ? val : 0; },
+    setVal(id, val) { const el = this.$(id); if (el) el.value = (val !== undefined && val !== null) ? val : ''; },
+    
+    getRecords(key) { 
+        try { 
+            const d = localStorage.getItem(key); 
+            if (!d) return []; 
+            const p = JSON.parse(d); 
+            return Array.isArray(p) ? p : (p ? [p] : []); 
+        } catch (e) { 
+            console.warn(`Failed to parse records from ${key}:`, e);
+            return []; 
+        } 
+    },
+    
+    getAgeColumn(m) { 
+        m = parseFloat(m) || 0; 
+        if (m < 2) return 1; 
+        if (m < 12) return 2; 
+        if (m < 24) return 3; 
+        return 4; 
+    },
+    
+    safeUpper(val) {
+        if (val === undefined || val === null) return '';
+        return String(val).toUpperCase().trim();
+    },
+    
+    safeLower(val) {
+        if (val === undefined || val === null) return '';
+        return String(val).toLowerCase().trim();
+    },
+    
+    showNotification(msg, type = 'info', dur = 3000) {
+        const existing = document.querySelector('.notification'); 
+        if (existing) existing.remove();
+        const d = document.createElement('div'); 
+        d.className = `notification notification-${type}`; 
+        d.textContent = msg;
+        document.body.appendChild(d); 
+        setTimeout(() => { 
+            d.style.animation = 'slideUp 0.3s ease forwards'; 
+            setTimeout(() => d.remove(), 300); 
+        }, dur);
+    },
+};
 
-    </div>
-</section>
-<!-- ========================= -->
-<!-- أسفل الصفحة - المعلومات الرسمية -->
-<!-- ========================= -->
-<section class="card footer-info">
-    <div class="grid">
+// ═══════════════════════════════════════════════════════════════════════════════
+// DATA ENGINE
+// ═══════════════════════════════════════════════════════════════════════════════
 
-        <div class="field small">
-            <label>📅 التاريخ</label>
-            <input type="date" name="report_date">
-        </div>
+class DataEngine {
+    constructor() { 
+        this.counters = {}; 
+        this.summary = {}; 
+    }
+    
+    loadAllRecords() {
+        const children = Utils.getRecords(STORAGE_KEYS.CHILDREN);
+        const newborns = Utils.getRecords(STORAGE_KEYS.NEWBORN);
+        
+        console.log(`📊 Loaded: ${children.length} children + ${newborns.length} newborns`);
+        
+        // Debug: log first record structure
+        if (children.length > 0) {
+            console.log('🔍 Sample child keys:', Object.keys(children[0]));
+            console.log('📋 Sample child:', JSON.stringify(children[0], null, 2).substring(0, 500));
+        }
+        if (newborns.length > 0) {
+            console.log('🔍 Sample newborn keys:', Object.keys(newborns[0]));
+            console.log('📋 Sample newborn:', JSON.stringify(newborns[0], null, 2).substring(0, 500));
+        }
+        
+        const normalizedChildren = children.map(r => this.normalize(r, 'children')).filter(r => r !== null);
+        const normalizedNewborns = newborns.map(r => this.normalize(r, 'newborn')).filter(r => r !== null);
+        
+        return [...normalizedChildren, ...normalizedNewborns];
+    }
+    
+    normalize(rec, source) {
+        if (!rec || typeof rec !== 'object') return null;
+        
+        const age = this.getAge(rec, source === 'newborn');
+        const cls = this.extractClassifications(rec, source);
+        const meds = this.getMeds(rec);
+        
+        return {
+            source,
+            ageMonths: age,
+            ageColumn: Utils.getAgeColumn(age),
+            gender: this.getGender(rec),
+            visitType: this.getVisit(rec),
+            // Classifications
+            cough: cls.cough,
+            diarrhea: cls.diarrhea,
+            throat: cls.throat,
+            ear: cls.ear,
+            fever: cls.fever,
+            nutrition: cls.nutrition,
+            anemia: cls.anemia,
+            newbornClass: cls.newbornClass,
+            // Other data
+            muac: this.extractMUAC(rec),
+            muacColor: rec.muacColor || rec.muac_color || '',
+            medications: meds,
+            treatmentPlan: this.extractPlan(rec),
+            referral: this.extractReferral(rec),
+            followupResult: this.extractFollowup(rec),
+            feedingProblem: !!(rec.feedingProblem || rec.feedingIssue || rec.feeding_problem),
+        };
+    }
+    
+    // Extract all possible classification values from record
+    extractClassifications(rec, source) {
+        const result = {
+            cough: '', diarrhea: '', throat: '', ear: '',
+            fever: '', nutrition: '', anemia: '', newbornClass: ''
+        };
+        
+        // Try nested classifications object (most common structure)
+        const cls = rec.classifications || rec.classification || {};
+        if (typeof cls === 'object' && cls !== null) {
+            result.cough = Utils.safeUpper(cls.cough || cls.dangerSigns || rec.coughClassification);
+            result.diarrhea = Utils.safeUpper(cls.diarrhea || cls.diarrhoea || rec.diarrheaClassification);
+            result.throat = Utils.safeUpper(cls.throat || rec.throatClassification);
+            result.ear = Utils.safeUpper(cls.ear || rec.earClassification);
+            result.fever = Utils.safeUpper(cls.fever || rec.feverClassification);
+            result.nutrition = Utils.safeUpper(cls.nutrition || rec.nutritionClassification);
+            result.anemia = Utils.safeUpper(cls.anemia || rec.anemiaClassification);
+            result.newbornClass = Utils.safeUpper(cls.newborn || cls.newbornClass || rec.newbornClassification);
+        }
+        
+        // Also check flat properties (alternative structure)
+        if (!result.cough) result.cough = Utils.safeUpper(rec.cough || rec.coughClass);
+        if (!result.diarrhea) result.diarrhea = Utils.safeUpper(rec.diarrhea || rec.diarrheaClass);
+        if (!result.throat) result.throat = Utils.safeUpper(rec.throat || rec.throatClass);
+        if (!result.ear) result.ear = Utils.safeUpper(rec.ear || rec.earClass);
+        if (!result.fever) result.fever = Utils.safeUpper(rec.fever || rec.feverClass);
+        if (!result.nutrition) result.nutrition = Utils.safeUpper(rec.nutrition || rec.nutritionClass);
+        if (!result.anemia) result.anemia = Utils.safeUpper(rec.anemia || rec.anemiaClass);
+        if (!result.newbornClass) result.newbornClass = Utils.safeUpper(rec.classification || rec.newbornClass);
+        
+        return result;
+    }
+    
+    getAge(rec, isNewborn) {
+        // Try all possible age field names
+        const ageFields = ['ageInMonths', 'ageMonths', 'age_in_months', 'age_in_months'];
+        for (const field of ageFields) {
+            if (rec[field] !== undefined && rec[field] !== null) {
+                return parseFloat(rec[field]) || 0;
+            }
+        }
+        
+        // Try days and convert
+        const dayFields = ['ageInDays', 'ageDays', 'age_in_days', 'age_days'];
+        for (const field of dayFields) {
+            if (rec[field] !== undefined && rec[field] !== null) {
+                return (parseFloat(rec[field]) || 0) / 30;
+            }
+        }
+        
+        // Default based on source
+        return isNewborn ? 0.5 : 6;
+    }
+    
+    getGender(rec) {
+        const g = rec.gender || rec.sex || '';
+        const s = String(g).toLowerCase();
+        if (['ذكر','boy','male','m','ذكور'].some(m => s.includes(m))) return 'male';
+        if (['أنثى','girl','female','f','إناث'].some(f => s.includes(f))) return 'female';
+        return 'unknown';
+    }
+    
+    getVisit(rec) {
+        const t = rec.visitType || rec.visit || rec.visit_type || '';
+        const s = String(t).toLowerCase();
+        if (['متابعة','follow','followup','follow-up','follow_up','مراجعة','review'].some(f => s.includes(f))) return 'followup';
+        return 'first';
+    }
+    
+    getMeds(rec) {
+        const m = [];
+        // Try all possible medication structures
+        if (Array.isArray(rec.treatmentSummary?.medications)) m.push(...rec.treatmentSummary.medications);
+        if (Array.isArray(rec.medications)) m.push(...rec.medications);
+        if (Array.isArray(rec.drugs)) m.push(...rec.drugs);
+        if (Array.isArray(rec.meds)) m.push(...rec.meds);
+        if (Array.isArray(rec.treatment?.medications)) m.push(...rec.treatment.medications);
+        if (rec.medication) m.push(rec.medication);
+        if (rec.drug) m.push(rec.drug);
+        
+        return m.map(x => String(x).toLowerCase().trim()).filter(x => x);
+    }
+    
+    extractMUAC(rec) {
+        const muac = rec.muac || rec.MUAC || rec.muacValue || rec.muac_value || '';
+        return parseFloat(muac) || 0;
+    }
+    
+    extractPlan(rec) {
+        const plan = rec.treatmentPlan || rec.plan || rec.treatment_plan || rec.rehydrationPlan || '';
+        return String(plan).toLowerCase();
+    }
+    
+    extractReferral(rec) {
+        return rec.referral === true || rec.referred === true || 
+               rec.refer === true || rec.إحالة === true ||
+               String(rec.referralStatus).toLowerCase() === 'true';
+    }
+    
+    extractFollowup(rec) {
+        const fu = rec.followupResult || rec.followUp?.result || rec.follow_up_result || 
+                   rec.followup || rec.followUp || '';
+        return String(fu).toLowerCase();
+    }
+    
+    // ═══════════════════════════════════════════════════════════════════════
+    // STATISTICS CALCULATION
+    // ═══════════════════════════════════════════════════════════════════════
+    
+    calculateStats(records) {
+        this.counters = {};
+        this.summary = {};
+        
+        const add = (k) => { 
+            this.counters[k] = (this.counters[k] || 0) + 1; 
+        };
+        
+        let validCount = 0;
+        
+        records.forEach(rec => {
+            if (!rec) return;
+            validCount++;
+            
+            const col = rec.ageColumn;
+            
+            // Basic stats by age column
+            add('t' + col); add('tAll');
+            if (rec.gender === 'male') { add('m' + col); add('mAll'); }
+            if (rec.gender === 'female') { add('f' + col); add('fAll'); }
+            if (rec.visitType === 'first') { add('v1' + col); add('v1All'); }
+            if (rec.visitType === 'followup') { add('v2' + col); add('v2All'); }
+            
+            // Process classifications based on age
+            if (rec.ageMonths >= 2) {
+                this.processChild(rec, add);
+            } else {
+                this.processNewborn(rec, add);
+            }
+            
+            // Process other data
+            this.processMUAC(rec, add);
+            this.processMeds(rec, add);
+            this.processPlans(rec, add);
+            this.processReferral(rec, add);
+            this.processFollowup(rec, add);
+            this.processKPI(rec, add);
+            this.processSummary(rec);
+        });
+        
+        console.log(`✅ Processed ${validCount} valid records`);
+        
+        // Calculate severe cases for KPI5
+        const severeCases = 
+            (this.counters['c1']||0) + (this.counters['c2']||0) + (this.counters['c5']||0) + 
+            (this.counters['c14']||0) + (this.counters['c17']||0) +
+            (this.counters['n1']||0) + (this.counters['n4']||0) + (this.counters['sa1']||0);
+        this.counters['kpi5'] = severeCases;
+        
+        return this.counters;
+    }
+    
+    processChild(rec, add) {
+        // Cough/Pneumonia classifications
+        const c = rec.cough;
+        if (c.includes('VERY_SEVERE')) add('c1');
+        else if (c.includes('SEVERE_PNEUMONIA')) add('c2');
+        else if (c.includes('PNEUMONIA')) add('c3');
+        else if (c.includes('NO_PNEUMONIA') || c.includes('NO_COUGH') || c.includes('COUGH_OR_COLD')) add('c4');
+        
+        // Diarrhea classifications
+        const d = rec.diarrhea;
+        if (d.includes('SEVERE_DEHYDRATION') || d.includes('SEVERE_PERSISTENT')) add('c5');
+        else if (d.includes('SOME_DEHYDRATION')) add('c6');
+        else if (d.includes('NO_DEHYDRATION')) add('c7');
+        else if (d.includes('DYSENTERY')) add('c8');
+        else if (d.includes('PERSISTENT')) add('c9');
+        
+        // Throat classifications
+        const t = rec.throat;
+        if (t.includes('STREPTOCOCCAL')) add('c10');
+        else if (t.includes('NON_STREPTOCOCCAL') || t.includes('VIRAL') || t.includes('NO_THROAT')) add('c11');
+        
+        // Ear classifications
+        const e = rec.ear;
+        if (e.includes('ACUTE') || e.includes('MASTOIDITIS')) add('c12');
+        else if (e.includes('CHRONIC')) add('c13');
+        
+        // Fever classifications
+        const f = rec.fever;
+        if (f.includes('VERY_SEVERE') || f.includes('SEVERE_COMPLICATED')) add('c14');
+        else if (f.includes('MALARIA')) add('c15');
+        else if (f.includes('FEVER') || f.includes('MEASLES')) add('c16');
+        
+        // Nutrition classifications
+        const n = rec.nutrition;
+        if (n.includes('SEVERE_MALNUTRITION') || n.includes('SEVERE_ACUTE')) add('c17');
+        else if (n.includes('LOW_WEIGHT') || n.includes('VERY_LOW_WEIGHT') || n.includes('MODERATE_MALNUTRITION')) add('c18');
+        
+        // Anemia classifications
+        const a = rec.anemia;
+        if (a.includes('SEVERE_ANAEMIA')) add('c19');
+        else if (a.includes('ANAEMIA')) add('c19');
+    }
+    
+    processNewborn(rec, add) {
+        const nc = rec.newbornClass;
+        
+        // Newborn main classifications
+        if (nc.includes('SERIOUS_BACTERIAL') || nc.includes('VERY_SEVERE') || nc.includes('POSSIBLE_SERIOUS') || nc.includes('FAST_BREATHING')) add('n1');
+        else if (nc.includes('LOCAL_BACTERIAL')) add('n2');
+        else if (nc.includes('JAUNDICE')) add('n3');
+        else if (nc.includes('NO_BACTERIAL') || nc.includes('NORMAL_BREATHING')) {
+            // These are "green" classifications - check for other conditions
+        }
+        
+        // Newborn diarrhea (uses same field but maps to n4-n8)
+        const d = rec.diarrhea;
+        if (d.includes('SEVERE_DEHYDRATION')) add('n4');
+        else if (d.includes('SOME_DEHYDRATION')) add('n5');
+        else if (d.includes('NO_DEHYDRATION')) add('n6');
+        else if (d.includes('PERSISTENT')) add('n7');
+        else if (d.includes('DYSENTERY') || d.includes('BLOOD')) add('n8');
+        
+        // Newborn feeding and weight
+        if (rec.feedingProblem || nc.includes('FEEDING_PROBLEM')) add('n9');
+        if (nc.includes('UNDERWEIGHT') || nc.includes('LOW_WEIGHT') || nc.includes('LOW_BIRTH_WEIGHT')) add('n10');
+    }
+    
+    processMUAC(rec, add) {
+        const mv = rec.muac;
+        const mc = Utils.safeLower(rec.muacColor);
+        
+        if (mc === 'red' || (mv > 0 && mv < 11.5)) add('mu1');
+        else if (mc === 'orange' || (mv >= 11.5 && mv <= 12.5)) add('mu2');
+        else if (mc === 'green' || mv > 12.5) add('mu3');
+        
+        // Anemia from dedicated field
+        const an = rec.anemia;
+        if (an.includes('SEVERE')) add('sa1');
+        else if (an.includes('ANAEMIA')) add('ma1');
+        
+        // Feeding problems
+        if (rec.feedingProblem) add('fp1');
+    }
+    
+    processMeds(rec, add) {
+        const m = rec.medications.join('|');
+        if (!m) return;
+        
+        Object.entries(MEDICATION_MAP).forEach(([code, keywords]) => {
+            if (keywords.some(k => m.includes(k))) add(code);
+        });
+    }
+    
+    processPlans(rec, add) {
+        const p = rec.treatmentPlan;
+        const m = rec.medications.join('|').toLowerCase();
+        
+        if (p.includes('plan c') || m.includes('ringer') || m.includes('وريدي') || m.includes('iv')) add('planC');
+        else if (p.includes('plan b') || m.includes('ors 75') || m.includes('plan_b')) add('planB');
+        else if (p.includes('plan a') || p.includes('plan_a') || p.includes('منزلي')) add('planA');
+    }
+    
+    processReferral(rec, add) {
+        if (rec.referral) {
+            const hasAntibiotic = /amoxicillin|ampicillin|gentamicin|penicillin|cotrimoxazole|chloramphenicol|ceftriaxone|مضاد/i.test(rec.medications.join('|'));
+            if (hasAntibiotic) add('refWith');
+            else add('refWithout');
+        }
+    }
+    
+    processFollowup(rec, add) {
+        const fu = rec.followupResult;
+        if (!fu) return;
+        
+        if (fu.includes('تحسن') || fu.includes('improved') || fu.includes('better')) add('fu1');
+        else if (fu.includes('لم') || fu.includes('not') || fu.includes('no improvement')) add('fu2');
+        else if (fu.includes('ساء') || fu.includes('worsened') || fu.includes('worse')) add('fu3');
+        else if (fu.includes('توفي') || fu.includes('deceased') || fu.includes('died') || fu.includes('death')) add('fu4');
+    }
+    
+    processKPI(rec, add) {
+        const m = rec.medications.join('|').toLowerCase();
+        const hasPn = rec.cough.includes('PNEUMONIA');
+        const hasDi = rec.diarrhea.includes('DEHYDRATION') || rec.diarrhea.includes('DYSENTERY') || rec.diarrhea.includes('PERSISTENT');
+        const hasMl = rec.fever.includes('MALARIA');
+        
+        if (hasPn && /amoxicillin|cotrimoxazole|penicillin|ampicillin|مضاد/i.test(m)) add('kpi1');
+        if (hasDi && /zinc|زنك/i.test(m) && /ors|أملاح/i.test(m)) add('kpi2');
+        if (hasMl && /act|artemether|lumefantrine|coartem/i.test(m)) add('kpi3');
+        if (rec.referral) add('kpi4');
+    }
+    
+    processSummary(rec) {
+        // Build summary from all classifications
+        const allClassifications = [
+            { type: 'cough', val: rec.cough },
+            { type: 'diarrhea', val: rec.diarrhea },
+            { type: 'throat', val: rec.throat },
+            { type: 'ear', val: rec.ear },
+            { type: 'fever', val: rec.fever },
+            { type: 'nutrition', val: rec.nutrition },
+            { type: 'anemia', val: rec.anemia },
+            { type: 'newborn', val: rec.newbornClass },
+        ];
+        
+        allClassifications.forEach(({ type, val }) => {
+            if (!val) return;
+            
+            // Find matching classification code
+            let code = null;
+            for (const [key, mappedCode] of Object.entries(CLASSIFICATION_MAP)) {
+                if (val.includes(key) && mappedCode) {
+                    code = mappedCode;
+                    break;
+                }
+            }
+            
+            if (code) {
+                if (!this.summary[code]) this.summary[code] = { count: 0, name: ARABIC_NAMES[code] || code };
+                this.summary[code].count++;
+            }
+        });
+    }
+}
 
-        <div class="field wide">
-            <label>👨‍⚕️ اسم الطبيب / العامل الصحي</label>
-            <input type="text" name="health_worker_name" placeholder="أدخل الاسم">
-        </div>
+// ═══════════════════════════════════════════════════════════════════════════════
+// UI MANAGER
+// ═══════════════════════════════════════════════════════════════════════════════
 
-        <div class="field wide">
-            <label>🏥 اسم مدير المرفق الصحي</label>
-            <input type="text" name="facility_manager" placeholder="أدخل الاسم">
-        </div>
+class UIManager {
+    constructor() { 
+        this.engine = new DataEngine(); 
+    }
+    
+    loadFacility() {
+        let login = {}, settings = {};
+        
+        try { 
+            const d = localStorage.getItem(STORAGE_KEYS.LOGIN); 
+            if (d) { 
+                const p = JSON.parse(d); 
+                login = Array.isArray(p) ? (p[0] || {}) : p; 
+            } 
+        } catch(e) {}
+        
+        try { 
+            const d = localStorage.getItem(STORAGE_KEYS.SETTINGS); 
+            if (d) { 
+                const p = JSON.parse(d); 
+                settings = Array.isArray(p) ? (p[0] || {}) : p; 
+            } 
+        } catch(e) {}
+        
+        Utils.setVal('gov', login.governorate || settings.governorate || '');
+        Utils.setVal('district', login.district || settings.district || '');
+        Utils.setVal('facility', login.facilityName || settings.facilityName || '');
+        Utils.setVal('worker', login.workerName || login.username || settings.healthWorker || '');
+        Utils.setVal('year', settings.year || new Date().getFullYear());
+        Utils.setVal('month', new Date().getMonth() + 1);
+        Utils.setText('dataSource', login.facilityName || settings.facilityName || '--');
+        Utils.setText('reportCreator', login.workerName || login.username || settings.healthWorker || '--');
+    }
+    
+    updateAll() {
+        this.loadFacility();
+        
+        const records = this.engine.loadAllRecords();
+        const c = this.engine.calculateStats(records);
+        
+        // Update basic stats table
+        ['t', 'm', 'f', 'v1', 'v2'].forEach(prefix => {
+            [1, 2, 3, 4, 'All'].forEach(col => {
+                Utils.setText(prefix + col, c[prefix + col] || 0);
+            });
+        });
+        
+        // Update child classifications (c1-c19)
+        for (let i = 1; i <= 19; i++) {
+            Utils.setText('c' + i, c['c' + i] || 0);
+        }
+        
+        // Update newborn classifications (n1-n10)
+        for (let i = 1; i <= 10; i++) {
+            Utils.setText('n' + i, c['n' + i] || 0);
+        }
+        
+        // Update MUAC (mu1-mu3)
+        for (let i = 1; i <= 3; i++) {
+            Utils.setText('mu' + i, c['mu' + i] || 0);
+        }
+        
+        // Update anemia and feeding
+        Utils.setText('sa1', c['sa1'] || 0);
+        Utils.setText('ma1', c['ma1'] || 0);
+        Utils.setText('fp1', c['fp1'] || 0);
+        
+        // Update medications (d1-d12) - both text and value
+        for (let i = 1; i <= 12; i++) {
+            const val = c['d' + i] || 0;
+            Utils.setText('d' + i, val);
+            Utils.setVal('d' + i, val);
+        }
+        
+        // Update plans
+        ['planA', 'planB', 'planC', 'refWith', 'refWithout'].forEach(id => {
+            const val = c[id] || 0;
+            Utils.setText(id, val);
+            Utils.setVal(id, val);
+        });
+        
+        // Update follow-up
+        for (let i = 1; i <= 4; i++) {
+            const val = c['fu' + i] || 0;
+            Utils.setText('fu' + i, val);
+            Utils.setVal('fu' + i, val);
+        }
+        
+        // Update KPIs
+        for (let i = 1; i <= 5; i++) {
+            Utils.setText('kpi' + i, c['kpi' + i] || 0);
+        }
+        
+        // Update report meta
+        const now = new Date();
+        Utils.setText('reportDate', now.toLocaleDateString('ar-EG'));
+        Utils.setText('lastUpdate', now.toLocaleTimeString('ar-EG'));
+        Utils.setText('totalRecords', c['tAll'] || 0);
+        
+        // Update summary section
+        this.updateSummary();
+    }
+    
+    updateSummary() {
+        const container = document.getElementById('summaryContainer');
+        const summary = this.engine.summary;
+        
+        if (Object.keys(summary).length === 0) {
+            container.innerHTML = '<p style="text-align:center;color:var(--text-muted);">لا توجد تصنيفات مسجلة بعد.</p>';
+            return;
+        }
+        
+        let html = '<div style="display:grid;gap:8px;">';
+        
+        // Sort by severity then by count
+        const severityOrder = { 'severe': 0, 'moderate': 1, 'mild': 2 };
+        const entries = Object.entries(summary).sort((a, b) => {
+            const sevA = SEVERITY_MAP[a[0]] || 'mild';
+            const sevB = SEVERITY_MAP[b[0]] || 'mild';
+            if (severityOrder[sevA] !== severityOrder[sevB]) {
+                return severityOrder[sevA] - severityOrder[sevB];
+            }
+            return b[1].count - a[1].count;
+        });
+        
+        entries.forEach(([code, info]) => {
+            const sev = SEVERITY_MAP[code] || 'mild';
+            const color = sev === 'severe' ? 'var(--danger)' : sev === 'moderate' ? 'var(--warning)' : 'var(--success)';
+            const bg = sev === 'severe' ? 'var(--danger-light)' : sev === 'moderate' ? 'var(--warning-light)' : 'var(--success-light)';
+            
+            html += `<div class="class-item" style="border-right:4px solid ${color};background:${bg};color:${color};margin-bottom:8px;">${info.name}<span>${info.count}</span></div>`;
+        });
+        
+        html += '</div>';
+        container.innerHTML = html;
+    }
+}
 
-        <div class="field wide">
-            <label>📋 اسم مدير مكتب الصحة والبيئة بالمديرية</label>
-            <input type="text" name="district_health_manager" placeholder="أدخل الاسم">
-        </div>
+// ═══════════════════════════════════════════════════════════════════════════════
+// GLOBAL FUNCTIONS
+// ═══════════════════════════════════════════════════════════════════════════════
 
-        <div class="field wide">
-            <label>📋 اسم مدير مكتب الصحة والبيئة بالمحافظة</label>
-            <input type="text" name="governorate_health_manager" placeholder="أدخل الاسم">
-        </div>
+const uiManager = new UIManager();
 
-    </div>
-</section>
+function refreshAll() { 
+    try { 
+        uiManager.updateAll(); 
+        Utils.showNotification('✅ تم تحديث التقرير بنجاح', 'success', 2000); 
+    } catch(e) { 
+        console.error('Refresh error:', e);
+        Utils.showNotification('❌ خطأ في التحديث: ' + e.message, 'error', 3000);
+    } 
+}
 
-<script src="monthly-report.js"></script>
-<script src="script.js"></script>
+function exportReport() {
+    const data = {
+        exportDate: new Date().toISOString(),
+        facility: {
+            governorate: document.getElementById('gov')?.value || '',
+            district: document.getElementById('district')?.value || '',
+            facility: document.getElementById('facility')?.value || '',
+            worker: document.getElementById('worker')?.value || '',
+        },
+        counters: uiManager.engine.counters,
+        summary: uiManager.engine.summary,
+    };
+    
+    const dataStr = JSON.stringify(data, null, 2);
+    const blob = new Blob([dataStr], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `iimci-report-${new Date().toISOString().split('T')[0]}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    
+    Utils.showNotification('✅ تم تصدير التقرير', 'success', 2000);
+}
+
+function clearAllData() {
+    if (confirm('⚠️ هل أنت متأكد من حذف جميع السجلات؟ لا يمكن التراجع عن هذا الإجراء.')) {
+        if (confirm('تأكيد نهائي: سيتم حذف جميع بيانات الأطفال والرضع بشكل نهائي.')) {
+            localStorage.removeItem(STORAGE_KEYS.CHILDREN);
+            localStorage.removeItem(STORAGE_KEYS.NEWBORN);
+            refreshAll();
+            Utils.showNotification('✅ تم مسح جميع البيانات', 'success', 2000);
+        }
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// INITIALIZATION
+// ═══════════════════════════════════════════════════════════════════════════════
+
+function init() {
+    console.log('🚀 iIMCI Monthly Report v2.0 - Initializing...');
+    
+    // First update
+    uiManager.updateAll();
+    
+    // Auto-refresh every 5 seconds
+    setInterval(() => {
+        uiManager.updateAll();
+    }, 5000);
+    
+    // Update when tab becomes visible
+    document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) uiManager.updateAll();
+    });
+    
+    // Update when storage changes from other pages
+    window.addEventListener('storage', (e) => {
+        if (Object.values(STORAGE_KEYS).includes(e.key)) {
+            console.log(`🔄 Storage changed: ${e.key}`);
+            uiManager.updateAll();
+        }
+    });
+    
+    console.log('✅ iIMCI Report ready');
+}
+
+// Start
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+} else {
+    init();
+}
+</script>
 </body>
 </html>
