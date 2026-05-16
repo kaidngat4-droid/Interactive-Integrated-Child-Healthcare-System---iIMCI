@@ -3,1156 +3,1083 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>لوحة التحكم | iIMCI - نظام الرعاية التكاملية التفاعلي</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<title>الدليل الإرشادي | IMCI - الرعاية التكاملية لصحة الطفل</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 <style>
-/* ===== Root Variables - Professional Palette ===== */
 :root {
-    --primary: #1e3a5f;
-    --primary-light: #2c5282;
-    --primary-dark: #0f2942;
-    --secondary: #0d9488;
-    --secondary-light: #14b8a6;
-    --accent: #d97706;
-    --accent-light: #f59e0b;
-    
-    --success: #059669;
-    --success-bg: #d1fae5;
-    --success-border: #34d399;
-    
-    --danger: #dc2626;
-    --danger-bg: #fee2e2;
-    --danger-border: #f87171;
-    
-    --warning: #b45309;
-    --warning-bg: #fef3c7;
-    --warning-border: #fbbf24;
-    
-    --info: #0369a1;
-    --info-bg: #e0f2fe;
-    --info-border: #38bdf8;
-    
-    --text-primary: #1e293b;
-    --text-secondary: #475569;
-    --text-muted: #64748b;
-    --text-light: #94a3b8;
-    
-    --bg-main: #f8fafc;
-    --bg-card: #ffffff;
-    --bg-hover: #f1f5f9;
-    
-    --border-light: #e2e8f0;
-    --border-medium: #cbd5e1;
-    
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-    
-    --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    
-    /* Neon Sky Blue Colors */
-    --neon-sky: #00d4ff;
-    --neon-sky-light: #5ee7ff;
-    --neon-sky-dark: #0099cc;
-    --neon-sky-glow: rgba(0, 212, 255, 0.4);
-    --neon-sky-soft: rgba(0, 212, 255, 0.08);
+    --primary: #005a8c;
+    --primary-light: #0073b1;
+    --primary-dark: #003d5e;
+    --success: #0d7c3e;
+    --success-light: #e6f7ee;
+    --danger: #c1121f;
+    --danger-light: #fef0f0;
+    --warning: #e67e14;
+    --warning-light: #fff9f0;
+    --info: #1e6f9f;
+    --info-light: #e8f4fd;
+    --bg: #f4f7fb;
+    --card-bg: #ffffff;
+    --text: #1e293b;
+    --text-light: #475569;
+    --border: #e2e8f0;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+    --shadow: 0 4px 16px rgba(0,0,0,0.06);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.1);
+    --radius-sm: 8px;
+    --radius: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+    --transition: 0.3s ease;
 }
 
-/* ===== Body و Layout ===== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    font-family: 'Cairo', sans-serif;
-    background: var(--bg-main);
-    color: var(--text-primary);
-    display: flex;
-    flex-direction: column;
+    font-family: 'Tajawal', 'Cairo', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
     min-height: 100vh;
-    line-height: 1.7;
 }
 
-/* ===== الترويسة الرسمية - PRESERVED ===== */
+/* ============================================================
+   الترويسة الرسمية
+   ============================================================ */
 .official-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px 0;
-    background: linear-gradient(135deg, #e0f0ff, #ffffff);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    background: linear-gradient(160deg, #ffffff 0%, #eaf4fb 40%, #d4e8f7 100%);
+    padding: 28px 20px 20px;
+    text-align: center;
     position: relative;
-    z-index: 10;
+    overflow: hidden;
+    border-bottom: 3px solid var(--primary);
 }
 
-.official-header .eagle {
-    width: 80px;
+.official-header::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, rgba(0,90,140,0.04) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(30%, -40%);
+}
+
+.official-header-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.header-emblem {
+    width: 85px;
     height: auto;
-    display: block;
-    margin-bottom: 15px;
-    transition: transform 0.3s, filter 0.3s;
-    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+    margin-bottom: 14px;
+    filter: drop-shadow(0 3px 6px rgba(0,0,0,0.1));
+    transition: transform var(--transition);
 }
 
-.official-header .eagle:hover {
-    transform: scale(1.05) rotate(-2deg);
-    filter: drop-shadow(0 6px 8px rgba(0,0,0,0.4));
+.header-emblem:hover { transform: scale(1.05); }
+
+.official-header h1 {
+    font-family: 'Cairo', sans-serif;
+    font-size: 1.85rem;
+    font-weight: 900;
+    color: var(--primary-dark);
+    margin: 0 0 4px;
+    letter-spacing: -0.3px;
 }
 
-.official-header .header-text h1,
-.official-header .header-text h2,
-.official-header .header-text h3 {
-    margin: 5px 0;
-    color: #000;
-    text-align: center;
+.official-header h2 {
+    font-family: 'Cairo', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 0 0 2px;
 }
 
-.official-header .header-text h1 {
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.official-header .header-text h2 {
-    font-size: 22px;
-    font-weight: 600;
-    color: #0055a5;
-}
-
-.official-header .header-text h3 {
-    font-size: 18px;
+.official-header h3 {
+    font-family: 'Tajawal', sans-serif;
+    font-size: 0.95rem;
     font-weight: 500;
-    color: #333;
+    color: var(--text-light);
 }
 
-/* ===== شعار البرنامج - PRESERVED ===== */
+/* ============================================================
+   شعار البرنامج
+   ============================================================ */
 .program-logo {
-    text-align: center;
-    margin: 20px 0 30px 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 12px;
+    gap: 15px;
+    padding: 18px 20px;
+    background: linear-gradient(135deg, #f8f5ee 0%, #f0ece2 100%);
+    border-bottom: 2px solid #e2dccd;
 }
 
 .program-logo img {
-    width: 60px;
-    height: auto;
-    transition: transform 0.3s;
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: #fff;
+    padding: 6px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    object-fit: contain;
+    transition: var(--transition);
 }
 
-.program-logo img:hover {
-    transform: scale(1.1) rotate(3deg);
-}
+.program-logo img:hover { transform: scale(1.1); }
 
-.program-logo span {
-    font-size: 22px;
+.program-logo .logo-text {
     font-weight: 800;
-    color: #0073e6;
-    font-family: 'Cairo', sans-serif;
-    letter-spacing: -0.5px;
+    font-size: 1.3rem;
+    color: var(--primary);
 }
 
-/* ===== iIMCI System Logo ===== */
-.system-logo-wrapper {
+.program-logo .logo-subtext {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-light);
+    display: block;
+}
+
+/* ============================================================
+   شعار النظام
+   ============================================================ */
+.system-logo-bar {
+    background: linear-gradient(135deg, #eef3f0 0%, #e4ebe7 100%);
+    padding: 10px 35px;
     display: flex;
+    align-items: center;
     justify-content: center;
-    align-items: center;
-    padding: 15px 0 5px 0;
-    background: linear-gradient(180deg, #f8fafc 0%, #e0f7ff 50%, #f8fafc 100%);
-    position: relative;
-    overflow: hidden;
+    gap: 12px;
+    border-bottom: 2px solid #d5ddd8;
 }
 
-.system-logo-wrapper::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
-    animation: shimmer 3s infinite;
+.system-logo-bar img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
 }
 
-@keyframes shimmer {
-    0% { left: -100%; }
-    100% { left: 100%; }
-}
-
-.system-logo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    position: relative;
-    z-index: 1;
-}
-
-.system-logo img {
-    width: 90px;
-    height: auto;
-    filter: drop-shadow(0 4px 12px rgba(0, 212, 255, 0.3));
-    transition: all 0.4s ease;
-    animation: logoFloat 3s ease-in-out infinite;
-}
-
-@keyframes logoFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
-}
-
-.system-logo img:hover {
-    transform: scale(1.08);
-    filter: drop-shadow(0 6px 20px rgba(0, 212, 255, 0.5));
-}
-
-.system-logo-text {
-    font-size: 16px;
+.system-logo-bar .system-logo-text {
+    font-size: 1.1rem;
     font-weight: 700;
-    color: var(--neon-sky-dark);
-    text-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+    color: var(--primary-light);
 }
 
-/* ===== Navigation Bar ===== */
-.dashboard-nav-wrapper {
-    background: var(--bg-card);
-    border-bottom: 1px solid var(--border-light);
-    padding: 12px 0;
-    box-shadow: var(--shadow-sm);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-.dashboard-nav {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 30px;
+/* ============================================================
+   شريط التنقل العلوي
+   ============================================================ */
+.topbar {
+    background: var(--primary-dark);
+    color: #fff;
+    padding: 12px 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 12px;
 }
 
-.nav-links {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-}
-
-.nav-link {
-    padding: 8px 16px;
-    border-radius: 8px;
-    text-decoration: none;
-    color: var(--text-secondary);
-    font-weight: 600;
-    font-size: 14px;
-    transition: var(--transition-fast);
-    border: 1px solid transparent;
-}
-
-.nav-link:hover {
-    background: var(--bg-hover);
-    color: var(--primary);
-    border-color: var(--border-light);
-}
-
-.nav-link.active {
-    background: linear-gradient(135deg, var(--primary), var(--primary-light));
-    color: white;
-    box-shadow: var(--shadow-md);
-}
-
-/* ===== Back Button - Beautiful Design ===== */
-.back-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 22px;
-    border-radius: 12px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 14px;
-    color: white;
-    background: linear-gradient(135deg, #ff6b6b, #ee5a5a, #d63031);
-    border: none;
-    box-shadow: 0 4px 15px rgba(214, 48, 49, 0.35), inset 0 1px 0 rgba(255,255,255,0.2);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-}
-
-.back-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
-    transition: left 0.5s ease;
-}
-
-.back-btn:hover::before {
-    left: 100%;
-}
-
-.back-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(214, 48, 49, 0.45), inset 0 1px 0 rgba(255,255,255,0.2);
-    background: linear-gradient(135deg, #ff5252, #e53935, #c62828);
-}
-
-.back-btn:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 8px rgba(214, 48, 49, 0.3);
-}
-
-.back-btn i {
-    font-size: 14px;
-    transition: transform 0.3s ease;
-}
-
-.back-btn:hover i {
-    transform: translateX(4px);
-}
-
-/* ===== Main Container ===== */
-.container {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 30px 50px;
-    flex: 1;
-}
-
-/* ===== Section Cards ===== */
-.section-card {
-    background: var(--bg-card);
-    border-radius: 20px;
-    margin-bottom: 30px;
-    box-shadow: var(--shadow-md);
-    overflow: hidden;
-    transition: var(--transition-base);
-    border: 1px solid var(--border-light);
-}
-
-.section-card:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-xl);
-    border-color: var(--border-medium);
-}
-
-/* ===== NEON SKY BLUE SECTION HEADERS ===== */
-.section-header {
-    background: linear-gradient(135deg, #0066cc 0%, #0099ff 30%, #00ccff 60%, #00d4ff 100%);
-    color: white;
-    padding: 22px 30px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    position: relative;
-    overflow: hidden;
-}
-
-.section-header::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 60%);
-    animation: neonPulse 4s ease-in-out infinite;
-}
-
-@keyframes neonPulse {
-    0%, 100% { transform: scale(1); opacity: 0.5; }
-    50% { transform: scale(1.1); opacity: 0.8; }
-}
-
-.section-header::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 200px;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1));
-}
-
-.section-header i {
-    font-size: 24px;
-    background: rgba(255,255,255,0.2);
-    padding: 10px;
-    border-radius: 12px;
-    backdrop-filter: blur(4px);
-    position: relative;
-    z-index: 1;
-    animation: iconGlow 2s ease-in-out infinite alternate;
-}
-
-@keyframes iconGlow {
-    0% { box-shadow: 0 0 5px rgba(255,255,255,0.3); }
-    100% { box-shadow: 0 0 20px rgba(255,255,255,0.6), 0 0 40px rgba(0, 212, 255, 0.3); }
-}
-
-.section-header h2 {
-    margin: 0;
-    font-size: 1.4rem;
+.topbar .topbar-title {
     font-weight: 800;
-    position: relative;
-    z-index: 1;
-    text-shadow: 0 0 10px rgba(255,255,255,0.3);
-}
-
-.section-content {
-    padding: 28px;
-}
-
-/* ===== Content Text ===== */
-.content-text {
-    line-height: 1.9;
-    font-size: 1rem;
-    color: var(--text-secondary);
-}
-
-.content-text p {
-    margin-bottom: 16px;
-}
-
-.content-text p:last-child {
-    margin-bottom: 0;
-}
-
-/* ===== NEON ALERT BOXES ===== */
-.alert-box {
-    padding: 22px;
-    border-radius: 14px;
-    margin: 20px 0;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-}
-
-.alert-box:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-}
-
-.alert-box::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 4px;
-    height: 100%;
-}
-
-.alert-box h3 {
     font-size: 1.1rem;
-    font-weight: 800;
-    margin-bottom: 10px;
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.alert-box p {
-    margin-bottom: 10px;
-    line-height: 1.8;
-}
-
-.alert-box p:last-child {
-    margin-bottom: 0;
-}
-
-/* Success Box - Neon Sky */
-.success-box {
-    background: linear-gradient(145deg, #e6f7ff, #ccf0ff);
-    border: 1px solid #00d4ff;
-    box-shadow: 0 0 15px rgba(0, 212, 255, 0.15), inset 0 0 20px rgba(0, 212, 255, 0.05);
-}
-.success-box::before { 
-    background: linear-gradient(180deg, #00d4ff, #0099ff); 
-    box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
-}
-.success-box h3 { color: #0066cc; }
-.success-box i { color: #00d4ff; }
-
-/* Warning Box - Neon Sky */
-.warning-box {
-    background: linear-gradient(145deg, #e0f7ff, #ccf0ff);
-    border: 1px solid #00bfff;
-    box-shadow: 0 0 15px rgba(0, 191, 255, 0.15), inset 0 0 20px rgba(0, 191, 255, 0.05);
-}
-.warning-box::before { 
-    background: linear-gradient(180deg, #00bfff, #0099cc); 
-    box-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
-}
-.warning-box h3 { color: #0077b3; }
-.warning-box i { color: #00bfff; }
-
-/* Danger Box - Neon Sky */
-.danger-box {
-    background: linear-gradient(145deg, #e6f2ff, #cce5ff);
-    border: 1px solid #3399ff;
-    box-shadow: 0 0 15px rgba(51, 153, 255, 0.15), inset 0 0 20px rgba(51, 153, 255, 0.05);
-}
-.danger-box::before { 
-    background: linear-gradient(180deg, #3399ff, #0066cc); 
-    box-shadow: 0 0 10px rgba(51, 153, 255, 0.5);
-}
-.danger-box h3 { color: #0055aa; }
-.danger-box i { color: #3399ff; }
-
-/* Info Box - Neon Sky */
-.info-box {
-    background: linear-gradient(145deg, #e6f7ff, #d1f0ff);
-    border: 1px solid #00ccff;
-    box-shadow: 0 0 15px rgba(0, 204, 255, 0.15), inset 0 0 20px rgba(0, 204, 255, 0.05);
-}
-.info-box::before { 
-    background: linear-gradient(180deg, #00ccff, #0099cc); 
-    box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
-}
-.info-box h3 { color: #0077b3; }
-.info-box i { color: #00ccff; }
-
-/* ===== NEON Info Grid Cards ===== */
-.info-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 18px;
-    margin: 20px 0;
-}
-
-.info-card-mini {
-    background: linear-gradient(145deg, #ffffff, #f0f9ff);
-    padding: 22px;
-    border-radius: 14px;
-    transition: var(--transition-base);
-    border: 1px solid #cce5ff;
-    position: relative;
-    overflow: hidden;
-}
-
-.info-card-mini::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 3px;
-    background: linear-gradient(90deg, #00d4ff, #0099ff, #0066cc);
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform 0.3s ease;
-    box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
-}
-
-.info-card-mini:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 30px rgba(0, 153, 255, 0.2), 0 0 20px rgba(0, 212, 255, 0.1);
-    border-color: #99d6ff;
-}
-
-.info-card-mini:hover::before {
-    transform: scaleX(1);
-}
-
-.info-card-mini i {
-    font-size: 28px;
-    color: #0099ff;
-    margin-bottom: 14px;
-    display: inline-block;
-    transition: var(--transition-base);
-    text-shadow: 0 0 10px rgba(0, 153, 255, 0.3);
-}
-
-.info-card-mini:hover i {
-    transform: scale(1.1) rotate(-5deg);
-    color: #00d4ff;
-    text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
-}
-
-.info-card-mini h4 {
-    font-size: 1.05rem;
-    font-weight: 800;
-    margin-bottom: 8px;
-    color: #0055aa;
-}
-
-.info-card-mini p {
+.topbar .btn-back {
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 700;
     font-size: 0.88rem;
-    color: var(--text-secondary);
-    line-height: 1.7;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition);
+    text-decoration: none;
 }
 
-/* ===== Goals List ===== */
-.goals-list {
+.topbar .btn-back:hover {
+    background: rgba(255,255,255,0.25);
+    transform: translateY(-1px);
+}
+
+/* ============================================================
+   الحاوية الرئيسية
+   ============================================================ */
+.main-container {
+    max-width: 1050px;
+    margin: 0 auto;
+    padding: 24px 16px 40px;
+}
+
+/* ============================================================
+   جدول المحتويات
+   ============================================================ */
+.toc-card {
+    background: var(--card-bg);
+    padding: 28px;
+    border-radius: var(--radius-xl);
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border);
+}
+
+.toc-card h2 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--primary-dark);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.toc-card h2 i { color: var(--primary); }
+
+.toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 10px;
+}
+
+.toc-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: var(--radius);
+    background: #f8fafc;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 700;
+    font-size: 0.9rem;
+    border: 2px solid var(--border);
+    text-decoration: none;
+    color: var(--text);
+}
+
+.toc-item:hover {
+    background: var(--info-light);
+    border-color: var(--primary-light);
+    transform: translateX(-5px);
+    box-shadow: var(--shadow);
+}
+
+.toc-item .toc-icon {
+    font-size: 1.3rem;
+    width: 30px;
+    text-align: center;
+}
+
+.toc-item .toc-emoji { font-size: 1.4rem; }
+
+/* ============================================================
+   بطاقات المحتوى
+   ============================================================ */
+.guide-card {
+    background: var(--card-bg);
+    padding: 28px;
+    border-radius: var(--radius-xl);
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border);
+    scroll-margin-top: 20px;
+}
+
+.guide-card h2 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--primary-dark);
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 3px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.guide-card h2 i { color: var(--primary); }
+
+.guide-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 18px 0 10px;
+}
+
+.guide-card p {
+    margin-bottom: 12px;
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+/* ============================================================
+   جداول
+   ============================================================ */
+.guide-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border);
+}
+
+.guide-table th {
+    background: var(--primary);
+    color: #fff;
+    padding: 14px 12px;
+    font-weight: 700;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.guide-table td {
+    padding: 12px;
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+    font-size: 0.88rem;
+    background: #fafbfc;
+}
+
+.guide-table tr:nth-child(even) td { background: #f8fafc; }
+.guide-table td:first-child { text-align: right; font-weight: 600; }
+
+/* ============================================================
+   صناديق التنبيه
+   ============================================================ */
+.alert-box {
+    padding: 14px 18px;
+    border-radius: var(--radius);
+    margin: 14px 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.alert-danger { background: var(--danger-light); color: var(--danger); border-right: 4px solid var(--danger); }
+.alert-warning { background: var(--warning-light); color: #c2670a; border-right: 4px solid var(--warning); }
+.alert-info { background: var(--info-light); color: var(--info); border-right: 4px solid var(--info); }
+.alert-success { background: var(--success-light); color: var(--success); border-right: 4px solid var(--success); }
+
+.alert-box i { font-size: 1.2rem; margin-top: 2px; flex-shrink: 0; }
+
+/* ============================================================
+   قوائم
+   ============================================================ */
+.guide-list {
     list-style: none;
     padding: 0;
 }
 
-.goals-list li {
-    padding: 12px 0;
-    border-bottom: 1px solid #cce5ff;
+.guide-list li {
+    padding: 10px 0;
     display: flex;
     align-items: flex-start;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: var(--text-light);
+    border-bottom: 1px dashed var(--border);
+}
+
+.guide-list li:last-child { border-bottom: none; }
+
+.guide-list li i {
+    color: var(--success);
+    margin-top: 4px;
+    flex-shrink: 0;
+    font-size: 1rem;
+}
+
+/* ============================================================
+   شريط التقدم للفئات العمرية
+   ============================================================ */
+.age-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 12px;
-    transition: var(--transition-fast);
+    margin: 16px 0;
 }
 
-.goals-list li:last-child {
-    border-bottom: none;
+.age-step {
+    padding: 16px;
+    border-radius: var(--radius);
+    text-align: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    border: 2px solid var(--border);
+    background: #fafbfc;
+    transition: var(--transition);
 }
 
-.goals-list li:hover {
-    padding-right: 6px;
-    background: linear-gradient(90deg, #e6f7ff, #f0f9ff);
-    border-radius: 8px;
-    padding-left: 6px;
-    margin: 0 -6px;
+.age-step:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+
+.age-step .age-icon { font-size: 2rem; margin-bottom: 8px; display: block; }
+
+.age-step.red { border-color: var(--danger); color: var(--danger); background: var(--danger-light); }
+.age-step.yellow { border-color: var(--warning); color: var(--warning); background: var(--warning-light); }
+.age-step.green { border-color: var(--success); color: var(--success); background: var(--success-light); }
+
+/* ============================================================
+   الفوتر
+   ============================================================ */
+.footer {
+    background: var(--primary-dark);
+    text-align: center;
+    padding: 20px;
+    color: rgba(255,255,255,0.7);
+    font-size: 0.8rem;
+    font-weight: 500;
+    border-top: 3px solid #eab354;
 }
 
-.goal-icon {
-    width: 38px;
-    height: 38px;
-    background: linear-gradient(135deg, #0099ff, #00d4ff);
-    border-radius: 10px;
+/* ============================================================
+   زر العودة للأعلى
+   ============================================================ */
+.back-to-top {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--primary);
+    color: #fff;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
-    box-shadow: 0 0 15px rgba(0, 153, 255, 0.3);
-    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    font-size: 1.2rem;
+    box-shadow: 0 6px 20px rgba(0,90,140,0.35);
+    transition: var(--transition);
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
 }
 
-.goal-icon:hover {
-    box-shadow: 0 0 25px rgba(0, 212, 255, 0.5);
-    transform: scale(1.05);
-}
+.back-to-top.show { opacity: 1; visibility: visible; }
+.back-to-top:hover { background: var(--primary-light); transform: translateY(-3px); }
 
-.goal-icon i {
-    color: white;
-    font-size: 16px;
-}
-
-.goal-text {
-    flex: 1;
-    font-weight: 600;
-    color: var(--text-primary);
-    font-size: 0.92rem;
-    line-height: 1.6;
-}
-
-/* Badges */
-.badge {
-    display: inline-block;
-    padding: 3px 10px;
-    border-radius: 20px;
-    font-size: 10px;
-    font-weight: 700;
-    margin-top: 6px;
-    letter-spacing: 0.3px;
-}
-
-.badge-success { 
-    background: linear-gradient(135deg, #e6f7ff, #ccf0ff); 
-    color: #0066cc;
-    border: 1px solid #00d4ff;
-    box-shadow: 0 0 8px rgba(0, 212, 255, 0.2);
-}
-.badge-warning { 
-    background: linear-gradient(135deg, #e0f7ff, #d1f0ff); 
-    color: #0077b3;
-    border: 1px solid #00bfff;
-    box-shadow: 0 0 8px rgba(0, 191, 255, 0.2);
-}
-.badge-danger { 
-    background: linear-gradient(135deg, #e6f2ff, #cce5ff); 
-    color: #0055aa;
-    border: 1px solid #3399ff;
-    box-shadow: 0 0 8px rgba(51, 153, 255, 0.2);
-}
-.badge-info { 
-    background: linear-gradient(135deg, #e6f7ff, #d1f0ff); 
-    color: #0077b3;
-    border: 1px solid #00ccff;
-    box-shadow: 0 0 8px rgba(0, 204, 255, 0.2);
-}
-
-/* ===== NEON FOOTER ===== */
-.footer {
-    background: linear-gradient(135deg, #001a33, #003366, #004080);
-    text-align: center;
-    padding: 35px 20px;
-    color: #a0d8ff;
-    font-size: 0.88rem;
-    border-top: 3px solid #00d4ff;
-    margin-top: 40px;
-    position: relative;
-    overflow: hidden;
-}
-
-.footer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.5), transparent);
-    animation: footerLineGlow 3s ease-in-out infinite;
-}
-
-@keyframes footerLineGlow {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 1; }
-}
-
-.footer::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, #00d4ff, #0099ff, #00d4ff);
-    animation: footerNeonLine 4s linear infinite;
-    box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
-}
-
-@keyframes footerNeonLine {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 200% 50%; }
-}
-
-.footer p {
-    margin-bottom: 6px;
-    position: relative;
-    z-index: 1;
-}
-
-.footer .developer {
-    margin-top: 10px;
-    font-size: 12px;
-    color: #5ee7ff;
-    line-height: 1.8;
-    position: relative;
-    z-index: 1;
-    text-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
-}
-
-/* Neon particles in footer */
-.footer-particles {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    overflow: hidden;
-}
-
-.footer-particle {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: #00d4ff;
+/* ============================================================
+   زر العودة للوحة التحكم
+   ============================================================ */
+.dashboard-btn {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    background: var(--primary);
+    color: #fff;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
-    opacity: 0;
-    animation: particleFloat 6s ease-in-out infinite;
-    box-shadow: 0 0 10px #00d4ff, 0 0 20px #00d4ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 1.2rem;
+    box-shadow: 0 6px 20px rgba(0,90,140,0.35);
+    transition: var(--transition);
+    z-index: 100;
+    cursor: pointer;
+    border: none;
 }
 
-@keyframes particleFloat {
-    0% { 
-        opacity: 0; 
-        transform: translateY(100px) scale(0); 
-    }
-    20% { 
-        opacity: 1; 
-        transform: translateY(80px) scale(1); 
-    }
-    80% { 
-        opacity: 1; 
-        transform: translateY(20px) scale(1); 
-    }
-    100% { 
-        opacity: 0; 
-        transform: translateY(0) scale(0); 
-    }
-}
+.dashboard-btn:hover { transform: scale(1.1); background: var(--primary-light); }
 
-/* ===== Responsive ===== */
+/* ============================================================
+   Responsive
+   ============================================================ */
 @media (max-width: 768px) {
-    .section-header {
-        flex-direction: column;
-        text-align: center;
-        gap: 8px;
-        padding: 18px 22px;
-    }
-    
-    .container {
-        padding: 0 16px 35px;
-    }
-    
-    .section-content {
-        padding: 20px 18px;
-    }
-    
-    .program-logo span {
-        font-size: 16px;
-    }
-    
-    .official-header .header-text h1 {
-        font-size: 22px;
-    }
-    
-    .official-header .header-text h2 {
-        font-size: 18px;
-    }
-    
-    .dashboard-nav {
-        padding: 0 16px;
-    }
-    
-    .nav-links {
-        width: 100%;
-        justify-content: center;
-    }
-    
-    .info-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .system-logo img {
-        width: 70px;
-    }
+    .toc-grid { grid-template-columns: 1fr; }
+    .guide-table { font-size: 0.75rem; }
+    .guide-table th, .guide-table td { padding: 8px 6px; }
+    .guide-card { padding: 18px; }
+    .age-steps { grid-template-columns: 1fr; }
 }
 
-/* ===== Fade In Animation ===== */
-.fade-in-up {
-    opacity: 0;
-    transform: translateY(25px);
-    transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.fade-in-up.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Scrollbar */
-::-webkit-scrollbar {
-    width: 6px;
-}
-::-webkit-scrollbar-track {
-    background: var(--bg-main);
-}
-::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #00d4ff, #0099ff);
-    border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, #0099ff, #0066cc);
-}
-
-::selection {
-    background: #00d4ff;
-    color: white;
+/* ============================================================
+   طباعة
+   ============================================================ */
+@media print {
+    body { background: #fff; font-size: 11px; }
+    .topbar, .toc-card, .back-to-top, .dashboard-btn, .footer { display: none !important; }
+    .guide-card { box-shadow: none; border: 1px solid #ddd; margin-bottom: 12px; page-break-inside: avoid; }
 }
 </style>
 </head>
 <body>
 
-<!-- الترويسة الرسمية - محفوظة كما هي -->
+<!-- ============================================================
+     الترويسة الرسمية
+     ============================================================ -->
 <header class="official-header">
-    <img src="assets/images/yemen-eagle.png" class="eagle" alt="الطيـر الجمهوري" onerror="this.style.display='none'">
-    <div class="header-text">
+    <div class="official-header-content">
+        <img src="assets/images/yemen-eagle.png" alt="الشعار الرسمي" class="header-emblem" onerror="this.style.display='none'">
         <h1>الجمهورية اليمنية</h1>
         <h2>وزارة الصحة والبيئة</h2>
         <h3>قطاع الرعاية الصحية الأولية – إدارة صحة الطفل</h3>
     </div>
 </header>
 
-<!-- شعار البرنامج - محفوظ كما هو -->
+<!-- ============================================================
+     شعار البرنامج
+     ============================================================ -->
 <div class="program-logo">
-    <img src="assets/images/moh-logo.png" alt="شعار نظام iIMCI">
-    <span>نظام iIMCI التفاعلي للرعاية التكاملية</span>
-</div>
-
-<!-- شعار نظام iIMCI الجديد -->
-<div class="system-logo-wrapper">
-    <div class="system-logo">
-        <img src="/assets/images/moh-logo.png" alt="شعار النظام" onerror="this.style.display='none'">
-        <span class="system-logo-text">نظام iIMCI الذكي</span>
+    <img src="assets/images/moh-logo.png" alt="شعار وزارة الصحة" onerror="this.style.display='none'">
+    <div>
+        <span class="logo-text">نظام IIMCI التفاعلي</span>
+        <span class="logo-subtext">الرعاية التكاملية لصحة الطفل - iIMCI</span>
     </div>
 </div>
 
-<!-- شريط التنقل -->
-<div class="dashboard-nav-wrapper">
-    <div class="dashboard-nav">
-        <div class="nav-links">
-            <a href="#intro" class="nav-link active"><i class="fa-solid fa-book-open"></i> المقدمة</a>
-            <a href="#goals" class="nav-link"><i class="fa-solid fa-bullseye"></i> الأهداف</a>
-            <a href="#features" class="nav-link"><i class="fa-solid fa-star"></i> المميزات</a>
-            <a href="#situation" class="nav-link"><i class="fa-solid fa-heart-pulse"></i> الوضع الصحي</a>
-        </div>
-        <div style="display:flex; gap:8px;">
-            <a href="dashboard.html" class="back-btn">
-                <i class="fa-solid fa-arrow-right"></i> العودة
+<!-- ============================================================
+     شعار النظام
+     ============================================================ -->
+<div class="system-logo-bar">
+    <img src="assets/images/imci-logo.png" alt="شعار نظام IMCI" onerror="this.style.display='none'">
+    <span class="system-logo-text">📘 الدليل الإرشادي للطفل المريض - IMCI Chart Booklet</span>
+</div>
+
+<!-- ============================================================
+     شريط التنقل العلوي
+     ============================================================ -->
+<div class="topbar">
+    <div class="topbar-title">
+        <i class="fas fa-book-medical"></i>
+        <span>الدليل الإرشادي حسب بروتوكولات منظمة الصحة العالمية (WHO)</span>
+    </div>
+    <button class="btn-back" onclick="window.location.href='dashboard.html'">
+        <i class="fas fa-arrow-right"></i> العودة للوحة التحكم
+    </button>
+</div>
+
+<!-- ============================================================
+     المحتوى الرئيسي
+     ============================================================ -->
+<div class="main-container">
+
+    <!-- جدول المحتويات -->
+    <div class="toc-card" id="toc">
+        <h2><i class="fas fa-list"></i> 📑 جدول المحتويات</h2>
+        <div class="toc-grid">
+            <a href="#intro" class="toc-item">
+                <span class="toc-emoji">📖</span> مقدمة عن استراتيجية IMCI
+            </a>
+            <a href="#danger-signs" class="toc-item">
+                <span class="toc-emoji">🚨</span> العلامات الخطرة العامة
+            </a>
+            <a href="#cough" class="toc-item">
+                <span class="toc-emoji">🫁</span> السعال وصعوبة التنفس
+            </a>
+            <a href="#diarrhea" class="toc-item">
+                <span class="toc-emoji">💧</span> الإسهال والجفاف
+            </a>
+            <a href="#fever" class="toc-item">
+                <span class="toc-emoji">🔥</span> الحمى والملاريا والحصبة
+            </a>
+            <a href="#ear" class="toc-item">
+                <span class="toc-emoji">👂</span> مشاكل الأذن
+            </a>
+            <a href="#throat" class="toc-item">
+                <span class="toc-emoji">🗣️</span> مشاكل الحلق
+            </a>
+            <a href="#nutrition" class="toc-item">
+                <span class="toc-emoji">🍎</span> التغذية والأنيميا
+            </a>
+            <a href="#immunization" class="toc-item">
+                <span class="toc-emoji">💉</span> جدول التطعيمات (WHO)
+            </a>
+            <a href="#drugs" class="toc-item">
+                <span class="toc-emoji">💊</span> الأدوية والجرعات الأساسية
+            </a>
+            <a href="#newborn" class="toc-item">
+                <span class="toc-emoji">👶</span> رعاية الرضيع أقل من شهرين
+            </a>
+            <a href="#referral" class="toc-item">
+                <span class="toc-emoji">🚑</span> معايير الإحالة للمستشفى
             </a>
         </div>
     </div>
+
+    <!-- ============================================================
+         1. مقدمة
+         ============================================================ -->
+    <section class="guide-card" id="intro">
+        <h2><i class="fas fa-book-open"></i> 📖 مقدمة عن استراتيجية IMCI</h2>
+        
+        <p><strong>IMCI (Integrated Management of Childhood Illness)</strong> - الإدارة المتكاملة لصحة الطفل - هي استراتيجية وضعتها منظمة الصحة العالمية (WHO) واليونيسف (UNICEF) للحد من وفيات الأطفال دون سن الخامسة في البلدان النامية.</p>
+        
+        <div class="alert-box alert-info">
+            <i class="fas fa-info-circle"></i>
+            <div>
+                <strong>الهدف الأساسي:</strong> تحسين صحة الأطفال من خلال الكشف المبكر والعلاج المتكامل للأمراض الشائعة، وتعزيز التغذية السليمة، وتقوية نظام الرعاية الصحية الأولية.
+            </div>
+        </div>
+        
+        <h3>المكونات الثلاثة للاستراتيجية:</h3>
+        <ol class="guide-list">
+            <li><i class="fas fa-check-circle"></i> <strong>تحسين مهارات العاملين الصحيين:</strong> في إدارة حالات أمراض الطفولة الشائعة</li>
+            <li><i class="fas fa-check-circle"></i> <strong>تحسين النظام الصحي:</strong> لتقديم رعاية أفضل للأطفال</li>
+            <li><i class="fas fa-check-circle"></i> <strong>تحسين الممارسات الأسرية والمجتمعية:</strong> لتعزيز صحة الطفل في المنزل</li>
+        </ol>
+        
+        <h3>الفئات العمرية المستهدفة:</h3>
+        <div class="age-steps">
+            <div class="age-step red">
+                <span class="age-icon">👶</span>
+                <span>أقل من شهرين</span>
+            </div>
+            <div class="age-step yellow">
+                <span class="age-icon">🧒</span>
+                <span>شهرين - 12 شهر</span>
+            </div>
+            <div class="age-step green">
+                <span class="age-icon">👦</span>
+                <span>12 شهر - 5 سنوات</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         2. العلامات الخطرة العامة
+         ============================================================ -->
+    <section class="guide-card" id="danger-signs">
+        <h2><i class="fas fa-exclamation-triangle"></i> 🚨 العلامات الخطرة العامة (General Danger Signs)</h2>
+        
+        <div class="alert-box alert-danger">
+            <i class="fas fa-ambulance"></i>
+            <div><strong>تنبيه هام:</strong> وجود أي علامة خطرة واحدة يعني أن الطفل يحتاج إلى إحالة عاجلة إلى المستشفى! لا تنتظر إكمال التقييم بالكامل.</div>
+        </div>
+        
+        <h3>اسأل الأم:</h3>
+        <ul class="guide-list">
+            <li><i class="fas fa-times-circle"></i> <strong>غير قادر على الشرب أو الرضاعة</strong> - الطفل لا يستطيع البلع أو الإمساك بالثدي</li>
+            <li><i class="fas fa-times-circle"></i> <strong>يتقيأ كل شيء</strong> - لا يحتفظ بأي سوائل في المعدة</li>
+            <li><i class="fas fa-times-circle"></i> <strong>تشنجات خلال هذا المرض</strong> - حركات لا إرادية مع فقدان الوعي</li>
+        </ul>
+        
+        <h3>انظر وتحسس:</h3>
+        <ul class="guide-list">
+            <li><i class="fas fa-times-circle"></i> <strong>خامل أو فاقد للوعي</strong> - لا يستجيب للمنبهات أو النداء</li>
+            <li><i class="fas fa-times-circle"></i> <strong>يتشنج الآن</strong> - تشنجات مستمرة أثناء الفحص الطبي</li>
+        </ul>
+        
+        <h3>العلاج قبل الإحالة:</h3>
+        <table class="guide-table">
+            <tr><th>الإجراء</th><th>الدواء والجرعة</th></tr>
+            <tr><td>مضاد حيوي</td><td>Ampicillin 50mg/kg IM + Gentamicin 7.5mg/kg IM</td></tr>
+            <tr><td>تشنجات</td><td>Diazepam 0.5mg/kg عن طريق المستقيم</td></tr>
+            <tr><td>منع انخفاض السكر</td><td>Glucose 10% 5ml/kg PO أو حليب الثدي</td></tr>
+        </table>
+    </section>
+
+    <!-- ============================================================
+         3. السعال وصعوبة التنفس
+         ============================================================ -->
+    <section class="guide-card" id="cough">
+        <h2><i class="fas fa-lungs"></i> 🫁 السعال وصعوبة التنفس</h2>
+        
+        <h3>خطوات التقييم:</h3>
+        <ul class="guide-list">
+            <li><i class="fas fa-check"></i> <strong>عدّ معدل التنفس</strong> لمدة دقيقة كاملة (الطفل هادئ)</li>
+            <li><i class="fas fa-check"></i> <strong>لاحظ وجود انخفاض جدار الصدر</strong> (Chest Indrawing)</li>
+            <li><i class="fas fa-check"></i> <strong>استمع إلى الصرير</strong> (Stridor) أثناء الهدوء</li>
+            <li><i class="fas fa-check"></i> <strong>لاحظ وجود أزيز</strong> (Wheeze)</li>
+        </ul>
+        
+        <h3>عتبات التنفس السريع:</h3>
+        <table class="guide-table">
+            <tr><th>العمر</th><th>تنفس سريع إذا كان ≥</th></tr>
+            <tr><td>شهرين - 12 شهر</td><td><strong>50 نفس/دقيقة</strong></td></tr>
+            <tr><td>12 شهر - 5 سنوات</td><td><strong>40 نفس/دقيقة</strong></td></tr>
+        </table>
+        
+        <h3>التصنيف والعلاج:</h3>
+        <table class="guide-table">
+            <tr><th>التصنيف</th><th>العلامات</th><th>العلاج</th></tr>
+            <tr>
+                <td><strong>التهاب رئة شديد</strong></td>
+                <td>انخفاض جدار الصدر أو صرير</td>
+                <td>Ampicillin + Gentamicin IM + إحالة فورية</td>
+            </tr>
+            <tr>
+                <td><strong>التهاب رئة</strong></td>
+                <td>تنفس سريع فقط</td>
+                <td>Amoxicillin 40mg/kg × 5 أيام</td>
+            </tr>
+            <tr>
+                <td><strong>لا يوجد ذات رئة</strong></td>
+                <td>سعال بدون علامات خطيرة</td>
+                <td>علاج منزلي + متابعة 5 أيام</td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- ============================================================
+         4. الإسهال والجفاف
+         ============================================================ -->
+    <section class="guide-card" id="diarrhea">
+        <h2><i class="fas fa-toilet"></i> 💧 الإسهال والجفاف</h2>
+        
+        <h3>تقييم حالة الجفاف:</h3>
+        <table class="guide-table">
+            <tr><th>العلامة</th><th>جفاف شديد</th><th>بعض الجفاف</th><th>لا جفاف</th></tr>
+            <tr><td>الحالة العامة</td><td>خامل/فاقد وعي</td><td>عصبي/منزعج</td><td>طبيعي ونشط</td></tr>
+            <tr><td>العيون</td><td>غائرة جداً</td><td>غائرة</td><td>طبيعية</td></tr>
+            <tr><td>الشرب</td><td>غير قادر على الشرب</td><td>يشرب بشراهة/عطشان</td><td>طبيعي</td></tr>
+            <tr><td>قرصة الجلد</td><td>ترجع ببطء شديد</td><td>ترجع ببطء</td><td>ترجع فوراً</td></tr>
+        </table>
+        
+        <h3>خطط العلاج حسب درجة الجفاف:</h3>
+        <ul class="guide-list">
+            <li><i class="fas fa-check"></i> <strong>خطة A (لا جفاف):</strong> سوائل إضافية في المنزل + Zinc 20mg × 14 يوم + 2 كيس ORS</li>
+            <li><i class="fas fa-check"></i> <strong>خطة B (بعض الجفاف):</strong> ORS 75ml/kg في العيادة خلال 4 ساعات</li>
+            <li><i class="fas fa-check"></i> <strong>خطة C (جفاف شديد):</strong> Ringer's Lactate IV 100ml/kg + إحالة فورية</li>
+        </ul>
+        
+        <h3>الإسهال المزمن (≥14 يوم) والإسهال الدموي:</h3>
+        <ul class="guide-list">
+            <li><i class="fas fa-check"></i> <strong>إسهال دموي (دوسنتاريا):</strong> Ciprofloxacin 15mg/kg × 3 أيام</li>
+            <li><i class="fas fa-check"></i> <strong>إسهال مزمن:</strong> Zinc + Vitamin A + تقييم تغذوي</li>
+        </ul>
+    </section>
+
+    <!-- ============================================================
+         5. الحمى والملاريا والحصبة
+         ============================================================ -->
+    <section class="guide-card" id="fever">
+        <h2><i class="fas fa-thermometer-half"></i> 🔥 الحمى والملاريا والحصبة</h2>
+        
+        <h3>تقييم الحمى:</h3>
+        <ul class="guide-list">
+            <li><i class="fas fa-check"></i> قياس درجة الحرارة (≥37.5°C = حمى)</li>
+            <li><i class="fas fa-check"></i> سؤال الأم عن مدة الحمى (إذا >7 أيام: إحالة)</li>
+            <li><i class="fas fa-check"></i> فحص تصلب/تيبس الرقبة (علامة التهاب السحايا)</li>
+            <li><i class="fas fa-check"></i> فحص علامات الحصبة (طفح جلدي + سعال + عيون حمراء)</li>
+        </ul>
+        
+        <h3>علاج الملاريا (حسب البروتوكول الوطني):</h3>
+        <table class="guide-table">
+            <tr><th>الدواء</th><th>الجرعة</th><th>المدة</th></tr>
+            <tr><td>Artemether + Lumefantrine (ACT)</td><td>حسب الوزن</td><td>3 أيام</td></tr>
+            <tr><td>أو Artesunate + Amodiaquine</td><td>حسب الوزن</td><td>3 أيام</td></tr>
+            <tr><td>Paracetamol للحمى</td><td>15mg/kg كل 6 ساعات</td><td>حسب الحاجة</td></tr>
+        </table>
+        
+        <h3>علاج الحصبة:</h3>
+        <ul class="guide-list">
+            <li><i class="fas fa-check"></i> <strong>Vitamin A:</strong> 200,000 IU فموياً (كرر بعد 24 ساعة)</li>
+            <li><i class="fas fa-check"></i> <strong>تقرحات الفم:</strong> Gentian Violet 0.25%</li>
+            <li><i class="fas fa-check"></i> <strong>صديد العين:</strong> Tetracycline 1% Eye Ointment</li>
+        </ul>
+    </section>
+
+    <!-- ============================================================
+         6. مشاكل الأذن
+         ============================================================ -->
+    <section class="guide-card" id="ear">
+        <h2><i class="fas fa-ear-listen"></i> 👂 مشاكل الأذن</h2>
+        
+        <table class="guide-table">
+            <tr><th>التصنيف</th><th>العلامات</th><th>العلاج</th></tr>
+            <tr>
+                <td><strong>التهاب الخشاء (Mastoiditis)</strong></td>
+                <td>تورم مؤلم خلف الأذن</td>
+                <td>Chloramphenicol 25mg/kg IM + إحالة فورية</td>
+            </tr>
+            <tr>
+                <td><strong>التهاب أذن حاد</strong></td>
+                <td>ألم + إفرازات <14 يوم</td>
+                <td>Amoxicillin 40mg/kg × 5 أيام + Paracetamol</td>
+            </tr>
+            <tr>
+                <td><strong>التهاب أذن مزمن</strong></td>
+                <td>إفرازات ≥14 يوم</td>
+                <td>تنظيف الأذن (Wicking) + إحالة للأخصائي</td>
+            </tr>
+            <tr>
+                <td><strong>لا يوجد التهاب أذن</strong></td>
+                <td>لا ألم ولا إفرازات</td>
+                <td>لا علاج مطلوب</td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- ============================================================
+         7. مشاكل الحلق
+         ============================================================ -->
+    <section class="guide-card" id="throat">
+        <h2><i class="fas fa-head-side-cough"></i> 🗣️ مشاكل الحلق</h2>
+        
+        <table class="guide-table">
+            <tr><th>التصنيف</th><th>العلامات</th><th>العلاج</th></tr>
+            <tr>
+                <td><strong>التهاب حلق بكتيري (Strep)</strong></td>
+                <td>حلق أحمر + إفرازات بيضاء + غدد متضخمة (علامتان أو أكثر)</td>
+                <td>Benzathine Penicillin 50,000 IU/kg IM جرعة واحدة</td>
+            </tr>
+            <tr>
+                <td><strong>التهاب حلق فيروسي</strong></td>
+                <td>حلق أحمر فقط (علامة واحدة)</td>
+                <td>Paracetamol + سوائل دافئة + راحة</td>
+            </tr>
+            <tr>
+                <td><strong>لا مشكلة</strong></td>
+                <td>لا احمرار ولا ألم</td>
+                <td>لا علاج</td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- ============================================================
+         8. التغذية والأنيميا
+         ============================================================ -->
+    <section class="guide-card" id="nutrition">
+        <h2><i class="fas fa-weight-scale"></i> 🍎 التغذية والأنيميا</h2>
+        
+        <h3>تقييم التغذية:</h3>
+        <ul class="guide-list">
+            <li><i class="fas fa-check"></i> <strong>هزال شديد:</strong> Visible Severe Wasting (ظهور العظام بوضوح)</li>
+            <li><i class="fas fa-check"></i> <strong>وذمة:</strong> تورم/انتفاخ في كلا القدمين (Oedema)</li>
+            <li><i class="fas fa-check"></i> <strong>وزن منخفض:</strong> Z-Score أقل من -2 حسب جداول WHO</li>
+        </ul>
+        
+        <h3>تقييم الأنيميا (فحص الشحوب):</h3>
+        <ul class="guide-list">
+            <li><i class="fas fa-check"></i> <strong>شحوب شديد:</strong> راحة اليد شاحبة جداً - إحالة فورية</li>
+            <li><i class="fas fa-check"></i> <strong>بعض الشحوب:</strong> Ferrous Sulfate 3mg/kg يومياً × 3 أشهر</li>
+            <li><i class="fas fa-check"></i> <strong>لا شحوب:</strong> حديد وقائي أسبوعياً للأعمار 6-30 شهر</li>
+        </ul>
+        
+        <h3>التصنيف والعلاج:</h3>
+        <table class="guide-table">
+            <tr><th>التصنيف</th><th>العلاج</th></tr>
+            <tr><td><strong>سوء تغذية شديد</strong></td><td>Vitamin A + إحالة للمستشفى</td></tr>
+            <tr><td><strong>وزن منخفض للعمر</strong></td><td>مكملات غذائية (Plumpy'Nut) + متابعة 30 يوم</td></tr>
+            <tr><td><strong>وزن طبيعي</strong></td><td>تقييم الإطعام + نصائح للأم</td></tr>
+        </table>
+    </section>
+
+    <!-- ============================================================
+         9. جدول التطعيمات
+         ============================================================ -->
+    <section class="guide-card" id="immunization">
+        <h2><i class="fas fa-syringe"></i> 💉 جدول التطعيمات (حسب WHO)</h2>
+        
+        <table class="guide-table">
+            <tr><th>العمر</th><th>التطعيمات</th></tr>
+            <tr><td><strong>عند الولادة</strong></td><td>BCG (الدرن) + OPV-0 (شلل الأطفال) + HBV-0 (الكبد الوبائي)</td></tr>
+            <tr><td><strong>6 أسابيع</strong></td><td>OPV-1 + Pentavalent-1 + PCV-1 + Rota-1</td></tr>
+            <tr><td><strong>10 أسابيع</strong></td><td>OPV-2 + Pentavalent-2 + PCV-2 + Rota-2</td></tr>
+            <tr><td><strong>14 أسبوع</strong></td><td>OPV-3 + Pentavalent-3 + PCV-3</td></tr>
+            <tr><td><strong>9 أشهر</strong></td><td>Measles-1 (الحصبة) + Yellow Fever (الحمى الصفراء)</td></tr>
+            <tr><td><strong>18 شهر</strong></td><td>Measles-2 + OPV-4 + DPT Booster</td></tr>
+        </table>
+        
+        <div class="alert-box alert-warning">
+            <i class="fas fa-exclamation-triangle"></i>
+            <div><strong>ملاحظة:</strong> يجب التأكد من عدم وجود موانع للتطعيم (حمى شديدة، حساسية سابقة). الأطفال المصابون بأمراض خفيفة يمكن تطعيمهم.</div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         10. الأدوية والجرعات
+         ============================================================ -->
+    <section class="guide-card" id="drugs">
+        <h2><i class="fas fa-pills"></i> 💊 الأدوية والجرعات الأساسية (حسب WHO IMCI)</h2>
+        
+        <table class="guide-table">
+            <tr><th>الدواء</th><th>الجرعة</th><th>المدة</th><th>الاستخدام</th></tr>
+            <tr><td><strong>Amoxicillin</strong></td><td>40mg/kg مرتين يومياً</td><td>5 أيام</td><td>التهاب رئة، التهاب أذن حاد</td></tr>
+            <tr><td><strong>Ciprofloxacin</strong></td><td>15mg/kg مرتين يومياً</td><td>3 أيام</td><td>دوسنتاريا (إسهال دموي)</td></tr>
+            <tr><td><strong>Cotrimoxazole</strong></td><td>4mg/kg مرتين يومياً</td><td>5 أيام</td><td>التهاب رئة (بديل)</td></tr>
+            <tr><td><strong>Paracetamol</strong></td><td>15mg/kg كل 6 ساعات</td><td>حسب الحاجة</td><td>حمى ≥38.5°C، ألم</td></tr>
+            <tr><td><strong>Zinc Sulfate</strong></td><td>20mg يومياً</td><td>14 يوم</td><td>إسهال (جميع الأنواع)</td></tr>
+            <tr><td><strong>ORS</strong></td><td>حسب خطة العلاج</td><td>-</td><td>جفاف، إسهال</td></tr>
+            <tr><td><strong>Vitamin A</strong></td><td>200,000 IU</td><td>جرعة واحدة</td><td>حصبة، سوء تغذية</td></tr>
+            <tr><td><strong>Artemether-Lumefantrine</strong></td><td>حسب الوزن (ACT)</td><td>3 أيام</td><td>ملاريا</td></tr>
+            <tr><td><strong>Benzathine Penicillin</strong></td><td>50,000 IU/kg IM</td><td>جرعة واحدة</td><td>التهاب حلق بكتيري</td></tr>
+            <tr><td><strong>Salbutamol</strong></td><td>2.5mg بخاخ / 0.1mg/kg شراب</td><td>حسب الحاجة</td><td>أزيز (Wheeze)</td></tr>
+            <tr><td><strong>Ferrous Sulfate</strong></td><td>3mg/kg يومياً</td><td>3 أشهر</td><td>أنيميا</td></tr>
+            <tr><td><strong>Tetracycline 1%</strong></td><td>مرهم عين</td><td>حسب الحاجة</td><td>صديد العين مع الحصبة</td></tr>
+        </table>
+        
+        <div class="alert-box alert-danger">
+            <i class="fas fa-exclamation-circle"></i>
+            <div><strong>تنبيه:</strong> هذه الجرعات إرشادية حسب WHO. يجب التأكد من البروتوكول الوطني المعتمد في بلدك.</div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         11. رعاية الرضيع أقل من شهرين
+         ============================================================ -->
+    <section class="guide-card" id="newborn">
+        <h2><i class="fas fa-baby"></i> 👶 رعاية الرضيع أقل من شهرين</h2>
+        
+        <div class="alert-box alert-danger">
+            <i class="fas fa-exclamation-triangle"></i>
+            <div><strong>تنبيه:</strong> الرضع أقل من شهرين معرضون بشكل كبير للعدوى البكتيرية الخطيرة. أي علامة خطر تستدعي إحالة فورية!</div>
+        </div>
+        
+        <h3>علامات العدوى البكتيرية الخطيرة المحتملة:</h3>
+        <ul class="guide-list">
+            <li><i class="fas fa-times-circle"></i> عدم القدرة على الرضاعة (منذ الولادة أو توقف بعد أن كان يرضع)</li>
+            <li><i class="fas fa-times-circle"></i> تشنجات (حركات لا إرادية)</li>
+            <li><i class="fas fa-times-circle"></i> تنفس سريع (≥60 نفس/دقيقة)</li>
+            <li><i class="fas fa-times-circle"></i> انخفاض شديد في جدار الصدر</li>
+            <li><i class="fas fa-times-circle"></i> أنين/شخير أثناء التنفس (Grunting)</li>
+            <li><i class="fas fa-times-circle"></i> حمى (≥38°C) أو انخفاض حرارة (<35.5°C)</li>
+            <li><i class="fas fa-times-circle"></i> انتفاخ اليافوخ (Bulging Fontanelle)</li>
+            <li><i class="fas fa-times-circle"></i> صديد يخرج من الأذن</li>
+            <li><i class="fas fa-times-circle"></i> احمرار السرة يمتد للجلد أو بثور جلدية (>10)</li>
+        </ul>
+        
+        <h3>اليرقان (الصفار):</h3>
+        <ul class="guide-list">
+            <li><i class="fas fa-exclamation-triangle"></i> <strong>يرقان شديد:</strong> ظهر في أول 24 ساعة أو يشمل الكفين والقدمين → إحالة فورية</li>
+            <li><i class="fas fa-check"></i> <strong>يرقان خفيف:</strong> الوجه والعينين فقط → متابعة + رضاعة متكررة</li>
+        </ul>
+        
+        <h3>العلاج قبل الإحالة للرضيع:</h3>
+        <table class="guide-table">
+            <tr><th>الإجراء</th><th>الدواء والجرعة</th></tr>
+            <tr><td>مضاد حيوي</td><td>Ampicillin 50mg/kg IM + Gentamicin 7.5mg/kg IM</td></tr>
+            <tr><td>منع انخفاض السكر</td><td>حليب الثدي أو Glucose 10% 5ml/kg</td></tr>
+            <tr><td>التدفئة</td><td>ملامسة جلد الأم (Kangaroo Care)</td></tr>
+        </table>
+    </section>
+
+    <!-- ============================================================
+         12. معايير الإحالة
+         ============================================================ -->
+    <section class="guide-card" id="referral">
+        <h2><i class="fas fa-ambulance"></i> 🚑 معايير الإحالة إلى المستشفى</h2>
+        
+        <div class="alert-box alert-danger">
+            <i class="fas fa-hospital"></i>
+            <div><strong>أحل الطفل فوراً إلى المستشفى في الحالات التالية:</strong></div>
+        </div>
+        
+        <ol class="guide-list">
+            <li><i class="fas fa-exclamation-triangle"></i> وجود أي علامة خطرة عامة (غير قادر على الشرب، يتقيأ كل شيء، تشنجات، خامل)</li>
+            <li><i class="fas fa-exclamation-triangle"></i> التهاب رئة شديد (انخفاض جدار الصدر أو صرير)</li>
+            <li><i class="fas fa-exclamation-triangle"></i> جفاف شديد</li>
+            <li><i class="fas fa-exclamation-triangle"></i> دوسنتاريا (إسهال دموي) عند الرضيع أقل من شهرين</li>
+            <li><i class="fas fa-exclamation-triangle"></i> حمى شديدة جداً مع تصلب رقبة (اشتباه التهاب سحايا)</li>
+            <li><i class="fas fa-exclamation-triangle"></i> حصبة شديدة معقدة (تعكر قرنية، تقرحات فموية شديدة)</li>
+            <li><i class="fas fa-exclamation-triangle"></i> سوء تغذية شديد (هزال واضح أو وذمة في القدمين)</li>
+            <li><i class="fas fa-exclamation-triangle"></i> أنيميا شديدة (شحوب شديد في راحة اليد)</li>
+            <li><i class="fas fa-exclamation-triangle"></i> التهاب الخشاء (تورم مؤلم خلف الأذن)</li>
+            <li><i class="fas fa-exclamation-triangle"></i> يرقان شديد عند الرضيع (ظهر في أول 24 ساعة أو يشمل الكفين)</li>
+        </ol>
+        
+        <h3>إجراءات ما قبل الإحالة:</h3>
+        <ol class="guide-list">
+            <li><i class="fas fa-syringe"></i> أعطِ الجرعة الأولى من المضاد الحيوي المناسب</li>
+            <li><i class="fas fa-check"></i> عالج انخفاض سكر الدم (Glucose 10% أو حليب الثدي)</li>
+            <li><i class="fas fa-check"></i> حافظ على تدفئة الطفل</li>
+            <li><i class="fas fa-check"></i> استمر في الرضاعة الطبيعية أثناء النقل</li>
+            <li><i class="fas fa-check"></i> اكتب رسالة إحالة واضحة توضح حالة الطفل والعلاج المعطى</li>
+        </ol>
+    </section>
+
 </div>
 
-<div class="container">
-    <!-- المقدمة -->
-    <div class="section-card fade-in-up" id="intro">
-        <div class="section-header">
-            <i class="fa-solid fa-book-open"></i>
-            <h2>المقدمة</h2>
-        </div>
-        <div class="section-content">
-            <div class="content-text">
-                <p>يشهد العالم اليوم تحولاً رقمياً متسارعاً ألقى بظلاله على كافة القطاعات الحيوية، وعلى رأسها القطاع الصحي الذي لم يعد مجرد تقديم خدمة علاجية، بل أصبح منظومة متكاملة تعتمد على تدفق البيانات ودقة التشخيص وسرعة الاستجابة. في ظل الأزمات الصحية العالمية، برزت الأهمية القصوى للعمل الرقمي والخدمات الإلكترونية كركيزة أساسية لضمان استمرارية الرعاية ورفع كفاءة النظم الصحية، خاصة في البلدان النامية التي تواجه تحديات مزدوجة تتعلق بمحدودية الموارد وزيادة الطلب على الخدمات.</p>
-                
-                <div class="alert-box danger-box">
-                    <h3><i class="fa-solid fa-triangle-exclamation"></i> 🇾🇪 واقع القطاع الصحي في اليمن</h3>
-                    <p>في الحالة اليمنية، يواجه القطاع الصحي تحديات استثنائية نتيجة الظروف الراهنة والعدوان والحصار الذي أدى إلى تشتت البيانات وضعف التنسيق بين المنشآت الطبية. رغم وجود مفهوم "الرعاية التكاملية" كهدف استراتيجي، إلا أن العمل لا يزال غارقاً في النمط التقليدي الورقي.</p>
-                    <p>الاعتماد الكلي على السجلات الورقية والعمليات اليدوية أدى إلى ضياع التاريخ الطبي للمريض، تكرار الفحوصات غير الضرورية، بطء تبادل المعلومات بين مستويات الرعاية المختلفة، وصعوبة استخراج الإحصاءات الدقيقة التي تساعد في اتخاذ القرار الطبي والسياسات الصحية.</p>
-                </div>
-
-                <p>بينما لا يزال المريض في اليمن يحمل ملفاته الورقية من مستشفى لآخر، قطعت البلدان المتقدمة شوطاً كبيراً في رقمنة الرعاية التكاملية. حيث تعتمد الأنظمة هناك على "الملف الصحي الموحد" والذكاء الاصطناعي للتثقيف بالمخاطر الصحية قبل وقوعها، وتستخدم تقنيات "التطبيب عن بعد" لكسر الحواجز الجغرافية. الرعاية التكاملية في تلك الدول تعني أن المنظومة تعمل كجسد واحد، تتكامل فيها التقنيات الرقمية مع العمل الميداني لتقديم خدمة تفاعلية محورها "الإنسان".</p>
-                
-                <div class="alert-box success-box">
-                    <h3><i class="fa-solid fa-lightbulb"></i> رؤية المشروع</h3>
-                    <p>إن ما يجب أن يكون عليه الحال في اليمن ليس مجرد "أتمتة" للورق، بل الانتقال نحو الرعاية الذكية التي تدمج التكنولوجيا بذكاء في صلب العملية الصحية. من هنا تأتي أهمية <strong>"مشروع نظام الرعاية التكاملية التفاعلي الذكي iIMCI"</strong>، ليكون بمثابة الجسر الذي ينقل القطاع الصحي من العشوائية إلى التنظيم، ومن التقليد إلى التفاعل الذكي.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- منطلقات المشروع والأهداف -->
-    <div class="section-card fade-in-up" id="goals">
-        <div class="section-header">
-            <i class="fa-solid fa-bullseye"></i>
-            <h2>أهداف المشروع ومنطلقاته</h2>
-        </div>
-        <div class="section-content">
-            <div class="content-text">
-                <p>يهدف هذا المشروع إلى إيجاد بيئة رقمية تضمن وصول الخدمة الصحية لمستحقيها بأقل جهد وتكلفة، مع توفير قاعدة بيانات تفاعلية تتيح للأطباء والمؤسسات الصحية في اليمن العمل بروح الفريق الواحد، وتطوير جودة الحياة للمواطنين.</p>
-            </div>
-
-            <div class="info-grid">
-                <div class="info-card-mini">
-                    <i class="fa-solid fa-rocket"></i>
-                    <h4>الريادة والإبتكار الرقمي</h4>
-                    <p>المشروع الذكي الأول من نوعه في اليمن والإقليم الذي يسعى لدمج "الرعاية التكاملية" بالذكاء الاصطناعي، مما يجعله نموذجاً يحتذى به في التحول الرقمي الصحي للبلدان النامية.</p>
-                </div>
-                <div class="info-card-mini">
-                    <i class="fa-solid fa-globe"></i>
-                    <h4>التوجه الاستراتيجي الوطني والدولي</h4>
-                    <p>مواءمة المشروع مع "الاستراتيجية الوطنية لقطاع الرعاية الصحية الأولية" لوزارة الصحة اليمنية، وتماشياً مع أهداف التنمية المستدامة لمنظمة الصحة العالمية بشأن الرقمنة الصحية.</p>
-                </div>
-                <div class="info-card-mini">
-                    <i class="fa-solid fa-network-wired"></i>
-                    <h4>الحاجة الملحة للربط الشبكي</h4>
-                    <p>الانتقال من جزر البيانات المنعزلة إلى "منظومة وطنية موحدة" تضمن تدفق المعلومات الطبية عبر الحدود الإدارية والجغرافية بمرونة وذكاء.</p>
-                </div>
-                <div class="info-card-mini">
-                    <i class="fa-solid fa-chalkboard-user"></i>
-                    <h4>المبادرة القيادية</h4>
-                    <p>انطلاق المشروع من رحم الممارسة الميدانية (بإعداد مدير مكتب الصحة بمديرية العدين - محافظة إب)، مما يمنحه واقعية في التنفيذ وفهماً عميقاً للتحديات التقنية والبشرية.</p>
-                </div>
-            </div>
-
-            <div class="alert-box info-box">
-                <h3><i class="fa-solid fa-list-check"></i> منطلقات المشروع الأساسية</h3>
-                <ul class="goals-list" style="margin-top: 12px;">
-                    <li>
-                        <div class="goal-icon"><i class="fa-solid fa-1"></i></div>
-                        <div class="goal-text">الارتقاء بجودة الخدمات الصحية المقدمة للأطفال في اليمن وفق أحدث المعايير العالمية.</div>
-                    </li>
-                    <li>
-                        <div class="goal-icon"><i class="fa-solid fa-2"></i></div>
-                        <div class="goal-text">تمكين الكادر الصحي من أدوات التشخيص والتصنيف التلقائي الدقيق.</div>
-                    </li>
-                    <li>
-                        <div class="goal-icon"><i class="fa-solid fa-3"></i></div>
-                        <div class="goal-text">تقليل الأخطاء الطبية والهدر الدوائي من خلال توحيد البروتوكولات العلاجية.</div>
-                    </li>
-                    <li>
-                        <div class="goal-icon"><i class="fa-solid fa-4"></i></div>
-                        <div class="goal-text">بناء قاعدة بيانات وطنية تفاعلية للأطفال تسهل متابعة الحالات والأمراض.</div>
-                    </li>
-                    <li>
-                        <div class="goal-icon"><i class="fa-solid fa-5"></i></div>
-                        <div class="goal-text">تحقيق الاستدامة البيئية عبر التحول إلى النظام الورقي.</div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <!-- مميزات النظام -->
-    <div class="section-card fade-in-up" id="features">
-        <div class="section-header">
-            <i class="fa-solid fa-star-of-life"></i>
-            <h2>مميزات نظام iIMCI</h2>
-        </div>
-        <div class="section-content">
-            <div class="info-grid">
-                <div class="info-card-mini">
-                    <i class="fa-solid fa-robot"></i>
-                    <h4>تصنيف تلقائي ذكي</h4>
-                    <p>يقوم النظام بتصنيف الحالات تلقائياً وفق بروتوكولات منظمة الصحة العالمية (السعال، الإسهال، الحمى، الحصبة، سوء التغذية).</p>
-                </div>
-                <div class="info-card-mini">
-                    <i class="fa-solid fa-truck-medical"></i>
-                    <h4>إحالات فورية</h4>
-                    <p>تنبيه فوري للحالات الخطيرة مع خطة علاجية مفصلة (أمبسلين، جنتاميسين، محلول سكري 40%).</p>
-                    <span class="badge badge-danger">إحالة عاجلة</span>
-                </div>
-                <div class="info-card-mini">
-                    <i class="fa-solid fa-chart-line"></i>
-                    <h4>تقارير شهرية تلقائية</h4>
-                    <p>ترحيل البيانات مباشرة إلى تقارير شهرية جاهزة للرفع للمديريات والوزارة.</p>
-                </div>
-                <div class="info-card-mini">
-                    <i class="fa-solid fa-calculator"></i>
-                    <h4>حساب Z-Scores وMUAC</h4>
-                    <p>تقدير دقيق لحالة النمو والوزن والطول وفق معايير منظمة الصحة العالمية.</p>
-                </div>
-                <div class="info-card-mini">
-                    <i class="fa-solid fa-mobile-alt"></i>
-                    <h4>يعمل على جميع الأجهزة</h4>
-                    <p>تصميم متجاوب (RTL) يعمل على الحواسيب، الأجهزة اللوحية، والهواتف الذكية.</p>
-                    <span class="badge badge-success">PWA</span>
-                </div>
-                <div class="info-card-mini">
-                    <i class="fa-solid fa-graduation-cap"></i>
-                    <h4>تدريب تفاعلي مدمج</h4>
-                    <p>وضع تدريبي لمحاكاة الحالات السريرية، يمكن الكادر الطبي من التعلم الذاتي.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- أثر الحرب والحصار على النظام الصحي -->
-    <div class="section-card fade-in-up" id="situation">
-        <div class="section-header">
-            <i class="fa-solid fa-hand-fist"></i>
-            <h2>أثر العدوان والحصار على النظام الصحي اليمني</h2>
-        </div>
-        <div class="section-content">
-            <div class="alert-box danger-box">
-                <h3><i class="fa-solid fa-bomb"></i> الوضع الصحي في اليمن</h3>
-                <p style="font-size: 1rem; line-height: 1.9;">تعرض اليمن لعدوان وحصار جائر أدى إلى انهيار شبه كامل للبنية التحتية الصحية، حيث تم تدمير المستشفيات والمراكز الصحية، واستشهاد العديد من الكوادر الطبية، ونقص حاد في الأدوية والمستلزمات الطبية الأساسية. هذا الوضع الكارثي زاد من معاناة المرضى وخاصة الأطفال، وأدى إلى:</p>
-            </div>
-
-            <div class="info-grid" style="margin-top: 18px;">
-                <div class="info-card-mini">
-                    <i class="fa-solid fa-chart-simple"></i>
-                    <h4>تشتت البيانات الصحية</h4>
-                    <p>انعدام وجود قاعدة بيانات مركزية موحدة، وتشتت المعلومات بين المنشآت المتفرقة.</p>
-                </div>
-                <div class="info-card-mini">
-                    <i class="fa-solid fa-file-lines"></i>
-                    <h4>انهيار السجلات الورقية</h4>
-                    <p>ضياع الملفات الطبية للمرضى جراء القصف والتدمير أو ضعف الإمكانيات الأرشيفية.</p>
-                </div>
-                <div class="info-card-mini">
-                    <i class="fa-solid fa-repeat"></i>
-                    <h4>تكرار الفحوصات غير الضرورية</h4>
-                    <p>عدم توفر التاريخ المرضي الموحد، مما يرهق المريض ويزيد التكاليف.</p>
-                </div>
-                <div class="info-card-mini">
-                    <i class="fa-solid fa-chart-line"></i>
-                    <h4>ضعف التخطيط الصحي</h4>
-                    <p>غياب الإحصاءات الدقيقة لاتخاذ القرارات والسياسات الصحية المناسبة.</p>
-                </div>
-            </div>
-
-            <div class="alert-box success-box">
-                <h3><i class="fa-solid fa-lightbulb"></i> لماذا iIMCI هو الحل الأمثل؟</h3>
-                <p>في ظل هذه الظروف الصعبة، يأتي نظام iIMCI كحل تقني مبتكر. فهو لا يحتاج إلى بنية تحتية ضخمة أو خوادم مركزية، حيث يعمل النظام بتقنية PWA ويمكن تشغيله offline، ويخزن البيانات محلياً مع إمكانية المزامنة المستقبلية، مما يجعله مناسباً للعمل في أصعب الظروف. بالإضافة إلى ذلك، يساهم النظام في توحيد التشخيص والعلاج، وتقليل الأخطاء الطبية، وتوفير الوقت والجهد على الكوادر الصحية التي تعاني من شح الإمكانيات.</p>
-            </div>
-        </div>
-    </div>
-</div>
-
+<!-- ============================================================
+     الفوتر
+     ============================================================ -->
 <footer class="footer">
-    <div class="footer-particles">
-        <div class="footer-particle" style="left: 10%; animation-delay: 0s;"></div>
-        <div class="footer-particle" style="left: 20%; animation-delay: 1s;"></div>
-        <div class="footer-particle" style="left: 30%; animation-delay: 2s;"></div>
-        <div class="footer-particle" style="left: 40%; animation-delay: 0.5s;"></div>
-        <div class="footer-particle" style="left: 50%; animation-delay: 1.5s;"></div>
-        <div class="footer-particle" style="left: 60%; animation-delay: 3s;"></div>
-        <div class="footer-particle" style="left: 70%; animation-delay: 2.5s;"></div>
-        <div class="footer-particle" style="left: 80%; animation-delay: 4s;"></div>
-        <div class="footer-particle" style="left: 90%; animation-delay: 1s;"></div>
-    </div>
-    <p><i class="fa-regular fa-copyright"></i> 2025 iIMCI-Academy™ | نظام الرعاية التكاملية التفاعلي لصحة الطفل</p>
-    <div class="developer">
-        <i class="fa-solid fa-code"></i> هندسة وتطوير<br>
-        د/ صلاح قاسم محمد الأهدل<br>
-        مدير مكتب الصحة بمديرية العدين - محافظة إب<br>
-        1447هـ - 2025م
-    </div>
+    <i class="far fa-copyright"></i> 2026 نظام iIMCI التفاعلي | حسب بروتوكولات منظمة الصحة العالمية (WHO IMCI Chart Booklet)
+    | قطاع الرعاية الصحية الأولية – إدارة صحة الطفل | وزارة الصحة والبيئة – الجمهورية اليمنية
 </footer>
 
+<!-- ============================================================
+     أزرار عائمة
+     ============================================================ -->
+<!-- زر العودة للأعلى -->
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="العودة للأعلى">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- زر العودة للوحة التحكم -->
+<a href="dashboard.html" class="dashboard-btn" title="العودة للوحة التحكم">
+    <i class="fas fa-home"></i>
+</a>
+
 <script>
-// تأثير الظهور عند التمرير
-const observerOptions = { 
-    threshold: 0.1, 
-    rootMargin: '0px 0px -50px 0px' 
-};
+// ============================================================
+// إظهار زر العودة للأعلى
+// ============================================================
+window.addEventListener('scroll', function() {
+    const btn = document.getElementById('backToTop');
+    if (window.scrollY > 500) {
+        btn.classList.add('show');
+    } else {
+        btn.classList.remove('show');
+    }
+});
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
-    });
-}, observerOptions);
-
-document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
-
-// Active nav link on scroll
-const sections = document.querySelectorAll('.section-card');
-const navLinks = document.querySelectorAll('.nav-link');
-
-window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        if (scrollY >= sectionTop - 200) {
-            current = section.getAttribute('id');
-        }
-    });
-
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === '#' + current) {
-            link.classList.add('active');
+// ============================================================
+// تمرير ناعم لروابط جدول المحتويات
+// ============================================================
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     });
 });
 
-console.log("iIMCI Dashboard - لوحة التحكم v2.0 - Neon Edition");
+// ============================================================
+// تمييز القسم النشط في جدول المحتويات
+// ============================================================
+const sections = document.querySelectorAll('.guide-card');
+const tocLinks = document.querySelectorAll('.toc-item');
+
+window.addEventListener('scroll', function() {
+    let current = '';
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        if (window.scrollY >= sectionTop) {
+            current = section.getAttribute('id');
+        }
+    });
+    
+    tocLinks.forEach(link => {
+        link.style.background = '';
+        link.style.borderColor = 'var(--border)';
+        if (link.getAttribute('href') === '#' + current) {
+            link.style.background = '#e8f4fd';
+            link.style.borderColor = 'var(--primary)';
+        }
+    });
+});
+
+// ============================================================
+// طباعة الصفحة
+// ============================================================
+function printGuide() {
+    window.print();
+}
 </script>
+
 </body>
 </html>
