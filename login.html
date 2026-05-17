@@ -5,314 +5,827 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="نظام الرعاية التكاملية التفاعلي لصحة الطفل - iIMCI">
     <meta name="author" content="D / Salah Al-ahdel">
-    <meta name="theme-color" content="#1e3a8a">
+    <meta name="theme-color" content="#0a1628">
     <title>تسجيل الدخول | iIMCI Digital System</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=DM+Sans:wght@400;500;700&family=Syne:wght@400;500;600;700;800&family=Cairo:wght@300;400;500;600;700;800;900&family=Tajawal:wght@200;300;400;500;700;800;900&family=Changa:wght@400;500;600;700;800&family=Noto+Kufi+Arabic:wght@400;500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Almarai:wght@300;400;700;800&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Tajawal:wght@300;400;500;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --primary-color: #1e3a8a;
-            --secondary-color: #3b82f6;
-            --accent-color: #f59e0b;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --glass-bg: rgba(255, 255, 255, 0.96);
-            --error-color: #ef4444;
-            --success-color: #10b981;
+            --ink: #0a1628;
+            --ink-2: #0f2040;
+            --steel: #1e3a5f;
+            --azure: #1a6bff;
+            --azure-glow: rgba(26, 107, 255, 0.35);
+            --gold: #e8a820;
+            --gold-light: #f5c842;
+            --surface: rgba(255,255,255,0.035);
+            --surface-2: rgba(255,255,255,0.06);
+            --border: rgba(255,255,255,0.09);
+            --border-focus: rgba(26, 107, 255, 0.6);
+            --text-primary: #eef2ff;
+            --text-secondary: rgba(200, 215, 255, 0.65);
+            --text-muted: rgba(160, 185, 225, 0.45);
+            --error: #ff4d6d;
+            --success: #0fd98a;
+            --error-bg: rgba(255, 77, 109, 0.1);
+            --success-bg: rgba(15, 217, 138, 0.1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
+        *, *::before, *::after {
+            margin: 0; padding: 0;
+            box-sizing: border-box;
+        }
+
+        html { scroll-behavior: smooth; }
 
         body {
             min-height: 100vh;
-            background: radial-gradient(circle at top right, #1e3a8a, #0f172a);
+            background: var(--ink);
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            color: var(--text-main);
-            overflow-x: hidden;
-        }
-
-        .bg-shapes { position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: -1; }
-        .bg-shapes .shape { position: absolute; border-radius: 50%; background: rgba(255, 255, 255, 0.03); animation: float 20s infinite ease-in-out; }
-        .bg-shapes .shape:nth-child(1) { width: 400px; height: 400px; top: -200px; right: -100px; }
-        .bg-shapes .shape:nth-child(2) { width: 300px; height: 300px; bottom: -150px; left: -100px; animation-delay: 5s; }
-
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-30px); } }
-
-        .login-container {
-            width: 90%;
-            max-width: 440px;
-            background: var(--glass-bg);
-            padding: 35px 30px;
-            border-radius: 24px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
-            text-align: center;
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-
-        .logo-section img { width: 80px; margin-bottom: 12px; }
-        .ministry-title { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; font-weight: 600; }
-        .system-title { font-size: 18px; font-weight: 900; color: var(--primary-color); margin-bottom: 5px; }
-        .system-subtitle-en { font-size: 10px; color: var(--text-muted); margin-bottom: 25px; }
-        
-        .input-group { margin-bottom: 18px; text-align: right; }
-        .input-group label { font-size: 13px; color: var(--primary-color); font-weight: 700; display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
-        .input-wrapper { position: relative; }
-        .input-group input { width: 100%; padding: 13px 16px; border-radius: 12px; border: 2px solid #e2e8f0; background: #f8fafc; font-family: 'Cairo', sans-serif; font-size: 14px; transition: 0.2s; }
-        .input-group input:focus { outline: none; border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(30,58,138,0.1); }
-        
-        .password-toggle { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: var(--text-muted); }
-
-        .login-btn {
-            width: 100%; padding: 15px; border: none; border-radius: 12px;
-            background: linear-gradient(135deg, #1e3a8a, #3b82f6); color: #fff;
-            font-size: 15px; font-weight: 700; cursor: pointer; transition: 0.4s;
             font-family: 'Cairo', sans-serif;
+            color: var(--text-primary);
+            overflow: hidden;
+            position: relative;
         }
-        .login-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(30,58,138,0.3); }
 
-        .error-message, .success-message { font-size: 13px; margin-top: 15px; padding: 10px; border-radius: 8px; display: none; align-items: center; justify-content: center; gap: 5px; }
-        .error-message { color: var(--error-color); background: #fee2e2; }
-        .success-message { color: var(--success-color); background: #d1fae5; }
+        /* ── BACKGROUND ARCHITECTURE ── */
+        .bg-canvas {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+        }
 
-        .dev-signature-pro { margin-top: 25px; padding-top: 18px; border-top: 1px solid #f1f5f9; }
-        .dev-name { font-size: 14px; font-weight: 800; color: #ef4444; }
-        .dev-text { font-size: 12px; color: var(--text-muted); margin-top: 8px; }
-        .global-icon { color: var(--primary-color); margin-left: 4px; }
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(26,107,255,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(26,107,255,0.04) 1px, transparent 1px);
+            background-size: 48px 48px;
+            mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+        }
+
+        .bg-glow-1 {
+            position: absolute;
+            width: 700px; height: 700px;
+            top: -200px; right: -150px;
+            background: radial-gradient(circle, rgba(26,107,255,0.18) 0%, transparent 70%);
+            animation: driftA 18s ease-in-out infinite;
+        }
+        .bg-glow-2 {
+            position: absolute;
+            width: 500px; height: 500px;
+            bottom: -180px; left: -100px;
+            background: radial-gradient(circle, rgba(30,58,95,0.4) 0%, transparent 70%);
+            animation: driftB 22s ease-in-out infinite;
+        }
+        .bg-glow-3 {
+            position: absolute;
+            width: 300px; height: 300px;
+            top: 40%; left: 10%;
+            background: radial-gradient(circle, rgba(232,168,32,0.06) 0%, transparent 70%);
+            animation: driftA 28s ease-in-out infinite reverse;
+        }
+
+        @keyframes driftA {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, -40px) scale(1.1); }
+        }
+        @keyframes driftB {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-20px, 30px) scale(1.08); }
+        }
+
+        /* Medical cross pattern */
+        .bg-crosses {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            opacity: 0.03;
+        }
+        .bg-crosses::before,
+        .bg-crosses::after {
+            content: '';
+            position: absolute;
+            background: rgba(26,107,255,0.8);
+        }
+
+        /* ── MAIN CARD ── */
+        .card-shell {
+            position: relative;
+            z-index: 10;
+            width: min(480px, 92vw);
+            animation: riseUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        @keyframes riseUp {
+            from { opacity: 0; transform: translateY(40px) scale(0.97); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* Decorative border glow */
+        .card-glow {
+            position: absolute;
+            inset: -1px;
+            border-radius: 26px;
+            background: linear-gradient(135deg, 
+                rgba(26,107,255,0.5) 0%, 
+                rgba(26,107,255,0.05) 40%, 
+                rgba(232,168,32,0.3) 100%);
+            z-index: -1;
+            filter: blur(0.5px);
+        }
+
+        .card {
+            background: linear-gradient(160deg, rgba(14,28,55,0.97) 0%, rgba(9,19,38,0.99) 100%);
+            border-radius: 26px;
+            border: 1px solid var(--border);
+            padding: 44px 40px 36px;
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            box-shadow:
+                0 40px 80px -20px rgba(0,0,0,0.8),
+                0 0 0 1px rgba(255,255,255,0.04) inset;
+        }
+
+        /* ── HEADER ── */
+        .header {
+            text-align: center;
+            margin-bottom: 36px;
+        }
+
+        .emblem-ring {
+            width: 88px;
+            height: 88px;
+            margin: 0 auto 18px;
+            position: relative;
+        }
+
+        .emblem-ring::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 50%;
+            background: conic-gradient(
+                from 180deg,
+                var(--azure) 0deg,
+                var(--gold) 120deg,
+                var(--azure) 240deg,
+                var(--azure) 360deg
+            );
+            animation: spinRing 12s linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes spinRing {
+            to { transform: rotate(360deg); }
+        }
+
+        .emblem-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: var(--ink-2);
+            border: 2px solid rgba(26,107,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .emblem-inner img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            filter: brightness(1.1) drop-shadow(0 0 8px rgba(26,107,255,0.4));
+            position: relative;
+            z-index: 1;
+        }
+
+        .republic-line {
+            font-family: 'Tajawal', sans-serif;
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-muted);
+            letter-spacing: 0.03em;
+            line-height: 1.8;
+            margin-bottom: 14px;
+        }
+
+        .divider-ornament {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 14px;
+        }
+        .divider-ornament::before,
+        .divider-ornament::after {
+            content: '';
+            width: 50px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(26,107,255,0.4), transparent);
+        }
+        .divider-ornament .dot {
+            width: 5px; height: 5px;
+            border-radius: 50%;
+            background: var(--gold);
+            box-shadow: 0 0 8px var(--gold);
+        }
+
+        .system-name {
+            font-family: 'Cairo', sans-serif;
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.4;
+            margin-bottom: 6px;
+            letter-spacing: -0.01em;
+        }
+
+        .system-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(26,107,255,0.12);
+            border: 1px solid rgba(26,107,255,0.25);
+            border-radius: 100px;
+            padding: 4px 14px;
+            font-family: 'Syne', sans-serif;
+            font-size: 10.5px;
+            font-weight: 700;
+            color: rgba(100,165,255,0.9);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        .system-badge .dot-live {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: var(--success);
+            box-shadow: 0 0 8px var(--success);
+            animation: pulse 2s ease infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        /* ── FORM ── */
+        .form-section { margin-bottom: 6px; }
+
+        .field-group {
+            margin-bottom: 16px;
+        }
+
+        .field-label {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 12.5px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            letter-spacing: 0.02em;
+        }
+        .field-label i {
+            color: var(--azure);
+            font-size: 12px;
+            opacity: 0.85;
+        }
+
+        .field-wrap {
+            position: relative;
+        }
+
+        .field-wrap input {
+            width: 100%;
+            padding: 13px 18px;
+            padding-left: 46px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-family: 'Cairo', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.25s ease;
+            outline: none;
+            -webkit-text-fill-color: var(--text-primary);
+        }
+
+        .field-wrap input::placeholder {
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .field-wrap input:focus {
+            border-color: var(--border-focus);
+            background: rgba(26,107,255,0.07);
+            box-shadow: 0 0 0 3px rgba(26,107,255,0.12), 0 4px 16px rgba(0,0,0,0.2);
+        }
+
+        .field-wrap input:-webkit-autofill,
+        .field-wrap input:-webkit-autofill:focus {
+            -webkit-box-shadow: 0 0 0 1000px rgba(14,28,55,0.97) inset;
+            -webkit-text-fill-color: var(--text-primary);
+        }
+
+        .field-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(100,140,220,0.4);
+            font-size: 13px;
+            pointer-events: none;
+            transition: color 0.25s;
+        }
+        .field-wrap:focus-within .field-icon {
+            color: var(--azure);
+        }
+
+        .toggle-btn {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: rgba(100,140,220,0.4);
+            font-size: 13px;
+            padding: 4px;
+            transition: color 0.2s;
+            line-height: 1;
+        }
+        .toggle-btn:hover { color: var(--azure); }
+
+        /* ── SUBMIT BUTTON ── */
+        .submit-wrap {
+            margin-top: 24px;
+            position: relative;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px 24px;
+            background: linear-gradient(135deg, #1a5fe8 0%, #1a6bff 50%, #2979ff 100%);
+            border: none;
+            border-radius: 12px;
+            color: #fff;
+            font-family: 'Cairo', sans-serif;
+            font-size: 15px;
+            font-weight: 800;
+            cursor: pointer;
+            letter-spacing: 0.02em;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 24px -8px rgba(26,107,255,0.6);
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 40px -8px rgba(26,107,255,0.7);
+        }
+        .submit-btn:hover::before { opacity: 1; }
+
+        .submit-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 12px -4px rgba(26,107,255,0.5);
+        }
+
+        .btn-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-lock-icon {
+            width: 30px; height: 30px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+        }
+
+        /* ── ALERTS ── */
+        .alert {
+            margin-top: 14px;
+            padding: 11px 16px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            display: none;
+            align-items: center;
+            gap: 9px;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            animation: slideIn 0.3s ease;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .alert-error {
+            background: var(--error-bg);
+            border: 1px solid rgba(255,77,109,0.25);
+            color: #ff8fa3;
+        }
+        .alert-success {
+            background: var(--success-bg);
+            border: 1px solid rgba(15,217,138,0.25);
+            color: #5effc3;
+        }
+        .alert i { font-size: 14px; flex-shrink: 0; }
+
+        /* ── FOOTER ── */
+        .card-footer {
+            margin-top: 28px;
+            padding-top: 22px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .security-badges {
+            display: flex;
+            gap: 8px;
+        }
+
+        .badge-chip {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            padding: 4px 10px;
+            font-size: 9.5px;
+            font-weight: 700;
+            color: var(--text-muted);
+            letter-spacing: 0.04em;
+            font-family: 'Syne', sans-serif;
+        }
+        .badge-chip i { font-size: 9px; color: var(--success); }
+
+        .dev-credit {
+            text-align: left;
+        }
+        .dev-credit-label {
+            font-size: 9px;
+            color: var(--text-muted);
+            font-family: 'Syne', sans-serif;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 2px;
+        }
+        .dev-credit-name {
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--gold-light);
+            font-family: 'Syne', sans-serif;
+            letter-spacing: 0.02em;
+        }
+
+        /* ── FLOATING PARTICLES ── */
+        .particles {
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--azure);
+            opacity: 0;
+            animation: floatParticle linear infinite;
+        }
+
+        @keyframes floatParticle {
+            0% { opacity: 0; transform: translateY(100vh) scale(0); }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.2; }
+            100% { opacity: 0; transform: translateY(-20vh) scale(1); }
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 520px) {
+            .card { padding: 32px 24px 28px; }
+            .system-name { font-size: 17px; }
+            .card-footer { flex-direction: column; gap: 14px; align-items: center; }
+            .dev-credit { text-align: center; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="bg-shapes"><div class="shape"></div><div class="shape"></div></div>
-
-    <div class="login-container">
-        <div class="logo-section">
-            <img src="assets/images/yemen-eagle.png" onerror="this.src='https://flagcdn.com/w160/ye.png';" alt="Logo">
-        </div>
-
-        <div class="ministry-title">
-            الجمهورية اليمنية<br>
-            وزارة الصحة والبيئة<br>
-            قطاع الرعاية الصحية الأولية 
-        </div>
-
-        <div class="system-title">نظام الرعاية التكاملية التفاعلي لصحة الطفل</div>
-        <div class="system-subtitle-en">Interactive Integrated Child Healthcare System - iIMCI</div>
-
-        <div class="input-group">
-            <label><i class="fa-solid fa-user-circle"></i> اسم المستخدم</label>
-            <input type="text" id="username" placeholder="اسم المستخدم" autocomplete="off">
-        </div>
-
-        <div class="input-group">
-            <label><i class="fa-solid fa-key"></i> كلمة المرور</label>
-            <div class="input-wrapper">
-                <input type="password" id="password" placeholder="••••••••">
-                <span class="password-toggle" onclick="togglePass()"><i class="fa-solid fa-eye" id="eyeIcon"></i></span>
-            </div>
-        </div>
-
-        <button class="login-btn" onclick="login()" id="loginBtn">تسجيل الدخول الآمن</button>
-
-        <div class="error-message" id="errorMsg"><i class="fa-solid fa-circle-exclamation"></i> <span id="errorText"></span></div>
-        <div class="success-message" id="successMsg"><i class="fa-solid fa-check-circle"></i> <span id="successText"></span></div>
-
-        <div class="dev-signature-pro">
-            <div class="dev-text">
-                <i class="fa-solid fa-globe global-icon"></i> هندسة وتطوير بواسطة
-            </div>
-            <span class="dev-name">Dr / Salah Al-ahdel</span>
-        </div>
+    <!-- Background -->
+    <div class="bg-canvas">
+        <div class="bg-grid"></div>
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+        <div class="bg-glow-3"></div>
     </div>
 
+    <!-- Particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Main Card -->
+    <div class="card-shell">
+        <div class="card-glow"></div>
+        <div class="card">
+
+            <!-- Header -->
+            <div class="header">
+                <div class="emblem-ring">
+                    <div class="emblem-inner">
+                        <img src="assets/images/yemen-eagle.png"
+                             onerror="this.src='https://flagcdn.com/w160/ye.png';"
+                             alt="شعار الجمهورية اليمنية">
+                    </div>
+                </div>
+
+                <div class="republic-line">
+                    الجمهورية اليمنية &nbsp;·&nbsp; وزارة الصحة والبيئة<br>
+                    قطاع الرعاية الصحية الأولية
+                </div>
+
+                <div class="divider-ornament">
+                    <span class="dot"></span>
+                </div>
+
+                <div class="system-name">نظام الرعاية التكاملية التفاعلي لصحة الطفل</div>
+
+                <div style="margin-top:12px;">
+                    <span class="system-badge">
+                        <span class="dot-live"></span>
+                        iIMCI &nbsp;·&nbsp; Digital System
+                    </span>
+                </div>
+            </div>
+
+            <!-- Form -->
+            <div class="form-section">
+
+                <div class="field-group">
+                    <div class="field-label">
+                        <i class="fa-solid fa-user-circle"></i>
+                        اسم المستخدم
+                    </div>
+                    <div class="field-wrap">
+                        <input type="text" id="username"
+                               placeholder="أدخل اسم المستخدم"
+                               autocomplete="off"
+                               spellcheck="false">
+                        <i class="fa-solid fa-at field-icon"></i>
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <div class="field-label">
+                        <i class="fa-solid fa-key"></i>
+                        كلمة المرور
+                    </div>
+                    <div class="field-wrap">
+                        <input type="password" id="password"
+                               placeholder="••••••••••••">
+                        <button class="toggle-btn" type="button" onclick="togglePass()" aria-label="إظهار / إخفاء كلمة المرور">
+                            <i class="fa-solid fa-eye" id="eyeIcon"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="submit-wrap">
+                    <button class="submit-btn" onclick="login()" id="loginBtn" type="button">
+                        <div class="btn-content">
+                            <div class="btn-lock-icon">
+                                <i class="fa-solid fa-lock-open" id="btnIcon"></i>
+                            </div>
+                            <span>تسجيل الدخول الآمن</span>
+                        </div>
+                    </button>
+                </div>
+
+                <div class="alert alert-error" id="errorMsg">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <span id="errorText"></span>
+                </div>
+                <div class="alert alert-success" id="successMsg">
+                    <i class="fa-solid fa-check-circle"></i>
+                    <span id="successText"></span>
+                </div>
+
+            </div>
+
+            <!-- Footer -->
+            <div class="card-footer">
+                <div class="security-badges">
+                    <div class="badge-chip">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        SECURE
+                    </div>
+                    <div class="badge-chip">
+                        <i class="fa-solid fa-circle-check"></i>
+                        RBAC
+                    </div>
+                </div>
+                <div class="dev-credit">
+                    <div class="dev-credit-label">Engineered by</div>
+                    <div class="dev-credit-name">Dr. Salah Al-ahdel</div>
+                </div>
+            </div>
+
+        </div><!-- /card -->
+    </div><!-- /card-shell -->
+
     <script>
-        // ============================================================
-        // المستخدمون الأصليون - لم يتم تغييرهم
-        // ============================================================
+        /* ── PARTICLES ── */
+        (function spawnParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 18; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                const size = Math.random() * 3 + 1;
+                p.style.cssText = `
+                    width:${size}px; height:${size}px;
+                    left:${Math.random()*100}%;
+                    animation-duration:${Math.random()*20+15}s;
+                    animation-delay:${Math.random()*20}s;
+                    opacity:0;
+                `;
+                container.appendChild(p);
+            }
+        })();
+
+        /* ── ORIGINAL LOGIC - UNCHANGED ── */
         const users = {
             "imci_rayas": { pass: "123456", facility: "المركز الصحي الرياس" },
             "imci_maliky": { pass: "123456", facility: "المركز الصحي بلاد المليكي" },
             "imci_gabalin": { pass: "123456", facility: "المركز الصحي الجبلين" }
         };
 
-        // ============================================================
-        // نظام الصلاحيات RBAC - إضافة جديدة
-        // ============================================================
         const ROLES = {
-            ADMIN: 'admin',
-            DOCTOR: 'doctor',
-            NURSE: 'nurse',
-            DATA_ENTRY: 'data_entry',
-            SUPERVISOR: 'supervisor'
+            ADMIN: 'admin', DOCTOR: 'doctor', NURSE: 'nurse',
+            DATA_ENTRY: 'data_entry', SUPERVISOR: 'supervisor'
         };
-
         const ROLE_LABELS = {
-            admin: 'مدير النظام',
-            doctor: 'طبيب',
-            nurse: 'ممرض/ة',
-            data_entry: 'مُدخل بيانات',
-            supervisor: 'مشرف صحي'
+            admin: 'مدير النظام', doctor: 'طبيب', nurse: 'ممرض/ة',
+            data_entry: 'مُدخل بيانات', supervisor: 'مشرف صحي'
         };
 
-        // المستخدمون الافتراضيون للنظام الجديد (إذا لم يكنوا موجودين)
         const DEFAULT_USERS = [
-            { id: "admin_001", username: "admin", password: "admin123", fullName: "مدير النظام", role: "admin", facility: "all", isActive: true, createdAt: "2026-05-15" },
-            { id: "doc_001", username: "dr.salah", password: "doc123", fullName: "د. صلاح الأحصل", role: "doctor", facility: "المركز الصحي الرياس", isActive: true, createdAt: "2026-05-15" },
-            { id: "nurse_001", username: "nurse.fatima", password: "nurse123", fullName: "فاطمة علي - ممرضة", role: "nurse", facility: "المركز الصحي بلاد المليكي", isActive: true, createdAt: "2026-05-15" },
-            { id: "entry_001", username: "data.ahmed", password: "entry123", fullName: "أحمد محمد - مُدخل بيانات", role: "data_entry", facility: "المركز الصحي الجبلين", isActive: true, createdAt: "2026-05-15" },
-            { id: "super_001", username: "super.khaled", password: "super123", fullName: "خالد سعيد - مشرف صحي", role: "supervisor", facility: "all", isActive: true, createdAt: "2026-05-15" }
+            { id:"admin_001", username:"admin", password:"admin123", fullName:"مدير النظام", role:"admin", facility:"all", isActive:true, createdAt:"2026-05-15" },
+            { id:"doc_001", username:"dr.salah", password:"doc123", fullName:"د. صلاح الأحصل", role:"doctor", facility:"المركز الصحي الرياس", isActive:true, createdAt:"2026-05-15" },
+            { id:"nurse_001", username:"nurse.fatima", password:"nurse123", fullName:"فاطمة علي - ممرضة", role:"nurse", facility:"المركز الصحي بلاد المليكي", isActive:true, createdAt:"2026-05-15" },
+            { id:"entry_001", username:"data.ahmed", password:"entry123", fullName:"أحمد محمد - مُدخل بيانات", role:"data_entry", facility:"المركز الصحي الجبلين", isActive:true, createdAt:"2026-05-15" },
+            { id:"super_001", username:"super.khaled", password:"super123", fullName:"خالد سعيد - مشرف صحي", role:"supervisor", facility:"all", isActive:true, createdAt:"2026-05-15" }
         ];
 
         const DEFAULT_FACILITIES = [
-            "المركز الصحي الرياس",
-            "المركز الصحي بلاد المليكي",
-            "المركز الصحي الجبلين",
-            "مركز الصحة الأولية - إب",
-            "مركز الصحة الأولية - تعز",
-            "مركز الصحة الأولية - صنعاء",
-            "مركز الصحة الأولية - عدن"
+            "المركز الصحي الرياس","المركز الصحي بلاد المليكي","المركز الصحي الجبلين",
+            "مركز الصحة الأولية - إب","مركز الصحة الأولية - تعز",
+            "مركز الصحة الأولية - صنعاء","مركز الصحة الأولية - عدن"
         ];
 
-        // تهيئة البيانات
         function initData() {
-            if (!localStorage.getItem('imci_users')) {
+            if (!localStorage.getItem('imci_users'))
                 localStorage.setItem('imci_users', JSON.stringify(DEFAULT_USERS));
-            }
-            if (!localStorage.getItem('imci_facilities')) {
+            if (!localStorage.getItem('imci_facilities'))
                 localStorage.setItem('imci_facilities', JSON.stringify(DEFAULT_FACILITIES));
-            }
         }
 
         function togglePass() {
-            const passInput = document.getElementById("password");
-            const eyeIcon = document.getElementById("eyeIcon");
-            if(passInput.type === "password") {
-                passInput.type = "text";
-                eyeIcon.classList.replace("fa-eye", "fa-eye-slash");
+            const p = document.getElementById("password");
+            const icon = document.getElementById("eyeIcon");
+            if (p.type === "password") {
+                p.type = "text";
+                icon.classList.replace("fa-eye","fa-eye-slash");
             } else {
-                passInput.type = "password";
-                eyeIcon.classList.replace("fa-eye-slash", "fa-eye");
+                p.type = "password";
+                icon.classList.replace("fa-eye-slash","fa-eye");
             }
         }
 
-        // ============================================================
-        // دالة تسجيل الدخول المحدثة - تدعم المستخدمين القدامى والجدد
-        // ============================================================
         function login() {
             const user = document.getElementById("username").value.trim();
             const pass = document.getElementById("password").value.trim();
             const errorBox = document.getElementById("errorMsg");
             const successBox = document.getElementById("successMsg");
+            const btn = document.getElementById("loginBtn");
 
             initData();
 
-            // الخطوة 1: التحقق من المستخدمين الأصليين (imci_rayas, imci_maliky, imci_gabalin)
-            if(users[user] && users[user].pass === pass) {
-                // تسجيل الدخول بالنظام القديم
-                localStorage.setItem("imci_logged_in", "true");
+            btn.disabled = true;
+            btn.style.opacity = '0.7';
+
+            // Legacy users
+            if (users[user] && users[user].pass === pass) {
+                localStorage.setItem("imci_logged_in","true");
                 localStorage.setItem("imci_user", user);
                 localStorage.setItem("imci_facility", users[user].facility);
-                
-                // إنشاء جلسة RBAC للمستخدم الأصلي (يعامل كـ admin افتراضياً)
                 const session = {
-                    id: 'legacy_' + user,
-                    username: user,
-                    fullName: users[user].facility + " - مدير",
-                    role: "admin",
-                    facility: users[user].facility,
-                    loginTime: new Date().toISOString(),
-                    isLegacy: true
+                    id:'legacy_'+user, username:user,
+                    fullName:users[user].facility+" - مدير",
+                    role:"admin", facility:users[user].facility,
+                    loginTime:new Date().toISOString(), isLegacy:true
                 };
                 localStorage.setItem('imci_session', JSON.stringify(session));
-                
                 successBox.style.display = "flex";
-                document.getElementById("successText").textContent = "تم الدخول بنجاح - " + users[user].facility;
+                document.getElementById("successText").textContent = "تم الدخول بنجاح — "+users[user].facility;
                 errorBox.style.display = "none";
-                
-                setTimeout(() => { window.location.href = "dashboard.html"; }, 1000);
+                setTimeout(()=>{ window.location.href = "dashboard.html"; }, 1000);
                 return;
             }
 
-            // الخطوة 2: التحقق من المستخدمين الجدد (نظام RBAC)
+            // RBAC users
             const allUsers = JSON.parse(localStorage.getItem('imci_users')) || [];
-            const rbacUser = allUsers.find(u => 
-                u.username === user && 
-                u.password === pass && 
-                u.isActive === true
-            );
+            const rbacUser = allUsers.find(u=>u.username===user && u.password===pass && u.isActive===true);
 
-            if(rbacUser) {
+            if (rbacUser) {
                 const session = {
-                    id: rbacUser.id,
-                    username: rbacUser.username,
-                    fullName: rbacUser.fullName,
-                    role: rbacUser.role,
-                    facility: rbacUser.facility,
-                    loginTime: new Date().toISOString()
+                    id:rbacUser.id, username:rbacUser.username,
+                    fullName:rbacUser.fullName, role:rbacUser.role,
+                    facility:rbacUser.facility, loginTime:new Date().toISOString()
                 };
                 localStorage.setItem('imci_session', JSON.stringify(session));
-                localStorage.setItem('imci_logged_in', 'true');
-                localStorage.setItem('imci_facility', rbacUser.facility === 'all' ? (DEFAULT_FACILITIES[0] || 'مركز غير معروف') : rbacUser.facility);
+                localStorage.setItem('imci_logged_in','true');
+                localStorage.setItem('imci_facility', rbacUser.facility==='all' ? (DEFAULT_FACILITIES[0]||'مركز غير معروف') : rbacUser.facility);
                 localStorage.setItem('imci_user', rbacUser.username);
-                
                 successBox.style.display = "flex";
-                document.getElementById("successText").textContent = "تم الدخول بنجاح - " + rbacUser.fullName;
+                document.getElementById("successText").textContent = "تم الدخول بنجاح — "+rbacUser.fullName;
                 errorBox.style.display = "none";
-                
-                setTimeout(() => { window.location.href = "dashboard.html"; }, 1000);
+                setTimeout(()=>{ window.location.href = "dashboard.html"; }, 1000);
                 return;
             }
 
-            // فشل الدخول
+            // Failure
             errorBox.style.display = "flex";
             document.getElementById("errorText").textContent = "بيانات الدخول غير صحيحة أو الحساب معطل";
             successBox.style.display = "none";
+            btn.disabled = false;
+            btn.style.opacity = '1';
+
+            // Shake animation
+            const card = document.querySelector('.card');
+            card.style.animation = 'shake 0.4s ease';
+            setTimeout(()=>card.style.animation='', 400);
         }
 
-        document.addEventListener('keypress', (e) => { if(e.key === 'Enter') login(); });
+        document.addEventListener('keypress', e => { if (e.key==='Enter') login(); });
 
-        // ============================================================
-        // ** التعديل الرئيسي: التحقق من صلاحية الجلسة قبل التوجيه **
-        // ============================================================
         function checkSessionAndRedirect() {
-            // إذا كان المستخدم قد سجل دخوله بالفعل ولديه جلسة صالحة
-            if (localStorage.getItem('imci_logged_in') === 'true') {
+            if (localStorage.getItem('imci_logged_in')==='true') {
                 const session = JSON.parse(localStorage.getItem('imci_session'));
-                
                 if (session && session.loginTime) {
-                    // التحقق من عدم انتهاء صلاحية الجلسة (8 ساعات)
-                    const loginTime = new Date(session.loginTime);
-                    const now = new Date();
-                    const hoursDiff = (now - loginTime) / (1000 * 60 * 60);
-                    
+                    const hoursDiff = (new Date() - new Date(session.loginTime)) / 3600000;
                     if (hoursDiff <= 8) {
-                        // الجلسة لا تزال صالحة، التوجيه إلى لوحة التحكم
                         window.location.href = 'dashboard.html';
                     } else {
-                        // انتهت صلاحية الجلسة، تنظيف التخزين المحلي وعرض صفحة الدخول
                         localStorage.removeItem('imci_session');
-                        localStorage.setItem('imci_logged_in', 'false');
-                        console.log("انتهت صلاحية الجلسة. يرجى تسجيل الدخول مرة أخرى.");
+                        localStorage.setItem('imci_logged_in','false');
                     }
                 } else {
-                    // الجلسة غير مكتملة، تنظيف التخزين المحلي
                     localStorage.removeItem('imci_session');
-                    localStorage.setItem('imci_logged_in', 'false');
+                    localStorage.setItem('imci_logged_in','false');
                 }
             }
         }
 
-        // تنفيذ التحقق عند تحميل الصفحة
         checkSessionAndRedirect();
+
+        /* Shake keyframes injected */
+        const style = document.createElement('style');
+        style.textContent = `@keyframes shake {
+            0%,100%{transform:translateX(0)}
+            20%{transform:translateX(-8px)}
+            40%{transform:translateX(8px)}
+            60%{transform:translateX(-5px)}
+            80%{transform:translateX(5px)}
+        }`;
+        document.head.appendChild(style);
     </script>
 
 </body>
